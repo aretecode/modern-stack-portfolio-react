@@ -14,7 +14,7 @@ import { gql } from 'apollo-boost'
  */
 export default gql`
   query Resume {
-    resume @client {
+    resume {
       __typename
       basics {
         __typename

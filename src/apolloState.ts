@@ -12,12 +12,12 @@ import { addTypeName } from './utils/addTypeName'
 import ResumeQuery from './graphql/Resume'
 
 export const typeDefs = gql`
-  type Profile {
+  type ProfileType {
     network: string
     username: string
     url: string
   }
-  type Basics {
+  type BasicsInputType {
     name: string
     label: string
     picture: string
@@ -34,7 +34,7 @@ export const typeDefs = gql`
     resumeWebsite: string
     skills: [string]
   }
-  type Work {
+  type WorkInputType {
     company: string
     position: string
     startDate: string
@@ -44,7 +44,7 @@ export const typeDefs = gql`
     website: string
     picture: string
   }
-  type Resume {
+  type ResumeType {
     id: ID
     basics: Basics
     work: [Work]
@@ -55,10 +55,13 @@ export const typeDefs = gql`
   }
 
   type Query {
-    resume(id: ID): [Resume]
+    resume(id: ID): [ResumeType]
   }
   type Mutation {
-    setResume(basics: Basics, work: [Work]): AddOrUpdateResumeResponse!
+    setResume(
+      basics: BasicsInputType
+      work: [WorkInputType]
+    ): AddOrUpdateResumeResponse!
   }
 `
 
