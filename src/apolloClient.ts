@@ -25,22 +25,23 @@ const IS_BROWSER = typeof window === 'object'
 const httpLink = new ApolloLink((operation, forward) => {
   const httpLinkActual = new HttpLink({
     get uri() {
-      const extension =
-        process.env.NODE_ENV === 'development'
-          ? `?n=${operation.operationName}`
-          : ''
-      return `http://localhost:4000/graphql${extension}`
+      /**
+       * @todo dynamically check if port is running on local, else switch to now
+       */
+      return process.env.NODE_ENV === 'development'
+        ? `http://localhost:4000/graphql?n=${operation.operationName}`
+        : 'https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql'
     },
 
     /**
      * @see https://github.com/apollographql/apollo-link/issues/236#issuecomment-348176745
      */
-    fetchOptions: { method: 'GET' },
+    // fetchOptions: { method: 'GET' },
 
-    credentials:
-      process.env.NODE_ENV === 'development' || process.env.LOCAL_PRODUCTION
-        ? 'include'
-        : 'same-origin',
+    /**
+     * @@security should be same-origin in real production
+     */
+    credentials: 'include',
   })
 
   return httpLinkActual.request(operation, forward)
