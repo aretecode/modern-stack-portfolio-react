@@ -1,3 +1,6 @@
+/**
+ * @todo change usage for next.js format of _app
+ */
 import * as React from 'react'
 import Footer from './features/Footer'
 import Header from './features/Header'

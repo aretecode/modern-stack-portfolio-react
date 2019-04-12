@@ -26,7 +26,7 @@ export class DynamicLink extends React.PureComponent<
     } else {
       const { children, ...remaining } = remainingProps
       return (
-        <BaseLink {...remaining} href={toHref}>
+        <BaseLink href={toHref}>
           <StyledHref {...remaining} href={toHref}>
             {children}
           </StyledHref>

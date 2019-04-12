@@ -22,6 +22,13 @@ import { logger } from './log'
 
 const IS_BROWSER = typeof window === 'object'
 
+/**
+ * @todo process browser typings for next default env...
+ */
+if (!(process as any).browser) {
+  (global as any).fetch = require('node-fetch')
+}
+
 const httpLink = new ApolloLink((operation, forward) => {
   const httpLinkActual = new HttpLink({
     get uri() {
@@ -98,8 +105,7 @@ const consoleLink = new ApolloLink((operation, forward) => {
  * @see https://github.com/apollographql/apollo-client/issues/1913#issuecomment-348359030
  */
 const clientConfig: ApolloClientOptions<any> = {
-  link: ApolloLink.from([consoleLink, errorLink, stateLink, httpLink]),
-
+  link: ApolloLink.from([consoleLink, errorLink, httpLink]),
   cache,
   ssrMode: true,
   connectToDevTools: undefined,

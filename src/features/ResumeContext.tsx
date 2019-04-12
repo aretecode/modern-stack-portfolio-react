@@ -50,7 +50,10 @@ export class ResumeProvider extends React.PureComponent {
 
   render() {
     return (
-      <Query<ResumeResponse> query={ResumeQuery} pollInterval={5000}>
+      <Query<ResumeResponse>
+        query={ResumeQuery}
+        fetchPolicy="cache-and-network"
+      >
         {this.renderContext}
       </Query>
     )
