@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "name": "modern-stack-skeletons-app",
+  "name": "modern-stack-skeletons-client",
   "env": {
     "IS_NOW": "true"
   },
   "builds": [
-    { 
+    {
       "src": "package.json",
       "use": "@now/next"
     }
