@@ -18,12 +18,18 @@ import { InMemoryCache } from 'apollo-boost'
 import { withClientState } from 'apollo-link-state'
 import { onError } from 'apollo-link-error'
 import { GraphQLError } from 'graphql'
-import './utils/polyfill'
 import { isEmpty, isObj } from './utils/is'
 import { apolloState, typeDefs } from './apolloState'
 import { logger } from './log'
 
 const IS_BROWSER = typeof window === 'object'
+
+/**
+ * @see apolloClient
+ */
+if (!process.browser) {
+  (global as any).fetch = require('node-fetch')
+}
 
 let apolloClientInstance: ApolloClient<any> = undefined as any
 

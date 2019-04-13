@@ -6,5 +6,4 @@ require('jest-styled-components')
  * this is in src/utils/polyfill
  */
 const globalAny = global
-globalAny.URL = require('url').URL
 globalAny.fetch = require('node-fetch')
