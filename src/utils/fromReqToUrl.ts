@@ -1,4 +1,5 @@
 import { Request as ExpressRequest } from 'express'
+import './polyfill'
 
 /**
  * @todo test - copy from elsewhere

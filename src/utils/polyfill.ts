@@ -1,4 +1,5 @@
 /**
+ * @file sideEffects: true
  * @file @todo https://github.com/tc39/proposal-global
  */
 
