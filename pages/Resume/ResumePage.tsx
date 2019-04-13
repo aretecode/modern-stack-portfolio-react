@@ -32,12 +32,13 @@ function renderWork(work: WorkType) {
           height="692"
           src={work.picture}
           shouldUsePicture={true}
-          srcset={`
-            ${work.picture} 980w,
-            ${work.picture.replace('m-', 'xl-')} 2477w,
-            ${work.picture.replace('m-', 'w-')} 5000w,
-            ${work.picture.replace('m-', 'w-m-')} 1000vw
-          `.replace(/[\s\n]+/gm, ' ')}
+          // just using srcSizeList for this currently
+          // srcset={`
+          //   ${work.picture} 980w,
+          //   ${work.picture.replace('m-', 'xl-')} 2477w,
+          //   ${work.picture.replace('m-', 'w-')} 5000w,
+          //   ${work.picture.replace('m-', 'w-m-')} 1000vw
+          // `.replace(/[\s\n]+/gm, ' ')}
           srcSizeList={[
             ['(max-width: 800px)', work.picture.replace('m-', 'm-')],
             ['(max-width: 1000px)', work.picture.replace('m-', 'w-m-')],
