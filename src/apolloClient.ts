@@ -136,9 +136,9 @@ export function createInstance(
    */
   const clientConfig: ApolloClientOptions<any> = {
     link: ApolloLink.from(
-      process.env.NODE_ENV === 'test'
-        ? [consoleLink, errorLink, httpLink]
-        : [consoleLink, errorLink, stateLink as ApolloLink, httpLink]
+      [consoleLink, errorLink, stateLink as ApolloLink, httpLink].filter(
+        Boolean
+      )
     ),
     cache,
     ssrMode: !process.browser,

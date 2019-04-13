@@ -56,21 +56,34 @@ export class ResumeHead extends React.PureComponent {
     return (
       <>
         <Head>
-          <meta name="theme-color" content={'#6200ee'} />
-          <meta property="og:site_name" content={siteName} />
-          <meta property="og:locale" content="en_CA" />
-          <meta property="og:image:secure_url" content={image} />
-          <meta property="og:image" content={image} />
-          <meta property="og:title" content={title} />
-          <meta name="description" content={description} />
-          <meta property="og:description" content={description} />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:domain" content={url} />
-          <meta name="twitter:site" content={twitter} />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content={image} />
-          <meta name="twitter:url" content={url} />
+          <meta name="theme-color" content={'#6200ee'} key="color" />
+          <meta property="og:site_name" content={siteName} key="og:site_name" />
+          <meta property="og:locale" content="en_CA" key="og:locale" />
+          <meta
+            property="og:image:secure_url"
+            content={image}
+            key="og:image:secure_url"
+          />
+          <meta property="og:image" content={image} key="og:image" />
+          <meta property="og:title" content={title} key="og:title" />
+          <meta
+            property="og:description"
+            content={description}
+            key="og:description"
+          />
+          <meta name="description" content={description} key="description" />
+          <meta name="twitter:card" content="summary" key="twitter:card" />
+          <meta name="twitter:domain" content={url} key="twitter:domain" />
+          <meta name="twitter:site" content={twitter} key="twitter:site" />
+          <meta name="twitter:title" content={title} key="twitter:title" />
+          <meta
+            name="twitter:description"
+            content={description}
+            key="twitter:description"
+          />
+          <meta name="twitter:image" content={image} key="twitter:image" />
+          <meta name="twitter:url" content={url} key="twitter:url" />
+
           {labelValueList.map((labelValueItem, index) => {
             const { label, value } = labelValueItem
             return (
