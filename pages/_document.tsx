@@ -81,7 +81,10 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
     const urlPath = ctx.req.url || ''
-    const urlHost = ctx.req.headers.host
+    /**
+     * enforcing https only
+     */
+    const urlHost = 'https://' + ctx.req.headers.host
     const urlFull = urlHost + urlPath
 
     const isAmp = urlPath.includes('?amp')
