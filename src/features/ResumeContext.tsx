@@ -18,21 +18,25 @@ export const ResumeContext = React.createContext<ResumeContextType>(
   defaultApolloStateResume
 )
 
+/**
+ * @todo @@perf can simplify & improve
+ */
+function fromResponseToSafeValue(response: GraphqlProps<ResumeResponse>) {
+  const data = { resume: EMPTY_ARRAY, ...response.data! }
+  const { refetch, loading } = response
+  const resume = {
+    basics: data.resume.basics || {
+      profiles: EMPTY_ARRAY,
+    },
+    work: data.resume.work || EMPTY_ARRAY,
+  }
+  const value = { isLoading: !!loading, refetch, ...resume }
+  return value
+}
+
 export class ResumeProvider extends React.PureComponent {
   renderContext = (response: GraphqlProps<ResumeResponse>) => {
-    /**
-     * @todo @@perf can simplify & improve
-     */
-    const data = { resume: EMPTY_ARRAY, ...response.data! }
-    const { refetch, loading } = response
-    const resume = {
-      basics: data.resume.basics || {
-        profiles: EMPTY_ARRAY,
-      },
-      work: data.resume.work || EMPTY_ARRAY,
-    }
-    const value = { isLoading: !!loading, refetch, ...resume }
-
+    const value = fromResponseToSafeValue(response)
     return (
       <ResumeContext.Provider value={value}>
         {this.props.children}

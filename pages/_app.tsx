@@ -2,7 +2,6 @@
  * @see https://shaleenjain.com/blog/nextjs-apollo-prefetc
  * @file mostly copied from following link
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/with-apollo-client.js#L23
- * @note in examples, it use `initApolloClient`
  */
 import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
@@ -22,12 +21,16 @@ import { UnknownObj } from '../src/typings'
 
 export class InnerApp extends React.PureComponent<{
   apolloClientState?: UnknownObj
+  apolloClient?: ApolloClient<any>
 }> {
   render() {
-    const { apolloClientState, children } = this.props
+    const { apolloClient, apolloClientState, children } = this.props
+
     return (
       <React.StrictMode>
-        <ApolloProvider client={initApolloClient(apolloClientState as any)}>
+        <ApolloProvider
+          client={apolloClient || initApolloClient(apolloClientState as any)}
+        >
           <ResumeProvider>
             <AppStyles />
             <ResumeSchema />
@@ -59,16 +62,16 @@ export default class MyApp extends App<{
 
     const apolloClient = initApolloClient()
 
-    if (!(process as any).browser) {
+    if (!process.browser) {
       try {
-        // Run all GraphQL queries
+        /**
+         * @note !!! this does not properly ssr if we render `<App>` (even if we pass in apolloClient) !!!
+         * @description Run all GraphQL queries
+         */
         await getDataFromTree(
-          <App
-            {...appProps}
-            Component={Component}
-            router={router}
-            apolloClient={apolloClient}
-          />
+          <InnerApp apolloClient={apolloClient}>
+            <Component {...appProps} />
+          </InnerApp>
         )
       } catch (error) {
         // Prevent Apollo Client GraphQL errors from crashing SSR.
@@ -94,6 +97,7 @@ export default class MyApp extends App<{
   }
 
   render() {
+    // what do we use router for?
     const { Component, pageProps, apolloClientState } = this.props
     return (
       <Container>

@@ -142,6 +142,7 @@ export function createInstance(
     ),
     cache,
     ssrMode: !process.browser,
+    ssrForceFetchDelay: process.browser ? 100 : undefined,
     connectToDevTools: process.browser,
   }
 
