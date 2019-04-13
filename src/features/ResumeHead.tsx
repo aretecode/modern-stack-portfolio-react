@@ -72,7 +72,11 @@ export class ResumeHead extends React.PureComponent<{
             content={description}
             key="og:description"
           />
-          <meta name="description" content={description} key="description" />
+          <meta
+            name="description"
+            content={description}
+            key="resume:description"
+          />
           <meta name="twitter:card" content={summary} key="twitter:card" />
           <meta
             name="twitter:domain"
