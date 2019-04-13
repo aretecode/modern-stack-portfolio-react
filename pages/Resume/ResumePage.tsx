@@ -64,9 +64,6 @@ export class ResumePage extends React.PureComponent {
         <Head>
           <title>{titleText}</title>
           <meta name="description" content={summary || titleText} />
-          <meta name="theme-color" content={'#6200ee'} />
-          <meta property="og:site_name" content={titleText} />
-          <meta property="og:locale" content="en_CA" />
         </Head>
         <StyledMain>
           <StyledLeaderBoard>

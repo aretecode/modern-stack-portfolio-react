@@ -5,13 +5,50 @@
  * @note in examples, it use `initApolloClient`
  */
 import App, { Container, NextAppContext } from 'next/app'
-import * as React from 'react'
-import { ApolloProvider } from 'react-apollo'
 import Head from 'next/head'
-import { getDataFromTree } from 'react-apollo'
-import { client as apolloClient } from '../src/apolloClient'
+import { ApolloClient } from 'apollo-boost'
+import * as React from 'react'
+import { ApolloProvider, getDataFromTree } from 'react-apollo'
+import { initApolloClient } from '../src/apolloClient'
+import '../src/apolloStateRehydrate'
+import { ResumeProvider } from '../src/features/ResumeContext'
+import { ResumeSchema } from '../src/features/ResumeSchema'
+import { ResumeHead } from '../src/features/ResumeHead'
+import Footer from '../src/features/Footer'
+import Header from '../src/features/Header'
+import { StyledVectorFilter } from '../src/features/VectorFilter'
+import { AppStyles, BelowTheFoldStyles } from '../src/AppStyles'
+import { UnknownObj } from '../src/typings'
 
-export default class MyApp extends App {
+export class InnerApp extends React.PureComponent<{
+  apolloClientState?: UnknownObj
+}> {
+  render() {
+    const { apolloClientState, children } = this.props
+    return (
+      <React.StrictMode>
+        <ApolloProvider client={initApolloClient(apolloClientState as any)}>
+          <ResumeProvider>
+            <AppStyles />
+            <ResumeSchema />
+            <ResumeHead />
+            <Header />
+            {children}
+            <Footer />
+            <StyledVectorFilter />
+            <BelowTheFoldStyles />
+          </ResumeProvider>
+        </ApolloProvider>
+      </React.StrictMode>
+    )
+  }
+}
+
+export default class MyApp extends App<{
+  /** these come from getInitialProps */
+  apolloClientState?: UnknownObj
+  apolloClient?: ApolloClient<any>
+}> {
   static async getInitialProps(ctx: NextAppContext) {
     const { Component, router } = ctx
 
@@ -19,6 +56,8 @@ export default class MyApp extends App {
     if (App.getInitialProps) {
       appProps = await App.getInitialProps(ctx)
     }
+
+    const apolloClient = initApolloClient()
 
     if (!(process as any).browser) {
       try {
@@ -44,23 +83,23 @@ export default class MyApp extends App {
     }
 
     // Extract query data from the Apollo store
-    const apolloState = apolloClient.cache.extract()
+    const apolloClientState = apolloClient.cache.extract()
 
     return {
       ...appProps,
-      apolloState,
+      apolloClientState,
     } as ReturnType<typeof App.getInitialProps> & {
-      apolloState: typeof apolloState
+      apolloState: UnknownObj
     }
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, apolloClientState } = this.props
     return (
       <Container>
-        <ApolloProvider client={apolloClient}>
+        <InnerApp apolloClientState={apolloClientState}>
           <Component {...pageProps} />
-        </ApolloProvider>
+        </InnerApp>
       </Container>
     )
   }

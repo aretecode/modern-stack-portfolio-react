@@ -10,29 +10,11 @@ exports[`SocialProfiles should render all for context 1`] = `
   -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
-  padding-bottom: 2px;
 }
 
 .c1:link,
 .c1:visited {
   color: var(--color-link);
-}
-
-.c1:after {
-  display: block;
-  position: absolute;
-  content: '\\0020';
-  z-index: 2;
-  border-bottom: 3px solid var(--color-link);
-  right: 0;
-  bottom: -3px;
-  left: 0;
-  -webkit-transition: border-bottom-width 0.3s;
-  transition: border-bottom-width 0.3s;
-}
-
-.c1:hover:after {
-  border-bottom-width: 0.5rem;
 }
 
 .c1:focus {
@@ -62,6 +44,7 @@ exports[`SocialProfiles should render all for context 1`] = `
   flex-direction: column;
   -webkit-transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+  height: inherit;
 }
 
 .c2 {

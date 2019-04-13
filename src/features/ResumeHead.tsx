@@ -1,18 +1,33 @@
+/**
+ * @see https://github.com/zeit/next.js/issues/257
+ * @see https://github.com/zeit/next.js/issues/2072
+ * @see https://github.com/zeit/next.js/issues/4998
+ *
+ * @todo could improve @@performance here
+ */
 import * as React from 'react'
 import Head from 'next/head'
+import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
 import { ResumeContext, ResumeContextType } from './ResumeContext'
 
-export default class ResumeHelmet extends React.PureComponent {
+export class ResumeHead extends React.PureComponent {
   static contextType = ResumeContext
   readonly context: ResumeContextType
 
   render() {
-    const { summary, picture, name, profiles } = this.context.basics
+    const {
+      summary,
+      picture,
+      name,
+      profiles = EMPTY_ARRAY,
+    } = this.context.basics
     const description = summary
     const image = picture
     const title = name + ' Resume'
+    const siteName = title + ' Site'
 
-    const foundTwitter = profiles.find(x => x.network === 'twitter')
+    const foundTwitter =
+      profiles.find(x => x.network === 'twitter') || EMPTY_OBJ
 
     if (process.env.NODE_ENV === 'development') {
       if (foundTwitter === undefined) {
@@ -22,23 +37,28 @@ export default class ResumeHelmet extends React.PureComponent {
 
     const twitter = foundTwitter!.username
 
-    // initialProps.url?
+    /**
+     * @todo get from props available in _document
+     */
     const domain = ''
     const url = ''
-
-    /**
-     * amp?
-     */
     const labelValueList = [
       {
-        label: '',
-        value: '',
+        label: 'Resume',
+        value: '${urlFull}/Resume',
+      },
+      {
+        label: 'About',
+        value: '${urlFull}',
       },
     ]
 
     return (
       <>
         <Head>
+          <meta name="theme-color" content={'#6200ee'} />
+          <meta property="og:site_name" content={siteName} />
+          <meta property="og:locale" content="en_CA" />
           <meta property="og:image:secure_url" content={image} />
           <meta property="og:image" content={image} />
           <meta property="og:title" content={title} />

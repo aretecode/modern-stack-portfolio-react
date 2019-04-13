@@ -53,12 +53,14 @@ export default class SocialProfiles extends React.PureComponent {
   readonly context: ResumeContextType
 
   render() {
+    const { profiles, resumeWebsite } = this.context.basics
+
     return (
       <StyledSocialProfilesWrap>
-        {this.context.basics.profiles.map(renderProfileItem)}
-        {this.context.basics.resumeWebsite !== '' &&
+        {Array.isArray(profiles) && profiles.map(renderProfileItem)}
+        {resumeWebsite !== '' &&
           renderProfileItem({
-            url: this.context.basics.resumeWebsite,
+            url: resumeWebsite,
             username: 'download resume',
             network: 'pdf',
           })}

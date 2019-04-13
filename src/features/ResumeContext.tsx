@@ -5,6 +5,7 @@ import * as React from 'react'
 import { Query } from 'react-apollo'
 import { EMPTY_OBJ, EMPTY_ARRAY } from '../utils/EMPTY'
 import ResumeQuery from '../graphql/Resume'
+import { defaultApolloStateResume } from '../apolloState'
 import { ResumeResponse, GraphqlProps, BasicsType, WorkType } from '../typings'
 
 export interface ResumeContextType {
@@ -13,17 +14,8 @@ export interface ResumeContextType {
   work: WorkType[]
 }
 
-/**
- * @todo could replace with `import { defaultApolloStateResume } from '../apolloState'`
- * (defaultApolloStateResume as any) as ResumeContextType
- */
-export const EMPTY_RESUME_CONTEXT = Object.freeze({
-  basics: EMPTY_OBJ,
-  work: EMPTY_ARRAY,
-}) as ResumeContextType
-
 export const ResumeContext = React.createContext<ResumeContextType>(
-  EMPTY_RESUME_CONTEXT
+  defaultApolloStateResume
 )
 
 export class ResumeProvider extends React.PureComponent {
