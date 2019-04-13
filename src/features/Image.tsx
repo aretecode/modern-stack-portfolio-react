@@ -88,7 +88,7 @@ export class Image extends React.PureComponent<ImageProps> {
         return (
           <picture>
             {srcSizeList.map(([size, src]) => (
-              <source key={size} media={size} srcset={src} />
+              <source key={size} media={size} srcSet={src} />
             ))}
             <img {...remainingProps} />
           </picture>

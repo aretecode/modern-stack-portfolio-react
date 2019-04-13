@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import { Query } from 'react-apollo'
-import { EMPTY_OBJ, EMPTY_ARRAY } from '../utils/EMPTY'
+import { EMPTY_ARRAY } from '../utils/EMPTY'
 import ResumeQuery from '../graphql/Resume'
 import { defaultApolloStateResume } from '../apolloState'
 import { ResumeResponse, GraphqlProps, BasicsType, WorkType } from '../typings'

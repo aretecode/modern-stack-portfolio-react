@@ -624,7 +624,7 @@ exports[`app should match snapshot 1`] = `
 
 @media (max-width:1023px) {
   .c9 img {
-    max-height: 44vh;
+    max-height: 60vh;
   }
 }
 
@@ -695,12 +695,26 @@ exports[`app should match snapshot 1`] = `
         <figure
           class="c9"
         >
-          <img
-            alt="work picture for Open Source"
-            class="c10"
-            loading="lazy"
-            src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-          />
+          <picture>
+            <source
+              media="(max-width: 800px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <source
+              media="(max-width: 1000px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <source
+              media="(min-width: 2000px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <img
+              alt="work picture for Open Source"
+              class="c10"
+              loading="lazy"
+              src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+          </picture>
           <figcaption>
             <header>
               Open Source

@@ -13,6 +13,10 @@ import { ResumeContext, ResumeContextType } from './ResumeContext'
 export class ResumeHead extends React.PureComponent<{
   url: URL
 }> {
+  // could move out for better perf but KISS
+  static defaultProps = process.env.NODE_ENV === 'test' && {
+    url: new URL('https://localhost'),
+  }
   static contextType = ResumeContext
   readonly context: ResumeContextType
 
