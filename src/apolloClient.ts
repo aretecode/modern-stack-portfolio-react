@@ -24,10 +24,6 @@ import { logger } from './log'
 
 const IS_BROWSER = typeof window === 'object'
 
-if (!process.browser) {
-  (global as any).fetch = require('node-fetch')
-}
-
 let apolloClientInstance: ApolloClient<any> = undefined as any
 
 /**
