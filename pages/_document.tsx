@@ -82,7 +82,7 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
     const url = fromReqToUrl(ctx.req as any)
-    const isAmp = url.pathname.includes('?amp')
+    const isAmp = url.href.includes('?amp')
     const ampScripts = new AmpScripts()
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
