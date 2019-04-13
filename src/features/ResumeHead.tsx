@@ -10,11 +10,14 @@ import Head from 'next/head'
 import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
 import { ResumeContext, ResumeContextType } from './ResumeContext'
 
-export class ResumeHead extends React.PureComponent {
+export class ResumeHead extends React.PureComponent<{
+  url: URL
+}> {
   static contextType = ResumeContext
   readonly context: ResumeContextType
 
   render() {
+    const { url } = this.props
     const {
       summary,
       picture,
@@ -36,20 +39,14 @@ export class ResumeHead extends React.PureComponent {
     }
 
     const twitter = foundTwitter!.username
-
-    /**
-     * @todo get from props available in _document
-     */
-    const domain = ''
-    const url = ''
     const labelValueList = [
       {
         label: 'Resume',
-        value: '${urlFull}/Resume',
+        value: `${url.origin}/Resume`,
       },
       {
         label: 'About',
-        value: '${urlFull}',
+        value: `${url.origin}`,
       },
     ]
 
@@ -73,7 +70,11 @@ export class ResumeHead extends React.PureComponent {
           />
           <meta name="description" content={description} key="description" />
           <meta name="twitter:card" content={summary} key="twitter:card" />
-          <meta name="twitter:domain" content={url} key="twitter:domain" />
+          <meta
+            name="twitter:domain"
+            content={url.origin}
+            key="twitter:domain"
+          />
           <meta name="twitter:site" content={twitter} key="twitter:site" />
           <meta name="twitter:title" content={title} key="twitter:title" />
           <meta
@@ -82,7 +83,7 @@ export class ResumeHead extends React.PureComponent {
             key="twitter:description"
           />
           <meta name="twitter:image" content={image} key="twitter:image" />
-          <meta name="twitter:url" content={url} key="twitter:url" />
+          <meta name="twitter:url" content={url.href} key="twitter:url" />
 
           {labelValueList.map((labelValueItem, index) => {
             const { label, value } = labelValueItem

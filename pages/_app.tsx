@@ -16,15 +16,17 @@ import { ResumeHead } from '../src/features/ResumeHead'
 import Footer from '../src/features/Footer'
 import Header from '../src/features/Header'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
+import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { AppStyles, BelowTheFoldStyles } from '../src/AppStyles'
 import { UnknownObj } from '../src/typings'
 
 export class InnerApp extends React.PureComponent<{
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
+  url: URL
 }> {
   render() {
-    const { apolloClient, apolloClientState, children } = this.props
+    const { apolloClient, apolloClientState, url, children } = this.props
 
     return (
       <React.StrictMode>
@@ -34,7 +36,7 @@ export class InnerApp extends React.PureComponent<{
           <ResumeProvider>
             <AppStyles />
             <ResumeSchema />
-            <ResumeHead />
+            <ResumeHead url={url} />
             <Header />
             {children}
             <Footer />
@@ -51,13 +53,16 @@ export default class MyApp extends App<{
   /** these come from getInitialProps */
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
+  url: URL
 }> {
-  static async getInitialProps(ctx: NextAppContext) {
-    const { Component, router } = ctx
+  static async getInitialProps(appContext: NextAppContext) {
+    const { Component, router, ctx } = appContext
+    const url = fromReqToUrl(ctx.req as any)
+    const pageProps = {}
 
     let appProps = {} as any
     if (App.getInitialProps) {
-      appProps = await App.getInitialProps(ctx)
+      appProps = await App.getInitialProps(appContext)
     }
 
     const apolloClient = initApolloClient()
@@ -69,7 +74,7 @@ export default class MyApp extends App<{
          * @description Run all GraphQL queries
          */
         await getDataFromTree(
-          <InnerApp apolloClient={apolloClient}>
+          <InnerApp apolloClient={apolloClient} url={url}>
             <Component {...appProps} />
           </InnerApp>
         )
@@ -90,6 +95,8 @@ export default class MyApp extends App<{
 
     return {
       ...appProps,
+      pageProps,
+      url,
       apolloClientState,
     } as ReturnType<typeof App.getInitialProps> & {
       apolloState: UnknownObj
@@ -98,10 +105,11 @@ export default class MyApp extends App<{
 
   render() {
     // what do we use router for?
-    const { Component, pageProps, apolloClientState } = this.props
+    const { Component, pageProps, apolloClientState, url } = this.props
+
     return (
       <Container>
-        <InnerApp apolloClientState={apolloClientState}>
+        <InnerApp apolloClientState={apolloClientState} url={url}>
           <Component {...pageProps} />
         </InnerApp>
       </Container>
