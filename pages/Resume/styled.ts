@@ -49,7 +49,7 @@ export const StyledCardFigure = styled.figure`
   }
   @media (max-width: 1023px) {
     img {
-      max-height: 44vh;
+      max-height: 60vh;
     }
   }
 `

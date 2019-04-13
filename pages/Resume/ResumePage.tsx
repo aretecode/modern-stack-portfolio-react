@@ -20,12 +20,29 @@ import {
 } from './styled'
 import { TimeRange } from './TimeRange'
 
+/**
+ * @hack images with specific sizes
+ */
 function renderWork(work: WorkType) {
   return (
     <StyledCard key={work.company + work.startDate + work.endDate}>
       <StyledCardFigure>
         <StyledCardImage
+          width="1000"
+          height="692"
           src={work.picture}
+          shouldUsePicture={true}
+          srcset={`
+            ${work.picture} 980w,
+            ${work.picture.replace('m-', 'xl-')} 2477w,
+            ${work.picture.replace('m-', 'w-')} 5000w,
+            ${work.picture.replace('m-', 'w-m-')} 1000vw
+          `.replace(/[\s\n]+/gm, ' ')}
+          srcSizeList={[
+            ['(max-width: 800px)', work.picture.replace('m-', 'm-')],
+            ['(max-width: 1000px)', work.picture.replace('m-', 'w-m-')],
+            ['(min-width: 2000px)', work.picture.replace('m-', 'xl-')],
+          ]}
           alt={`work picture for ${work.company}`}
         />
         <figcaption>
