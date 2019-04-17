@@ -23,6 +23,27 @@ describe('utils', () => {
         alt: 'eh',
       })
     })
+
+    it('should keep only the props we list', () => {
+      const obj = {
+        one: 1,
+        two: 2,
+      }
+
+      function expectKept(kept: Partial<typeof obj>) {
+        // removed a property
+        expect(Object.keys(kept).length).toEqual(1)
+        expect(kept.two).toEqual(2)
+        expect(kept.one).toEqual(undefined)
+
+        // did not mutate
+        expect(obj.two).toEqual(2)
+      }
+
+      expect.assertions(4)
+      const kept = keep(obj, ['two'])
+      expectKept(kept)
+    })
   })
   describe('addTypeName', () => {
     it('should return the same value for all basic types', () => {
