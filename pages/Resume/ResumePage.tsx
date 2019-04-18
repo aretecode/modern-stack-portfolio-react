@@ -31,7 +31,6 @@ function renderWork(work: WorkType) {
           width="1000"
           height="692"
           src={work.picture}
-          shouldUsePicture={true}
           loading="lazy"
           srcSizeList={[
             ['(max-width: 800px)', work.picture.replace('m-', 'm-')],
