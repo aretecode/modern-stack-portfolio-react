@@ -5,8 +5,19 @@ import { addTypeName } from '../addTypeName'
 import { requestIdleCallback } from '../requestIdleCallback'
 import { EMPTY_OBJ, EMPTY_ARRAY } from '../EMPTY'
 import { keep } from '../keep'
+import { measureImage } from '../measureImage'
 
 describe('utils', () => {
+  /**
+   * @todo also test browser only does not exist in generated code
+   */
+  describe('measureImage', () => {
+    it('should get the image dimensions correctly', async () => {
+      const src = `https://noccumpr-cdn.sirv.com/images/full-james-wiens-profile-picture.png?format=webp`
+      const dimensions = await measureImage(src)
+      expect(dimensions!.width).toEqual(601)
+    })
+  })
   describe('keep', () => {
     it('should keep props we want, side effect free', () => {
       const KEEP_LIST = Object.freeze(['src', 'alt'])
