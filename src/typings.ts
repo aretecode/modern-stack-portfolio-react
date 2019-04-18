@@ -50,6 +50,15 @@ export type AnyArrayOrObj = (AnyObj & AnyArray) | AnyObj | AnyArray
 export type AnyFunction = (...args: any[]) => any
 
 /**
+ * === unknown ===
+ */
+export interface UnknownObj {
+  [key: string]: unknown
+}
+
+export type UnknownArray = unknown[]
+
+/**
  * === helpers ===
  */
 

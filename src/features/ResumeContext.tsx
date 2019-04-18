@@ -3,8 +3,9 @@
  */
 import * as React from 'react'
 import { Query } from 'react-apollo'
-import { EMPTY_OBJ, EMPTY_ARRAY } from '../utils/EMPTY'
+import { EMPTY_ARRAY } from '../utils/EMPTY'
 import ResumeQuery from '../graphql/Resume'
+import { defaultApolloStateResume } from '../apolloState'
 import { ResumeResponse, GraphqlProps, BasicsType, WorkType } from '../typings'
 
 export interface ResumeContextType {
@@ -13,34 +14,29 @@ export interface ResumeContextType {
   work: WorkType[]
 }
 
-/**
- * @todo could replace with `import { defaultApolloStateResume } from '../apolloState'`
- * (defaultApolloStateResume as any) as ResumeContextType
- */
-export const EMPTY_RESUME_CONTEXT = Object.freeze({
-  basics: EMPTY_OBJ,
-  work: EMPTY_ARRAY,
-}) as ResumeContextType
-
 export const ResumeContext = React.createContext<ResumeContextType>(
-  EMPTY_RESUME_CONTEXT
+  defaultApolloStateResume
 )
+
+/**
+ * @todo @@perf can simplify & improve
+ */
+function fromResponseToSafeValue(response: GraphqlProps<ResumeResponse>) {
+  const data = { resume: EMPTY_ARRAY, ...response.data! }
+  const { refetch, loading } = response
+  const resume = {
+    basics: data.resume.basics || {
+      profiles: EMPTY_ARRAY,
+    },
+    work: data.resume.work || EMPTY_ARRAY,
+  }
+  const value = { isLoading: !!loading, refetch, ...resume }
+  return value
+}
 
 export class ResumeProvider extends React.PureComponent {
   renderContext = (response: GraphqlProps<ResumeResponse>) => {
-    /**
-     * @todo @@perf can simplify & improve
-     */
-    const data = { resume: EMPTY_ARRAY, ...response.data! }
-    const { refetch, loading } = response
-    const resume = {
-      basics: data.resume.basics || {
-        profiles: EMPTY_ARRAY,
-      },
-      work: data.resume.work || EMPTY_ARRAY,
-    }
-    const value = { isLoading: !!loading, refetch, ...resume }
-
+    const value = fromResponseToSafeValue(response)
     return (
       <ResumeContext.Provider value={value}>
         {this.props.children}
@@ -50,7 +46,10 @@ export class ResumeProvider extends React.PureComponent {
 
   render() {
     return (
-      <Query<ResumeResponse> query={ResumeQuery} pollInterval={5000}>
+      <Query<ResumeResponse>
+        query={ResumeQuery}
+        fetchPolicy="cache-and-network"
+      >
         {this.renderContext}
       </Query>
     )

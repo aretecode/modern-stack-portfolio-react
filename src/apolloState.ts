@@ -4,10 +4,8 @@
  * @see https://www.apollographql.com/docs/react/essentials/local-state
  */
 import { gql } from 'apollo-boost'
-import { withClientState } from 'apollo-link-state'
-import { cache } from './apolloCache'
 import { logger } from './log'
-import { Resolvers, ResumeType, WithTypeNameRecursive } from './typings'
+import { Resolvers, ResumeType } from './typings'
 import { addTypeName } from './utils/addTypeName'
 import ResumeQuery from './graphql/Resume'
 
@@ -172,9 +170,3 @@ export const apolloState = {
     },
   } as Resolvers,
 }
-
-export const stateLink = withClientState({
-  cache,
-  typeDefs,
-  ...apolloState,
-})

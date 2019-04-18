@@ -4,9 +4,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-export const VectorFilter = (
-  props: React.DetailedHTMLProps<React.SVGAttributes<SVGElement>, SVGElement>
-) => (
+export const VectorFilter = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props}>
     <filter
       id="green-tint"

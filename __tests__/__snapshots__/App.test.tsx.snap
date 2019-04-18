@@ -1,64 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app should match snapshot 1`] = `
-.c6 {
+.c28 {
+  background-color: var(--color-material-background-purple);
+  padding: 2rem 1.25rem;
+}
+
+.c28 p {
   color: var(--color-text-body);
-  background-color: var(--color-dark-background-main);
-  margin: 0;
-  padding: 0;
-  position: relative;
-  min-width: 0;
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  background-clip: border-box;
-  border-radius: 0.125rem;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
-.c6 figcaption {
-  padding: 1.25rem;
-}
-
-.c6 header {
-  color: var(--color-text-secondary);
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-.c6 div[role='separator'],
-.c6 time {
-  font-size: 80%;
-  font-weight: 400;
-  color: var(--color-text-unimportant);
-}
-
-.c6 a {
-  color: var(--color-text-unimportant);
-  border-color: var(--color-text-unimportant);
-  border-width: 1px;
-}
-
-.c6 a:link,
-.c6 a:visited {
-  color: var(--color-text-unimportant);
-}
-
-.c6 a::after {
-  display: none;
-}
-
-.c10 {
-  color: var(--color-text-body);
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  padding: 0 0.5rem;
-}
-
-.c4 {
+.c5 {
   -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
@@ -67,69 +19,115 @@ exports[`app should match snapshot 1`] = `
   -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
-  padding-bottom: 2px;
 }
 
-.c4:link,
-.c4:visited {
+.c5:link,
+.c5:visited {
   color: var(--color-link);
 }
 
-.c4:after {
-  display: block;
-  position: absolute;
-  content: '\\0020';
-  z-index: 2;
-  border-bottom: 3px solid var(--color-link);
-  right: 0;
-  bottom: -3px;
-  left: 0;
-  -webkit-transition: border-bottom-width 0.3s;
-  transition: border-bottom-width 0.3s;
-}
-
-.c4:hover:after {
-  border-bottom-width: 0.5rem;
-}
-
-.c4:focus {
+.c5:focus {
   outline: thin dotted;
 }
 
-.c4:hover {
+.c5:hover {
   color: #aaa;
 }
 
-.c4:link {
+.c5:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c5 {
-  display: grid;
-  padding: 1rem;
-  grid-gap: 0.5rem;
-  grid-auto-rows: auto;
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
 }
 
-.c9 {
+.c4 > li {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.c8 {
-  max-width: 100%;
-  -webkit-filter: url(#green-tint);
-  filter: url(#green-tint);
+.c4 > li > a {
+  padding: 1rem;
 }
 
-.c7 {
-  margin: 0;
-  padding: 0;
+.c0 {
+  background-color: var(--color-material-background-purple);
+  position: absolute;
+  background: rgba(0,0,0,0.2);
+  top: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 0.5rem;
 }
 
-.c12 {
+.c2 {
+  color: var(--color-text-body);
+}
+
+.c1 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  position: relative;
+  -webkit-letter-spacing: 0.2em;
+  -moz-letter-spacing: 0.2em;
+  -ms-letter-spacing: 0.2em;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c1:link,
+.c1:visited {
+  color: var(--color-link);
+}
+
+.c1:focus {
+  outline: thin dotted;
+}
+
+.c1:hover {
+  color: #aaa;
+}
+
+.c1:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c29 {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -144,14 +142,24 @@ exports[`app should match snapshot 1`] = `
   flex-direction: column;
   -webkit-transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+  height: inherit;
 }
 
-.c13 {
+.c15 {
   width: 2rem;
   height: 2rem;
 }
 
-.c23 {
+.c12 {
+  color: var(--color-text-body);
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0 0.5rem;
+}
+
+.c25 {
   -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
@@ -160,44 +168,26 @@ exports[`app should match snapshot 1`] = `
   -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
-  padding-bottom: 2px;
 }
 
-.c23:link,
-.c23:visited {
+.c25:link,
+.c25:visited {
   color: var(--color-link);
 }
 
-.c23:after {
-  display: block;
-  position: absolute;
-  content: '\\0020';
-  z-index: 2;
-  border-bottom: 3px solid var(--color-link);
-  right: 0;
-  bottom: -3px;
-  left: 0;
-  -webkit-transition: border-bottom-width 0.3s;
-  transition: border-bottom-width 0.3s;
-}
-
-.c23:hover:after {
-  border-bottom-width: 0.5rem;
-}
-
-.c23:focus {
+.c25:focus {
   outline: thin dotted;
 }
 
-.c23:hover {
+.c25:hover {
   color: #aaa;
 }
 
-.c23:link {
+.c25:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c23.c23.c23 {
+.c25.c25.c25 {
   color: unset;
   -webkit-text-decoration: initial;
   text-decoration: initial;
@@ -207,7 +197,7 @@ exports[`app should match snapshot 1`] = `
   letter-spacing: initial;
 }
 
-.c20 {
+.c22 {
   color: var(--color-text-body);
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -223,22 +213,22 @@ exports[`app should match snapshot 1`] = `
   width: 8vw;
 }
 
-.c17 {
+.c19 {
   font-size: 2rem;
   margin-bottom: 0;
 }
 
-.c19 {
+.c21 {
   font-style: unset;
   padding-right: 0.15rem;
   opacity: 0.3;
 }
 
-.c21 {
+.c23 {
   margin-top: 1rem;
 }
 
-.c18 {
+.c20 {
   color: #344955;
   margin: 0;
   margin-top: -0.5rem;
@@ -246,7 +236,7 @@ exports[`app should match snapshot 1`] = `
   font-size: 1.2rem;
 }
 
-.c15 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -258,7 +248,7 @@ exports[`app should match snapshot 1`] = `
   transition: margin-top 0.5s ease-in-out,max-width 0.24s ease-in-out, height 1s ease-in-out,object-position 0.8s ease-in-out, box-shadow 0.24s ease-in-out;
 }
 
-.c24 {
+.c26 {
   width: 100%;
   padding-top: 1rem;
   display: -webkit-box;
@@ -273,7 +263,7 @@ exports[`app should match snapshot 1`] = `
   transition: justify-content 500ms ease-in-out;
 }
 
-.c25 {
+.c27 {
   padding: 0.5rem 1.5rem;
   border-color: unset;
   background: transparent;
@@ -283,9 +273,9 @@ exports[`app should match snapshot 1`] = `
   color: #222;
 }
 
-.c11 {
+.c13 {
   background-color: #fff;
-  margin: 4rem 1rem;
+  margin: 9rem 1rem 9rem 1rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -299,7 +289,7 @@ exports[`app should match snapshot 1`] = `
   width: 80%;
 }
 
-.c11 > img {
+.c13 > img {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -312,11 +302,11 @@ exports[`app should match snapshot 1`] = `
   object-position: bottom;
 }
 
-.c11 address {
+.c13 address {
   color: var(--color-text-unimportant);
 }
 
-.c14 {
+.c16 {
   margin: 0;
   padding: 0;
   display: -webkit-box;
@@ -325,13 +315,13 @@ exports[`app should match snapshot 1`] = `
   display: flex;
 }
 
-.c16 {
+.c18 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   word-break: break-word;
 }
 
-.c22 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -341,117 +331,140 @@ exports[`app should match snapshot 1`] = `
   transition: flex-direction 500ms ease-in-out;
 }
 
-.c22 > section {
+.c24 > section {
   -webkit-flex-basis: 50%;
   -ms-flex-preferred-size: 50%;
   flex-basis: 50%;
 }
 
-.c22 > section > header {
+.c24 > section > header {
   font-weight: bold;
 }
 
-.c26 {
-  background-color: var(--color-material-background-purple);
-  padding: 2rem 1.25rem;
-}
-
-.c26 p {
+.c8 {
   color: var(--color-text-body);
-}
-
-.c2 {
-  width: 100%;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-  padding: 0;
+  background-color: var(--color-dark-background-main);
   margin: 0;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  background-clip: border-box;
+  border-radius: 0.125rem;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
-.c3 > li {
+.c8 figcaption {
+  padding: 1.25rem;
+}
+
+.c8 header {
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.c8 div[role='separator'],
+.c8 time {
+  font-size: 80%;
+  font-weight: 400;
+  color: var(--color-text-unimportant);
+}
+
+.c8 a {
+  color: var(--color-text-unimportant);
+  border-color: var(--color-text-unimportant);
+  border-width: 1px;
+}
+
+.c8 a:link,
+.c8 a:visited {
+  color: var(--color-text-unimportant);
+}
+
+.c8 a::after {
+  display: none;
+}
+
+.c7 {
+  display: grid;
+  padding: 1rem;
+  grid-gap: 0.5rem;
+  grid-auto-rows: auto;
+}
+
+.c11 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.c3 > li > a {
-  padding: 1rem;
+.c10 {
+  max-width: 100%;
+  -webkit-filter: url(#green-tint);
+  filter: url(#green-tint);
 }
 
-.c0 {
-  background-color: var(--color-material-background-purple);
-  width: 100%;
+.c9 {
+  margin: 0;
+  padding: 0;
+}
+
+.c6 {
+  background-color: var(--color-orange);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 4rem;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 4rem 0 2rem 0;
 }
 
-.c1 {
-  padding-left: 1rem;
-  color: var(--color-text-body);
+.c6 > h1 {
+  color: white;
+  font-size: 3em;
+  font-weight: 300;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
-.c27 {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-  position: absolute;
-}
-
-@media (min-width:1024px) {
-  .c6 {
-    padding: 0 1rem 0 0;
-  }
-}
-
-@media (max-width:1023px) {
-  .c6 {
-    box-shadow: 0 1rem 0.75rem rgba(0,0,0,0.19), 0 0.5rem 0.5rem rgba(0,0,0,0.23);
-  }
-}
-
-@media (min-width:1024px) {
-  .c7 {
-    display: grid;
-    grid-template-columns: calc(50vw - 2rem) calc(50vw - 2rem);
-    grid-gap: 1rem;
-  }
-
-  .c7 img {
-    height: 100%;
+@media (max-width:480px) {
+  .c3 {
     width: 100%;
-    object-fit: cover;
   }
+}
 
-  .c7 figcaption {
-    padding: 1.25rem 0;
+@media (max-width:480px) {
+  .c0 {
+    height: 7rem;
+  }
+}
+
+@media (max-width:480px) {
+  .c2 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 0;
   }
 }
 
 @media (max-width:1023px) {
-  .c7 img {
-    max-height: 44vh;
-  }
-}
-
-@media (max-width:1023px) {
-  .c12 {
+  .c14 {
     width: 100%;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -465,13 +478,13 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (min-width:1024px) {
-  .c17 {
+  .c19 {
     margin-top: 6rem;
   }
 }
 
 @media (max-width:1024px) {
-  .c17 {
+  .c19 {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -479,7 +492,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (min-width:1024px) {
-  .c21 {
+  .c23 {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -487,7 +500,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1024px) {
-  .c21 {
+  .c23 {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -495,7 +508,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1024px) {
-  .c18 {
+  .c20 {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -503,19 +516,19 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:500px) {
-  .c15 {
+  .c17 {
     object-position: left;
   }
 }
 
 @media (max-width:1023px) {
-  .c15 {
+  .c17 {
     width: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c15 {
+  .c17 {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
     height: 120%;
     object-position: left;
@@ -528,7 +541,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c24 {
+  .c26 {
     -webkit-box-pack: unset;
     -webkit-justify-content: unset;
     -ms-flex-pack: unset;
@@ -541,14 +554,14 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c11 {
+  .c13 {
     width: calc(100% - 2rem);
     height: unset;
   }
 }
 
 @media (max-width:1023px) {
-  .c14 {
+  .c16 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -556,7 +569,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c16 {
+  .c18 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -568,7 +581,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c22 {
+  .c24 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -579,36 +592,73 @@ exports[`app should match snapshot 1`] = `
   }
 }
 
+@media (min-width:1024px) {
+  .c8 {
+    padding: 0 1rem 0 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c8 {
+    box-shadow: 0 1rem 0.75rem rgba(0,0,0,0.19), 0 0.5rem 0.5rem rgba(0,0,0,0.23);
+  }
+}
+
+@media (min-width:1024px) {
+  .c9 {
+    display: grid;
+    grid-template-columns: calc(50vw - 2rem) calc(50vw - 2rem);
+    grid-gap: 1rem;
+  }
+
+  .c9 img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .c9 figcaption {
+    padding: 1.25rem 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c9 img {
+    max-height: 60vh;
+  }
+}
+
 <div>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},{"@type":"Organization","name":"Open Source","url":"?company=Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Organization","name":"Open Source","url":"?company=Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},"startDate":"01/02/2013","endDate":"current","roleName":""}}}]}]}
+  </script>
   <header
     class="c0"
     role="banner"
   >
-    <p
-      class="c1"
-      id="logo"
+    <a
+      class="c1 "
+      href="/"
     >
-      jameswiens
-    </p>
+      <p
+        class="c2"
+        id="logo"
+      >
+        jameswiens
+      </p>
+    </a>
     <nav
-      class="c2"
+      class="c3"
     >
       <ul
-        class="c3"
+        class="c4"
       >
         <li>
           <a
-            class="c4"
-            href="/#home"
-            rel="me"
-          >
-            home
-          </a>
-        </li>
-        <li>
-          <a
-            class="c4"
-            href="/#work"
+            class="c5 "
+            href="/Resume"
             rel="me"
           >
             work
@@ -616,8 +666,8 @@ exports[`app should match snapshot 1`] = `
         </li>
         <li>
           <a
-            class="c4"
-            href="/#about"
+            class="c5 "
+            href="/"
             rel="me"
           >
             about
@@ -626,29 +676,45 @@ exports[`app should match snapshot 1`] = `
       </ul>
     </nav>
   </header>
-  <script
-    type="application/ld+json"
-  >
-    {"@context":"https://schema.org","@graph":[{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},{"@type":"Organization","name":"Open Source","url":"?company=Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Organization","name":"Open Source","url":"?company=Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},"startDate":"01/02/2013","endDate":"current","roleName":""}}}]}]}
-  </script>
   <main
     class=""
   >
+    <header
+      class="c6"
+    >
+      <h1>
+        What I've done
+      </h1>
+    </header>
     <div
-      class="c5"
+      class="c7"
     >
       <article
-        class="c6"
+        class="c8"
       >
         <figure
-          class="c7"
+          class="c9"
         >
-          <img
-            alt="work picture for Open Source"
-            class="c8"
-            loading="lazy"
-            src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-          />
+          <picture>
+            <source
+              media="(max-width: 800px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <source
+              media="(max-width: 1000px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <source
+              media="(min-width: 2000px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <img
+              alt="work picture for Open Source"
+              class="c10"
+              loading="lazy"
+              src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+          </picture>
           <figcaption>
             <header>
               Open Source
@@ -658,7 +724,7 @@ exports[`app should match snapshot 1`] = `
               <p />
               <p />
               <a
-                class="c4"
+                class="c5"
                 href="https://github.com/aretecode"
               >
                 https://github.com/aretecode
@@ -666,18 +732,18 @@ exports[`app should match snapshot 1`] = `
             </section>
             <section>
               <time
-                class="c9"
+                class="c11"
               >
                 01/02/2013
               </time>
               <div
-                class="c10"
+                class="c12"
                 role="separator"
               >
                 -
               </div>
               <time
-                class="c9"
+                class="c11"
               >
                 current
               </time>
@@ -688,19 +754,19 @@ exports[`app should match snapshot 1`] = `
     </div>
   </main>
   <article
-    class="c11"
+    class="c13"
   >
     <aside
-      class="c12"
+      class="c14"
     >
       <a
-        class="c4"
+        class="c5"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c13"
+          class="c15"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -721,47 +787,47 @@ exports[`app should match snapshot 1`] = `
       </a>
     </aside>
     <figure
-      class="c14"
+      class="c16"
     >
       <img
         alt="about me picture"
-        class="c15"
+        class="c17"
         src=""
       />
       <figcaption
-        class="c16"
+        class="c18"
       >
         <h3
-          class="c17"
+          class="c19"
         />
         <h4
-          class="c18"
+          class="c20"
         >
           
           <i
-            class="c19"
+            class="c21"
           >
             ↔
           </i>
           
         </h4>
         <hr
-          class="c20"
+          class="c22"
           role="separator"
         />
         <p
-          class="c21"
+          class="c23"
         />
         <nav
-          class="c22"
+          class="c24"
         >
           <section>
             <header>
               Phone
             </header>
             <a
-              class="c23"
-              href="/tel:12506509455"
+              class="c25 "
+              href="tel:12506509455"
             >
               +
               12506509455
@@ -772,18 +838,18 @@ exports[`app should match snapshot 1`] = `
               Email
             </header>
             <a
-              class="c23"
-              href="/mailto:james@jameswiens.com"
+              class="c25 "
+              href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
             </a>
           </section>
         </nav>
         <div
-          class="c24"
+          class="c26"
         >
           <button
-            class="c25"
+            class="c27"
           >
             Portfolio
           </button>
@@ -792,7 +858,7 @@ exports[`app should match snapshot 1`] = `
     </figure>
   </article>
   <footer
-    class="c26"
+    class="c28"
   >
     <p>
       <span>
@@ -804,7 +870,7 @@ exports[`app should match snapshot 1`] = `
     </p>
   </footer>
   <svg
-    class="c27"
+    class="c29"
   >
     <filter
       color-interpolation-filters="sRGB"

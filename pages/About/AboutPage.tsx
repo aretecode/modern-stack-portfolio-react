@@ -43,7 +43,12 @@ export class AboutPage extends React.PureComponent {
         <StyledAboutMeArticle>
           <SocialProfiles />
           <StyledFigure>
-            <StyledAboutMeImg src={picture} alt="about me picture" />
+            <StyledAboutMeImg
+              src={picture}
+              height={'600'}
+              width={'600'}
+              alt="about me picture"
+            />
             <StyledFigCaption>
               <StyledName>{name}</StyledName>
               <StyledLabel>

@@ -18,6 +18,7 @@ import Document, {
 import { ServerStyleSheet } from 'styled-components'
 import { AmpScripts, AmpScriptsManager } from 'react-amphtml/setup'
 import * as Amp from 'react-amphtml'
+import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { AmpContext } from '../src/features/AmpContext'
 
 /* eslint-disable react/no-danger */
@@ -80,8 +81,8 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
-    const url = ctx.req.url || ''
-    const isAmp = url.includes('?amp')
+    const url = fromReqToUrl(ctx.req as any)
+    const isAmp = url.href.includes('?amp')
     const ampScripts = new AmpScripts()
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
@@ -168,7 +169,7 @@ export default class MyDocument extends Document {
     return (
       <AmpHtml isAmp={isAmp}>
         <Head>
-          <AmpHeader href={url} isAmp={isAmp} />
+          <AmpHeader href={url.href} isAmp={isAmp} />
           {title}
           {ampScriptTags}
           {ampStyleTag}
