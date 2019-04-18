@@ -207,7 +207,9 @@ export class PictureIntersectionObserver extends React.PureComponent<
         <>
           <AmpContext.Consumer>
             {({ isAmp }) =>
-              (isAmp === true || this.state.hasIntersected === true) && (
+              (isAmp === true ||
+                this.state.hasIntersected === true ||
+                process.env.NODE_ENV === 'test') && (
                 <>
                   {Array.isArray(srcSizeList) === true &&
                     srcSizeList.map(([size, src]) => (
