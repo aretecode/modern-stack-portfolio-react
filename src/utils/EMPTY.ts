@@ -5,3 +5,7 @@ export const EMPTY_OBJ = Object.freeze({}) as
   | Readonly<{ [key: string]: any }>
   | { [key: string]: any }
 export const EMPTY_ARRAY = Object.freeze([]) as ReadonlyArray<any> | any[]
+
+export function NO_OP(...args: any[]) {
+  /** EMPTY */
+}
