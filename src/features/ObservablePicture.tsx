@@ -1,5 +1,6 @@
 /**
  * === IntersectionObserver ===
+ * @see https://developers.google.com/web/tools/lighthouse/audits/offscreen-images
  * @see https://w3c.github.io/IntersectionObserver/
  * @see https://developers.google.com/web/updates/2016/04/intersectionobserver
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
