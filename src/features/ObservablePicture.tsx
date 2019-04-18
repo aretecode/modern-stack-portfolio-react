@@ -16,6 +16,9 @@
  *
  * @todo rename file
  * @todo could move this + Image => Picture|Image folder & split out types & renderFunction
+ * @todo add support to use this without observing, for example, if we know it's always above the fold
+ *
+ * @todo add placeholder svg with width & height dimensions that we server side rendered!
  */
 import * as React from 'react'
 import { StyledImage, ImageProps } from './Image'
@@ -184,8 +187,13 @@ export class PictureIntersectionObserver extends React.PureComponent<
   }
 
   render() {
-    const { src, className, renderPicture, ...remainingProps } = this
-      .props as Required<PictureIntersectionObserverProps>
+    const {
+      src,
+      className,
+      renderPicture,
+      srcSizeList,
+      ...remainingProps
+    } = this.props as Required<PictureIntersectionObserverProps>
 
     // can also add &h=${this.state.height}
     const url = `${src}&w=${this.state.width}`
@@ -200,14 +208,20 @@ export class PictureIntersectionObserver extends React.PureComponent<
           <AmpContext.Consumer>
             {({ isAmp }) =>
               (isAmp === true || this.state.hasIntersected === true) && (
-                <StyledImage
-                  isIntersecting={this.state.isIntersecting}
-                  src={src}
-                  key="img-when-intersected"
-                  width={this.state.width}
-                  height={this.state.height}
-                  {...remainingProps}
-                />
+                <>
+                  {Array.isArray(srcSizeList) === true &&
+                    srcSizeList.map(([size, src]) => (
+                      <source key={size} media={size} srcSet={src} />
+                    ))}
+                  <StyledImage
+                    isIntersecting={this.state.isIntersecting}
+                    src={src}
+                    key="img-when-intersected"
+                    width={this.state.width}
+                    height={this.state.height}
+                    {...remainingProps}
+                  />
+                </>
               )
             }
           </AmpContext.Consumer>
@@ -223,3 +237,4 @@ export class PictureIntersectionObserver extends React.PureComponent<
 }
 
 export default PictureIntersectionObserver
+export { PictureIntersectionObserver as ObservablePicture }

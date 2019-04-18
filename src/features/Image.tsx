@@ -33,6 +33,14 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
   'placeholder',
 ])
 
+export type SrcSizeListType = Array<
+  [
+    /** media */
+    string,
+    /** src */
+    string
+  ]
+>
 export type ImagePureProps = {
   /** @required */
   src: string
@@ -43,14 +51,11 @@ export type ImagePureProps = {
   shouldUsePicture?: boolean
   /** HTMLPictureElement | HTMLImageElement */
   forwardedRef?: React.RefObject<any>
-  srcSizeList?: Array<
-    [
-      /** media */
-      string,
-      /** src */
-      string
-    ]
-  >
+
+  /**
+   * @todo moved this to ObservablePicture
+   */
+  srcSizeList?: SrcSizeListType
 } & React.ImgHTMLAttributes<HTMLImageElement>
 
 export type ImageAmpProps = {
@@ -94,24 +99,13 @@ export class ImageComponentWithoutForwardRef extends React.PureComponent<
         isIntersecting,
         height,
         width,
-        shouldUsePicture,
-        srcSizeList,
+        // shouldUsePicture,
+        // srcSizeList,
         forwardedRef,
         ...remainingProps
       } = this.props as ImagePureProps
 
-      if (shouldUsePicture === true && Array.isArray(srcSizeList)) {
-        return (
-          <picture ref={forwardedRef}>
-            {srcSizeList.map(([size, src]) => (
-              <source key={size} media={size} srcSet={src} />
-            ))}
-            <img {...remainingProps} />
-          </picture>
-        )
-      } else {
-        return <img {...remainingProps} ref={forwardedRef} />
-      }
+      return <img {...remainingProps} ref={forwardedRef} />
     } else {
       const props = keep(this.props, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
       return <amp-img layout="responsive" {...props} />
