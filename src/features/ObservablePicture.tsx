@@ -39,7 +39,14 @@ export interface HeightWidthType {
 }
 export type PictureIntersectionObserverStateType = IntersectionObserverStateType &
   HeightWidthType
-
+export type SrcSizeListType = Array<
+  [
+    /** media */
+    string,
+    /** src */
+    string
+  ]
+>
 export type PictureIntersectionObserverProps = ImageProps & {
   forwardedRef?: React.RefObject<any>
   ref?: React.RefObject<any>
@@ -51,6 +58,8 @@ export type PictureIntersectionObserverProps = ImageProps & {
     props: PictureIntersectionObserverProps,
     state: PictureIntersectionObserverStateType
   ) => React.ReactNode
+
+  srcSizeList?: SrcSizeListType
 }
 
 export function defaultRenderPicture(

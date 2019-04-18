@@ -33,14 +33,6 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
   'placeholder',
 ])
 
-export type SrcSizeListType = Array<
-  [
-    /** media */
-    string,
-    /** src */
-    string
-  ]
->
 export type ImagePureProps = {
   /** @required */
   src: string
@@ -48,14 +40,8 @@ export type ImagePureProps = {
   alt: string
 
   isIntersecting?: boolean
-  shouldUsePicture?: boolean
   /** HTMLPictureElement | HTMLImageElement */
   forwardedRef?: React.RefObject<any>
-
-  /**
-   * @todo moved this to ObservablePicture
-   */
-  srcSizeList?: SrcSizeListType
 } & React.ImgHTMLAttributes<HTMLImageElement>
 
 export type ImageAmpProps = {
@@ -99,8 +85,6 @@ export class ImageComponentWithoutForwardRef extends React.PureComponent<
         isIntersecting,
         height,
         width,
-        // shouldUsePicture,
-        // srcSizeList,
         forwardedRef,
         ...remainingProps
       } = this.props as ImagePureProps
