@@ -213,33 +213,37 @@ export class PictureIntersectionObserver extends React.PureComponent<
       src: url,
       className,
       children: (
-        <>
-          <AmpContext.Consumer>
-            {({ isAmp }) =>
-              (isAmp === true ||
-                this.state.hasIntersected === true ||
-                process.env.NODE_ENV === 'test') && (
-                <>
-                  {Array.isArray(srcSizeList) === true &&
-                    srcSizeList.map(([size, src]) => (
-                      <source key={size} media={size} srcSet={src} />
-                    ))}
-                  <StyledImage
-                    isIntersecting={this.state.isIntersecting}
-                    src={src}
-                    key="img-when-intersected"
-                    width={this.state.width}
-                    height={this.state.height}
-                    {...remainingProps}
-                  />
-                </>
-              )
-            }
-          </AmpContext.Consumer>
-          <noscript key="img-for-non-js">
-            <StyledImage src={url} {...remainingProps} />
-          </noscript>
-        </>
+        <AmpContext.Consumer>
+          {({ isAmp }) => {
+            return (
+              <>
+                {(isAmp === true ||
+                  this.state.hasIntersected === true ||
+                  process.env.NODE_ENV === 'test') && (
+                  <>
+                    {Array.isArray(srcSizeList) === true &&
+                      srcSizeList.map(([size, src]) => (
+                        <source key={size} media={size} srcSet={src} />
+                      ))}
+                    <StyledImage
+                      isIntersecting={this.state.isIntersecting}
+                      src={src}
+                      key="img-when-intersected"
+                      width={this.state.width}
+                      height={this.state.height}
+                      {...remainingProps}
+                    />
+                  </>
+                )}
+                {isAmp === false && (
+                  <noscript key="img-for-non-js">
+                    <StyledImage src={url} {...remainingProps} />
+                  </noscript>
+                )}
+              </>
+            )
+          }}
+        </AmpContext.Consumer>
       ),
     }
 
