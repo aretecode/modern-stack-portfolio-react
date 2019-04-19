@@ -40,15 +40,22 @@ let apolloClientInstance: ApolloClient<any> = undefined as any
 export function createInstance(
   initialState = (IS_BROWSER
     ? window.__APOLLO_STATE__
-    : {}) as NormalizedCacheObject
+    : {}) as NormalizedCacheObject,
+  url?: URL
 ) {
   const httpLink = new ApolloLink((operation, forward) => {
     const httpLinkActual = new HttpLink({
       get uri() {
         /**
-         * @todo dynamically check if port is running on local, else switch to now
+         * 1. if env is NOT `readonly`, and we pass in `url`, and we have `graphql` in params, use it
+         * 2. if it's NODE_ENV `development`, use localhost:4000
+         * 3. use `now.sh` deployment of graphql
          */
-        return process.env.NODE_ENV === 'development'
+        return process.env.READONLY !== 'true' &&
+          isObj(url) &&
+          url.searchParams.has('graphql')
+          ? url.searchParams.get('graphql')!
+          : process.env.NODE_ENV === 'development'
           ? `http://localhost:4000/graphql?n=${operation.operationName}`
           : 'https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql'
       },
@@ -154,16 +161,19 @@ export function createInstance(
   return client
 }
 
-export function initApolloClient(initialState?: NormalizedCacheObject) {
+export function initApolloClient(
+  initialState?: NormalizedCacheObject,
+  url?: URL
+) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return createInstance(initialState)
+    return createInstance(initialState, url)
   }
 
   // Reuse client on the client-side
   if (apolloClientInstance === undefined) {
-    apolloClientInstance = createInstance(initialState)
+    apolloClientInstance = createInstance(initialState, url)
   }
 
   return apolloClientInstance
