@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app should match snapshot 1`] = `
-.c29 {
+.c34 {
   background-color: var(--color-material-background-purple);
   padding: 2rem 1.25rem;
 }
 
-.c29 p {
+.c34 p {
   color: var(--color-text-body);
 }
 
@@ -120,7 +120,7 @@ exports[`app should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c30 {
+.c35 {
   height: 0;
   width: 0;
   visibility: hidden;
@@ -128,24 +128,58 @@ exports[`app should match snapshot 1`] = `
 }
 
 .c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   padding: 1rem;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  width: 75px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  object-fit: contain;
+  object-position: bottom;
   -webkit-transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
-  height: inherit;
 }
 
 .c15 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  position: relative;
+  -webkit-letter-spacing: 0.2em;
+  -moz-letter-spacing: 0.2em;
+  -ms-letter-spacing: 0.2em;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c15:link,
+.c15:visited {
+  color: var(--color-link);
+}
+
+.c15:focus {
+  outline: thin dotted;
+}
+
+.c15:hover {
+  color: #aaa;
+}
+
+.c15:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c16 {
   width: 2rem;
   height: 2rem;
 }
@@ -159,7 +193,7 @@ exports[`app should match snapshot 1`] = `
   padding: 0 0.5rem;
 }
 
-.c25 {
+.c26 {
   -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
@@ -170,24 +204,24 @@ exports[`app should match snapshot 1`] = `
   color: var(--color-link);
 }
 
-.c25:link,
-.c25:visited {
+.c26:link,
+.c26:visited {
   color: var(--color-link);
 }
 
-.c25:focus {
+.c26:focus {
   outline: thin dotted;
 }
 
-.c25:hover {
+.c26:hover {
   color: #aaa;
 }
 
-.c25:link {
+.c26:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c25.c25.c25 {
+.c26.c26.c26 {
   color: unset;
   -webkit-text-decoration: initial;
   text-decoration: initial;
@@ -197,7 +231,30 @@ exports[`app should match snapshot 1`] = `
   letter-spacing: initial;
 }
 
-.c22 {
+.c27 {
+  color: var(--color-text-body);
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0 0.5rem;
+  width: 90%;
+  border: none;
+  border-top: 1px solid var(--color-dark-background-light);
+  border-bottom: 1px solid var(--color-dark-background-dark);
+  opacity: 0.1;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 0;
+  height: 2px;
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+  -webkit-transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
+  transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
+}
+
+.c23 {
   color: var(--color-text-body);
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -213,30 +270,29 @@ exports[`app should match snapshot 1`] = `
   width: 8vw;
 }
 
-.c19 {
+.c20 {
   font-size: 2rem;
   margin-bottom: 0;
 }
 
-.c21 {
+.c22 {
   font-style: unset;
   padding-right: 0.15rem;
   opacity: 0.3;
 }
 
-.c23 {
+.c24 {
   margin-top: 1rem;
 }
 
-.c20 {
-  color: #344955;
+.c21 {
+  color: var(--color-dark-background-main);
   margin: 0;
   margin-top: -0.5rem;
-  color: #344955;
   font-size: 1.2rem;
 }
 
-.c17 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -248,9 +304,68 @@ exports[`app should match snapshot 1`] = `
   transition: margin-top 0.5s ease-in-out,max-width 0.24s ease-in-out, height 1s ease-in-out,object-position 0.8s ease-in-out, box-shadow 0.24s ease-in-out;
 }
 
-.c26 {
+.c17 {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: calc(100% - 75px);
+}
+
+.c19 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  word-break: break-word;
+}
+
+.c25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem 0;
+  -webkit-transition: flex-direction 500ms ease-in-out;
+  transition: flex-direction 500ms ease-in-out;
+}
+
+.c25 > section {
+  -webkit-flex-basis: 50%;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+}
+
+.c25 > section > header {
+  font-weight: bold;
+}
+
+.c13 {
+  background-color: #fff;
+  margin: 9rem 1rem 9rem 1rem;
+  border-radius: 0.125rem;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.c13 address {
+  color: var(--color-text-unimportant);
+}
+
+.c30 {
+  width: 42px;
+  height: 42px;
+}
+
+.c28 {
   width: 100%;
-  padding-top: 1rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -261,21 +376,36 @@ exports[`app should match snapshot 1`] = `
   justify-content: flex-end;
   -webkit-transition: justify-content 500ms ease-in-out;
   transition: justify-content 500ms ease-in-out;
+  margin-right: 1rem;
 }
 
-.c27 {
-  padding: 0.5rem 1.5rem;
-  border-color: unset;
-  background: transparent;
-  font-size: 1rem;
-  font-weight: bold;
-  border: 4px solid #222;
-  color: #222;
+.c29 {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.c13 {
-  background-color: #fff;
-  margin: 9rem 1rem 9rem 1rem;
+.c31 {
+  overflow: hidden;
+  -webkit-transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
+  transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
+  height: 0;
+  background: white;
+  width: 100vw;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -283,68 +413,27 @@ exports[`app should match snapshot 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  border-radius: 0.125rem;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
-  height: 500px;
-  width: 80%;
+  -webkit-order: 4;
+  -ms-flex-order: 4;
+  order: 4;
 }
 
-.c13 > img {
+.c33 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-basis: 75px;
-  -ms-flex-preferred-size: 75px;
-  flex-basis: 75px;
-  width: 75px;
-  object-fit: contain;
-  object-position: bottom;
+  border-radius: 4px;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  background: var(--color-dark-background-dark);
+  color: white;
+  border-radius: 6px;
 }
 
-.c13 address {
-  color: var(--color-text-unimportant);
-}
-
-.c16 {
+.c32 {
   margin: 0;
-  padding: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c18 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  word-break: break-word;
-}
-
-.c24 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 2rem 0;
-  -webkit-transition: flex-direction 500ms ease-in-out;
-  transition: flex-direction 500ms ease-in-out;
-}
-
-.c24 > section {
-  -webkit-flex-basis: 50%;
-  -ms-flex-preferred-size: 50%;
-  flex-basis: 50%;
-}
-
-.c24 > section > header {
-  font-weight: bold;
-}
-
-.c28 {
-  overflow: hidden;
-  -webkit-transition: height 0.3s ease-out;
-  transition: height 0.3s ease-out;
+  padding: 1rem;
 }
 
 .c8 {
@@ -475,45 +564,48 @@ exports[`app should match snapshot 1`] = `
 
 @media (max-width:1023px) {
   .c14 {
-    width: 100%;
+    width: 75%;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-    border-top: 4px solid;
-    margin-top: 1rem;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    height: unset;
+    -webkit-box-pack: unset;
+    -webkit-justify-content: unset;
+    -ms-flex-pack: unset;
+    justify-content: unset;
+    padding: 0 0 0.5rem 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c15 {
+    -webkit-flex-basis: 33%;
+    -ms-flex-preferred-size: 33%;
+    flex-basis: 33%;
+    width: 33%;
+    text-align: center;
+  }
+}
+
+@media (max-width:1023px) {
+  .c27 {
+    margin-bottom: 1rem;
   }
 }
 
 @media (min-width:1024px) {
-  .c19 {
-    margin-top: 6rem;
-  }
-}
-
-@media (max-width:1024px) {
-  .c19 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
+  .c27 {
+    visibility: hidden;
+    margin: 0;
   }
 }
 
 @media (min-width:1024px) {
-  .c23 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-  }
-}
-
-@media (max-width:1024px) {
-  .c23 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
+  .c20 {
+    margin-top: 3rem;
   }
 }
 
@@ -525,20 +617,44 @@ exports[`app should match snapshot 1`] = `
   }
 }
 
+@media (min-width:1024px) {
+  .c24 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width:1024px) {
+  .c24 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width:1024px) {
+  .c21 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
 @media (max-width:500px) {
-  .c17 {
+  .c18 {
     object-position: left;
   }
 }
 
 @media (max-width:1023px) {
-  .c17 {
+  .c18 {
     width: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c17 {
+  .c18 {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
     height: 120%;
     object-position: left;
@@ -551,42 +667,16 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c26 {
-    -webkit-box-pack: unset;
-    -webkit-justify-content: unset;
-    -ms-flex-pack: unset;
-    justify-content: unset;
-    -webkit-flex-basis: 50%;
-    -ms-flex-preferred-size: 50%;
-    flex-basis: 50%;
-    margin: auto;
-    display: none;
-  }
-}
-
-@media (max-width:1023px) {
-  .c13 {
-    width: calc(100% - 2rem);
-    height: unset;
-  }
-}
-
-@media (max-width:1023px) {
-  .c16 {
+  .c17 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-  }
-}
-
-@media (min-width:1024px) {
-  .c18 {
-    height: 500px;
+    width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c18 {
+  .c19 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -598,11 +688,49 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c24 {
+  .c25 {
     padding: 0.5rem 0;
-    -webkit-flex-basis: 50%;
-    -ms-flex-preferred-size: 50%;
-    flex-basis: 50%;
+    width: 100%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c13 {
+    width: calc(100% - 2rem);
+    height: unset;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width:1023px) {
+  .c28 {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-flex-basis: 25%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    -webkit-order: 3;
+    -ms-flex-order: 3;
+    order: 3;
+    margin-right: 0;
+    margin-top: -0.25rem;
+  }
+}
+
+@media (min-width:1024px) {
+  .c28 {
+    margin-top: -3.5rem;
+  }
+}
+
+@media (max-width:1023px) {
+  .c29 {
+    width: 42px;
+    height: 42px;
   }
 }
 
@@ -718,7 +846,7 @@ exports[`app should match snapshot 1`] = `
               srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
             />
             <source
-              media="(max-width: 1000px)"
+              media="(max-width: 1024px)"
               srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
             />
             <source
@@ -778,13 +906,13 @@ exports[`app should match snapshot 1`] = `
       class="c14"
     >
       <a
-        class="c5"
+        class="c15"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c15"
+          class="c16"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -795,7 +923,6 @@ exports[`app should match snapshot 1`] = `
           </title>
           <path
             d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
-            fill="#000"
           />
           <path
             d="M0 0h24v24H0V0z"
@@ -805,46 +932,46 @@ exports[`app should match snapshot 1`] = `
       </a>
     </aside>
     <figure
-      class="c16"
+      class="c17"
     >
       <img
         alt="about me picture"
-        class="c17"
+        class="c18 "
         src=""
       />
       <figcaption
-        class="c18"
+        class="c19"
       >
         <h3
-          class="c19"
+          class="c20"
         />
         <h4
-          class="c20"
+          class="c21"
         >
           
           <i
-            class="c21"
+            class="c22"
           >
             ↔
           </i>
           
         </h4>
         <hr
-          class="c22"
+          class="c23"
           role="separator"
         />
         <p
-          class="c23"
+          class="c24"
         />
         <nav
-          class="c24"
+          class="c25"
         >
           <section>
             <header>
               Phone
             </header>
             <a
-              class="c25 "
+              class="c26 "
               href="tel:12506509455"
             >
               +
@@ -856,43 +983,64 @@ exports[`app should match snapshot 1`] = `
               Email
             </header>
             <a
-              class="c25 "
+              class="c26 "
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
             </a>
           </section>
         </nav>
-        <div
-          class="c26"
-        >
-          <button
-            class="c27"
-          >
-            Portfolio
-          </button>
-        </div>
-        <aside
-          aria-hidden="true"
-          class="c28"
-        >
-          <header>
-            skills
-          </header>
-          <ol>
-            <li>
-              skill1
-            </li>
-          </ol>
-        </aside>
-        <button>
-          show
-        </button>
       </figcaption>
     </figure>
+    <hr
+      class="c27"
+      role="separator"
+    />
+    <div
+      class="c28"
+      title="show/hide skills"
+    >
+      <button
+        class="c29"
+      >
+        <svg
+          class="c30"
+          role="img"
+          title="show"
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+        >
+          <title>
+            down_arrow
+             icon
+          </title>
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"
+          />
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+        </svg>
+      </button>
+    </div>
+    <aside
+      aria-hidden="true"
+      class="c31"
+    >
+      <ul
+        class="c32"
+      >
+        <li
+          class="c33"
+        >
+          skill1
+        </li>
+      </ul>
+    </aside>
   </article>
   <footer
-    class="c29"
+    class="c34"
   >
     <p>
       <span>
@@ -904,7 +1052,7 @@ exports[`app should match snapshot 1`] = `
     </p>
   </footer>
   <svg
-    class="c30"
+    class="c35"
   >
     <filter
       color-interpolation-filters="sRGB"
