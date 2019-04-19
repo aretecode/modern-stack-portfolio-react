@@ -4,16 +4,8 @@
  * @see https://jakearchibald.github.io/svgomg/
  */
 import * as React from 'react'
-
-/**
- * @todo split pdf, could abstract
- */
-export type IconNameType =
-  | 'facebook'
-  | 'linkedin'
-  | 'github'
-  | 'twitter'
-  | 'pdf'
+import styled from 'styled-components'
+import { IconNameType } from './typings'
 
 /**
  * using if else for uglify (https://gist.github.com/aretecode/9b1765a897554b82da96591372d3c149)
@@ -37,6 +29,7 @@ export function fromIconNameToPath(name: IconNameType) {
   } else if (name === 'linkedin') {
     return (
       <path
+        key="path"
         d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
         fill="#000"
       />
@@ -50,7 +43,24 @@ export function fromIconNameToPath(name: IconNameType) {
     )
   } else if (name === 'pdf') {
     return (
-      <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2c-.28 0-.5-.22-.5-.5v-5c0-.28.22-.5.5-.5h2c.83 0 1.5.67 1.5 1.5v3zm4-3.75c0 .41-.34.75-.75.75H19v1h.75c.41 0 .75.34.75.75s-.34.75-.75.75H19v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1h1.25c.41 0 .75.34.75.75zM9 9.5h1v-1H9v1zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1zm11 5.5h1v-3h-1v3z" />
+      <path
+        key="path"
+        d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2c-.28 0-.5-.22-.5-.5v-5c0-.28.22-.5.5-.5h2c.83 0 1.5.67 1.5 1.5v3zm4-3.75c0 .41-.34.75-.75.75H19v1h.75c.41 0 .75.34.75.75s-.34.75-.75.75H19v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1h1.25c.41 0 .75.34.75.75zM9 9.5h1v-1H9v1zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1zm11 5.5h1v-3h-1v3z"
+      />
+    )
+  } else if (name === 'up_arrow') {
+    return (
+      <path
+        key="path"
+        d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z"
+      />
+    )
+  } else if (name === 'down_arrow') {
+    return (
+      <path
+        key="path"
+        d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"
+      />
     )
   }
 
@@ -59,7 +69,7 @@ export function fromIconNameToPath(name: IconNameType) {
   }
 }
 
-export function SocialProfileIcon(props: {
+export function MaterialIcon(props: {
   icon: IconNameType
   [key: string]: unknown
 }) {
@@ -72,9 +82,14 @@ export function SocialProfileIcon(props: {
       xmlns="https://www.w3.org/2000/svg"
       {...remainingProps}
     >
-      <title>{icon} icon</title>
+      <title key="title">{icon} icon</title>
       {fromIconNameToPath(icon)}
-      <path fill="none" d="M0 0h24v24H0V0z" />
+      <path fill="none" d="M0 0h24v24H0V0z" key="background" />
     </svg>
   )
 }
+
+export const StyledMaterialIcon = styled(MaterialIcon)`
+  width: 24px;
+  height: 24px;
+`

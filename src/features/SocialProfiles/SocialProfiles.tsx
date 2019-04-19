@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { ProfileType } from '../../typings'
+import { MaterialIcon } from '../MaterialIcon'
 import { ResumeContext, ResumeContextType } from '../ResumeContext'
 import { StyledLink } from '../Link'
-import { SocialProfileIcon, IconNameType } from './SocialProfileIcon'
 
 /**
  * @todo material-ui timings
@@ -26,7 +26,7 @@ export const StyledSocialProfilesWrap = styled.aside`
   }
 `
 
-export const StyledSocialProfileIcon = styled(SocialProfileIcon)`
+export const StyledSocialProfileIcon = styled(MaterialIcon)`
   width: 2rem;
   height: 2rem;
 `
