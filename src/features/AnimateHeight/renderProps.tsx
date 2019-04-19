@@ -11,7 +11,7 @@ export function defaultRenderTrigger(props: RenderTriggerProps) {
   const text = isExpanded ? 'hide' : 'show'
   const icon = isExpanded ? 'up_arrow' : 'down_arrow'
   return (
-    <StyledButtonWrap key="wrap">
+    <StyledButtonWrap key="wrap" title="show/hide skills">
       <StyledButton onClick={onClick} key="toggle">
         <StyledLargeMaterialIcon icon={icon} title={text} />
       </StyledButton>

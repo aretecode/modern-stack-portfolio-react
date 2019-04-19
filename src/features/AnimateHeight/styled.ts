@@ -14,11 +14,14 @@ export const StyledButtonWrap = styled.div`
   margin-right: 1rem;
 
   @media (max-width: 1023px) {
-    padding-top: 0.5rem;
     justify-content: center;
     flex-basis: 25%;
-    order: 1;
-    margin: 0;
+    order: 3;
+    margin-right: 0;
+    margin-top: -0.25rem;
+  }
+  @media (min-width: 1024px) {
+    margin-top: -3.5rem;
   }
 `
 export const StyledButton = styled.button`
