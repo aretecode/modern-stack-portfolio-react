@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { StyledImage } from '../../src/features/Image'
+import { ObservablePicture } from '../../src/features/ObservablePicture'
 
 export const StyledGrid = styled.div`
   display: grid;
@@ -22,11 +22,14 @@ export const StyledTime = styled.time`
  * @todo @@styles probably should align the card image to center
  *                and add blur mirror effect to sides for consistency
  */
-export const StyledCardImage = styled(StyledImage).attrs({
+export const StyledCardImage = styled(ObservablePicture).attrs({
   loading: 'lazy',
 })`
-  max-width: 100%;
   filter: url(#green-tint);
+  max-width: 100%;
+  > img {
+    max-width: 100%;
+  }
 `
 
 export const StyledCardFigure = styled.figure`
@@ -38,6 +41,7 @@ export const StyledCardFigure = styled.figure`
     grid-template-columns: calc(50vw - 2rem) calc(50vw - 2rem);
     grid-gap: 1rem;
 
+    picture,
     img {
       height: 100%;
       width: 100%;

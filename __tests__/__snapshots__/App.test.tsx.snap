@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app should match snapshot 1`] = `
-.c28 {
+.c29 {
   background-color: var(--color-material-background-purple);
   padding: 2rem 1.25rem;
 }
 
-.c28 p {
+.c29 p {
   color: var(--color-text-body);
 }
 
@@ -120,7 +120,7 @@ exports[`app should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c29 {
+.c30 {
   height: 0;
   width: 0;
   visibility: hidden;
@@ -341,6 +341,12 @@ exports[`app should match snapshot 1`] = `
   font-weight: bold;
 }
 
+.c28 {
+  overflow: hidden;
+  -webkit-transition: height 0.3s ease-out;
+  transition: height 0.3s ease-out;
+}
+
 .c8 {
   color: var(--color-text-body);
   background-color: var(--color-dark-background-main);
@@ -404,9 +410,13 @@ exports[`app should match snapshot 1`] = `
 }
 
 .c10 {
-  max-width: 100%;
   -webkit-filter: url(#green-tint);
   filter: url(#green-tint);
+  max-width: 100%;
+}
+
+.c10 > img {
+  max-width: 100%;
 }
 
 .c9 {
@@ -550,6 +560,7 @@ exports[`app should match snapshot 1`] = `
     -ms-flex-preferred-size: 50%;
     flex-basis: 50%;
     margin: auto;
+    display: none;
   }
 }
 
@@ -568,6 +579,12 @@ exports[`app should match snapshot 1`] = `
   }
 }
 
+@media (min-width:1024px) {
+  .c18 {
+    height: 500px;
+  }
+}
+
 @media (max-width:1023px) {
   .c18 {
     display: -webkit-box;
@@ -582,9 +599,6 @@ exports[`app should match snapshot 1`] = `
 
 @media (max-width:1023px) {
   .c24 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
     padding: 0.5rem 0;
     -webkit-flex-basis: 50%;
     -ms-flex-preferred-size: 50%;
@@ -611,6 +625,7 @@ exports[`app should match snapshot 1`] = `
     grid-gap: 1rem;
   }
 
+  .c9 picture,
   .c9 img {
     height: 100%;
     width: 100%;
@@ -695,7 +710,9 @@ exports[`app should match snapshot 1`] = `
         <figure
           class="c9"
         >
-          <picture>
+          <picture
+            class="c10"
+          >
             <source
               media="(max-width: 800px)"
               srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
@@ -710,10 +727,11 @@ exports[`app should match snapshot 1`] = `
             />
             <img
               alt="work picture for Open Source"
-              class="c10"
+              class=""
               loading="lazy"
               src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
             />
+            <noscript />
           </picture>
           <figcaption>
             <header>
@@ -854,11 +872,27 @@ exports[`app should match snapshot 1`] = `
             Portfolio
           </button>
         </div>
+        <aside
+          aria-hidden="true"
+          class="c28"
+        >
+          <header>
+            skills
+          </header>
+          <ol>
+            <li>
+              skill1
+            </li>
+          </ol>
+        </aside>
+        <button>
+          show
+        </button>
       </figcaption>
     </figure>
   </article>
   <footer
-    class="c28"
+    class="c29"
   >
     <p>
       <span>
@@ -870,7 +904,7 @@ exports[`app should match snapshot 1`] = `
     </p>
   </footer>
   <svg
-    class="c29"
+    class="c30"
   >
     <filter
       color-interpolation-filters="sRGB"

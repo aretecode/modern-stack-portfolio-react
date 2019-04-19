@@ -2,6 +2,7 @@
  * @see https://shaleenjain.com/blog/nextjs-apollo-prefetc
  * @file mostly copied from following link
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/with-apollo-client.js#L23
+ * @tutorial https://www.apollographql.com/docs/react/recipes/server-side-rendering.html
  */
 import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
@@ -17,32 +18,48 @@ import Footer from '../src/features/Footer'
 import Header from '../src/features/Header'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
+import { logger } from '../src/log'
 import { AppStyles, BelowTheFoldStyles } from '../src/AppStyles'
 import { UnknownObj } from '../src/typings'
+import {
+  DataLoading,
+  DataLoadingProvider,
+} from '../src/features/ServerSideRendering'
 
 export class InnerApp extends React.PureComponent<{
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
   url: URL
+  dataLoadingContextValue: DataLoading
 }> {
   render() {
-    const { apolloClient, apolloClientState, url, children } = this.props
+    const {
+      apolloClient,
+      dataLoadingContextValue,
+      apolloClientState,
+      url,
+      children,
+    } = this.props
+
+    const contextValue = DataLoading.from(dataLoadingContextValue)
 
     return (
       <React.StrictMode>
         <ApolloProvider
           client={apolloClient || initApolloClient(apolloClientState as any)}
         >
-          <ResumeProvider>
-            <AppStyles />
-            <ResumeSchema />
-            <ResumeHead url={url} />
-            <Header />
-            {children}
-            <Footer />
-            <StyledVectorFilter />
-            <BelowTheFoldStyles />
-          </ResumeProvider>
+          <DataLoadingProvider contextValue={contextValue}>
+            <ResumeProvider>
+              <AppStyles />
+              <ResumeSchema />
+              <ResumeHead url={url} />
+              <Header />
+              {children}
+              <Footer />
+              <StyledVectorFilter />
+              <BelowTheFoldStyles />
+            </ResumeProvider>
+          </DataLoadingProvider>
         </ApolloProvider>
       </React.StrictMode>
     )
@@ -53,6 +70,7 @@ export default class MyApp extends App<{
   /** these come from getInitialProps */
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
+  dataLoadingContextValue?: DataLoading
   url: URL
 }> {
   static async getInitialProps(appContext: NextAppContext) {
@@ -65,16 +83,29 @@ export default class MyApp extends App<{
       appProps = await App.getInitialProps(appContext)
     }
 
+    const dataLoadingContextValue = new DataLoading()
     const apolloClient = initApolloClient()
 
     if (!process.browser) {
+      logger.debug('[_app] starting ssr (server)')
+
       try {
         /**
          * @note !!! this does not properly ssr if we render `<App>` (even if we pass in apolloClient) !!!
          * @description Run all GraphQL queries
+         * @todo this is really bad @@perf
+         * @description ideally we would combine this into a single tree walking
+         *              to get other data needed in ssr to rehydrate from
+         * @note this uses old `Context`
+         * @see https://github.com/apollographql/react-apollo/blob/master/src/getDataFromTree.ts
+         * @see https://github.com/apollographql/react-apollo/blob/master/src/Query.tsx#L164
          */
         await getDataFromTree(
-          <InnerApp apolloClient={apolloClient} url={url}>
+          <InnerApp
+            apolloClient={apolloClient}
+            url={url}
+            dataLoadingContextValue={dataLoadingContextValue}
+          >
             <Component {...appProps} />
           </InnerApp>
         )
@@ -85,31 +116,49 @@ export default class MyApp extends App<{
         console.error('Error while running `getDataFromTree`', error)
       }
 
+      // load context ssr data
+      const result = await dataLoadingContextValue.all()
+
       // getDataFromTree does not call componentWillUnmount
       // head side effect therefore need to be cleared manually
       Head.rewind()
+    } else {
+      logger.debug('[_app] starting ssr (browser, rehydrate)')
     }
 
     // Extract query data from the Apollo store
     const apolloClientState = apolloClient.cache.extract()
+
+    logger.debug('[_app] done ssr')
 
     return {
       ...appProps,
       pageProps,
       url,
       apolloClientState,
+      dataLoadingContextValue,
     } as ReturnType<typeof App.getInitialProps> & {
       apolloState: UnknownObj
+      dataLoadingContextValue: DataLoading
     }
   }
 
   render() {
-    // what do we use router for?
-    const { Component, pageProps, apolloClientState, url } = this.props
+    const {
+      Component,
+      pageProps,
+      apolloClientState,
+      url,
+      dataLoadingContextValue,
+    } = this.props
 
     return (
       <Container>
-        <InnerApp apolloClientState={apolloClientState} url={url}>
+        <InnerApp
+          apolloClientState={apolloClientState}
+          url={url}
+          dataLoadingContextValue={dataLoadingContextValue!}
+        >
           <Component {...pageProps} />
         </InnerApp>
       </Container>

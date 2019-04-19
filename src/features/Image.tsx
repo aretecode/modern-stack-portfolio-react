@@ -1,3 +1,6 @@
+/**
+ * added support for forwardRef, which would make this a breaking change according to https://reactjs.org/docs/forwarding-refs.html
+ */
 import * as React from 'react'
 import styled from 'styled-components'
 import { AmpContextValueType, AmpContext } from './AmpContext'
@@ -30,17 +33,16 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
   'placeholder',
 ])
 
-export type ImagePureProps = React.ImgHTMLAttributes<HTMLImageElement> & {
-  shouldUsePicture?: boolean
-  srcSizeList?: Array<
-    [
-      /** media */
-      string,
-      /** src */
-      string
-    ]
-  >
-}
+export type ImagePureProps = {
+  /** @required */
+  src: string
+  /** @required */
+  alt: string
+
+  isIntersecting?: boolean
+  /** HTMLPictureElement | HTMLImageElement */
+  forwardedRef?: React.RefObject<any>
+} & React.ImgHTMLAttributes<HTMLImageElement>
 
 export type ImageAmpProps = {
   src: string
@@ -66,8 +68,11 @@ export type ImageProps =
  * can add `<noscript><img>` inside
  * @see https://amp.dev/documentation/examples/components/amp-img/?referrer=ampbyexample.com
  * @todo add `srcset` because they don't stretch
+ * @todo add renderImage for customization with styled-components to receive states?
  */
-export class Image extends React.PureComponent<ImageProps> {
+export class ImageComponentWithoutForwardRef extends React.PureComponent<
+  ImageProps
+> {
   static contextType = AmpContext
   readonly context: AmpContextValueType
 
@@ -77,30 +82,29 @@ export class Image extends React.PureComponent<ImageProps> {
        * @todo we may want to remove, but we only need to give this to amp
        */
       const {
+        isIntersecting,
         height,
         width,
-        shouldUsePicture,
-        srcSizeList,
+        forwardedRef,
         ...remainingProps
       } = this.props as ImagePureProps
 
-      if (shouldUsePicture === true && Array.isArray(srcSizeList)) {
-        return (
-          <picture>
-            {srcSizeList.map(([size, src]) => (
-              <source key={size} media={size} srcSet={src} />
-            ))}
-            <img {...remainingProps} />
-          </picture>
-        )
-      } else {
-        return <img {...remainingProps} />
-      }
+      return <img {...remainingProps} ref={forwardedRef} />
     } else {
       const props = keep(this.props, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
       return <amp-img layout="responsive" {...props} />
     }
   }
 }
+
+export const Image = React.forwardRef(
+  (props: ImageProps, ref: React.RefObject<any>) => {
+    const mergedProps = {
+      ...props,
+      forwardedRef: ref || (props as ImagePureProps).forwardedRef,
+    }
+    return React.createElement(ImageComponentWithoutForwardRef, mergedProps)
+  }
+)
 
 export const StyledImage = styled(Image)``

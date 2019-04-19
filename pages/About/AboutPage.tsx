@@ -19,10 +19,11 @@ import {
   StyledArrow,
   StyledButton,
   StyledLink,
-  StyledNav,
+  StyledContactNav,
   StyledFigCaption,
   StyledFigure,
 } from './styled'
+import { Skills } from './Skills'
 
 export class AboutPage extends React.PureComponent {
   static contextType = ResumeContext
@@ -58,7 +59,7 @@ export class AboutPage extends React.PureComponent {
               </StyledLabel>
               <StyledSeparator />
               <StyledSummary>{summary}</StyledSummary>
-              <StyledNav>
+              <StyledContactNav>
                 <section>
                   <header>Phone</header>
                   <StyledLink to={`tel:${telephone}`}>+{telephone}</StyledLink>
@@ -67,10 +68,13 @@ export class AboutPage extends React.PureComponent {
                   <header>Email</header>
                   <StyledLink to={`mailto:${email}`}>{email}</StyledLink>
                 </section>
-              </StyledNav>
+              </StyledContactNav>
+
               <StyledButtonWrap>
                 <StyledButton>Portfolio</StyledButton>
               </StyledButtonWrap>
+
+              <Skills />
             </StyledFigCaption>
           </StyledFigure>
         </StyledAboutMeArticle>

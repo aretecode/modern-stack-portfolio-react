@@ -112,6 +112,9 @@ export const StyledButtonWrap = styled.div`
     justify-content: unset;
     flex-basis: 50%;
     margin: auto;
+
+    /* no need for this on mobile */
+    display: none;
   }
 `
 
@@ -173,21 +176,25 @@ export const StyledFigCaption = styled.figcaption`
   padding-right: 1.5rem;
   word-break: break-word;
 
+  @media (min-width: 1024px) {
+    height: 500px;
+  }
   @media (max-width: 1023px) {
     display: flex;
     flex-wrap: wrap;
   }
 `
 
-export const StyledNav = styled.nav`
+export const StyledContactNav = styled.nav`
   display: flex;
   padding: 2rem 0;
   transition: flex-direction 500ms ease-in-out;
 
   @media (max-width: 1023px) {
-    flex-direction: column;
     padding: 0.5rem 0;
     flex-basis: 50%;
+    /* was for portfolio */
+    /* flex-direction: column; */
   }
 
   > section {
