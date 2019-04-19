@@ -46,7 +46,9 @@ export class InnerApp extends React.PureComponent<{
     return (
       <React.StrictMode>
         <ApolloProvider
-          client={apolloClient || initApolloClient(apolloClientState as any)}
+          client={
+            apolloClient || initApolloClient(apolloClientState as any, url)
+          }
         >
           <DataLoadingProvider contextValue={contextValue}>
             <ResumeProvider>
@@ -84,7 +86,7 @@ export default class MyApp extends App<{
     }
 
     const dataLoadingContextValue = new DataLoading()
-    const apolloClient = initApolloClient()
+    const apolloClient = initApolloClient(undefined, url)
 
     if (!process.browser) {
       logger.debug('[_app] starting ssr (server)')

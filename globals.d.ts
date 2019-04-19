@@ -27,6 +27,7 @@ declare namespace NodeJS {
   }
   interface ProcessEnv {
     NODE_ENV: 'test' | 'development' | 'production'
+    READONLY: 'true' | 'false'
   }
   interface Process {
     browser: boolean
