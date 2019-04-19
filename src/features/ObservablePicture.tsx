@@ -20,6 +20,9 @@
  * @todo add support to use this without observing, for example, if we know it's always above the fold
  *
  * @todo add placeholder svg with width & height dimensions that we server side rendered!
+ *
+ * @todo add support for checking if it exists in the service worker, and if it doesNotReject, show it
+ * @todo with `isAlwaysAboveTheFold`,  _can improve perf here if we don’t observe_
  */
 import * as React from 'react'
 import { StyledImage, ImageProps } from './Image'
@@ -61,6 +64,7 @@ export type PictureIntersectionObserverProps = ImageProps & {
   ) => React.ReactNode
 
   srcSizeList?: SrcSizeListType
+  isAlwaysAboveTheFold?: boolean
 }
 
 export function defaultRenderPicture(
@@ -83,6 +87,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
     src: `https://noccumpr-cdn.sirv.com/images/full-james-wiens-profile-picture.png?format=webp`,
     alt: 'MISSING ALTERNATE DESCRIPTION, SORRY!',
     renderPicture: defaultRenderPicture,
+    isAlwaysAboveTheFold: false,
   }
   static contextType = DataLoadingContext
   readonly context: DataLoadingContextType
@@ -94,7 +99,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
     this.props.ref || this.props.forwardedRef || React.createRef<any>()
   observer: IntersectionObserver
   state = {
-    hasIntersected: false,
+    hasIntersected: !!this.props.isAlwaysAboveTheFold,
     isIntersecting: false,
     height: 0,
     width: 0,
