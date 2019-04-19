@@ -206,6 +206,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
       src,
       className,
       renderPicture,
+      isAlwaysAboveTheFold,
       srcSizeList,
       ...remainingProps
     } = this.props as Required<PictureIntersectionObserverProps>
@@ -213,21 +214,22 @@ export class PictureIntersectionObserver extends React.PureComponent<
     // can also add &h=${this.state.height}
     const url = `${src}&w=${this.state.width}`
 
-    const renderImageProps = {
-      ...remainingProps,
-      forwardedRef: this.wrapperRef,
-      src: url,
-      className,
-      children: (
-        <AmpContext.Consumer>
-          {({ isAmp }) => {
-            return (
+    return (
+      <AmpContext.Consumer>
+        {({ isAmp }) => {
+          const renderImageProps = {
+            ...remainingProps,
+            forwardedRef: this.wrapperRef,
+            src: url,
+            className,
+            children: (
               <>
                 {(isAmp === true ||
                   this.state.hasIntersected === true ||
                   process.env.NODE_ENV === 'test') && (
                   <>
-                    {Array.isArray(srcSizeList) === true &&
+                    {isAmp === false &&
+                      Array.isArray(srcSizeList) === true &&
                       srcSizeList.map(([size, src]) => (
                         <source key={size} media={size} srcSet={src} />
                       ))}
@@ -247,13 +249,12 @@ export class PictureIntersectionObserver extends React.PureComponent<
                   </noscript>
                 )}
               </>
-            )
-          }}
-        </AmpContext.Consumer>
-      ),
-    }
-
-    return renderPicture(renderImageProps, this.state)
+            ),
+          }
+          return renderPicture(renderImageProps, this.state)
+        }}
+      </AmpContext.Consumer>
+    )
   }
 }
 
