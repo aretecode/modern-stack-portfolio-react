@@ -262,7 +262,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
           }
 
           // could do in child component
-          if (isAmp === false) {
+          if (isAmp === true) {
             return renderImageProps.children
           } else {
             return renderPicture(renderImageProps, this.state)
