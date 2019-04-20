@@ -239,8 +239,8 @@ export class PictureIntersectionObserver extends React.PureComponent<
                   <>
                     {isAmp === false &&
                       Array.isArray(srcSizeList) === true &&
-                      srcSizeList.map(([size, src]) => (
-                        <source key={size} media={size} srcSet={src} />
+                      srcSizeList.map(([size, srcSet]) => (
+                        <source key={size} media={size} srcSet={srcSet} />
                       ))}
                     <StyledImage
                       isIntersecting={this.state.isIntersecting}
