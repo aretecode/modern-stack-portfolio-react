@@ -1,8 +1,9 @@
 import * as React from 'react'
 /**
  * since we are using next, this is not working
+ * @example
+ *     import { Link as BaseLink, LinkProps } from 'react-router-dom'
  */
-// import { Link as BaseLink, LinkProps } from 'react-router-dom'
 import { LinkProps } from 'react-router-dom'
 /**
  * @todo @see https://raw.githubusercontent.com/zeit/next.js/canary/packages/next/client/link.js
@@ -32,7 +33,6 @@ export class DynamicLink extends React.PureComponent<
           </StyledHref>
         </BaseLink>
       )
-      // return <BaseLink {...remainingProps} to={toHref} />
     }
   }
 }

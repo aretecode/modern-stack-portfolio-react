@@ -93,7 +93,7 @@ export class DataLoading<DataLoadingTypeArg = object>
     })
     const loading = Promise.all(mapAsPromiseList)
     loading.then(result => {
-      this.result = result
+      this.result = result as Array<[string, DataLoadingTypeArg]>
     })
 
     return loading

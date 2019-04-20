@@ -1,3 +1,6 @@
+// tslint:disable:no-var-requires
+// @lint this file is dynamically including only on the server
+
 /**
  * @example https://github.com/zeit/next-learn-demo/tree/master/E2-lazy-loading-modules/pages
  * @tutorial https://arunoda.me/blog/ssr-and-server-only-modules

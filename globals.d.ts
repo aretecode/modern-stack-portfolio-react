@@ -34,3 +34,10 @@ declare namespace NodeJS {
     env: ProcessEnv
   }
 }
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    'amp-img': any
+    'amp-google-document-embed': any
+  }
+}

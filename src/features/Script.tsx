@@ -10,12 +10,12 @@ export interface CombinedScriptProps {
   children: { [key: string]: unknown }
 }
 
-function serializeScriptChildren(children: unknown) {
+function serializeScriptChildren(children: unknown): string {
   return isObj(children)
     ? process.env.NODE_ENV === 'development'
       ? JSON.stringify(children, undefined, 2)
       : JSON.stringify(children)
-    : children
+    : (children as string)
 }
 
 /**

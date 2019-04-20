@@ -33,21 +33,22 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
   'placeholder',
 ])
 
-export type ImagePureProps = {
+export interface ImagePureProps {
   /** @required */
   src: string
   /** @required */
   alt: string
 
   isIntersecting?: boolean
-  /** HTMLPictureElement | HTMLImageElement */
+  /** @todo HTMLPictureElement | HTMLImageElement */
   forwardedRef?: React.RefObject<any>
-} & React.ImgHTMLAttributes<HTMLImageElement>
+}
 
-export type ImageAmpProps = {
+export interface ImageAmpProps {
   src: string
   width: number | string
   height: number | string
+
   layout?: 'responsive' | string
   attribution?: string
   heights?: string
@@ -57,12 +58,23 @@ export type ImageAmpProps = {
   sizes?: string
   fallback?: boolean
   noloading?: boolean
-} & React.ImgHTMLAttributes<HTMLImageElement>
+}
 
-export type ImageProps =
-  | ImagePureProps
-  | ImageAmpProps
-  | (ImagePureProps & ImageAmpProps)
+export type ImageReactProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+  className?: string
+  children?: React.ReactNode
+  alt?: string
+  crossOrigin?: 'anonymous' | 'use-credentials' | ''
+  decoding?: 'async' | 'auto' | 'sync'
+  height?: number | string
+  sizes?: string
+  src?: string
+  srcSet?: string
+  useMap?: string
+  width?: number | string
+}
+
+export type ImageProps = (ImagePureProps & ImageAmpProps) & ImageReactProps
 
 /**
  * can add `<noscript><img>` inside
@@ -87,7 +99,7 @@ export class ImageComponentWithoutForwardRef extends React.PureComponent<
         width,
         forwardedRef,
         ...remainingProps
-      } = this.props as ImagePureProps
+      } = this.props as ImagePureProps & ImageReactProps
 
       return <img {...remainingProps} ref={forwardedRef} />
     } else {

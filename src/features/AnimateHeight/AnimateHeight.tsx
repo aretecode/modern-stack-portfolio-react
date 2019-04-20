@@ -68,11 +68,16 @@ export class AnimateHeightComponent extends React.PureComponent<
        * 5. update the state so it re-renders
        */
       const element = forwardedRef!.current
-      // const elementTransition = element.style.transition
-      // element.style.transition = ''
+      /**
+       * the following is not done because we just set height to 0 to start
+       *
+       * @example
+       *    const elementTransition = element.style.transition
+       *    element.style.transition = ''
+       *    await collapseSection(element)
+       *    element.style.transition = elementTransition
+       */
       await collapseSection(element)
-      // element.style.transition = elementTransition
-
       this.setIsExpanded(false)
     }
   }
@@ -84,6 +89,8 @@ export class AnimateHeightComponent extends React.PureComponent<
   get isExpanded() {
     return this.context.isExpanded
   }
+  // tslint:disable:no-flag-args
+  // @lint this is a value
   setIsExpanded = (isExpanded: boolean) => {
     this.context.set('isExpanded', isExpanded)
     /**
@@ -110,11 +117,7 @@ export class AnimateHeightComponent extends React.PureComponent<
   }
 
   render() {
-    const { className, forwardedRef, renderTrigger, children } = this.props
-
-    /**
-     * @todo split to another component, could be renderProp
-     */
+    const { renderTrigger, children } = this.props
 
     return (
       <>

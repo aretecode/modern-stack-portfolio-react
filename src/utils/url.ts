@@ -4,6 +4,7 @@
  * could use ponyfill instead
  */
 
+// tslint:disable:no-var-requires
 export const URL = !process.browser ? require('url').URL : window.URL
 export const URLSearchParams = !process.browser
   ? require('url').URLSearchParams
