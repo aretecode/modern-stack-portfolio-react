@@ -26,9 +26,12 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  */
 const nextConfig = {
   target: 'serverless',
-  webpack(config) {
+  webpack(config, options) {
     if (process.env.NODE_ENV === 'production') {
       console.debug('[next] in production mode, not type checking')
+      return config
+    } else if (options.isServer) {
+      console.debug('[next] not type checking server')
       return config
     } else {
       console.debug('[next] in development mode, type checking')
@@ -46,7 +49,6 @@ const nextConfig = {
         'src/**/*.{ts,tsx}',
         '!**/__tests__/*',
       ],
-      // measureCompilationTime: true,
     })
     config.plugins.push(plugin)
     return config
