@@ -218,9 +218,11 @@ export class PictureIntersectionObserver extends React.PureComponent<
       ...remainingProps
     } = this.props as Required<PictureIntersectionObserverProps>
 
+    // @note this is sirv specific
     // can also add &h=${this.state.height}
     const url = `${src}&w=${this.state.width}`
 
+    // could split this up a bit
     return (
       <AmpContext.Consumer>
         {({ isAmp }) => {
@@ -258,7 +260,13 @@ export class PictureIntersectionObserver extends React.PureComponent<
               </>
             ),
           }
-          return renderPicture(renderImageProps, this.state)
+
+          // could do in child component
+          if (isAmp === false) {
+            return renderImageProps.children
+          } else {
+            return renderPicture(renderImageProps, this.state)
+          }
         }}
       </AmpContext.Consumer>
     )
