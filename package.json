@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "intersection-observer": "0.5.1",
+    "@types/lru-cache": "5.1.0",
     "@types/image-size": "0.7.0",
     "@types/mkdirp": "0.5.2",
     "schema-dts": "0.3.1",
