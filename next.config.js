@@ -34,9 +34,6 @@ const nextConfig = {
       console.debug('[next] in development mode, type checking')
     }
 
-    /**
-     * @todo ignore __tests__ if tsconfig does not already
-     */
     const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
     const plugin = new ForkTsCheckerWebpackPlugin({
       tsconfig: require.resolve('./tsconfig.json'),
@@ -44,7 +41,11 @@ const nextConfig = {
       useTypescriptIncrementalApi: true,
       checkSyntacticErrors: true,
       watch: [resolveApp('src'), resolveApp('pages')],
-      // reportFiles: 'src/**/*',
+      reportFiles: [
+        // only src, not __tests__
+        'src/**/*.{ts,tsx}',
+        '!**/__tests__/*',
+      ],
       // measureCompilationTime: true,
     })
     config.plugins.push(plugin)
