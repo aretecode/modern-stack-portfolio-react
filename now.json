@@ -12,6 +12,22 @@
         "cache-control": "public, max-age=43200, immutable",
         "Service-Worker-Allowed": "/"
       }
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/_next/static/manifest.json"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/_next/static/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/_next/static/robots.txt"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/favicon.ico"
     }
   ],
   "builds": [

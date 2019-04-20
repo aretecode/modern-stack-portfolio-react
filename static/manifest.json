@@ -1,0 +1,47 @@
+{
+  "name": "James Wiens Resume",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "short_name": "JamesWiens",
+  "description": "James Wiens: Technical Director ↔ Lead Technical Architect. Canadian. Code, eh.",
+  "background_color": "#ffffff",
+  "theme_color": "#6200ee",
+  "icons": [
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-512x512.png?w=128&h=128",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
+}

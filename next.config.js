@@ -5,7 +5,7 @@ const withOffline = require('next-offline')
  * @description Make sure any symlinks in the project folder are resolved:
  * @see  https://github.com/facebookincubator/create-react-app/issues/637
  */
-const { resolve } = require('path')
+const { resolve, join } = require('path')
 const { realpathSync } = require('fs')
 const appDirectory = realpathSync(process.cwd())
 const resolveApp = relativePath => resolve(appDirectory, relativePath)
@@ -26,17 +26,17 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  */
 const nextConfig = {
   target: 'serverless',
-  webpack(config) {
+  webpack(config, options) {
     if (process.env.NODE_ENV === 'production') {
       console.debug('[next] in production mode, not type checking')
+      return config
+    } else if (options.isServer) {
+      console.debug('[next] not type checking server')
       return config
     } else {
       console.debug('[next] in development mode, type checking')
     }
 
-    /**
-     * @todo ignore __tests__ if tsconfig does not already
-     */
     const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
     const plugin = new ForkTsCheckerWebpackPlugin({
       tsconfig: require.resolve('./tsconfig.json'),
@@ -44,8 +44,11 @@ const nextConfig = {
       useTypescriptIncrementalApi: true,
       checkSyntacticErrors: true,
       watch: [resolveApp('src'), resolveApp('pages')],
-      // reportFiles: 'src/**/*',
-      // measureCompilationTime: true,
+      reportFiles: [
+        // only src, not __tests__
+        'src/**/*.{ts,tsx}',
+        '!**/__tests__/*',
+      ],
     })
     config.plugins.push(plugin)
     return config

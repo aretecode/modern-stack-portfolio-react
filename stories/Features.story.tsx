@@ -1,3 +1,16 @@
+/**
+ * @todo update to add remaining stories
+ * - SocialProfiles
+ * - AMP (_knob - toggle_)
+ * - ObservablePicture & Image
+ * - Card
+ * - MaterialIcon (_knob - icon name_)
+ * - Link (_knob - url & text_)
+ * - Separator
+ * - VectorFilter
+ * - GoogleDocument (_knob - url_)
+ * - show rendered head as inline text
+ */
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { StyledLink } from '../src/features/Link'
@@ -17,3 +30,5 @@ storiesOf('features/Separator', module).add('default', () => (
 storiesOf('features/Footer', module).add('default', () => <Footer />)
 
 storiesOf('features/Header', module).add('default', () => <Header />)
+
+storiesOf('features/Navigation', module).add('default', () => <Navigation />)

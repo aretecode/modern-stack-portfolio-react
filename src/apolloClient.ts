@@ -19,6 +19,7 @@ import { withClientState } from 'apollo-link-state'
 import { onError } from 'apollo-link-error'
 import { GraphQLError } from 'graphql'
 import { isEmpty, isObj } from './utils/is'
+import { EMPTY_OBJ } from './utils/EMPTY'
 import { apolloState, typeDefs } from './apolloState'
 import { logger } from './log'
 
@@ -28,6 +29,7 @@ const IS_BROWSER = typeof window === 'object'
  * @see apolloClient
  */
 if (!process.browser) {
+  // tslint:disable:no-var-requires
   (global as any).fetch = require('node-fetch')
 }
 
@@ -38,9 +40,9 @@ let apolloClientInstance: ApolloClient<any> = undefined as any
  * if we need access to these links outside we can change this
  */
 export function createInstance(
-  initialState = (IS_BROWSER
+  initialState: NormalizedCacheObject = (IS_BROWSER
     ? window.__APOLLO_STATE__
-    : {}) as NormalizedCacheObject,
+    : EMPTY_OBJ) as NormalizedCacheObject,
   url?: URL
 ) {
   const httpLink = new ApolloLink((operation, forward) => {

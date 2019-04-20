@@ -34,10 +34,10 @@ export const requestIdleCallback: RequestIdleCallbackFunctionType =
   IS_BROWSER && 'requestIdleCallback' in window
     ? (window as any).requestIdleCallback
     : process.env.NODE_ENV === 'test'
-    ? function(cb: RequestIdleCallbackFunctionArgType) {
+    ? (cb: RequestIdleCallbackFunctionArgType) => {
         return cb(EMPTY_OBJ as any)
       }
-    : function(cb: RequestIdleCallbackFunctionArgType) {
+    : (cb: RequestIdleCallbackFunctionArgType) => {
         const start = Date.now()
         const handleTimeout = () => {
           cb({

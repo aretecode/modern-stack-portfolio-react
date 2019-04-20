@@ -1,3 +1,6 @@
+// tslint:disable:no-var-requires
+// @lint this file is dynamically including only on the server
+
 /**
  * @example https://github.com/zeit/next-learn-demo/tree/master/E2-lazy-loading-modules/pages
  * @tutorial https://arunoda.me/blog/ssr-and-server-only-modules
@@ -5,6 +8,7 @@
  * @note when using process.browser, try to ensure it's in a separate file
  */
 import { ServerResponse } from 'http'
+import { logger } from '../log'
 import { NO_OP } from './EMPTY'
 
 /**
@@ -44,13 +48,13 @@ export async function measureImage(
                 const result = await sizeOf(buffer)
                 resolve(result)
               } catch (sizeOfError) {
-                console.error(sizeOfError)
+                logger.error(sizeOfError)
                 reject(sizeOfError)
               }
             })
         })
       } catch (httpException) {
-        console.error({ httpException })
+        logger.error({ httpException })
         throw httpException
       }
     })

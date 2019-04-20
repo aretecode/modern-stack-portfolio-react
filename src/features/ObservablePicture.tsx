@@ -25,6 +25,7 @@
  * @todo with `isAlwaysAboveTheFold`,  _can improve perf here if we don’t observe_
  */
 import * as React from 'react'
+import { logger } from '../log'
 import { StyledImage, ImageProps } from './Image'
 import { AmpContext } from './AmpContext'
 import { measureImage } from '../utils/measureImage'
@@ -129,7 +130,6 @@ export class PictureIntersectionObserver extends React.PureComponent<
          * Converted to /100
          */
         const visiblePercent = Math.floor(change.intersectionRatio * 100) + '%'
-
         console.log({ isIntersecting: change.isIntersecting, visiblePercent })
 
         if (
@@ -146,9 +146,14 @@ export class PictureIntersectionObserver extends React.PureComponent<
       rootMargin: '0px',
 
       /**
-       * each 10% movement will trigger
+       * @note each 10% movement will trigger
+       * @example
+       *    threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
        */
-      threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      /**
+       * now, we only trigger 2x
+       */
+      threshold: [0.0, 1.0],
     }
 
     this.observer = new IntersectionObserver(
@@ -186,7 +191,9 @@ export class PictureIntersectionObserver extends React.PureComponent<
       }
     } else {
       if (process.browser) {
-        console.log('[fetchData] in browser - not loading')
+        if (process.env.NODE_ENV === 'development') {
+          logger.log('[fetchData] in browser - not loading')
+        }
         return
       }
       const dimensionsPromise = measureImage(src)
@@ -211,9 +218,11 @@ export class PictureIntersectionObserver extends React.PureComponent<
       ...remainingProps
     } = this.props as Required<PictureIntersectionObserverProps>
 
+    // @note this is sirv specific
     // can also add &h=${this.state.height}
     const url = `${src}&w=${this.state.width}`
 
+    // could split this up a bit
     return (
       <AmpContext.Consumer>
         {({ isAmp }) => {
@@ -251,7 +260,13 @@ export class PictureIntersectionObserver extends React.PureComponent<
               </>
             ),
           }
-          return renderPicture(renderImageProps, this.state)
+
+          // could do in child component
+          if (isAmp === true) {
+            return renderImageProps.children
+          } else {
+            return renderPicture(renderImageProps, this.state)
+          }
         }}
       </AmpContext.Consumer>
     )

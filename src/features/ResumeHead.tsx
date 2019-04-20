@@ -54,10 +54,67 @@ export class ResumeHead extends React.PureComponent<{
       },
     ]
 
+    /**
+     * @todo get image dimensions dynamically
+     *  <meta property="og:image:width" content="1200" />
+     *  <meta property="og:image:height" content="628" />
+     *
+     * @todo get these from graphql
+     */
+    const iconBaseUrl =
+      'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-'
+    const svgUrl =
+      'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-vector.svg'
+
     return (
       <>
         <Head>
+          <link rel="shortcut icon" href="/favicon.png" key="head:icon" />
+          <link rel="manifest" href="/manifest.json" key="head:manifest" />
+          <link
+            rel="icon"
+            href={`${iconBaseUrl}-32x32.png`}
+            sizes="32x32"
+            key="head:icon:32"
+          />
+          <link
+            rel="icon"
+            href={`${iconBaseUrl}-192x192.png`}
+            sizes="192x192"
+            key="head:icon:192"
+          />
+          <link
+            rel="mask-icon"
+            color={'#6200ee'}
+            href={`${svgUrl}`}
+            key="head:icon:svg"
+          />
+          <link
+            rel="apple-touch-icon"
+            href={`${iconBaseUrl}-120x120.png`}
+            sizes="120x120"
+            key="head:icon:120"
+          />
+          <link
+            rel="apple-touch-icon"
+            href={`${iconBaseUrl}-152x152.png`}
+            sizes="152x152"
+            key="head:icon:152"
+          />
+          <link
+            rel="apple-touch-icon"
+            href={`${iconBaseUrl}-512x512.png`}
+            sizes="512x512"
+            key="head:icon:512"
+          />
+          <link
+            rel="apple-touch-icon-precomposed"
+            href={`${iconBaseUrl}-180x180.png`}
+            key="head:icon:180"
+          />
+
           <meta name="theme-color" content={'#6200ee'} key="head:color" />
+          <meta property="og:type" content="website" />
           <meta
             property="og:site_name"
             content={siteName}
@@ -71,6 +128,7 @@ export class ResumeHead extends React.PureComponent<{
           />
           <meta property="og:image" content={image} key="head:og:image" />
           <meta property="og:title" content={title} key="head:og:title" />
+
           <meta
             property="og:description"
             content={description}
@@ -81,11 +139,16 @@ export class ResumeHead extends React.PureComponent<{
             content={description}
             key="head:resume:description"
           />
-          <meta name="twitter:card" content={summary} key="head:twitter:card" />
+          <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:domain"
             content={url.origin}
             key="head:twitter:domain"
+          />
+          <meta
+            name="twitter:creator"
+            content={twitter}
+            key="head:twitter:creator"
           />
           <meta name="twitter:site" content={twitter} key="head:twitter:site" />
           <meta name="twitter:title" content={title} key="head:twitter:title" />
