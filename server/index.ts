@@ -2,6 +2,8 @@
  * @see https://github.com/zeit/next.js/tree/master/examples/ssr-caching
  * @see https://github.com/zeit/next.js/tree/canary/examples/custom-server-typescript/server
  * @see https://medium.com/@igordata/how-to-cache-all-pages-in-next-js-at-server-side-1850aace87dc
+ * @see https://github.com/zeit/now-examples/issues/196#issuecomment-451210803
+ * @see https://zeit.co/guides/custom-next-js-server-to-routes
  */
 import * as express from 'express'
 import * as next from 'next'

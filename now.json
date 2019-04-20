@@ -37,14 +37,14 @@
       "src": "/static/(.*)",
       "dest": "/static/$1",
       "headers": {
-        "cache-control": "public, max-age=43200"
+        "cache-control": "s-maxage=86400"
       }
     },
     {
       "src": "/(.*)",
       "dest": "/$1",
       "headers": {
-        "cache-control": "public, max-age=43200"
+        "cache-control": "s-maxage=86400"
        }
     }
   ],
