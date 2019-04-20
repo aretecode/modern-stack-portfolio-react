@@ -70,6 +70,7 @@ export class ResumeHead extends React.PureComponent<{
       <>
         <Head>
           <link rel="shortcut icon" href="/favicon.png" key="head:icon" />
+          <link rel="manifest" href="/manifest.json" key="head:manifest" />
           <link
             rel="icon"
             href={`${iconBaseUrl}-32x32.png`}
