@@ -28,6 +28,10 @@
     {
       "src": "/favicon.ico",
       "dest": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/favicon.ico"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-144x144.png"
     }
   ],
   "builds": [
