@@ -214,6 +214,7 @@ export const StyledAboutMeArticle = styled.article`
     width: calc(100% - 2rem);
     height: unset;
     flex-wrap: wrap;
+    margin: 5.5rem 1rem 2rem 1rem;
   }
 
   address {

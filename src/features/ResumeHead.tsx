@@ -62,7 +62,7 @@ export class ResumeHead extends React.PureComponent<{
      * @todo get these from graphql
      */
     const iconBaseUrl =
-      'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-'
+      'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo'
     const svgUrl =
       'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-vector.svg'
 
