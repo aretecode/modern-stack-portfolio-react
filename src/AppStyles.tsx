@@ -12,6 +12,8 @@ import { createGlobalStyle } from 'styled-components'
  * @see https://material.io/design/color/color-usage.html#
  *
  * @todo https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+ *
+ * --color-text-unimportant-bad-contrast: #6c757d;
  */
 export const AppStyles = createGlobalStyle`
   :root {
@@ -33,7 +35,7 @@ export const AppStyles = createGlobalStyle`
     --color-text-heading: #fff;
     --color-text-body: #fff;
     --color-text-secondary: #03dac6;
-    --color-text-unimportant: #6c757d;
+    --color-text-unimportant: #bbb;
   }
 
   @font-face {
