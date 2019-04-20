@@ -32,10 +32,14 @@ export const StyledLogo = styled.p.attrs({
 })`
   color: var(--color-text-body);
   @media (max-width: 480px) {
-    flex-basis: 100%;
     text-align: center;
     margin-bottom: 0;
   }
 `
 
-export const StyledLogoLink = styled(StyledLink)``
+export const StyledLogoLink = styled(StyledLink)`
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-basis: 100%;
+  }
+`
