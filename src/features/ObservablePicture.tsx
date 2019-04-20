@@ -25,6 +25,7 @@
  * @todo with `isAlwaysAboveTheFold`,  _can improve perf here if we don’t observe_
  */
 import * as React from 'react'
+import { logger } from '../log'
 import { StyledImage, ImageProps } from './Image'
 import { AmpContext } from './AmpContext'
 import { measureImage } from '../utils/measureImage'
@@ -190,7 +191,9 @@ export class PictureIntersectionObserver extends React.PureComponent<
       }
     } else {
       if (process.browser) {
-        console.log('[fetchData] in browser - not loading')
+        if (process.env.NODE_ENV === 'development') {
+          logger.log('[fetchData] in browser - not loading')
+        }
         return
       }
       const dimensionsPromise = measureImage(src)

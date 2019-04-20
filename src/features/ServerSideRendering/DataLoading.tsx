@@ -1,3 +1,4 @@
+import { logger } from '../../log'
 import { isFunction } from '../../utils/is'
 import { DataLoadingContextType } from './typings'
 
@@ -18,7 +19,7 @@ export class DataLoading<DataLoadingTypeArg = object>
     >
   ) {
     if (instance === undefined) {
-      console.warn('[dataLoading] empty arg')
+      logger.warn('[dataLoading] empty arg')
       return new DataLoading()
     } else if (Array.isArray(instance.promiseMapAsArray)) {
       /**
@@ -26,22 +27,21 @@ export class DataLoading<DataLoadingTypeArg = object>
        * @example
        *    new Map(Array.from(new Map().set('eh', 1)))
        */
-      console.debug('[dataLoading] rehydrating')
-      console.log({ instance })
+      logger.debug('[dataLoading] rehydrating')
       const newInstance = new DataLoading()
       newInstance.promiseMap = new Map(instance.promiseMapAsArray as any)
       newInstance.result = instance.result! || []
       newInstance.all()
       return newInstance
     } else if (isFunction(instance.all)) {
-      console.debug('[dataLoading] loading from class')
+      logger.debug('[dataLoading] loading from class')
       /**
        * we have a class instance
        */
       instance!.all()
       return instance as DataLoading
     } else {
-      console.warn('[dataLoading] cannot rehydrate')
+      logger.warn('[dataLoading] cannot rehydrate')
       /**
        * we cannot rehydrate
        */

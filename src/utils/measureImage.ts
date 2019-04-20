@@ -8,6 +8,7 @@
  * @note when using process.browser, try to ensure it's in a separate file
  */
 import { ServerResponse } from 'http'
+import { logger } from '../log'
 import { NO_OP } from './EMPTY'
 
 /**
@@ -47,13 +48,13 @@ export async function measureImage(
                 const result = await sizeOf(buffer)
                 resolve(result)
               } catch (sizeOfError) {
-                console.error(sizeOfError)
+                logger.error(sizeOfError)
                 reject(sizeOfError)
               }
             })
         })
       } catch (httpException) {
-        console.error({ httpException })
+        logger.error({ httpException })
         throw httpException
       }
     })

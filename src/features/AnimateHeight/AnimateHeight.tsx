@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { logger } from '../../log'
 import { AnimateHeightProps, AnimateHeightContextStateType } from './typings'
 import { collapseSection, expandSection } from './utils'
 import { defaultRenderTrigger } from './renderProps'
@@ -40,7 +41,7 @@ export class AnimateHeightComponent extends React.PureComponent<
        */
       if (forwardedRef === undefined || forwardedRef.current === null) {
         if (process.env.NODE_ENV === 'development') {
-          console.error(`[AnimateHeight] missing forwarded ref current target,
+          logger.error(`[AnimateHeight] missing forwarded ref current target,
           make sure you have rendered your ref like <AnimateHeight ref={refObj}><section ref={refObj}></section></AnimateHeight>`)
         }
 
