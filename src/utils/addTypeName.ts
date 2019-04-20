@@ -5,9 +5,10 @@ export function addTypeName<DataType = any>(
   data: DataType
 ): WithTypeNameRecursive<DataType> {
   if (Array.isArray(data)) {
-    return data.map(x => {
+    const listWithTypeName = data.map(x => {
       return { ...x, __typename: typeName }
-    }) as any
+    })
+    return listWithTypeName as any
   } else if (
     typeof data === 'string' ||
     typeof data === 'number' ||
