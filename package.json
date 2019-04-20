@@ -9,6 +9,7 @@
     "copy": "node static/copy",
     "start": "next start",
     "test": "jest",
+    "now-build": "yarn build",
     "install:workspace": "cd ../../ && yarn install && cd packages/client",
     "prepublishOnly": "rm -rf build && tsc || true",
     "dev:webpack": "webpack-dev",
