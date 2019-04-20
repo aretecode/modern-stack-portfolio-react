@@ -7,12 +7,18 @@ import { URL } from './url'
  * @see https://developer.mozilla.org/en-US/docs/Web/API/URL
  */
 export function fromReqToUrl(req: ExpressRequest): typeof URL {
-  if (process.env.NODE_ENV === 'development' && req === undefined) {
+  if (req === undefined) {
     if (process.browser) {
-      logger.warn('[fromReqToUrl] missing url, falling back to url from window')
+      if (process.env.NODE_ENV === 'development') {
+        logger.warn(
+          '[fromReqToUrl] missing url, falling back to url from window'
+        )
+      }
       return new URL(window.location.href)
     } else {
-      logger.error('[fromReqToUrl] missing url in request!')
+      if (process.env.NODE_ENV === 'development') {
+        logger.error('[fromReqToUrl] missing url in request!')
+      }
     }
   }
 
