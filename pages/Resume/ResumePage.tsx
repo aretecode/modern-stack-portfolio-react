@@ -23,13 +23,14 @@ import { TimeRange } from './TimeRange'
 /**
  * @hack images with specific sizes
  */
-function renderWork(work: WorkType) {
+function renderWork(work: WorkType, index: number) {
   return (
     <StyledCard key={work.company + work.startDate + work.endDate}>
       <StyledCardFigure>
         <StyledCardImage
           width="1000"
           height="692"
+          isAlwaysAboveTheFold={index === 0}
           src={work.picture}
           loading="lazy"
           srcSizeList={[
