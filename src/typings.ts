@@ -1,4 +1,8 @@
 /**
+ * @file @todo ensure all have named `Type` or `i`
+ */
+
+/**
  * === basics ===
  */
 export type Primitive =
@@ -103,6 +107,7 @@ export interface EmptySet<Value = any> extends Set<Value> {
 export interface EmptyArray<Value = any> extends Array<Value> {
   length: 0
 }
+export type EmptyFunctionType = () => void
 
 /**
  * === apollo ===

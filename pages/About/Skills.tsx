@@ -1,38 +1,64 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import AnimateHeight from '../../src/features/AnimateHeight'
+import styled, { css } from 'styled-components'
 import {
-  ResumeContext,
-  ResumeContextType,
-} from '../../src/features/ResumeContext'
+  AnimateHeight,
+  AnimateHeightContext,
+} from '../../src/features/AnimateHeight'
+import { ResumeContext } from '../../src/features/ResumeContext'
 
 /**
  * @todo split out
- * @todo should be default height 0 if we want it to be hidden initially
+ * @see StyledSocialProfilesWrap for related `order` comments
  */
 export const StyledSkillsWrap = styled.aside`
   overflow: hidden;
-  transition: height 0.3s ease-out;
+  transition: margin-top 0.62s ease-in-out, height 0.24s ease-out;
+  height: 0;
+  background: white;
+  width: 100vw;
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  order: 4;
+
+  ${(props: { isExpanded?: boolean }) =>
+    props.isExpanded === true &&
+    css`
+      margin-top: 1.5rem;
+      transition: margin-top 0s ease-in-out, height 0.48s ease-out;
+    `};
 `
 
-export class Skills extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
-  animateRef = React.createRef<any>()
+const StyledSkillItem = styled.li`
+  display: inline-flex;
+  border-radius: 4px;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  background: var(--color-dark-background-dark);
+  color: white;
+  border-radius: 6px;
+`
 
-  render() {
-    const { skills } = this.context.basics
-    return (
-      <AnimateHeight isDefaultExpanded={false} ref={this.animateRef}>
-        <StyledSkillsWrap ref={this.animateRef}>
-          <header>skills</header>
-          <ol>
-            {skills.map(x => (
-              <li key={x}>{x}</li>
-            ))}
-          </ol>
-        </StyledSkillsWrap>
-      </AnimateHeight>
-    )
-  }
+export const StyledSkillList = styled.ul`
+  margin: 0;
+  padding: 1rem;
+`
+
+export function Skills(props: {}) {
+  const animateHeight = React.useContext(AnimateHeightContext)
+  const resume = React.useContext(ResumeContext)
+  const animateRef = React.createRef<any>()
+  const { skills } = resume.basics
+
+  return (
+    <AnimateHeight isDefaultExpanded={false} ref={animateRef}>
+      <StyledSkillsWrap ref={animateRef} isExpanded={animateHeight.isExpanded}>
+        <StyledSkillList>
+          {skills.map(x => (
+            <StyledSkillItem key={x}>{x}</StyledSkillItem>
+          ))}
+        </StyledSkillList>
+      </StyledSkillsWrap>
+    </AnimateHeight>
+  )
 }

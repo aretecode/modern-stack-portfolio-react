@@ -34,7 +34,7 @@ function renderWork(work: WorkType) {
           loading="lazy"
           srcSizeList={[
             ['(max-width: 800px)', work.picture.replace('m-', 'm-')],
-            ['(max-width: 1000px)', work.picture.replace('m-', 'w-m-')],
+            ['(max-width: 1024px)', work.picture.replace('m-', 'w-m-')],
             ['(min-width: 2000px)', work.picture.replace('m-', 'xl-')],
           ]}
           alt={`work picture for ${work.company}`}
@@ -43,7 +43,19 @@ function renderWork(work: WorkType) {
           <header>{work.company}</header>
           <section>
             <strong>{work.position}</strong>
-            <p>{work.highlights}</p>
+            {typeof work.highlights === 'string' &&
+            work.highlights.includes('- ') ? (
+              <ul key="highlights">
+                {work.highlights
+                  .split('- ')
+                  .filter(Boolean)
+                  .map(highlight => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+              </ul>
+            ) : (
+              <p key="highlights">{work.highlights}</p>
+            )}
             <p>{work.summary}</p>
             <StyledLink to={work.website}>{work.website}</StyledLink>
           </section>
