@@ -129,7 +129,6 @@ export class PictureIntersectionObserver extends React.PureComponent<
          * Converted to /100
          */
         const visiblePercent = Math.floor(change.intersectionRatio * 100) + '%'
-
         console.log({ isIntersecting: change.isIntersecting, visiblePercent })
 
         if (
@@ -146,9 +145,14 @@ export class PictureIntersectionObserver extends React.PureComponent<
       rootMargin: '0px',
 
       /**
-       * each 10% movement will trigger
+       * @note each 10% movement will trigger
+       * @example
+       *    threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
        */
-      threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      /**
+       * now, we only trigger 2x
+       */
+      threshold: [0.0, 1.0],
     }
 
     this.observer = new IntersectionObserver(
