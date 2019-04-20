@@ -9,13 +9,6 @@ const { resolve, join } = require('path')
 const { realpathSync } = require('fs')
 const appDirectory = realpathSync(process.cwd())
 const resolveApp = relativePath => resolve(appDirectory, relativePath)
-/**
- * this is to copy our src code into the output
- * @see exportPathMap
- */
-const { copyFile } = require('fs')
-const { promisify } = require('util')
-const asyncCopyFile = promisify(copyFile)
 
 /**
  * @see https://zeit.co/examples/nextjs/
@@ -33,25 +26,6 @@ const asyncCopyFile = promisify(copyFile)
  */
 const nextConfig = {
   target: 'serverless',
-  /**
-   * @see https://www.javascripting.com/view/next-js
-   */
-  async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-    if (dev) {
-      return defaultPathMap
-    }
-    /**
-     * will copy a file from project root => out directory
-     */
-    async function copyFromTo(from, to = from) {
-      return await asyncCopyFile(join(dir, from), join(outDir, to))
-    }
-
-    await copyFromTo('static/robots.txt', 'robots.txt')
-    await copyFromTo('static/manifest.json', 'manifest.json')
-    await copyFromTo('static/sitemap.xml', 'sitemap.xml')
-    return defaultPathMap
-  },
   webpack(config, options) {
     if (process.env.NODE_ENV === 'production') {
       console.debug('[next] in production mode, not type checking')
