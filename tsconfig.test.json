@@ -44,6 +44,7 @@
     "src/**/*.tsx"
   ],
   "exclude": [
+    "**/.next",
     "**/__test__",
     "node_modules",
     "build",

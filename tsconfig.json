@@ -26,7 +26,7 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    
+
     "plugins": [
       {
         "name": "typescript-styled-plugin",
@@ -52,6 +52,8 @@
   "exclude": [
     "**/.next",
     "**/__assets/*",
+    "**/__tests__",
+    "**/stories",
     "node_modules",
     "build",
     ".storybook",
