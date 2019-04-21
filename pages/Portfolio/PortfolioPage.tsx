@@ -87,7 +87,7 @@ export class PortfolioPage extends React.PureComponent {
     return (
       <>
         <PortfolioHead
-          title={titleText}
+          titleText={titleText}
           description={summary}
           image={imageUrl}
         />

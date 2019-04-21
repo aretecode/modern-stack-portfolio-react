@@ -61,7 +61,7 @@ export class AboutPage extends React.PureComponent {
     const titleText = `About ${name}`
     return (
       <>
-        <PortfolioHead title={titleText} description={summary} />
+        <PortfolioHead titleText={titleText} description={summary} />
         <AnimateHeightContextProvider>
           <StyledAboutMeArticle>
             <StyledSocialProfiles />
