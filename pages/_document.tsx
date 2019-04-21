@@ -206,10 +206,10 @@ export default class MyDocument extends Document<DocumentProps> {
             as="font"
             crossOrigin={'crossOrigin'}
           />
-          <GoogleTagManagerHeaderScript />
+          <GoogleTagManagerHeaderScript isAmp={isAmp} />
         </Head>
         <body>
-          <GoogleTagManagerBodyScript />
+          <GoogleTagManagerBodyScript isAmp={isAmp} />
           <Main />
           {isAmp === false && <NextScript />}
         </body>
