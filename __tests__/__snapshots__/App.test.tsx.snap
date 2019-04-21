@@ -1,15 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app should match snapshot 1`] = `
-.c34 {
-  background-color: var(--color-material-background-purple);
-  padding: 2rem 1.25rem;
-}
-
-.c34 p {
-  color: var(--color-text-body);
-}
-
 .c5 {
   text-decoration: none;
   position: relative;
@@ -31,6 +22,58 @@ exports[`app should match snapshot 1`] = `
 }
 
 .c5:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c34 {
+  background-color: var(--color-material-background-purple);
+  padding: 2rem 1.25rem;
+}
+
+.c34 p {
+  color: var(--color-text-body);
+}
+
+.c35 {
+  color: #df0909;
+  display: inline-flex;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  height: 12px;
+}
+
+.c36 {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  transform: translateY(1px);
+  display: inline-flex;
+  width: 38px;
+  height: 14px;
+}
+
+.c37 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+  padding-left: 0.3rem;
+  text-decoration: underline;
+}
+
+.c37:link,
+.c37:visited {
+  color: var(--color-link);
+}
+
+.c37:focus {
+  outline: thin dotted;
+}
+
+.c37:hover {
+  color: #aaa;
+}
+
+.c37:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
@@ -92,7 +135,7 @@ exports[`app should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c35 {
+.c38 {
   height: 0;
   width: 0;
   visibility: hidden;
@@ -559,6 +602,12 @@ exports[`app should match snapshot 1`] = `
   }
 }
 
+@media (max-width:480px) {
+  .c13 {
+    margin: 8rem 1rem 2rem;
+  }
+}
+
 @media (max-width:1023px) {
   .c28 {
     justify-content: center;
@@ -653,7 +702,7 @@ exports[`app should match snapshot 1`] = `
         <li>
           <a
             class="c5 "
-            href="/portfolio"
+            href="/Portfolio"
             rel="me"
           >
             work
@@ -902,9 +951,74 @@ exports[`app should match snapshot 1`] = `
        
       <span />
     </p>
+    <p>
+      <span
+        class=""
+      >
+        Made with
+      </span>
+      <svg
+        class="c35"
+        viewBox="0 0 54 50"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Heart
+        </title>
+        <path
+          d="M24.873 47.201c-1.162-1.341-4.064-3.956-6.449-5.81-7.066-5.496-8.028-6.291-10.897-9.012C2.238 27.364-.008 22.325 0 15.493c.004-3.336.224-4.62 1.131-6.587 1.54-3.335 3.806-5.814 6.704-7.33C9.887.504 10.899.027 14.327.007c3.585-.02 4.34.41 6.449 1.604 2.567 1.452 5.21 4.556 5.756 6.76l.337 1.363.832-1.876c4.7-10.598 19.71-10.44 24.933.264 1.657 3.395 1.839 10.645.37 14.729-1.917 5.327-5.517 9.389-13.839 15.612-5.457 4.082-11.634 10.258-12.064 11.125-.499 1.007-.024.158-2.228-2.386z"
+          fill="red"
+          fill-rule="nonzero"
+        />
+      </svg>
+      <span
+        class=""
+      >
+        in
+      </span>
+      <svg
+        class="c36"
+        viewBox="0 0 50 25"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Canada, eh
+        </title>
+        <g
+          fill="none"
+          fill-rule="nonzero"
+        >
+          <path
+            d="M0 0h50v25H0z"
+            fill="red"
+          />
+          <path
+            d="M12.5 0h25v25h-25z"
+            fill="#FFF"
+          />
+          <path
+            d="M25 2.344l-1.706 3.181c-.194.346-.54.314-.887.12l-1.235-.639.92 4.886c.194.893-.427.893-.733.507l-2.156-2.412-.35 1.225c-.04.16-.217.33-.483.29l-2.725-.574.715 2.603c.154.579.273.819-.154.971l-.972.457 4.691 3.81c.186.144.28.404.214.638l-.41 1.348c1.614-.187 3.062-.467 4.678-.64.142-.014.381.221.38.386l-.214 4.936h.786l-.124-4.925c-.001-.165.216-.411.358-.396 1.616.172 3.064.452 4.679.639l-.41-1.348a.614.614 0 0 1 .213-.638l4.69-3.81-.97-.457c-.428-.152-.309-.392-.155-.971l.715-2.603-2.725.573c-.266.04-.443-.128-.483-.29l-.35-1.224-2.155 2.412c-.307.386-.928.386-.734-.506l.92-4.887-1.235.64c-.347.193-.693.225-.887-.121"
+            fill="red"
+          />
+        </g>
+      </svg>
+    </p>
+    <p>
+      <span
+        class=""
+      >
+        Open Sourced at
+      </span>
+      <a
+        class="c37"
+        href="https://github.com/aretecode/modern-stack-web-portfolio"
+      >
+        github.com/aretecode
+      </a>
+    </p>
   </footer>
   <svg
-    class="c35"
+    class="c38"
   >
     <filter
       color-interpolation-filters="sRGB"
