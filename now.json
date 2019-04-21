@@ -17,6 +17,10 @@
         "Service-Worker-Allowed": "/"
       }
     },
+     {
+      "src": "/graphql",
+      "dest": "https://jameswiens-graphql.now.sh/graphql"
+    },
     {
       "src": "/manifest.json",
       "dest": "/_next/static/manifest.json"

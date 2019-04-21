@@ -6,24 +6,21 @@ const prodEnv = {
   STYLIS_SHOULD_PREFIX: 'false',
   GOOGLE_TAG_MANAGER_AMP_ID: 'GTM-WHL4TS3',
   GOOGLE_TAG_MANAGER_WEB_ID: 'GTM-P58WR63',
-  GRAPHQL_API_URL:
-    'https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql',
+  GRAPHQL_API_URL: 'https://jameswiens-graphql.now.sh/graphql',
 }
 const devEnv = {
   WEBSITE_ORIGIN: 'http://localhost:3000',
   STYLIS_SHOULD_PREFIX: 'false',
   GOOGLE_TAG_MANAGER_AMP_ID: 'GTM-WHL4TS3',
   GOOGLE_TAG_MANAGER_WEB_ID: 'GTM-P58WR63',
-  GRAPHQL_API_URL:
-    'https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql',
+  GRAPHQL_API_URL: 'https://jameswiens-graphql.now.sh/graphql',
 }
 const testEnv = {
   WEBSITE_ORIGIN: 'http://localhost:3000',
   STYLIS_SHOULD_PREFIX: 'false',
   GOOGLE_TAG_MANAGER_AMP_ID: 'AMP_ID',
   GOOGLE_TAG_MANAGER_WEB_ID: 'WEB_ID',
-  GRAPHQL_API_URL:
-    'https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql',
+  GRAPHQL_API_URL: 'https://jameswiens-graphql.now.sh/graphql',
 }
 const env =
   process.env.NODE_ENV === 'test'
