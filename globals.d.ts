@@ -29,6 +29,9 @@ declare namespace NodeJS {
     NODE_ENV: 'test' | 'development' | 'production'
     READONLY: 'true' | 'false' | undefined
     IS_NOW: 'true' | 'false' | undefined
+
+    GOOGLE_TAG_MANAGER_WEB_ID: string
+    GOOGLE_TAG_MANAGER_AMP_ID: string
   }
   interface Process {
     browser: boolean
@@ -40,5 +43,6 @@ declare namespace JSX {
   interface IntrinsicElements {
     'amp-img': any
     'amp-google-document-embed': any
+    'amp-analytics': any
   }
 }

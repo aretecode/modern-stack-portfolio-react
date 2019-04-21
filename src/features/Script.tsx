@@ -3,11 +3,11 @@ import { isObj } from '../utils/is'
 
 export type ScriptProps =
   | { src: string }
-  | { type?: string; children: { [key: string]: unknown } }
+  | { type?: string; children: { [key: string]: unknown } | string }
 export interface CombinedScriptProps {
   src: string
   type?: string
-  children: { [key: string]: unknown }
+  children: { [key: string]: unknown } | string
 }
 
 function serializeScriptChildren(children: unknown): string {

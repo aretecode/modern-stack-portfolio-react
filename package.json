@@ -61,6 +61,7 @@
     "image-size": "0.7.3"
   },
   "devDependencies": {
+    "@types/gapi.client.tagmanager": "2.0.1",
     "intersection-observer": "0.5.1",
     "@types/lru-cache": "5.1.0",
     "@types/image-size": "0.7.0",

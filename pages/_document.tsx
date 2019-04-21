@@ -20,6 +20,10 @@ import { AmpScripts, AmpScriptsManager } from 'react-amphtml/setup'
 import * as Amp from 'react-amphtml'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { AmpContext } from '../src/features/AmpContext'
+import {
+  GoogleTagManagerHeaderScript,
+  GoogleTagManagerBodyScript,
+} from '../src/features/GoogleTagManager'
 
 /* eslint-disable react/no-danger */
 /**
@@ -202,8 +206,10 @@ export default class MyDocument extends Document<DocumentProps> {
             as="font"
             crossOrigin={'crossOrigin'}
           />
+          <GoogleTagManagerHeaderScript />
         </Head>
         <body>
+          <GoogleTagManagerBodyScript />
           <Main />
           {isAmp === false && <NextScript />}
         </body>

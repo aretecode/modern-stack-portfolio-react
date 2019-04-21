@@ -15,6 +15,7 @@ import { ResumeProvider } from '../src/features/ResumeContext'
 import { ResumeSchema } from '../src/features/ResumeSchema'
 import Footer from '../src/features/Footer'
 import Header from '../src/features/Header'
+import { analyticsContainer } from '../src/features/GoogleTagManager'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { AppContextProvider } from '../src/features/AppContext'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
@@ -126,6 +127,7 @@ export default class MyApp extends App<{
       Head.rewind()
     } else {
       logger.debug('[_app] starting ssr (browser, rehydrate)')
+      analyticsContainer.initializeAnalytics()
     }
 
     // Extract query data from the Apollo store

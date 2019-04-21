@@ -128,9 +128,13 @@ export class PictureIntersectionObserver extends React.PureComponent<
         /**
          * Ratio of intersectionRect area to boundingClientRect area
          * Converted to /100
+         *
+         *
+         * can see the % by doing...
+         * @example
+         *   const visiblePercent = Math.floor(change.intersectionRatio * 100) + '%'
+         *   console.log({ isIntersecting: change.isIntersecting, visiblePercent })
          */
-        const visiblePercent = Math.floor(change.intersectionRatio * 100) + '%'
-        console.log({ isIntersecting: change.isIntersecting, visiblePercent })
 
         if (
           change.isIntersecting === true &&

@@ -2,7 +2,10 @@
   "version": 2,
   "name": "modern-stack-skeletons-client",
   "env": {
-    "IS_NOW": "true"
+    "IS_NOW": "true",
+    "STYLIS_SHOULD_PREFIX": "false",
+    "GOOGLE_TAG_MANAGER_AMP_ID": "GTM-WHL4TS3",
+    "GOOGLE_TAG_MANAGER_WEB_ID": "GTM-P58WR63"
   },
   "routes": [
     {
