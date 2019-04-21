@@ -216,6 +216,9 @@ export const StyledAboutMeArticle = styled.article`
     flex-wrap: wrap;
     margin: 5.5rem 1rem 2rem 1rem;
   }
+  @media (max-width: 480px) {
+    margin: 8rem 1rem 2rem;
+  }
 
   address {
     color: var(--color-text-unimportant);

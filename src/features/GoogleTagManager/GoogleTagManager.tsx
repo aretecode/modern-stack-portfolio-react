@@ -5,8 +5,9 @@ import { Script } from '../Script'
 const GOOGLE_TAG_MANAGER_AMP_ID = process.env.GOOGLE_TAG_MANAGER_AMP_ID
 const GOOGLE_TAG_MANAGER_WEB_ID = process.env.GOOGLE_TAG_MANAGER_WEB_ID
 
-export function GoogleTagManagerHeaderScript() {
-  const { isAmp } = React.useContext(AmpContext)
+export function GoogleTagManagerHeaderScript(props: { isAmp?: boolean }) {
+  const isAmp =
+    props.isAmp !== undefined ? props.isAmp : React.useContext(AmpContext).isAmp
 
   if (isAmp) {
     return (
@@ -36,8 +37,10 @@ export function GoogleTagManagerHeaderScript() {
   }
 }
 
-export function GoogleTagManagerBodyScript() {
-  const { isAmp } = React.useContext(AmpContext)
+export function GoogleTagManagerBodyScript(props: { isAmp?: boolean }) {
+  const isAmp =
+    props.isAmp !== undefined ? props.isAmp : React.useContext(AmpContext).isAmp
+
   if (isAmp) {
     return (
       <amp-analytics

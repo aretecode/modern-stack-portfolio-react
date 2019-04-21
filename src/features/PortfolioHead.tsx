@@ -13,7 +13,7 @@ import { AppContext } from './AppContext'
 
 export function PortfolioHead(props: {
   description?: string
-  title?: string
+  titleText?: string
   siteName?: string
   image?: string
   iconBaseUrl?: string
@@ -40,7 +40,7 @@ export function PortfolioHead(props: {
     iconBaseUrl = 'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo',
     description = summary,
     image = picture,
-    title = name + ' Context',
+    titleText = name + ' Context',
     siteName = name + ' Site',
   } = props
 
@@ -56,7 +56,7 @@ export function PortfolioHead(props: {
   const labelValueList = [
     {
       label: 'Portfolio',
-      value: `${url.origin}/portfolio`,
+      value: `${url.origin}/Portfolio`,
     },
     {
       label: 'About',
@@ -125,14 +125,14 @@ export function PortfolioHead(props: {
           key="head:og:image:secure_url"
         />
         <meta property="og:image" content={image} key="head:og:image" />
-        <meta property="og:title" content={title} key="head:og:title" />
-
+        <meta property="og:title" content={titleText} key="head:og:title" />
+        <title key="head:title">{titleText}</title>
+        <meta name="description" content={description} key="head:description" />
         <meta
           property="og:description"
           content={description}
           key="head:og:description"
         />
-        <meta name="description" content={description} key="head:description" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:domain"
@@ -145,7 +145,11 @@ export function PortfolioHead(props: {
           key="head:twitter:creator"
         />
         <meta name="twitter:site" content={twitter} key="head:twitter:site" />
-        <meta name="twitter:title" content={title} key="head:twitter:title" />
+        <meta
+          name="twitter:title"
+          content={titleText}
+          key="head:twitter:title"
+        />
         <meta
           name="twitter:description"
           content={description}
