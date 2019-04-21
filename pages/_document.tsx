@@ -38,6 +38,8 @@ class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
   }
 }
 
+// tslint:disable:max-classes-per-file
+
 /**
  * @note we are inlining this to avoid amp violations where `next` gives duplicate tags
  * @see https://github.com/dfrankland/react-amphtml/blob/7221879f49f289855a2574557afbead811c532a8/src/setup/headerBoilerplate.js
@@ -79,7 +81,14 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
   }
 }
 
-export default class MyDocument extends Document {
+export interface DocumentProps {
+  isAmp: boolean
+  title: string
+  url: URL
+  ampScriptTags?: React.ReactNode
+  ampStyleTag?: React.ReactNode
+}
+export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
     const url = fromReqToUrl(ctx.req as any)
     const isAmp = url.href.includes('?amp')
@@ -154,9 +163,6 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    /**
-     * @todo typings
-     */
     const {
       isAmp,
       title,

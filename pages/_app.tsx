@@ -13,10 +13,10 @@ import { initApolloClient } from '../src/apolloClient'
 import '../src/apolloStateRehydrate'
 import { ResumeProvider } from '../src/features/ResumeContext'
 import { ResumeSchema } from '../src/features/ResumeSchema'
-import { ResumeHead } from '../src/features/ResumeHead'
 import Footer from '../src/features/Footer'
 import Header from '../src/features/Header'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
+import { AppContextProvider } from '../src/features/AppContext'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { logger } from '../src/log'
 import { AppStyles, BelowTheFoldStyles } from '../src/AppStyles'
@@ -26,6 +26,7 @@ import {
   DataLoadingProvider,
 } from '../src/features/ServerSideRendering'
 
+// tslint:disable:max-classes-per-file
 export class InnerApp extends React.PureComponent<{
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
@@ -54,7 +55,6 @@ export class InnerApp extends React.PureComponent<{
             <ResumeProvider>
               <AppStyles />
               <ResumeSchema />
-              <ResumeHead url={url} />
               <Header />
               {children}
               <Footer />
@@ -156,13 +156,15 @@ export default class MyApp extends App<{
 
     return (
       <Container>
-        <InnerApp
-          apolloClientState={apolloClientState}
-          url={url}
-          dataLoadingContextValue={dataLoadingContextValue!}
-        >
-          <Component {...pageProps} />
-        </InnerApp>
+        <AppContextProvider url={url}>
+          <InnerApp
+            apolloClientState={apolloClientState}
+            url={url}
+            dataLoadingContextValue={dataLoadingContextValue!}
+          >
+            <Component {...pageProps} />
+          </InnerApp>
+        </AppContextProvider>
       </Container>
     )
   }

@@ -1,3 +1,4 @@
+process.env.STYLIS_SHOULD_PREFIX = 'false'
 require('intersection-observer')
 require('raf').polyfill(global)
 require('react-testing-library/cleanup-after-each')

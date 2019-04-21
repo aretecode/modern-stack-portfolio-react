@@ -4,34 +4,18 @@ exports[`SocialProfiles should render all for context 1`] = `
 .c0 {
   padding: 1rem;
   width: 75px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
   justify-content: space-around;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   object-fit: contain;
   object-position: bottom;
-  -webkit-transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
 }
 
 .c1 {
-  -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
-  -webkit-letter-spacing: 0.2em;
-  -moz-letter-spacing: 0.2em;
-  -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
@@ -61,16 +45,9 @@ exports[`SocialProfiles should render all for context 1`] = `
 @media (max-width:1023px) {
   .c0 {
     width: 75%;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-order: 2;
-    -ms-flex-order: 2;
     order: 2;
     height: unset;
-    -webkit-box-pack: unset;
-    -webkit-justify-content: unset;
-    -ms-flex-pack: unset;
     justify-content: unset;
     padding: 0 0 0.5rem 0;
   }
@@ -78,8 +55,6 @@ exports[`SocialProfiles should render all for context 1`] = `
 
 @media (max-width:1023px) {
   .c1 {
-    -webkit-flex-basis: 33%;
-    -ms-flex-preferred-size: 33%;
     flex-basis: 33%;
     width: 33%;
     text-align: center;
