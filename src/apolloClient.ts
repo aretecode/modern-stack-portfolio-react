@@ -51,7 +51,8 @@ export function createInstance(
         /**
          * 1. if env is NOT `readonly`, and we pass in `url`, and we have `graphql` in params, use it
          * 2. if it's NODE_ENV `development`, use localhost:4000
-         * 3. use `now.sh` deployment of graphql
+         * 3. if it's the browser, use `/graphql` (_same origin_)
+         * 4. use `now.sh` deployment of graphql from `env`
          */
         return process.env.READONLY !== 'true' &&
           isObj(url) &&
@@ -59,6 +60,8 @@ export function createInstance(
           ? url.searchParams.get('graphql')!
           : process.env.NODE_ENV === 'development'
           ? `http://localhost:4000/graphql?n=${operation.operationName}`
+          : process.browser
+          ? '/graphql'
           : process.env.GRAPHQL_API_URL
       },
 
