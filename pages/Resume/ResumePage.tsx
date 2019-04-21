@@ -1,13 +1,10 @@
 // tslint:disable
-/**
- * @file @todo split styled pieces
- */
 import * as React from 'react'
-import Head from 'next/head'
 import {
   ResumeContext,
   ResumeContextType,
 } from '../../src/features/ResumeContext'
+import { ResumeHead } from '../../src/features/ResumeHead'
 import { StyledCard } from '../../src/features/Card'
 import { StyledMain } from '../../src/features/Main'
 import { StyledLink } from '../../src/features/Link'
@@ -70,10 +67,8 @@ function renderWork(work: WorkType, index: number) {
 }
 
 /**
- * @todo now Provide `work` & `basics` ?
- *
- * @todo could provide a cool graph to sort resumes too and highlight
- *       like build your own github
+ * could provide a cool graph to sort resumes too and highlight
+ * like build your own github
  */
 export class ResumePage extends React.PureComponent {
   static contextType = ResumeContext
@@ -83,12 +78,15 @@ export class ResumePage extends React.PureComponent {
     const { name, summary } = this.context.basics
     const titleText = `${name}'s Resume`
 
+    /**
+     * @todo move static url out
+     */
+    const imageUrl =
+      'https://noccumpr-cdn.sirv.com/images/james-wiens-work-experience-combined-filtered.png'
+
     return (
       <>
-        <Head>
-          <title>{titleText}</title>
-          <meta name="description" content={summary || titleText} />
-        </Head>
+        <ResumeHead title={titleText} description={summary} image={imageUrl} />
         <StyledMain>
           <StyledLeaderBoard>
             <h1>What I've done</h1>

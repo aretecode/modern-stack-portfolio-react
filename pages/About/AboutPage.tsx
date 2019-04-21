@@ -5,6 +5,7 @@
  * @todo on mobile, could expand to full screen
  */
 import * as React from 'react'
+import { ResumeHead } from '../../src/features/ResumeHead'
 import {
   ResumeContext,
   ResumeContextType,
@@ -57,8 +58,10 @@ export class AboutPage extends React.PureComponent {
       email,
     } = this.context.basics
 
+    const titleText = `About ${name}`
     return (
       <>
+        <ResumeHead title={titleText} description={summary} />
         <AnimateHeightContextProvider>
           <StyledAboutMeArticle>
             <StyledSocialProfiles />
