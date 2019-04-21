@@ -1,8 +1,7 @@
 const { EnvironmentPlugin } = require('webpack')
 const withTypescript = require('@zeit/next-typescript')
 const withOffline = require('next-offline')
-
-process.env.STYLIS_SHOULD_PREFIX = 'false'
+const { env } = require('./env')
 
 /**
  * @description Make sure any symlinks in the project folder are resolved:
@@ -30,11 +29,7 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
 const nextConfig = {
   target: 'serverless',
   webpack(config, options) {
-    config.plugins.push(
-      new EnvironmentPlugin({
-        STYLIS_SHOULD_PREFIX: 'false',
-      })
-    )
+    config.plugins.push(new EnvironmentPlugin(env))
 
     if (process.env.NODE_ENV === 'production') {
       console.debug('[next] in production mode, not type checking')

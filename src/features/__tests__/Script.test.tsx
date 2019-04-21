@@ -19,4 +19,10 @@ describe('Script', () => {
     const { container } = render(<Script />)
     expect(container.firstChild!.getAttribute('type')).toEqual(null)
   })
+  it('should work when children is a string', () => {
+    const children = { isTest: true }
+    const { container } = render(<Script children={'alert(1);'} />)
+
+    expect(container.innerHTML).toEqual('<script>alert(1);</script>')
+  })
 })
