@@ -3,10 +3,10 @@
  */
 import * as React from 'react'
 import { render, waitForElement } from 'react-testing-library'
-import { defaultApolloStateResume } from '../src/apolloState'
+import { defaultApolloStatePortfolio } from '../src/apolloState'
 import { InnerApp } from '../pages/_app'
 import AboutPage from '../pages/About'
-import ResumePage from '../pages/Resume'
+import PortfolioPage from '../pages/Portfolio'
 
 const sleep = async (time: number) => Promise.resolve(time)
 
@@ -14,7 +14,7 @@ describe('app', () => {
   it('should match snapshot', async () => {
     const view = (
       <InnerApp>
-        <ResumePage />
+        <PortfolioPage />
         <AboutPage />
       </InnerApp>
     )
@@ -22,7 +22,7 @@ describe('app', () => {
     rerender(view)
     console.log('[tests] App - waiting')
     await waitForElement(() =>
-      getByText(defaultApolloStateResume.work[0].company)
+      getByText(defaultApolloStatePortfolio.work[0].company)
     )
     await sleep(5000)
 

@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { render } from 'react-testing-library'
-import { ResumeContext } from '../../ResumeContext'
+import { PortfolioContext } from '../../PortfolioContext'
 import SocialProfiles from '../SocialProfiles'
-import { defaultApolloStateResume } from '../../../apolloState'
+import { defaultApolloStatePortfolio } from '../../../apolloState'
 
 describe('SocialProfiles', () => {
   it('should render all for context', () => {
     const { container } = render(
-      <ResumeContext.Provider value={defaultApolloStateResume}>
+      <PortfolioContext.Provider value={defaultApolloStatePortfolio}>
         <SocialProfiles />
-      </ResumeContext.Provider>
+      </PortfolioContext.Provider>
     )
     expect(container).toMatchSnapshot()
   })

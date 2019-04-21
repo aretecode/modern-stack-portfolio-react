@@ -10,7 +10,7 @@ export default class Navigation extends React.PureComponent<{
       <StyledNav {...this.props}>
         <StyledNavList>
           <li>
-            <StyledLink to="/Resume" rel="me">
+            <StyledLink to="/portfolio" rel="me">
               work
             </StyledLink>
           </li>

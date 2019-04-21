@@ -5,11 +5,11 @@
  * @todo on mobile, could expand to full screen
  */
 import * as React from 'react'
-import { ResumeHead } from '../../src/features/ResumeHead'
+import { PortfolioHead } from '../../src/features/PortfolioHead'
 import {
-  ResumeContext,
-  ResumeContextType,
-} from '../../src/features/ResumeContext'
+  PortfolioContext,
+  PortfolioContextType,
+} from '../../src/features/PortfolioContext'
 import { Address } from './Address'
 import {
   StyledSocialProfiles,
@@ -45,8 +45,8 @@ function CardDivider(props: {}) {
 }
 
 export class AboutPage extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     const {
@@ -61,7 +61,7 @@ export class AboutPage extends React.PureComponent {
     const titleText = `About ${name}`
     return (
       <>
-        <ResumeHead title={titleText} description={summary} />
+        <PortfolioHead title={titleText} description={summary} />
         <AnimateHeightContextProvider>
           <StyledAboutMeArticle>
             <StyledSocialProfiles />

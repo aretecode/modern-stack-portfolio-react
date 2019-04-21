@@ -63,7 +63,7 @@ export const typeDefs = gql`
   }
 `
 
-export const defaultApolloStateResume = {
+export const defaultApolloStatePortfolio = {
   __typename: 'Resume',
   basics: {
     __typename: 'Basics',
@@ -112,7 +112,7 @@ export const defaultApolloStateResume = {
 export const apolloState = {
   // @todo as WithTypeNameRecursive<ResumeType>
   defaults: {
-    resume: defaultApolloStateResume,
+    resume: defaultApolloStatePortfolio,
   },
   resolvers: {
     Query: {

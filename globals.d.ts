@@ -32,6 +32,7 @@ declare namespace NodeJS {
 
     GOOGLE_TAG_MANAGER_WEB_ID: string
     GOOGLE_TAG_MANAGER_AMP_ID: string
+    GRAPHQL_API_URL: string
   }
   interface Process {
     browser: boolean

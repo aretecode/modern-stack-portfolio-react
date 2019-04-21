@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {
-  ResumeContext,
-  ResumeContextType,
-} from '../../src/features/ResumeContext'
+  PortfolioContext,
+  PortfolioContextType,
+} from '../../src/features/PortfolioContext'
 
 export class Address extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     const {

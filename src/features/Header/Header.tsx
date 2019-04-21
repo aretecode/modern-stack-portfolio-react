@@ -1,20 +1,20 @@
 import * as React from 'react'
 import { Navigation } from '../Navigation'
-import { ResumeContext, ResumeContextType } from '../ResumeContext'
+import { PortfolioContext, PortfolioContextType } from '../PortfolioContext'
 import { StyledHeader, StyledLogo, StyledLogoLink } from './styled'
 
-function fromResumeNameToSimpleText(name: string) {
+function fromContextNameToSimpleText(name: string) {
   return name.replace(/\s+/, '').toLowerCase()
 }
 
 export default class Header extends React.PureComponent<{
   className?: string
 }> {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
-    const nameText = fromResumeNameToSimpleText(this.context.basics.name)
+    const nameText = fromContextNameToSimpleText(this.context.basics.name)
 
     return (
       <StyledHeader {...this.props}>

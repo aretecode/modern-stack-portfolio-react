@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { ProfileType } from '../../typings'
 import { MaterialIcon } from '../MaterialIcon'
-import { ResumeContext, ResumeContextType } from '../ResumeContext'
+import { PortfolioContext, PortfolioContextType } from '../PortfolioContext'
 import { StyledLink } from '../Link'
 
 /**
@@ -35,7 +35,7 @@ export const StyledSocialProfilesWrap = styled.aside`
 
 /**
  * @todo HACK remove the twitter resize on mobile, make into overflow
- * @see https://github.com/aretecode/modern-stack-web-resume/issues/53
+ * @see https://github.com/aretecode/modern-stack-web-portfolio/issues/53
  *
  * @note 33% because parent is 75% and we have 3 items
  */
@@ -82,8 +82,8 @@ export function renderProfileItem(profile: ProfileType, index?: number) {
  *    <img src="https://user-images.githubusercontent.com/4022631/55691849-01c82e80-59c0-11e9-8c5b-69f64a055b1f.png" />
  */
 export default class SocialProfiles extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     const { profiles, resumeWebsite } = this.context.basics

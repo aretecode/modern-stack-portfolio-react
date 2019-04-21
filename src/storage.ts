@@ -17,15 +17,22 @@ const IS_REALM_WITHOUT_INDEX_DB =
 /**
  * could also split into the `basics` & `workList`
  */
-export interface SpecificResumeSchemaType {
-  resume: {
+export interface SpecificPortfolioSchemaType {
+  /**
+   * @deprecated changed to `portfolio`
+   */
+  resume?: {
+    key: string
+    value: WithTypeNameRecursive<ResumeType>
+  }
+  portfolio: {
     key: string
     value: WithTypeNameRecursive<ResumeType>
   }
 }
 
-export type ResumeSchemaType = DBSchema & SpecificResumeSchemaType
-export type ResumeDatabaseType = IDBPDatabase<ResumeSchemaType>
+export type PortfolioSchemaType = DBSchema & SpecificPortfolioSchemaType
+export type PortfolioDatabaseType = IDBPDatabase<PortfolioSchemaType>
 
 /**
  * @todo this is in a ternary like this for perf & easier elimination (though we put inMemoryStore above), but we could put it in a function & fold
@@ -35,16 +42,16 @@ export type ResumeDatabaseType = IDBPDatabase<ResumeSchemaType>
  *
  * if we care about perf here
  * can compare this approach with alternatives of
- * - inlining with build system as if else in resumeKeyValStore
+ * - inlining with build system as if else in portfolioKeyValStore
  * - with non-async methods
  * - ...
  */
 const inMemoryStore = new Map<any, any>()
-const dbResumePromise: Promise<ResumeDatabaseType> =
+const dbPortfolioPromise: Promise<PortfolioDatabaseType> =
   IS_REALM_WITHOUT_INDEX_DB === false
-    ? openDB<ResumeSchemaType>('resume-store', 1, {
-        upgrade(db: ResumeDatabaseType) {
-          db.createObjectStore('resume')
+    ? openDB<PortfolioSchemaType>('portfolio-store', 1, {
+        upgrade(db: PortfolioDatabaseType) {
+          db.createObjectStore('portfolio')
         },
       })
     : (Promise.resolve({
@@ -67,32 +74,32 @@ const dbResumePromise: Promise<ResumeDatabaseType> =
  *
  * could abstract
  */
-const resumeKeyValStore = {
-  async get<Key extends keyof SpecificResumeSchemaType>(key: Key) {
-    return (await dbResumePromise).get('resume', key)
+const portfolioKeyValStore = {
+  async get<Key extends keyof SpecificPortfolioSchemaType>(key: Key) {
+    return (await dbPortfolioPromise).get('portfolio', key)
   },
-  async set<Key extends keyof SpecificResumeSchemaType>(
+  async set<Key extends keyof SpecificPortfolioSchemaType>(
     key: Key,
-    val: SpecificResumeSchemaType[Key]['value']
+    val: SpecificPortfolioSchemaType[Key]['value']
   ) {
-    return (await dbResumePromise).put('resume', val, key)
+    return (await dbPortfolioPromise).put('portfolio', val, key)
   },
   /**
    * @todo (#ts) top level key generic
    */
   async delete<
     Key extends
-      | keyof SpecificResumeSchemaType['resume']['value']
-      | keyof SpecificResumeSchemaType
+      | keyof SpecificPortfolioSchemaType['portfolio']['value']
+      | keyof SpecificPortfolioSchemaType
   >(key: Key) {
-    return (await dbResumePromise).delete('resume', key)
+    return (await dbPortfolioPromise).delete('portfolio', key)
   },
   async clear() {
-    return (await dbResumePromise).clear('resume')
+    return (await dbPortfolioPromise).clear('portfolio')
   },
   async keys() {
-    return (await dbResumePromise).getAllKeys('resume')
+    return (await dbPortfolioPromise).getAllKeys('portfolio')
   },
 }
 
-export { resumeKeyValStore }
+export { portfolioKeyValStore }

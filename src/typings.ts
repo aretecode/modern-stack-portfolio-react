@@ -175,6 +175,7 @@ export type GraphqlProps<
 
 /**
  * === data ===
+ * @todo rename to `Portfolio`
  */
 
 export interface ProfileType {

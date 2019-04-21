@@ -3,12 +3,12 @@
  */
 import * as React from 'react'
 import Head from 'next/head'
-import { ResumeContext, ResumeContextType } from './ResumeContext'
+import { PortfolioContext, PortfolioContextType } from './PortfolioContext'
 import { AmpContext } from './AmpContext'
 
 export default class GoogleDocument extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     const { resumeWebsite } = this.context.basics
