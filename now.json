@@ -22,8 +22,8 @@
       "dest": "https://jameswiens-graphql.now.sh/graphql"
     },
     {
-      "src": "/Portfolio",
-      "dest": "/portfolio"
+      "src": "/Resume",
+      "dest": "/Portfolio"
     },
     {
       "src": "/manifest.json",

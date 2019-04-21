@@ -56,7 +56,7 @@ export function PortfolioHead(props: {
   const labelValueList = [
     {
       label: 'Portfolio',
-      value: `${url.origin}/portfolio`,
+      value: `${url.origin}/Portfolio`,
     },
     {
       label: 'About',
