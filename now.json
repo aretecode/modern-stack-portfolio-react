@@ -29,49 +29,49 @@
       "src": "/manifest.json",
       "dest": "/_next/static/manifest.json",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
       }
     },
     {
       "src": "/sitemap.xml",
       "dest": "/_next/static/sitemap.xml",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
       }
     },
     {
       "src": "/robots.txt",
       "dest": "/_next/static/robots.txt",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
       }
     },
     {
       "src": "/favicon.ico",
       "dest": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/favicon.ico",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
       }
     },
     {
       "src": "/favicon.png",
       "dest": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-144x144.png",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
       }
     },
     {
       "src": "/static/(.*)",
       "dest": "/static/$1",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
       }
     },
     {
       "src": "/(.*)",
       "dest": "/$1",
       "headers": {
-        "cache-control": "s-maxage=86400"
+        "cache-control": "max-age=43200, s-maxage=86400"
        }
     }
   ],
