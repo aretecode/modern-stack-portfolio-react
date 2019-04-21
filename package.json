@@ -24,7 +24,10 @@
     "test:dev": "jest --config jest.config.js",
     "build:prod": "react-scripts build",
     "build:dev": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:server": "next build && tsc || true && tsc --project tsconfig.server.json || true",
+    "start:server": "NODE_ENV=production node .next/server",
+    "dev:server": "rm -fr dist && rm -fr .next && yarn build:server && yarn start:server"
   },
   "resolutions": {
     "webpack": "4.30.0",

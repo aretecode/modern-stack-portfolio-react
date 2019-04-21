@@ -32,6 +32,20 @@
     {
       "src": "/favicon.png",
       "dest": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-144x144.png"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1",
+      "headers": {
+        "cache-control": "s-maxage=86400"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1",
+      "headers": {
+        "cache-control": "s-maxage=86400"
+       }
     }
   ],
   "builds": [
