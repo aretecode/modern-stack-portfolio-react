@@ -1,10 +1,10 @@
 // tslint:disable
 import * as React from 'react'
 import {
-  ResumeContext,
-  ResumeContextType,
-} from '../../src/features/ResumeContext'
-import { ResumeHead } from '../../src/features/ResumeHead'
+  PortfolioContext,
+  PortfolioContextType,
+} from '../../src/features/PortfolioContext'
+import { PortfolioHead } from '../../src/features/PortfolioHead'
 import { StyledCard } from '../../src/features/Card'
 import { StyledMain } from '../../src/features/Main'
 import { StyledLink } from '../../src/features/Link'
@@ -67,16 +67,16 @@ function renderWork(work: WorkType, index: number) {
 }
 
 /**
- * could provide a cool graph to sort resumes too and highlight
+ * could provide a cool graph to sort resumes/portfolios too and highlight
  * like build your own github
  */
-export class ResumePage extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+export class PortfolioPage extends React.PureComponent {
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     const { name, summary } = this.context.basics
-    const titleText = `${name}'s Resume`
+    const titleText = `${name}'s Portfolio`
 
     /**
      * @todo move static url out
@@ -86,7 +86,11 @@ export class ResumePage extends React.PureComponent {
 
     return (
       <>
-        <ResumeHead title={titleText} description={summary} image={imageUrl} />
+        <PortfolioHead
+          title={titleText}
+          description={summary}
+          image={imageUrl}
+        />
         <StyledMain>
           <StyledLeaderBoard>
             <h1>What I've done</h1>

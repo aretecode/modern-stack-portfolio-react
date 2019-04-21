@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { MaterialIcon } from '../MaterialIcon'
 
 /**
- * this default styled trigger is specific to resume page
+ * this default styled trigger is specific to portfolio page
  */
 export const StyledLargeMaterialIcon = styled(MaterialIcon)`
   width: 42px;

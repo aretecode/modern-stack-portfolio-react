@@ -8,10 +8,10 @@
 import * as React from 'react'
 import Head from 'next/head'
 import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
-import { ResumeContext } from './ResumeContext'
+import { PortfolioContext } from './PortfolioContext'
 import { AppContext } from './AppContext'
 
-export function ResumeHead(props: {
+export function PortfolioHead(props: {
   description?: string
   title?: string
   siteName?: string
@@ -19,7 +19,7 @@ export function ResumeHead(props: {
   iconBaseUrl?: string
   iconSvgUrl?: string
 }) {
-  const resumeContext = React.useContext(ResumeContext)
+  const portfolioContext = React.useContext(PortfolioContext)
   const { url } = React.useContext(AppContext)
 
   const {
@@ -27,7 +27,7 @@ export function ResumeHead(props: {
     picture,
     name,
     profiles = EMPTY_ARRAY,
-  } = resumeContext.basics
+  } = portfolioContext.basics
   const {
     /**
      * @todo get image dimensions dynamically
@@ -40,7 +40,7 @@ export function ResumeHead(props: {
     iconBaseUrl = 'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo',
     description = summary,
     image = picture,
-    title = name + ' Resume',
+    title = name + ' Context',
     siteName = name + ' Site',
   } = props
 
@@ -55,8 +55,8 @@ export function ResumeHead(props: {
   const twitter = foundTwitter!.username
   const labelValueList = [
     {
-      label: 'Resume',
-      value: `${url.origin}/Resume`,
+      label: 'Portfolio',
+      value: `${url.origin}/portfolio`,
     },
     {
       label: 'About',
@@ -132,11 +132,7 @@ export function ResumeHead(props: {
           content={description}
           key="head:og:description"
         />
-        <meta
-          name="description"
-          content={description}
-          key="head:resume:description"
-        />
+        <meta name="description" content={description} key="head:description" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:domain"

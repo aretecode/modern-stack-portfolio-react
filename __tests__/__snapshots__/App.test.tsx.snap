@@ -653,7 +653,7 @@ exports[`app should match snapshot 1`] = `
         <li>
           <a
             class="c5 "
-            href="/Resume"
+            href="/portfolio"
             rel="me"
           >
             work

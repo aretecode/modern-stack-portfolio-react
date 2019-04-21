@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { StyledFooter } from './styled'
-import { ResumeContext, ResumeContextType } from '../ResumeContext'
+import { PortfolioContext, PortfolioContextType } from '../PortfolioContext'
 
 export default class Footer extends React.PureComponent<{
   className?: string
 }> {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     return (

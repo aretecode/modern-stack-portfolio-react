@@ -2,15 +2,15 @@
  * @file has side effects, can export and call in side effects setup file
  */
 import { initApolloClient } from './apolloClient'
-import { resumeKeyValStore } from './storage'
+import { portfolioKeyValStore } from './storage'
 import SetResume from './graphql/SetResume'
 
 function rehydrate() {
-  return resumeKeyValStore.get('resume').then(async resume => {
-    if (resume !== undefined) {
+  return portfolioKeyValStore.get('portfolio').then(async portfolio => {
+    if (portfolio !== undefined) {
       await initApolloClient().mutate({
         mutation: SetResume,
-        variables: resume,
+        variables: portfolio,
       })
     }
   })

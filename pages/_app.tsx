@@ -11,8 +11,8 @@ import * as React from 'react'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import { initApolloClient } from '../src/apolloClient'
 import '../src/apolloStateRehydrate'
-import { ResumeProvider } from '../src/features/ResumeContext'
-import { ResumeSchema } from '../src/features/ResumeSchema'
+import { PortfolioProvider } from '../src/features/PortfolioContext'
+import { PortfolioSchema } from '../src/features/PortfolioSchema'
 import Footer from '../src/features/Footer'
 import Header from '../src/features/Header'
 import { analyticsContainer } from '../src/features/GoogleTagManager'
@@ -53,15 +53,15 @@ export class InnerApp extends React.PureComponent<{
           }
         >
           <DataLoadingProvider contextValue={contextValue}>
-            <ResumeProvider>
+            <PortfolioProvider>
               <AppStyles />
-              <ResumeSchema />
+              <PortfolioSchema />
               <Header />
               {children}
               <Footer />
               <StyledVectorFilter />
               <BelowTheFoldStyles />
-            </ResumeProvider>
+            </PortfolioProvider>
           </DataLoadingProvider>
         </ApolloProvider>
       </React.StrictMode>

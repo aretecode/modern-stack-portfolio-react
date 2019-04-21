@@ -4,7 +4,7 @@
  */
 import * as React from 'react'
 import { WorkType } from '../typings'
-import { ResumeContext, ResumeContextType } from './ResumeContext'
+import { PortfolioContext, PortfolioContextType } from './PortfolioContext'
 import { Script } from './Script'
 
 /**
@@ -27,7 +27,7 @@ import { Script } from './Script'
  * @see https://developers.google.com/search/docs/guides/mark-up-listings
  * @note when using detailed information it uses _Single, all-in-one-page list_. This requires them all to use the same url.
  */
-function fromContextToSchema(context: ResumeContextType) {
+function fromContextToSchema(context: PortfolioContextType) {
   const { basics, work } = context
 
   const personSchema = {
@@ -87,9 +87,9 @@ function fromContextToSchema(context: ResumeContextType) {
   }
 }
 
-export class ResumeSchema extends React.PureComponent {
-  static contextType = ResumeContext
-  readonly context: ResumeContextType
+export class PortfolioSchema extends React.PureComponent {
+  static contextType = PortfolioContext
+  readonly context: PortfolioContextType
 
   render() {
     const schemaData = fromContextToSchema(this.context)

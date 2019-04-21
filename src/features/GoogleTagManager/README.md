@@ -3,7 +3,7 @@
 > React & deps to use GoogleTagManager
 
 ## Internal
-- [#57 - Add Google Tag Manager](https://github.com/aretecode/modern-stack-web-resume/issues/57)
+- [#57 - Add Google Tag Manager](https://github.com/aretecode/modern-stack-web-portfolio/issues/57)
 
 ## Learn More
 - [google's quickstart guide](https://developers.google.com/tag-manager/quickstart)

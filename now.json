@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "name": "modern-stack-skeletons-client",
+  "name": "modern-stack-portfolio-react-client",
   "env": {
     "IS_NOW": "true",
     "STYLIS_SHOULD_PREFIX": "false",
     "GOOGLE_TAG_MANAGER_AMP_ID": "GTM-WHL4TS3",
-    "GOOGLE_TAG_MANAGER_WEB_ID": "GTM-P58WR63"
+    "GOOGLE_TAG_MANAGER_WEB_ID": "GTM-P58WR63",
+    "GRAPHQL_API_URL": "https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql"
   },
   "routes": [
     {

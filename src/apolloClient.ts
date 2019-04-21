@@ -59,7 +59,7 @@ export function createInstance(
           ? url.searchParams.get('graphql')!
           : process.env.NODE_ENV === 'development'
           ? `http://localhost:4000/graphql?n=${operation.operationName}`
-          : 'https://modern-stack-skeletons-graphql.aretecode.now.sh/graphql'
+          : process.env.GRAPHQL_API_URL
       },
 
       /**

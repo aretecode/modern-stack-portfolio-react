@@ -1,27 +1,33 @@
-import { resumeKeyValStore } from '../storage'
-import { defaultApolloStateResume } from '../apolloState'
+import { portfolioKeyValStore } from '../storage'
+import { defaultApolloStatePortfolio } from '../apolloState'
 
 describe('storage', () => {
   it('should work in node using a map', async () => {
-    const initialValue = await resumeKeyValStore.get('resume')
+    const initialValue = await portfolioKeyValStore.get('portfolio')
     expect(initialValue).toEqual(undefined)
 
-    await resumeKeyValStore.set('resume', defaultApolloStateResume as any)
+    await portfolioKeyValStore.set(
+      'portfolio',
+      defaultApolloStatePortfolio as any
+    )
 
-    const valueGottenAfterSetting = await resumeKeyValStore.get('resume')
-    expect(valueGottenAfterSetting).toEqual(defaultApolloStateResume)
+    const valueGottenAfterSetting = await portfolioKeyValStore.get('portfolio')
+    expect(valueGottenAfterSetting).toEqual(defaultApolloStatePortfolio)
 
-    const keys = Array.from(await resumeKeyValStore.keys())
+    const keys = Array.from(await portfolioKeyValStore.keys())
     expect(Array.isArray(keys)).toEqual(true)
     expect(keys.length).toEqual(1)
 
-    await resumeKeyValStore.delete('resume')
-    const valueGottenAfterDeleting = await resumeKeyValStore.get('resume')
+    await portfolioKeyValStore.delete('portfolio')
+    const valueGottenAfterDeleting = await portfolioKeyValStore.get('portfolio')
     expect(valueGottenAfterDeleting).toEqual(undefined)
 
-    await resumeKeyValStore.set('resume', defaultApolloStateResume as any)
-    await resumeKeyValStore.clear()
-    const valueGottenAfterClearing = await resumeKeyValStore.get('resume')
+    await portfolioKeyValStore.set(
+      'portfolio',
+      defaultApolloStatePortfolio as any
+    )
+    await portfolioKeyValStore.clear()
+    const valueGottenAfterClearing = await portfolioKeyValStore.get('portfolio')
     expect(valueGottenAfterClearing).toEqual(undefined)
   })
 })

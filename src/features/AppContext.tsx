@@ -1,5 +1,4 @@
 /**
- * @todo render Social on Resume page...
  * @todo could also use PageContext
  */
 import * as React from 'react'
