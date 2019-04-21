@@ -1,22 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app should match snapshot 1`] = `
-.c33 {
+.c34 {
   background-color: var(--color-material-background-purple);
   padding: 2rem 1.25rem;
 }
 
-.c33 p {
+.c34 p {
   color: var(--color-text-body);
 }
 
 .c5 {
-  -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
-  -webkit-letter-spacing: 0.2em;
-  -moz-letter-spacing: 0.2em;
-  -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
@@ -39,22 +35,13 @@ exports[`app should match snapshot 1`] = `
 }
 
 .c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
   justify-content: space-around;
   padding: 0;
   margin: 0;
 }
 
 .c4 > li {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -67,20 +54,9 @@ exports[`app should match snapshot 1`] = `
   position: absolute;
   background: rgba(0,0,0,0.2);
   top: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
   height: 4rem;
@@ -93,12 +69,8 @@ exports[`app should match snapshot 1`] = `
 }
 
 .c1 {
-  -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
-  -webkit-letter-spacing: 0.2em;
-  -moz-letter-spacing: 0.2em;
-  -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
@@ -120,122 +92,92 @@ exports[`app should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c34 {
+.c35 {
   height: 0;
   width: 0;
   visibility: hidden;
   position: absolute;
 }
 
-.c13 {
+.c14 {
   padding: 1rem;
   width: 75px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
   justify-content: space-around;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   object-fit: contain;
   object-position: bottom;
-  -webkit-transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
 }
 
-.c14 {
-  -webkit-text-decoration: none;
+.c15 {
   text-decoration: none;
   position: relative;
-  -webkit-letter-spacing: 0.2em;
-  -moz-letter-spacing: 0.2em;
-  -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
 
-.c14:link,
-.c14:visited {
+.c15:link,
+.c15:visited {
   color: var(--color-link);
 }
 
-.c14:focus {
+.c15:focus {
   outline: thin dotted;
 }
 
-.c14:hover {
+.c15:hover {
   color: #aaa;
 }
 
-.c14:link {
+.c15:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c15 {
+.c16 {
   width: 2rem;
   height: 2rem;
 }
 
-.c11 {
+.c12 {
   color: var(--color-text-body);
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 0 0.5rem;
 }
 
-.c25 {
-  -webkit-text-decoration: none;
+.c26 {
   text-decoration: none;
   position: relative;
-  -webkit-letter-spacing: 0.2em;
-  -moz-letter-spacing: 0.2em;
-  -ms-letter-spacing: 0.2em;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
 
-.c25:link,
-.c25:visited {
+.c26:link,
+.c26:visited {
   color: var(--color-link);
 }
 
-.c25:focus {
+.c26:focus {
   outline: thin dotted;
 }
 
-.c25:hover {
+.c26:hover {
   color: #aaa;
 }
 
-.c25:link {
+.c26:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c25.c25.c25 {
+.c26.c26.c26 {
   color: unset;
-  -webkit-text-decoration: initial;
   text-decoration: initial;
-  -webkit-letter-spacing: initial;
-  -moz-letter-spacing: initial;
-  -ms-letter-spacing: initial;
   letter-spacing: initial;
 }
 
-.c26 {
+.c27 {
   color: var(--color-text-body);
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 0 0.5rem;
   width: 90%;
@@ -247,18 +189,12 @@ exports[`app should match snapshot 1`] = `
   margin-top: 1rem;
   padding: 0;
   height: 2px;
-  -webkit-order: 1;
-  -ms-flex-order: 1;
   order: 1;
-  -webkit-transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
   transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
 }
 
-.c22 {
+.c23 {
   color: var(--color-text-body);
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 0 0.5rem;
   color: var(--color-text-secondary);
@@ -270,116 +206,91 @@ exports[`app should match snapshot 1`] = `
   width: 8vw;
 }
 
-.c19 {
+.c20 {
   font-size: 2rem;
   margin-bottom: 0;
 }
 
-.c21 {
+.c22 {
   font-style: unset;
   padding-right: 0.15rem;
   opacity: 0.3;
 }
 
-.c23 {
+.c24 {
   margin-top: 1rem;
 }
 
-.c20 {
+.c21 {
   color: var(--color-dark-background-main);
   margin: 0;
   margin-top: -0.5rem;
   font-size: 1.2rem;
 }
 
-.c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c18 {
   display: flex;
   object-fit: cover;
   border-radius: 0.125rem;
   box-shadow: none;
-  -webkit-transition: margin-top 0.5s ease-in-out,max-width 0.24s ease-in-out, height 1s ease-in-out,object-position 0.8s ease-in-out, box-shadow 0.24s ease-in-out;
   transition: margin-top 0.5s ease-in-out,max-width 0.24s ease-in-out, height 1s ease-in-out,object-position 0.8s ease-in-out, box-shadow 0.24s ease-in-out;
 }
 
-.c16 {
+.c17 {
   margin: 0;
   padding: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   width: calc(100% - 75px);
 }
 
-.c18 {
+.c19 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   word-break: break-word;
 }
 
-.c24 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c25 {
   display: flex;
   padding: 2rem 0;
-  -webkit-transition: flex-direction 500ms ease-in-out;
   transition: flex-direction 500ms ease-in-out;
 }
 
-.c24 > section {
-  -webkit-flex-basis: 50%;
-  -ms-flex-preferred-size: 50%;
+.c25 > section {
   flex-basis: 50%;
 }
 
-.c24 > section > header {
+.c25 > section > header {
   font-weight: bold;
 }
 
-.c12 {
+.c13 {
   background-color: #fff;
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 80%;
 }
 
-.c12 address {
+.c13 address {
   color: var(--color-text-unimportant);
 }
 
-.c29 {
+.c30 {
   width: 42px;
   height: 42px;
 }
 
-.c27 {
+.c28 {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
-  -webkit-transition: justify-content 500ms ease-in-out;
   transition: justify-content 500ms ease-in-out;
   margin-right: 1rem;
 }
 
-.c28 {
+.c29 {
   background: none;
   border: 0;
   color: inherit;
@@ -387,41 +298,23 @@ exports[`app should match snapshot 1`] = `
   line-height: normal;
   overflow: visible;
   padding: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
-.c30 {
+.c31 {
   overflow: hidden;
-  -webkit-transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
   transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
   height: 0;
   background: white;
   width: 100vw;
-  -webkit-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-order: 4;
-  -ms-flex-order: 4;
   order: 4;
 }
 
-.c32 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
+.c33 {
   display: inline-flex;
   border-radius: 4px;
   margin: 0.25rem;
@@ -431,7 +324,7 @@ exports[`app should match snapshot 1`] = `
   border-radius: 6px;
 }
 
-.c31 {
+.c32 {
   margin: 0;
   padding: 1rem;
 }
@@ -491,11 +384,17 @@ exports[`app should match snapshot 1`] = `
   grid-auto-rows: auto;
 }
 
-.c10 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
+.c11 {
   display: inline-flex;
+}
+
+.c10 {
+  filter: url(#green-tint);
+  max-width: 100%;
+}
+
+.c10 > img {
+  max-width: 100%;
 }
 
 .c9 {
@@ -505,20 +404,9 @@ exports[`app should match snapshot 1`] = `
 
 .c6 {
   background-color: var(--color-orange);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   padding: 4rem 0 2rem 0;
 }
@@ -544,36 +432,31 @@ exports[`app should match snapshot 1`] = `
 
 @media (max-width:480px) {
   .c2 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
     text-align: center;
     margin-bottom: 0;
   }
 }
 
+@media (max-width:480px) {
+  .c1 {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
 @media (max-width:1023px) {
-  .c13 {
+  .c14 {
     width: 75%;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-order: 2;
-    -ms-flex-order: 2;
     order: 2;
     height: unset;
-    -webkit-box-pack: unset;
-    -webkit-justify-content: unset;
-    -ms-flex-pack: unset;
     justify-content: unset;
     padding: 0 0 0.5rem 0;
   }
 }
 
 @media (max-width:1023px) {
-  .c14 {
-    -webkit-flex-basis: 33%;
-    -ms-flex-preferred-size: 33%;
+  .c15 {
     flex-basis: 33%;
     width: 33%;
     text-align: center;
@@ -581,130 +464,105 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c26 {
+  .c27 {
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width:1024px) {
-  .c26 {
+  .c27 {
     visibility: hidden;
     margin: 0;
   }
 }
 
 @media (min-width:1024px) {
-  .c19 {
+  .c20 {
     margin-top: 3rem;
   }
 }
 
 @media (max-width:1024px) {
-  .c19 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
+  .c20 {
     flex-basis: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c23 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
+  .c24 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c23 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
+  .c24 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c20 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
+  .c21 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:500px) {
-  .c17 {
+  .c18 {
     object-position: left;
-  }
-}
-
-@media (max-width:1023px) {
-  .c17 {
-    width: 100%;
-  }
-}
-
-@media (min-width:1024px) {
-  .c17 {
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
-    height: 120%;
-    object-position: left;
-    margin-top: -3rem;
-    max-width: 21rem;
-    -webkit-flex-basis: 30%;
-    -ms-flex-preferred-size: 30%;
-    flex-basis: 30%;
-  }
-}
-
-@media (max-width:1023px) {
-  .c16 {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    width: 100%;
   }
 }
 
 @media (max-width:1023px) {
   .c18 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+    width: 100%;
+  }
+}
+
+@media (min-width:1024px) {
+  .c18 {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+    height: 120%;
+    object-position: left;
+    margin-top: -3rem;
+    max-width: 21rem;
+    flex-basis: 30%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c17 {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c19 {
     display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 }
 
 @media (max-width:1023px) {
-  .c24 {
+  .c25 {
     padding: 0.5rem 0;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c12 {
+  .c13 {
     width: calc(100% - 2rem);
     height: unset;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    margin: 5.5rem 1rem 2rem 1rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c27 {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
+  .c28 {
     justify-content: center;
-    -webkit-flex-basis: 25%;
-    -ms-flex-preferred-size: 25%;
     flex-basis: 25%;
-    -webkit-order: 3;
-    -ms-flex-order: 3;
     order: 3;
     margin-right: 0;
     margin-top: -0.25rem;
@@ -712,13 +570,13 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (min-width:1024px) {
-  .c27 {
+  .c28 {
     margin-top: -3.5rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c28 {
+  .c29 {
     width: 42px;
     height: 42px;
   }
@@ -758,6 +616,12 @@ exports[`app should match snapshot 1`] = `
 @media (max-width:1023px) {
   .c9 img {
     max-height: 60vh;
+  }
+}
+
+@media (max-width:480px) {
+  .c6 {
+    padding-top: 8rem;
   }
 }
 
@@ -826,25 +690,29 @@ exports[`app should match snapshot 1`] = `
         <figure
           class="c9"
         >
-          <source
-            media="(max-width: 800px)"
-            srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-          />
-          <source
-            media="(max-width: 1024px)"
-            srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-          />
-          <source
-            media="(min-width: 2000px)"
-            srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-          />
-          <img
-            alt="work picture for Open Source"
-            class=""
-            loading="lazy"
-            src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-          />
-          <noscript />
+          <picture
+            class="c10"
+          >
+            <source
+              media="(max-width: 800px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <source
+              media="(min-width: 2000px)"
+              srcset="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <img
+              alt="work picture for Open Source"
+              class=""
+              loading="lazy"
+              src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            />
+            <noscript />
+          </picture>
           <figcaption>
             <header>
               Open Source
@@ -862,18 +730,18 @@ exports[`app should match snapshot 1`] = `
             </section>
             <section>
               <time
-                class="c10"
+                class="c11"
               >
                 01/02/2013
               </time>
               <div
-                class="c11"
+                class="c12"
                 role="separator"
               >
                 -
               </div>
               <time
-                class="c10"
+                class="c11"
               >
                 current
               </time>
@@ -884,19 +752,19 @@ exports[`app should match snapshot 1`] = `
     </div>
   </main>
   <article
-    class="c12"
+    class="c13"
   >
     <aside
-      class="c13"
+      class="c14"
     >
       <a
-        class="c14"
+        class="c15"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c15"
+          class="c16"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -916,46 +784,46 @@ exports[`app should match snapshot 1`] = `
       </a>
     </aside>
     <figure
-      class="c16"
+      class="c17"
     >
       <img
         alt="about me picture"
-        class="c17 "
+        class="c18 "
         src=""
       />
       <figcaption
-        class="c18"
+        class="c19"
       >
         <h3
-          class="c19"
+          class="c20"
         />
         <h4
-          class="c20"
+          class="c21"
         >
           
           <i
-            class="c21"
+            class="c22"
           >
             ↔
           </i>
           
         </h4>
         <hr
-          class="c22"
+          class="c23"
           role="separator"
         />
         <p
-          class="c23"
+          class="c24"
         />
         <nav
-          class="c24"
+          class="c25"
         >
           <section>
             <header>
               Phone
             </header>
             <a
-              class="c25 "
+              class="c26 "
               href="tel:12506509455"
             >
               +
@@ -967,7 +835,7 @@ exports[`app should match snapshot 1`] = `
               Email
             </header>
             <a
-              class="c25 "
+              class="c26 "
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
@@ -977,18 +845,18 @@ exports[`app should match snapshot 1`] = `
       </figcaption>
     </figure>
     <hr
-      class="c26"
+      class="c27"
       role="separator"
     />
     <div
-      class="c27"
+      class="c28"
       title="show/hide skills"
     >
       <button
-        class="c28"
+        class="c29"
       >
         <svg
-          class="c29"
+          class="c30"
           role="img"
           title="show"
           viewBox="0 0 24 24"
@@ -1010,13 +878,13 @@ exports[`app should match snapshot 1`] = `
     </div>
     <aside
       aria-hidden="true"
-      class="c30"
+      class="c31"
     >
       <ul
-        class="c31"
+        class="c32"
       >
         <li
-          class="c32"
+          class="c33"
         >
           skill1
         </li>
@@ -1024,7 +892,7 @@ exports[`app should match snapshot 1`] = `
     </aside>
   </article>
   <footer
-    class="c33"
+    class="c34"
   >
     <p>
       <span>
@@ -1036,7 +904,7 @@ exports[`app should match snapshot 1`] = `
     </p>
   </footer>
   <svg
-    class="c34"
+    class="c35"
   >
     <filter
       color-interpolation-filters="sRGB"
