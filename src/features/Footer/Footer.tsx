@@ -21,9 +21,6 @@ const StyledSocialProfiles = styled(SocialProfiles)`
   padding: 0;
   width: 25vw;
   height: unset;
-  @media (max-width: 1023px) {
-    width: 50vw;
-  }
   > a {
     width: unset;
     flex-basis: unset;
