@@ -55,7 +55,11 @@ function fromContextToSchema(context: PortfolioContextType) {
     return {
       '@type': 'Organization',
       name: workItem.company,
-      url: personSchema.url + '#' + encodeURIComponent(workItem.company),
+      /**
+       * @todo could add company shortname...
+       */
+      url:
+        personSchema.url + 'company=' + workItem.company.split(' ').unshift(),
       member: {
         '@type': 'OrganizationRole',
         member: personSchema,
