@@ -51,15 +51,11 @@ function fromContextToSchema(context: PortfolioContextType) {
    * but this function is lightweight
    * and is used to at least reuse this small piece of functionality
    */
-  function fromWorkItemToOrganization(workItem: WorkType) {
+  function fromWorkItemToOrganization(workItem: WorkType, index: number) {
     return {
       '@type': 'Organization',
       name: workItem.company,
-      /**
-       * @todo could add company shortname...
-       */
-      url:
-        personSchema.url + '?company=' + workItem.company.split(' ').unshift(),
+      url: personSchema.url + '#' + index,
       member: {
         '@type': 'OrganizationRole',
         member: personSchema,
@@ -83,7 +79,7 @@ function fromContextToSchema(context: PortfolioContextType) {
             '@type': 'ListItem',
             // starts @1
             position: index + 1,
-            item: fromWorkItemToOrganization(workItem),
+            item: fromWorkItemToOrganization(workItem, index),
           }
         }),
       },
