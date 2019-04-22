@@ -33,12 +33,13 @@ function fromContextToSchema(context: PortfolioContextType) {
   /**
    * @todo https://schema.org/contributor for open source
    */
+  const personId = 'https://orcid.org/0000-0002-6397-6217'
   const personSchema = {
     '@type': 'Person',
     /**
      * @todo add this to data
      */
-    '@id': 'https://orcid.org/0000-0002-6397-6217',
+    '@id': personId,
     name: basics.name,
     sameAs: basics.profiles.map(profile => profile.url),
     url: basics.website,
@@ -62,6 +63,12 @@ function fromContextToSchema(context: PortfolioContextType) {
     }),
   }
 
+  const shortPersonSchema = {
+    '@type': 'Person',
+    '@id': personId,
+    name: basics.name,
+  }
+
   /**
    * could scope this function outside, so it is not a closure
    * but this function is lightweight
@@ -74,12 +81,7 @@ function fromContextToSchema(context: PortfolioContextType) {
       url: personSchema.url + '/Portfolio/' + '#' + index,
       member: {
         '@type': 'OrganizationRole',
-        member: {
-          '@type': 'Person',
-          name: basics.name,
-          description: basics.summary,
-          image: basics.picture,
-        },
+        member: shortPersonSchema,
         startDate: workItem.startDate,
         endDate: workItem.endDate,
         roleName: workItem.position,
@@ -104,7 +106,7 @@ function fromContextToSchema(context: PortfolioContextType) {
         keywords: 'personal,opensource,react,typescript,graphql,apollo',
         datePublished: '2018-03-15',
         dateCreated: '2018-03-20',
-        creator: personSchema,
+        creator: shortPersonSchema,
         image: {
           '@type': 'ImageObject',
           url:
@@ -128,6 +130,9 @@ function fromContextToSchema(context: PortfolioContextType) {
 
       ...work.map(fromWorkItemToOrganization),
 
+      /**
+       * @see https://www.endurantdevs.com/blog/values-provided-url-must-point-page-problem-googles-sdtt/
+       */
       {
         '@type': 'ItemList',
         itemListElement: work.map((workItem, index) => {
