@@ -22,8 +22,10 @@ export interface AppContextValueType {
   width?: number
 }
 
-const DEFAULT_URL =
-  process.env.NODE_ENV === 'test' && new URL('https://localhost')
+/**
+ * could move to a `constants` file
+ */
+export const DEFAULT_URL = new URL('https://localhost')
 
 export const AppContext = createContext<AppContextValueType>({
   url: DEFAULT_URL as any,

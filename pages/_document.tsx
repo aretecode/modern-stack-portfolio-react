@@ -1,4 +1,5 @@
 /**
+ * @see http://microformats.org/wiki/rel-profile
  * @see https://nextjs.org/docs/
  * @see https://github.com/dfrankland/react-amphtml/issues/29
  * @see https://developers.google.com/web/fundamentals/performance/resource-prioritization#preconnect
@@ -31,7 +32,9 @@ import {
 class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
   render() {
     return this.props.isAmp === false ? (
-      <Html lang="en">{this.props.children}</Html>
+      <Html lang="en" prefix="og: http://ogp.me/ns#">
+        {this.props.children}
+      </Html>
     ) : (
       <Amp.Html specName="html ⚡ for top-level html" lang="en" amp="amp">
         {this.props.children}

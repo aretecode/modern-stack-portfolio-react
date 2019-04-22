@@ -5,10 +5,8 @@
  */
 import * as React from 'react'
 import { PortfolioHead } from '../../src/features/PortfolioHead'
-import {
-  PortfolioContext,
-  PortfolioContextType,
-} from '../../src/features/PortfolioContext'
+import { PortfolioContext } from '../../src/features/PortfolioContext'
+import { PortfolioSchema } from '../../src/features/PortfolioSchema'
 import { Address } from './Address'
 import {
   StyledSocialProfiles,
@@ -43,62 +41,56 @@ function CardDivider(props: {}) {
   return <StyledCardDivider isExpanded={value.isExpanded} />
 }
 
-export class AboutPage extends React.PureComponent {
-  static contextType = PortfolioContext
-  readonly context: PortfolioContextType
+export function AboutPage() {
+  const {
+    name,
+    label = '',
+    picture,
+    summary,
+    telephone,
+    email,
+  } = React.useContext(PortfolioContext).basics
 
-  render() {
-    const {
-      name,
-      label = '',
-      picture,
-      summary,
-      telephone,
-      email,
-    } = this.context.basics
-
-    const titleText = `About ${name}`
-    return (
-      <>
-        <PortfolioHead titleText={titleText} description={summary} />
-        <AnimateHeightContextProvider>
-          <StyledAboutMeArticle>
-            <StyledSocialProfiles />
-            <StyledFigure>
-              <AboutMeImage
-                src={picture}
-                height={'600'}
-                width={'600'}
-                alt="about me picture"
-              />
-              <StyledFigCaption>
-                <StyledName>{name}</StyledName>
-                <StyledLabel>
-                  {label.split('⇔').shift()}
-                  <StyledArrow>↔</StyledArrow>
-                  {label.split('⇔').pop()}
-                </StyledLabel>
-                <StyledTextLineSeparator />
-                <StyledSummary>{summary}</StyledSummary>
-                <StyledContactNav>
-                  <section>
-                    <header>Phone</header>
-                    <StyledLink to={`tel:${telephone}`}>
-                      +{telephone}
-                    </StyledLink>
-                  </section>
-                  <section>
-                    <header>Email</header>
-                    <StyledLink to={`mailto:${email}`}>{email}</StyledLink>
-                  </section>
-                </StyledContactNav>
-              </StyledFigCaption>
-            </StyledFigure>
-            <CardDivider />
-            <Skills />
-          </StyledAboutMeArticle>
-        </AnimateHeightContextProvider>
-      </>
-    )
-  }
+  const titleText = `About ${name}`
+  return (
+    <>
+      <PortfolioHead titleText={titleText} description={summary} />
+      <PortfolioSchema />
+      <AnimateHeightContextProvider>
+        <StyledAboutMeArticle>
+          <StyledSocialProfiles />
+          <StyledFigure>
+            <AboutMeImage
+              src={picture}
+              height={'600'}
+              width={'600'}
+              alt="about me picture"
+            />
+            <StyledFigCaption>
+              <StyledName>{name}</StyledName>
+              <StyledLabel>
+                {label.split('⇔').shift()}
+                <StyledArrow>↔</StyledArrow>
+                {label.split('⇔').pop()}
+              </StyledLabel>
+              <StyledTextLineSeparator />
+              <StyledSummary>{summary}</StyledSummary>
+              <StyledContactNav>
+                <section>
+                  <header>Phone</header>
+                  <StyledLink to={`tel:${telephone}`}>+{telephone}</StyledLink>
+                </section>
+                <section>
+                  <header>Email</header>
+                  <StyledLink to={`mailto:${email}`}>{email}</StyledLink>
+                </section>
+              </StyledContactNav>
+            </StyledFigCaption>
+          </StyledFigure>
+          <CardDivider />
+          <Skills />
+        </StyledAboutMeArticle>
+      </AnimateHeightContextProvider>
+    </>
+  )
 }
