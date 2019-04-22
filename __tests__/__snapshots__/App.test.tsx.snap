@@ -688,7 +688,7 @@ exports[`app should match snapshot 1`] = `
 
 @media (max-width:1023px) {
   .c9 img {
-    max-height: 60vh;
+    max-height: 65vh;
   }
 }
 
@@ -699,11 +699,6 @@ exports[`app should match snapshot 1`] = `
 }
 
 <div>
-  <script
-    type="application/ld+json"
-  >
-    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","weight":"100kg","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"personal,opensource,react,typescript,graphql,apollo","datePublished":"2018-03-15","dateCreated":"2018-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":""},{"@type":"Organization","name":"Open Source","url":"/Portfolio/#0","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Organization","name":"Open Source","url":"/Portfolio/#0","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}}}]}]}
-  </script>
   <header
     class="c0"
     role="banner"
@@ -744,6 +739,11 @@ exports[`app should match snapshot 1`] = `
       </ul>
     </nav>
   </header>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
+  </script>
   <main
     class=""
   >
@@ -802,28 +802,38 @@ exports[`app should match snapshot 1`] = `
               </a>
             </section>
             <section>
-              <time
-                class="c11"
+              <a
+                class="c5 "
+                href="/Portfolio/Experience?index=0"
               >
-                01/02/2013
-              </time>
-              <div
-                class="c12"
-                role="separator"
-              >
-                -
-              </div>
-              <time
-                class="c11"
-              >
-                current
-              </time>
+                <time
+                  class="c11"
+                >
+                  01/02/2013
+                </time>
+                <div
+                  class="c12"
+                  role="separator"
+                >
+                  -
+                </div>
+                <time
+                  class="c11"
+                >
+                  current
+                </time>
+              </a>
             </section>
           </figcaption>
         </figure>
       </article>
     </div>
   </main>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
+  </script>
   <article
     class="c13"
   >
