@@ -30,6 +30,7 @@ import { Script } from './Script'
 function fromContextToSchema(context: PortfolioContextType) {
   const { basics, work } = context
 
+  // https://moz.com/community/q/where-to-link-to-html-sitemap
   const personSchema = {
     '@type': 'Person',
     name: basics.name,
@@ -55,7 +56,7 @@ function fromContextToSchema(context: PortfolioContextType) {
     return {
       '@type': 'Organization',
       name: workItem.company,
-      url: personSchema.url + '#' + index,
+      url: personSchema.url + '/Portfolio/' + '#' + index,
       member: {
         '@type': 'OrganizationRole',
         member: personSchema,
@@ -70,6 +71,19 @@ function fromContextToSchema(context: PortfolioContextType) {
     '@context': 'https://schema.org',
     '@graph': [
       personSchema,
+
+      {
+        '@type': 'WebSite',
+        name: personSchema.url,
+        url: personSchema.url,
+        // @todo
+        // potentialAction: {
+        //   '@type': 'SearchAction',
+        //   target: '{search_term_string}',
+        //   'query-input': 'required name=search_term_string',
+        // },
+      },
+
       ...work.map(fromWorkItemToOrganization),
 
       {

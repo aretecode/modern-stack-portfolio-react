@@ -9,3 +9,5 @@
 - [google seo](https://developers.google.com/web/fundamentals/discovery/search-optimization/)
 - [manifest google](https://developers.google.com/web/fundamentals/web-app-manifest/)
 
+- [robots.txt google](https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190)
+- [search urls google](https://developers.google.com/search/docs/guides/create-URLs)

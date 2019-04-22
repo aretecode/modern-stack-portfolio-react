@@ -74,7 +74,7 @@ export const StyledTextLineSeparator = styled(Separator).attrs({
   width: 8vw;
 `
 
-export const StyledName = styled.h3`
+export const StyledName = styled.h1`
   font-size: 2rem;
   margin-bottom: 0;
   @media (min-width: 1024px) {
@@ -102,7 +102,7 @@ export const StyledSummary = styled.p`
   }
 `
 
-export const StyledLabel = styled.h4`
+export const StyledLabel = styled.h2`
   color: var(--color-dark-background-main);
   margin: 0;
   margin-top: -0.5rem;
