@@ -49,9 +49,12 @@ function fromContextToSchema(context: PortfolioContextType) {
       postalCode: basics.postalCode,
       streetAddress: basics.address,
     },
-    knowsAbout: basics.skills.map(skill => {
-      return { '@value': skill }
-    }),
+    /**
+     * @throws `is not a known valid target type for the"knowsAbout" property.`
+     */
+    // knowsAbout: basics.skills.map(skill => {
+    //   return { '@value': skill }
+    // }),
   }
 
   /**
