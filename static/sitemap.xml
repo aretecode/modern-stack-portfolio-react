@@ -6,14 +6,12 @@
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://jameswiens.dev/Portfolio</loc>
-    <xhtml:link rel="amphtml" href="https://jameswiens.dev/Portfolio?amp" />
     <lastmod>2019-04-20T20:36:52.961-07:00</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://jameswiens.dev/</loc>
     <lastmod>2019-04-20T20:36:52.961-07:00</lastmod>
-    <xhtml:link rel="amphtml" href="https://jameswiens.dev/?amp" />
     <priority>0.90</priority>
   </url>
 </urlset>
