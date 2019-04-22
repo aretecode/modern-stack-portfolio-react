@@ -25,6 +25,47 @@ exports[`app should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
+.c14 {
+  padding: 1rem;
+  width: 75px;
+  display: inline-flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+  object-position: bottom;
+  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+}
+
+.c15 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c15:link,
+.c15:visited {
+  color: var(--color-link);
+}
+
+.c15:focus {
+  outline: thin dotted;
+}
+
+.c15:hover {
+  color: #aaa;
+}
+
+.c15:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c16 {
+  width: 2rem;
+  height: 2rem;
+}
+
 .c34 {
   background-color: var(--color-material-background-purple);
   padding: 2rem 1.25rem;
@@ -75,6 +116,30 @@ exports[`app should match snapshot 1`] = `
 
 .c37:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c38 {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  width: 25vw;
+  height: unset;
+}
+
+.c38 > a {
+  width: unset;
+  flex-basis: unset;
+  display: initial;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.c38 > a:last-child {
+  display: none;
+}
+
+.c38 > a > svg:first-child {
+  fill: white;
 }
 
 .c4 {
@@ -135,52 +200,11 @@ exports[`app should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c38 {
+.c39 {
   height: 0;
   width: 0;
   visibility: hidden;
   position: absolute;
-}
-
-.c14 {
-  padding: 1rem;
-  width: 75px;
-  display: inline-flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-  object-fit: contain;
-  object-position: bottom;
-  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
-}
-
-.c15 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c15:link,
-.c15:visited {
-  color: var(--color-link);
-}
-
-.c15:focus {
-  outline: thin dotted;
-}
-
-.c15:hover {
-  color: #aaa;
-}
-
-.c15:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
-}
-
-.c16 {
-  width: 2rem;
-  height: 2rem;
 }
 
 .c12 {
@@ -461,6 +485,25 @@ exports[`app should match snapshot 1`] = `
   text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
+@media (max-width:1023px) {
+  .c14 {
+    width: 75%;
+    flex-direction: row;
+    order: 2;
+    height: unset;
+    justify-content: unset;
+    padding: 0 0 0.5rem 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c15 {
+    flex-basis: 33%;
+    width: 33%;
+    text-align: center;
+  }
+}
+
 @media (max-width:480px) {
   .c3 {
     width: 100%;
@@ -484,25 +527,6 @@ exports[`app should match snapshot 1`] = `
   .c1 {
     width: 100%;
     flex-basis: 100%;
-  }
-}
-
-@media (max-width:1023px) {
-  .c14 {
-    width: 75%;
-    flex-direction: row;
-    order: 2;
-    height: unset;
-    justify-content: unset;
-    padding: 0 0 0.5rem 0;
-  }
-}
-
-@media (max-width:1023px) {
-  .c15 {
-    flex-basis: 33%;
-    width: 33%;
-    text-align: center;
   }
 }
 
@@ -678,7 +702,7 @@ exports[`app should match snapshot 1`] = `
   <script
     type="application/ld+json"
   >
-    {"@context":"https://schema.org","@graph":[{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},{"@type":"Organization","name":"Open Source","url":"?company=Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Organization","name":"Open Source","url":"?company=Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""}},"startDate":"01/02/2013","endDate":"current","roleName":""}}}]}]}
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","weight":"100kg","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"personal,opensource,react,typescript,graphql,apollo","datePublished":"2018-03-15","dateCreated":"2018-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":""},{"@type":"Organization","name":"Open Source","url":"/Portfolio/#0","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Organization","name":"Open Source","url":"/Portfolio/#0","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}}}]}]}
   </script>
   <header
     class="c0"
@@ -843,10 +867,10 @@ exports[`app should match snapshot 1`] = `
       <figcaption
         class="c19"
       >
-        <h3
+        <h1
           class="c20"
         />
-        <h4
+        <h2
           class="c21"
         >
           
@@ -856,7 +880,7 @@ exports[`app should match snapshot 1`] = `
             ↔
           </i>
           
-        </h4>
+        </h2>
         <hr
           class="c23"
           role="separator"
@@ -968,7 +992,6 @@ exports[`app should match snapshot 1`] = `
         <path
           d="M24.873 47.201c-1.162-1.341-4.064-3.956-6.449-5.81-7.066-5.496-8.028-6.291-10.897-9.012C2.238 27.364-.008 22.325 0 15.493c.004-3.336.224-4.62 1.131-6.587 1.54-3.335 3.806-5.814 6.704-7.33C9.887.504 10.899.027 14.327.007c3.585-.02 4.34.41 6.449 1.604 2.567 1.452 5.21 4.556 5.756 6.76l.337 1.363.832-1.876c4.7-10.598 19.71-10.44 24.933.264 1.657 3.395 1.839 10.645.37 14.729-1.917 5.327-5.517 9.389-13.839 15.612-5.457 4.082-11.634 10.258-12.064 11.125-.499 1.007-.024.158-2.228-2.386z"
           fill="red"
-          fill-rule="nonzero"
         />
       </svg>
       <span
@@ -984,23 +1007,18 @@ exports[`app should match snapshot 1`] = `
         <title>
           Canada, eh
         </title>
-        <g
-          fill="none"
-          fill-rule="nonzero"
-        >
-          <path
-            d="M0 0h50v25H0z"
-            fill="red"
-          />
-          <path
-            d="M12.5 0h25v25h-25z"
-            fill="#FFF"
-          />
-          <path
-            d="M25 2.344l-1.706 3.181c-.194.346-.54.314-.887.12l-1.235-.639.92 4.886c.194.893-.427.893-.733.507l-2.156-2.412-.35 1.225c-.04.16-.217.33-.483.29l-2.725-.574.715 2.603c.154.579.273.819-.154.971l-.972.457 4.691 3.81c.186.144.28.404.214.638l-.41 1.348c1.614-.187 3.062-.467 4.678-.64.142-.014.381.221.38.386l-.214 4.936h.786l-.124-4.925c-.001-.165.216-.411.358-.396 1.616.172 3.064.452 4.679.639l-.41-1.348a.614.614 0 0 1 .213-.638l4.69-3.81-.97-.457c-.428-.152-.309-.392-.155-.971l.715-2.603-2.725.573c-.266.04-.443-.128-.483-.29l-.35-1.224-2.155 2.412c-.307.386-.928.386-.734-.506l.92-4.887-1.235.64c-.347.193-.693.225-.887-.121"
-            fill="red"
-          />
-        </g>
+        <path
+          d="M0 0h50v25H0z"
+          fill="red"
+        />
+        <path
+          d="M12.5 0h25v25h-25z"
+          fill="#FFF"
+        />
+        <path
+          d="M25 2.344l-1.706 3.181c-.194.346-.54.314-.887.12l-1.235-.639.92 4.886c.194.893-.427.893-.733.507l-2.156-2.412-.35 1.225c-.04.16-.217.33-.483.29l-2.725-.574.715 2.603c.154.579.273.819-.154.971l-.972.457 4.691 3.81c.186.144.28.404.214.638l-.41 1.348c1.614-.187 3.062-.467 4.678-.64.142-.014.381.221.38.386l-.214 4.936h.786l-.124-4.925c-.001-.165.216-.411.358-.396 1.616.172 3.064.452 4.679.639l-.41-1.348a.614.614 0 0 1 .213-.638l4.69-3.81-.97-.457c-.428-.152-.309-.392-.155-.971l.715-2.603-2.725.573c-.266.04-.443-.128-.483-.29l-.35-1.224-2.155 2.412c-.307.386-.928.386-.734-.506l.92-4.887-1.235.64c-.347.193-.693.225-.887-.121"
+          fill="red"
+        />
       </svg>
     </p>
     <p>
@@ -1016,9 +1034,38 @@ exports[`app should match snapshot 1`] = `
         github.com/aretecode
       </a>
     </p>
+    <aside
+      class="c38 c14"
+    >
+      <a
+        class="c15"
+        href="https://www.linkedin.com/in/james-wiens/"
+        rel="me"
+        title="aretecode"
+      >
+        <svg
+          class="c16"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+        >
+          <title>
+            linkedin
+             icon
+          </title>
+          <path
+            d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
+          />
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+        </svg>
+      </a>
+    </aside>
   </footer>
   <svg
-    class="c38"
+    class="c39"
   >
     <filter
       color-interpolation-filters="sRGB"

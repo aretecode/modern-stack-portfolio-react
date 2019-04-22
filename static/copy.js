@@ -33,11 +33,13 @@ async function updateSiteMap() {
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>${env.WEBSITE_ORIGIN}/Portfolio</loc>
+    <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/Portfolio/?amp" />
     <lastmod>${isoDate}</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>${env.WEBSITE_ORIGIN}/</loc>
+    <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/?amp" />
     <lastmod>${isoDate}</lastmod>
     <priority>0.90</priority>
   </url>
