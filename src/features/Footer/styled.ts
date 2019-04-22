@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { SocialProfiles } from '../SocialProfiles'
 import { StyledLink } from '../Link'
 import { SpecialIcon } from './SpecialIcon'
 
@@ -43,4 +44,31 @@ export const OpenSourceLink = styled(StyledLink).attrs({
 })`
   padding-left: 0.3rem;
   text-decoration: underline;
+`
+
+/**
+ * @todo cleanup these styles & move @@codesmell
+ * ^ especially remove elements from the dom, rather than styles to hide
+ */
+export const StyledSocialProfiles = styled(SocialProfiles)`
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  width: 25vw;
+  height: unset;
+  > a {
+    width: unset;
+    flex-basis: unset;
+    display: initial;
+    padding: 1rem 1rem 1rem 0;
+    &:last-child {
+      display: none;
+    }
+    > svg {
+      &:first-child {
+        fill: white;
+      }
+    }
+  }
 `
