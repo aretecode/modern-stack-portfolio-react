@@ -1,6 +1,6 @@
 /**
  * @see http://2.bp.blogspot.com/-41v6n3Vaf5s/UeRN_XJ0keI/AAAAAAAAN2Y/YxIHhddGiaw/s1600/css.gif
- * https://stylelint.io/user-guide/faq/#how-do-i-configure-the--pattern-rules-for-common-css-naming-conventions-like-kebab-case 
+ * https://stylelint.io/user-guide/faq/#how-do-i-configure-the--pattern-rules-for-common-css-naming-conventions-like-kebab-case
  * http://bradfrost.com/blog/post/atomic-web-design/
  */
 
@@ -51,7 +51,6 @@ module.exports = {
     //   },
     // ],
 
-    // @TODO
     // 'shorthand-property-no-redundant-values': false,
     'selector-class-pattern': '^([a-z][a-z0-9]*)(-[a-z0-9]+)*$',
     'at-rule-name-case': 'lower',
@@ -108,9 +107,8 @@ module.exports = {
     'function-parentheses-newline-inside': 'always-multi-line',
     'function-parentheses-space-inside': 'never-single-line',
     'function-whitespace-after': 'always',
-    'indentation': 2,
+    indentation: 2,
 
-    // @TODO more js style names soon
     // 'function-name-case': 'camel',
     // 'media-feature-name-case': 'lower',
 

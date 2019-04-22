@@ -1,9 +1,10 @@
+/**
+ * to do this properly, we would load it from graphql
+ */
 // tslint:disable
 import * as React from 'react'
-import {
-  PortfolioContext,
-  PortfolioContextType,
-} from '../../src/features/PortfolioContext'
+import { PortfolioContext } from '../../src/features/PortfolioContext'
+import { PortfolioSchema } from '../../src/features/PortfolioSchema'
 import { PortfolioHead } from '../../src/features/PortfolioHead'
 import { StyledCard } from '../../src/features/Card'
 import { StyledMain } from '../../src/features/Main'
@@ -20,7 +21,7 @@ import { TimeRange } from './TimeRange'
 /**
  * @hack images with specific sizes
  */
-function renderWork(work: WorkType, index: number) {
+export function renderWork(work: WorkType, index: number) {
   return (
     <StyledCard key={work.company + work.startDate + work.endDate}>
       <StyledCardFigure>
@@ -58,7 +59,9 @@ function renderWork(work: WorkType, index: number) {
             <StyledLink to={work.website}>{work.website}</StyledLink>
           </section>
           <section>
-            <TimeRange startDate={work.startDate} endDate={work.endDate} />
+            <StyledLink to={`/Portfolio/Experience?index=${index}`}>
+              <TimeRange startDate={work.startDate} endDate={work.endDate} />
+            </StyledLink>
           </section>
         </figcaption>
       </StyledCardFigure>
@@ -70,34 +73,31 @@ function renderWork(work: WorkType, index: number) {
  * could provide a cool graph to sort resumes/portfolios too and highlight
  * like build your own github
  */
-export class PortfolioPage extends React.PureComponent {
-  static contextType = PortfolioContext
-  readonly context: PortfolioContextType
+export function PortfolioPage() {
+  const portfolioContext = React.useContext(PortfolioContext)
+  const { summary, name } = portfolioContext.basics
+  const titleText = `${name}'s Portfolio`
 
-  render() {
-    const { name, summary } = this.context.basics
-    const titleText = `${name}'s Portfolio`
+  /**
+   * @todo move static url out
+   */
+  const imageUrl =
+    'https://noccumpr-cdn.sirv.com/images/james-wiens-work-experience-combined-filtered.png'
 
-    /**
-     * @todo move static url out
-     */
-    const imageUrl =
-      'https://noccumpr-cdn.sirv.com/images/james-wiens-work-experience-combined-filtered.png'
-
-    return (
-      <>
-        <PortfolioHead
-          titleText={titleText}
-          description={summary}
-          image={imageUrl}
-        />
-        <StyledMain>
-          <StyledLeaderBoard>
-            <h1>What I've done</h1>
-          </StyledLeaderBoard>
-          <StyledGrid>{this.context.work.map(renderWork)}</StyledGrid>
-        </StyledMain>
-      </>
-    )
-  }
+  return (
+    <>
+      <PortfolioHead
+        titleText={titleText}
+        description={summary}
+        image={imageUrl}
+      />
+      <PortfolioSchema />
+      <StyledMain>
+        <StyledLeaderBoard>
+          <h1>What I've done</h1>
+        </StyledLeaderBoard>
+        <StyledGrid>{portfolioContext.work.map(renderWork)}</StyledGrid>
+      </StyledMain>
+    </>
+  )
 }

@@ -1,21 +1,33 @@
 import * as React from 'react'
-import { StyledFooter } from './styled'
-import { PortfolioContext, PortfolioContextType } from '../PortfolioContext'
+import { PortfolioContext } from '../PortfolioContext'
+import {
+  StyledFooter,
+  MadeWithText,
+  MadeWithHeart,
+  CanadaEh,
+  OpenSourceLink,
+  StyledSocialProfiles,
+} from './styled'
 
-export default class Footer extends React.PureComponent<{
-  className?: string
-}> {
-  static contextType = PortfolioContext
-  readonly context: PortfolioContextType
-
-  render() {
-    return (
-      <StyledFooter {...this.props}>
-        <p>
-          <span>©{new Date().getFullYear()}</span>{' '}
-          <span>{this.context.basics.name}</span>
-        </p>
-      </StyledFooter>
-    )
-  }
+export default function Footer(props: { className?: string }) {
+  const context = React.useContext(PortfolioContext)
+  return (
+    <StyledFooter {...props}>
+      <p>
+        <span>©{new Date().getFullYear()}</span>{' '}
+        <span>{context.basics.name}</span>
+      </p>
+      <p>
+        <MadeWithText>Made with</MadeWithText>
+        <MadeWithHeart />
+        <MadeWithText>in</MadeWithText>
+        <CanadaEh />
+      </p>
+      <p>
+        <MadeWithText>Open Sourced at</MadeWithText>
+        <OpenSourceLink />
+      </p>
+      <StyledSocialProfiles />
+    </StyledFooter>
+  )
 }

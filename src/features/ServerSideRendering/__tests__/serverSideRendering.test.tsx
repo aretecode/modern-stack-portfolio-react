@@ -63,7 +63,7 @@ export const cache = new Map()
 
 /**
  * @see https://github.com/styled-components/styled-components/issues/378
- * @todo https://github.com/nfl/react-helmet/issues/216
+ * @see https://github.com/nfl/react-helmet/issues/216
  */
 function renderHelmet(helmetObj: HelmetData) {
   return (

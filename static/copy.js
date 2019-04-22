@@ -25,8 +25,7 @@ const asyncWriteFile = promisify(writeFile)
 async function updateSiteMap() {
   console.debug('[update] updating site map')
   const isoDate = format(now, 'YYYY-MM-DDTHH:mm:ss.SSSZ')
-  const siteMap = `
-<?xml version="1.0" encoding="UTF-8"?>
+  const siteMap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -34,11 +33,13 @@ async function updateSiteMap() {
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>${env.WEBSITE_ORIGIN}/Portfolio</loc>
+    <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/Portfolio/?amp" />
     <lastmod>${isoDate}</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>${env.WEBSITE_ORIGIN}/</loc>
+    <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/?amp" />
     <lastmod>${isoDate}</lastmod>
     <priority>0.90</priority>
   </url>

@@ -33,6 +33,11 @@ declare namespace NodeJS {
     GOOGLE_TAG_MANAGER_WEB_ID: string
     GOOGLE_TAG_MANAGER_AMP_ID: string
     GRAPHQL_API_URL: string
+
+    /**
+     * probably will remove this
+     */
+    WEBSITE_ORIGIN?: string
   }
   interface Process {
     browser: boolean

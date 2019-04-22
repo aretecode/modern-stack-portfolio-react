@@ -6,19 +6,20 @@
  */
 import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
+import Router from 'next/router'
 import { ApolloClient } from 'apollo-boost'
 import * as React from 'react'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import { initApolloClient } from '../src/apolloClient'
 import '../src/apolloStateRehydrate'
 import { PortfolioProvider } from '../src/features/PortfolioContext'
-import { PortfolioSchema } from '../src/features/PortfolioSchema'
 import Footer from '../src/features/Footer'
 import Header from '../src/features/Header'
 import { analyticsContainer } from '../src/features/GoogleTagManager'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { AppContextProvider } from '../src/features/AppContext'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
+import { URL } from '../src/utils/url'
 import { logger } from '../src/log'
 import { AppStyles, BelowTheFoldStyles } from '../src/AppStyles'
 import { UnknownObj } from '../src/typings'
@@ -55,7 +56,6 @@ export class InnerApp extends React.PureComponent<{
           <DataLoadingProvider contextValue={contextValue}>
             <PortfolioProvider>
               <AppStyles />
-              <PortfolioSchema />
               <Header />
               {children}
               <Footer />
@@ -96,7 +96,7 @@ export default class MyApp extends App<{
         /**
          * @note !!! this does not properly ssr if we render `<App>` (even if we pass in apolloClient) !!!
          * @description Run all GraphQL queries
-         * @todo this is really bad @@perf
+         * @note this is really bad @@perf
          * @description ideally we would combine this into a single tree walking
          *              to get other data needed in ssr to rehydrate from
          * @note this uses old `Context`
@@ -147,21 +147,49 @@ export default class MyApp extends App<{
     }
   }
 
+  componentDidMount() {
+    /**
+     * @see https://github.com/zeit/next.js/issues/6025
+     * @see https://github.com/zeit/next.js/issues/4044
+     * using this because the url was out of date
+     */
+    Router.onRouteChangeComplete = (pathUrl?: string) => {
+      logger.debug('[_app] route complete ' + pathUrl)
+      this.setState({
+        url: new URL(window.location.href),
+      })
+    }
+  }
+
+  /**
+   * when this is rehydrated, the serialized obj is not a URL object
+   */
+  state = {
+    url:
+      typeof this.props.url === 'string'
+        ? new URL(this.props.url)
+        : this.props.url,
+  }
+
   render() {
+    const urlObj = this.state.url
+    if (process.env.NODE_ENV === 'development') {
+      logger.debug('[_app] render ')
+    }
+
     const {
       Component,
       pageProps,
       apolloClientState,
-      url,
       dataLoadingContextValue,
     } = this.props
 
     return (
       <Container>
-        <AppContextProvider url={url}>
+        <AppContextProvider url={urlObj}>
           <InnerApp
             apolloClientState={apolloClientState}
-            url={url}
+            url={urlObj}
             dataLoadingContextValue={dataLoadingContextValue!}
           >
             <Component {...pageProps} />

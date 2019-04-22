@@ -18,9 +18,6 @@ export const StyledTime = styled.time`
 /**
  * @see https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
  * @see https://addyosmani.com/blog/lazy-loading/
- *
- * @todo @@styles probably should align the card image to center
- *                and add blur mirror effect to sides for consistency
  */
 export const StyledCardImage = styled(ObservablePicture).attrs({
   loading: 'lazy',
@@ -53,7 +50,7 @@ export const StyledCardFigure = styled.figure`
   }
   @media (max-width: 1023px) {
     img {
-      max-height: 60vh;
+      max-height: 65vh;
     }
   }
 `

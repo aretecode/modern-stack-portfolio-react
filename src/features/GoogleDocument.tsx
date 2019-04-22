@@ -1,6 +1,3 @@
-/**
- * @todo typings on `JSX.IntrinsicElements` in globals to extend the module for amp
- */
 import * as React from 'react'
 import Head from 'next/head'
 import { PortfolioContext, PortfolioContextType } from './PortfolioContext'
