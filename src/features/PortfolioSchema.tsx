@@ -16,7 +16,6 @@ import { Script } from './Script'
  *
  * @see https://schema.org/PostalAddress
  * @see https://schema.org/Person
- * @todo https://schema.org/knowsAbout for skills
  * @see http://blog.schema.org/2014/06/introducing-role.html
  * @see https://schema.org/Role
  * @see https://schema.org/OrganizationRole
@@ -31,9 +30,15 @@ function fromContextToSchema(context: PortfolioContextType) {
   const { basics, work } = context
 
   // https://moz.com/community/q/where-to-link-to-html-sitemap
-  // @todo https://schema.org/contributor for open source
+  /**
+   * @todo https://schema.org/contributor for open source
+   */
   const personSchema = {
     '@type': 'Person',
+    /**
+     * @todo add this to data
+     */
+    '@id': 'https://orcid.org/0000-0002-6397-6217',
     name: basics.name,
     sameAs: basics.profiles.map(profile => profile.url),
     url: basics.website,
@@ -50,11 +55,11 @@ function fromContextToSchema(context: PortfolioContextType) {
       streetAddress: basics.address,
     },
     /**
-     * @throws `is not a known valid target type for the"knowsAbout" property.`
+     * @see https://schema.org/knowsAbout
      */
-    // knowsAbout: basics.skills.map(skill => {
-    //   return { '@value': skill }
-    // }),
+    knowsAbout: basics.skills.map(skill => {
+      return skill
+    }),
   }
 
   /**
@@ -66,11 +71,15 @@ function fromContextToSchema(context: PortfolioContextType) {
     return {
       '@type': 'Organization',
       name: workItem.company,
-      // @todo: `+ '#' + index`
-      url: personSchema.url + '/Portfolio/',
+      url: personSchema.url + '/Portfolio/' + '#' + index,
       member: {
         '@type': 'OrganizationRole',
-        member: personSchema,
+        member: {
+          '@type': 'Person',
+          name: basics.name,
+          description: basics.summary,
+          image: basics.picture,
+        },
         startDate: workItem.startDate,
         endDate: workItem.endDate,
         roleName: workItem.position,
@@ -82,6 +91,28 @@ function fromContextToSchema(context: PortfolioContextType) {
     '@context': 'https://schema.org',
     '@graph': [
       personSchema,
+
+      /**
+       * @todo put all open source stuff like this
+       */
+      {
+        '@type': 'SoftwareSourceCode',
+        description:
+          'modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo',
+        name: 'Modern Stack Web Portfolio',
+        url: 'https://github.com/aretecode/modern-stack-web-portfolio',
+        keywords: 'personal,opensource,react,typescript,graphql,apollo',
+        datePublished: '2018-03-15',
+        dateCreated: '2018-03-20',
+        creator: personSchema,
+        image: {
+          '@type': 'ImageObject',
+          url:
+            'https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png',
+          height: 866,
+          width: 3140,
+        },
+      },
 
       {
         '@type': 'WebSite',
@@ -118,6 +149,7 @@ export class PortfolioSchema extends React.PureComponent {
 
   render() {
     const schemaData = fromContextToSchema(this.context)
+
     return <Script children={schemaData} />
   }
 }
