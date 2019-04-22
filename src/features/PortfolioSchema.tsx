@@ -31,6 +31,7 @@ function fromContextToSchema(context: PortfolioContextType) {
   const { basics, work } = context
 
   // https://moz.com/community/q/where-to-link-to-html-sitemap
+  // @todo https://schema.org/contributor for open source
   const personSchema = {
     '@type': 'Person',
     name: basics.name,
@@ -38,6 +39,9 @@ function fromContextToSchema(context: PortfolioContextType) {
     url: basics.website,
     email: basics.email,
     telephone: basics.telephone,
+    description: basics.summary,
+    image: basics.picture,
+    weight: '100kg',
     address: {
       '@type': 'PostalAddress',
       addressLocality: basics.city,
@@ -45,6 +49,9 @@ function fromContextToSchema(context: PortfolioContextType) {
       postalCode: basics.postalCode,
       streetAddress: basics.address,
     },
+    knowsAbout: basics.skills.map(skill => {
+      return { '@value': skill }
+    }),
   }
 
   /**
@@ -56,7 +63,8 @@ function fromContextToSchema(context: PortfolioContextType) {
     return {
       '@type': 'Organization',
       name: workItem.company,
-      url: personSchema.url + '/Portfolio/' + '#' + index,
+      // @todo: `+ '#' + index`
+      url: personSchema.url + '/Portfolio/',
       member: {
         '@type': 'OrganizationRole',
         member: personSchema,
