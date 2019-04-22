@@ -96,7 +96,7 @@ export default class MyApp extends App<{
         /**
          * @note !!! this does not properly ssr if we render `<App>` (even if we pass in apolloClient) !!!
          * @description Run all GraphQL queries
-         * @todo this is really bad @@perf
+         * @note this is really bad @@perf
          * @description ideally we would combine this into a single tree walking
          *              to get other data needed in ssr to rehydrate from
          * @note this uses old `Context`

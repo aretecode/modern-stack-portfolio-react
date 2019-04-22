@@ -1,7 +1,6 @@
 /**
  * @see https://material.io/design/components/cards.html#actions
  * @file @todo move out the `⇔` @@hack
- *
  * @todo on mobile, could expand to full screen
  */
 import * as React from 'react'

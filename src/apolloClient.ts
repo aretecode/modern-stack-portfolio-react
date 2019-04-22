@@ -3,9 +3,9 @@
  * @see https://github.com/bitinn/node-fetch/issues/49
  * @see https://github.com/apollographql/apollo-link/issues/83
  * @see https://github.com/github/fetch#sending-cookies
- * @todo https://www.apollographql.com/docs/react/features/performance.html#cache-redirects
+ * @see https://www.apollographql.com/docs/react/features/performance.html#cache-redirects
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/init-apollo.js
- * @todo https://www.apollographql.com/docs/link/links/state < docs are not accurate for apollo-boost with state link
+ * @note https://www.apollographql.com/docs/link/links/state < docs are not accurate for apollo-boost with state link
  */
 import {
   ApolloClient,
@@ -130,7 +130,7 @@ export function createInstance(
   const cache = inMemoryCache.restore(initialState)
 
   /**
-   * @todo currently only used for test env because
+   * @note currently only used for test env because
    *       - it's hijacking the http request
    *       - we switched to the apollo server graphql
    */
@@ -143,7 +143,6 @@ export function createInstance(
     })
 
   /**
-   * @todo
    * @requires https://github.com/apollographql/apollo-client/blob/master/docs/source/recipes/server-side-rendering.md#store-rehydration
    * @see https://github.com/apollographql/apollo-client/issues/1419
    * @see https://github.com/apollographql/apollo-client/blob/82a846c9591bcff975cc28d3786105b80a49b4ba/src/queries/queryTransform.ts#L30

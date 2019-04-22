@@ -9,8 +9,7 @@ import { keep } from '../utils/keep'
 /**
  * @see https://amp.dev/documentation/components/amp-img
  * @see https://amp.dev/documentation/guides-and-tutorials/learn/common_attributes
- * @todo ^ add typings
- * @todo get image width & height on node side (which is rendered on server only anyway if in amp context)
+ * could add ^ add typings when needed for every amp component in typings file
  * @see https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction
  * @see https://stackoverflow.com/questions/12539918/get-the-width-and-height-of-an-image-in-node-js
  */
@@ -79,8 +78,6 @@ export type ImageProps = (ImagePureProps & ImageAmpProps) & ImageReactProps
 /**
  * can add `<noscript><img>` inside
  * @see https://amp.dev/documentation/examples/components/amp-img/?referrer=ampbyexample.com
- * @todo add `srcset` because they don't stretch
- * @todo add renderImage for customization with styled-components to receive states?
  */
 export class ImageComponentWithoutForwardRef extends React.PureComponent<
   ImageProps
@@ -90,9 +87,6 @@ export class ImageComponentWithoutForwardRef extends React.PureComponent<
 
   render() {
     if (this.context.isAmp === false) {
-      /**
-       * @todo we may want to remove, but we only need to give this to amp
-       */
       const {
         isIntersecting,
         height,

@@ -14,7 +14,7 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
 
 /**
  * @see https://zeit.co/examples/nextjs/
- * @todo @see https://zeit.co/docs/v2/deployments/ignoring-source-paths
+ * @see https://zeit.co/docs/v2/deployments/ignoring-source-paths
  * @see https://github.com/hanford/next-offline/tree/master/examples/now2
  *
  * @todo add DefinePlugin

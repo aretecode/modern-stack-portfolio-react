@@ -13,7 +13,8 @@ import { NO_OP } from './EMPTY'
 
 /**
  * @see https://www.npmjs.com/package/image-size
- * @todo this mis-identifies image types since it gets it from the url instead of response
+ * @note this mis-identifies image types since it gets it from the url instead of response
+ *       though this does not affect ours
  */
 const sizeOf = process.browser ? NO_OP : require('image-size')
 

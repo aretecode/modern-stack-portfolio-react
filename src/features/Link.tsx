@@ -6,7 +6,7 @@ import * as React from 'react'
  */
 import { LinkProps } from 'react-router-dom'
 /**
- * @todo @see https://raw.githubusercontent.com/zeit/next.js/canary/packages/next/client/link.js
+ * @see https://raw.githubusercontent.com/zeit/next.js/canary/packages/next/client/link.js
  * ^ does not accept className
  * @see https://github.com/zeit/next.js/issues/1942#issuecomment-313925454
  */
