@@ -59,7 +59,7 @@ function fromContextToSchema(context: PortfolioContextType) {
        * @todo could add company shortname...
        */
       url:
-        personSchema.url + 'company=' + workItem.company.split(' ').unshift(),
+        personSchema.url + '?company=' + workItem.company.split(' ').unshift(),
       member: {
         '@type': 'OrganizationRole',
         member: personSchema,
