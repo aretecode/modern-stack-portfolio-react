@@ -47,7 +47,7 @@ export function fromContextToPersonSchema(context: PortfolioContextType) {
     '@type': 'Person',
     '@id': personId,
     name: basics.name,
-    sameAs: basics.profiles.map(profile => profile.url),
+    sameAs: basics.profiles.map(profile => profile.url).concat([personId]),
     url: basics.website,
     email: basics.email,
     telephone: basics.telephone,
@@ -133,7 +133,7 @@ function fromContextToSchema(
   const openSourceSchema: SoftwareSourceCodeSchemaType = {
     '@type': 'SoftwareSourceCode',
     description:
-      'modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo',
+      'Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo',
     name: 'Modern Stack Web Portfolio',
     url: 'https://github.com/aretecode/modern-stack-web-portfolio',
     keywords: 'portfolio,opensource,react,typescript,graphql,apollo',
