@@ -3,7 +3,8 @@
  */
 import * as React from 'react'
 import { Query } from 'react-apollo'
-import { EMPTY_ARRAY } from '../utils/EMPTY'
+import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
+import { isObj } from '../utils/is'
 import ResumeQuery from '../graphql/Resume'
 import { defaultApolloStatePortfolio } from '../apolloState'
 import { ResumeResponse, GraphqlProps, BasicsType, WorkType } from '../typings'
@@ -19,17 +20,29 @@ export const PortfolioContext = React.createContext<PortfolioContextType>(
 )
 
 /**
+ * @see /packages/graphql/src/graphql-modules/resume/utils.ts
+ */
+export function isValidResumeValue(
+  response: GraphqlProps<ResumeResponse>
+): response is GraphqlProps<Required<ResumeResponse>> {
+  return (
+    isObj(response) === true &&
+    isObj(response.data) === true &&
+    isObj(response.data!.resume) === true &&
+    Array.isArray(response.data!.resume.work) &&
+    isObj(response.data!.resume.basics) === true &&
+    Object.keys(response.data!.resume.basics).length > 0
+  )
+}
+/**
  * @todo @@perf can simplify & improve
  */
 function fromResponseToSafeValue(response: GraphqlProps<ResumeResponse>) {
-  const data = { portfolio: EMPTY_ARRAY, ...response.data! }
+  const portfolio = isValidResumeValue(response)
+    ? response.data!.resume
+    : defaultApolloStatePortfolio
+
   const { refetch, loading } = response
-  const portfolio = {
-    basics: data.resume.basics || {
-      profiles: EMPTY_ARRAY,
-    },
-    work: data.resume.work || EMPTY_ARRAY,
-  }
   const value = { isLoading: !!loading, refetch, ...portfolio }
   return value
 }
