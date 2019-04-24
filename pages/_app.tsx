@@ -18,6 +18,7 @@ import Header from '../src/features/Header'
 import { analyticsContainer } from '../src/features/GoogleTagManager'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { AppContextProvider } from '../src/features/AppContext'
+import { ServiceWorker } from '../src/features/ServiceWorker'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { URL } from '../src/utils/url'
 import { logger } from '../src/log'
@@ -61,6 +62,7 @@ export class InnerApp extends React.PureComponent<{
               <Footer />
               <StyledVectorFilter />
               <BelowTheFoldStyles />
+              <ServiceWorker />
             </PortfolioProvider>
           </DataLoadingProvider>
         </ApolloProvider>
