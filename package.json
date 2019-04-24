@@ -61,6 +61,8 @@
     "image-size": "0.7.3"
   },
   "devDependencies": {
+    "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
+    "danger": "7.1.3",
     "@types/gapi.client.tagmanager": "2.0.1",
     "intersection-observer": "0.5.1",
     "@types/lru-cache": "5.1.0",
