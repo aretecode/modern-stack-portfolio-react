@@ -2,6 +2,8 @@
  * @see https://material.io/design/components/cards.html#actions
  * @file @todo move out the `⇔` @@hack
  * @todo on mobile, could expand to full screen
+ *
+ * could style `Phone` & `Email` on mobile as buttons
  */
 import * as React from 'react'
 import { PortfolioHead } from '../../src/features/PortfolioHead'
@@ -28,6 +30,7 @@ import {
   AnimateHeightContextProvider,
   AnimateHeightContext,
 } from '../../src/features/AnimateHeight'
+import AmpStyles from './AmpStyles'
 
 /**
  * @see https://reactjs.org/docs/hooks-reference.html#usecontext
@@ -54,6 +57,7 @@ export function AboutPage() {
   const titleText = `About ${name}`
   return (
     <>
+      <AmpStyles />
       <PortfolioHead titleText={titleText} description={summary} />
       <PortfolioSchema />
       <AnimateHeightContextProvider>
