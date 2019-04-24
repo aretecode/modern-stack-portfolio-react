@@ -16,9 +16,10 @@
  * @todo split up this file
  */
 import * as React from 'react'
-import { useState, useRef } from 'react'
+import { useContext, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
+import { AmpContext } from '../AmpContext'
 
 /**
  * for better perf (_at least, bundle size_), could reuse this in the other `svg`s
@@ -70,6 +71,7 @@ export const AnimatedArrowIcon = (
   props: Partial<AnimatedArrowIconProps> & React.HTMLAttributes<SVGElement>
 ) => {
   const { icon, ...remainingProps } = props
+  const { isAmp } = useContext(AmpContext)
   const animationRef = useRef() as AnimationRefType
   const [direction, setDirection] = useState('down')
   /**
@@ -107,28 +109,30 @@ export const AnimatedArrowIcon = (
             : undefined
         }
       >
-        <animate
-          ref={animationRef}
-          // render the animation right away
-          // it will not have any values, duration will be 0,
-          // so nothing will happen
-          // then, after clicking, we will have the values,
-          // and our ref will restart the animation
-          begin="0s"
-          attributeName="points"
-          dur={hasRenderedAndAnimated === true ? '500ms' : '0ms'}
-          fill="freeze"
-          key="animation"
-          values={
-            // we only want to animate paths once it has rendered
-            // until
-            hasRenderedAndAnimated === true
-              ? direction === 'up'
-                ? UP_ARROW_PATH_VALUE
-                : DOWN_ARROW_PATH_VALUE
-              : ''
-          }
-        />
+        {isAmp === false && (
+          <animate
+            ref={animationRef}
+            // render the animation right away
+            // it will not have any values, duration will be 0,
+            // so nothing will happen
+            // then, after clicking, we will have the values,
+            // and our ref will restart the animation
+            begin="0s"
+            attributeName="points"
+            dur={hasRenderedAndAnimated === true ? '500ms' : '0ms'}
+            fill="freeze"
+            key="animation"
+            values={
+              // we only want to animate paths once it has rendered
+              // until
+              hasRenderedAndAnimated === true
+                ? direction === 'up'
+                  ? UP_ARROW_PATH_VALUE
+                  : DOWN_ARROW_PATH_VALUE
+                : ''
+            }
+          />
+        )}
       </polygon>
       {iconInvisibleSquarePathView}
     </StyledVector>
