@@ -117,9 +117,18 @@ export const StyledLabel = styled.h2`
  * @todo material-ui standard animation timings
  * @see https://www.styled-components.com/docs/basics#attaching-additional-props
  */
-const FilteredAboutMeImage = ({ isExpanded, ...remaining }) => (
-  <StyledImage {...remaining} />
-)
+export type FilteredAboutMeImageProps = {
+  isExpanded?: boolean
+} & React.ComponentProps<typeof StyledImage>
+const FilteredAboutMeImage = ({
+  isExpanded,
+  ...remaining
+}: FilteredAboutMeImageProps) => <StyledImage {...remaining} />
+
+/**
+ * @see https://material.io/design/motion/speed.html#easing for material easing on y axis
+ */
+export const materialHeightTiming = 'cubic-bezier(0.4, 0.0, 0.2, 1)'
 export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
   display: flex;
   object-fit: cover;
@@ -127,9 +136,10 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
   border-radius: 0.125rem;
   box-shadow: none;
 
-  transition: margin-top 0.5s ease-in-out, max-width 0.24s ease-in-out,
-    height 1s ease-in-out, object-position 0.8s ease-in-out,
-    box-shadow 0.24s ease-in-out;
+  transition: margin-top 0.5s ${materialHeightTiming},
+    max-width 0.24s ${materialHeightTiming}, height 1s ${materialHeightTiming},
+    object-position 0.8s ${materialHeightTiming},
+    box-shadow 0.24s ${materialHeightTiming};
 
   @media (max-width: 500px) {
     object-position: left;
@@ -196,9 +206,6 @@ export const StyledContactNav = styled.nav`
   }
 `
 
-/**
- * @todo split this out into pieces @@HACK
- */
 export const StyledAboutMeArticle = styled.article`
   background-color: #fff;
   margin: 9rem 1rem 9rem 1rem;
@@ -218,9 +225,5 @@ export const StyledAboutMeArticle = styled.article`
   }
   @media (max-width: 480px) {
     margin: 8rem 1rem 2rem;
-  }
-
-  address {
-    color: var(--color-text-unimportant);
   }
 `
