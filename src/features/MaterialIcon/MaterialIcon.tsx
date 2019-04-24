@@ -9,6 +9,10 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { IconNameType } from './typings'
 
+export const iconInvisibleSquarePathView = (
+  <path fill="none" d="M0 0h24v24H0V0z" key="background" />
+)
+
 /**
  * using if else for uglify (https://gist.github.com/aretecode/9b1765a897554b82da96591372d3c149)
  * key is here for if we switch the path (https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
@@ -49,7 +53,7 @@ export function MaterialIcon(props: {
     >
       <title key="title">{icon} icon</title>
       <path key="shape" d={fromIconNameToPath(icon)} />
-      <path fill="none" d="M0 0h24v24H0V0z" key="background" />
+      {iconInvisibleSquarePathView}
     </svg>
   )
 }
