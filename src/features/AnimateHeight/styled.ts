@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { MaterialIcon } from '../MaterialIcon'
+import { AnimatedArrowIcon } from '../MaterialIcon'
 
 /**
  * this default styled trigger is specific to portfolio page
  */
-export const StyledLargeMaterialIcon = styled(MaterialIcon)`
+export const StyledLargeMaterialIcon = styled(AnimatedArrowIcon)`
   width: 42px;
   height: 42px;
 `

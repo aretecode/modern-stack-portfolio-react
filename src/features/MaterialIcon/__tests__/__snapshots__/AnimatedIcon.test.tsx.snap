@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnimatedArrowIcon rendering should have the values in the correct direction: down 1`] = `"12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04;12.5472 8 19.6230229 12.8615485 18.1969774 14.8285039 12.3972809 11.1356625 6.6896367 14.8285039 5 12.8615485;12.4846802 8 19.9693604 14.8939819 18.386673 16.9936981 12.4846802 11.6221466 6.61653912 16.9414647 5 14.8939819"`;
+
+exports[`AnimatedArrowIcon rendering should have the values in the correct direction: initial 1`] = `
+<polygon
+  points="12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04"
+>
+  <animate
+    attributeName="points"
+    begin="0s"
+    dur="0ms"
+    fill="freeze"
+    values=""
+  />
+</polygon>
+`;
+
+exports[`AnimatedArrowIcon rendering should have the values in the correct direction: up 1`] = `"12.4846802 8 19.9693604 14.8939819 18.386673 16.9936981 12.4846802 11.6221466 6.61653912 16.9414647 5 14.8939819;12.5472 8 19.6230229 12.8615485 18.1969774 14.8285039 12.3972809 11.1356625 6.6896367 14.8285039 5 12.8615485;12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04"`;
