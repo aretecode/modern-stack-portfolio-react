@@ -1,3 +1,7 @@
+/**
+ * @note this file is ServerSide only
+ * @see _document
+ */
 import * as React from 'react'
 import { AmpContext } from '../AmpContext'
 import { Script } from '../Script'
@@ -18,21 +22,13 @@ export function GoogleTagManagerHeaderScript(props: { isAmp?: boolean }) {
       />
     )
   } else {
-    const dataLayerName = 'dataLayer'
-    const previewVariables = false
-    const additionalEvents = ''
     const scriptBody = `
-      (function(w,d,s,l,i){w[l]=w[l]||[];
-        w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js', ${additionalEvents}});
-        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl${
-          previewVariables !== false ? `+"${previewVariables}"` : ''
-        };
-        f.parentNode.insertBefore(j,f);
-      })(window,document,'script','${dataLayerName}','${GOOGLE_TAG_MANAGER_WEB_ID}');`.replace(
-      /[\n\s]+/gm,
-      ' '
-    )
+window.dataLayer = []; requestIdleCallback(() => {
+window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var f=document.getElementsByTagName('script')[0],j=document.createElement('script');
+j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_MANAGER_WEB_ID}';f.parentNode.insertBefore(j,f);
+})
+`
     return <Script>{scriptBody}</Script>
   }
 }
@@ -49,6 +45,9 @@ export function GoogleTagManagerBodyScript(props: { isAmp?: boolean }) {
       />
     )
   } else {
+    /**
+     * @todo may not need this
+     */
     return (
       <noscript>
         <iframe

@@ -1,8 +1,7 @@
-import { load, trackEvent } from './utils'
+import { trackEvent } from './utils'
 
 export class AnalyticsContainer {
   initializeAnalytics() {
-    load()
     this.trackPageView()
   }
   trackPageView() {

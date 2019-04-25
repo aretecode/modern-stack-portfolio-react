@@ -15,15 +15,69 @@ import {
   NormalizedCacheObject,
 } from 'apollo-boost'
 import { InMemoryCache } from 'apollo-boost'
-import { withClientState } from 'apollo-link-state'
 import { onError } from 'apollo-link-error'
 import { GraphQLError } from 'graphql'
 import { isEmpty, isObj } from './utils/is'
-import { EMPTY_OBJ } from './utils/EMPTY'
-import { apolloState, typeDefs } from './apolloState'
+import { EMPTY_OBJ, EMPTY_ARRAY } from './utils/EMPTY'
 import { logger } from './log'
 
 const IS_BROWSER = typeof window === 'object'
+
+/**
+ * this should eliminate some of the deps in production
+ * though it can be drastically improved
+ *
+ * @todo this is not removing it, can see by searching `[Network error]`
+ */
+function createDevLinks() {
+  if (process.env.NODE_ENV !== 'production') {
+    const logError = (error: GraphQLError): void => {
+      const { message, locations, path } = error
+      logger.error(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    }
+    const errorLink = onError(namedErrorResponseParams => {
+      const { graphQLErrors, networkError, response } = namedErrorResponseParams
+      const hasError = isObj(graphQLErrors) || !isEmpty(networkError)
+
+      if (isObj(graphQLErrors)) {
+        const list = graphQLErrors as GraphQLError[]
+        list.forEach(logError)
+      }
+      if (!isEmpty(networkError)) {
+        logger.error(`[Network error]: ${networkError}`)
+      }
+
+      if (hasError && isObj(response)) {
+        response.errors = undefined
+      }
+    })
+
+    /**
+     * @see https://github.com/apollographql/apollo-link/tree/master/packages/apollo-link-error
+     * @todo https://www.apollographql.com/docs/link/index.html#graphql-tools custom fetcher?
+     */
+    const consoleLink = new ApolloLink((operation, forward) => {
+      logger.info(`starting request for ${operation.operationName}`)
+
+      if (forward !== undefined) {
+        return forward(operation).map(data => {
+          logger.info(`ending request for ${operation.operationName}`)
+          return data
+        })
+      } else {
+        // tslint:disable:no-null-keyword
+        return null
+        // tslint:enable:no-null-keyword
+      }
+    })
+
+    return [consoleLink, errorLink]
+  } else {
+    return EMPTY_ARRAY
+  }
+}
 
 /**
  * @see apolloClient
@@ -79,49 +133,6 @@ export function createInstance(
     return httpLinkActual.request(operation, forward)
   })
 
-  const logError = (error: GraphQLError): void => {
-    const { message, locations, path } = error
-    logger.error(
-      `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-    )
-  }
-
-  const errorLink = onError(namedErrorResponseParams => {
-    const { graphQLErrors, networkError, response } = namedErrorResponseParams
-    const hasError = isObj(graphQLErrors) || !isEmpty(networkError)
-
-    if (isObj(graphQLErrors)) {
-      const list = graphQLErrors as GraphQLError[]
-      list.forEach(logError)
-    }
-    if (!isEmpty(networkError)) {
-      logger.error(`[Network error]: ${networkError}`)
-    }
-
-    if (hasError && isObj(response)) {
-      response.errors = undefined
-    }
-  })
-
-  /**
-   * @see https://github.com/apollographql/apollo-link/tree/master/packages/apollo-link-error
-   * @todo https://www.apollographql.com/docs/link/index.html#graphql-tools custom fetcher?
-   */
-  const consoleLink = new ApolloLink((operation, forward) => {
-    logger.info(`starting request for ${operation.operationName}`)
-
-    if (forward !== undefined) {
-      return forward(operation).map(data => {
-        logger.info(`ending request for ${operation.operationName}`)
-        return data
-      })
-    } else {
-      // tslint:disable:no-null-keyword
-      return null
-      // tslint:enable:no-null-keyword
-    }
-  })
-
   /**
    * @api @see https://github.com/apollographql/apollo-cache-persist#react
    * @api @see https://www.apollographql.com/docs/react/features/cache-updates.html#normalization
@@ -133,14 +144,13 @@ export function createInstance(
    * @note currently only used for test env because
    *       - it's hijacking the http request
    *       - we switched to the apollo server graphql
+   *
+   * @todo this is not dead code eliminating properly
+   *       at least it is not eliminating exports correctly
    */
   const stateLink =
     process.env.NODE_ENV === 'test' &&
-    withClientState({
-      cache,
-      typeDefs,
-      ...apolloState,
-    })
+    require('./apolloState').withState({ cache })
 
   /**
    * @requires https://github.com/apollographql/apollo-client/blob/master/docs/source/recipes/server-side-rendering.md#store-rehydration
@@ -150,9 +160,7 @@ export function createInstance(
    */
   const clientConfig: ApolloClientOptions<any> = {
     link: ApolloLink.from(
-      [consoleLink, errorLink, stateLink as ApolloLink, httpLink].filter(
-        Boolean
-      )
+      [...createDevLinks(), stateLink as ApolloLink, httpLink].filter(Boolean)
     ),
     cache,
     ssrMode: !process.browser,

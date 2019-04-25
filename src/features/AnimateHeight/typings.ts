@@ -30,3 +30,9 @@ export interface RenderTriggerProps {
   isExpanded: boolean
   onClick: AnyFunction
 }
+
+export type AmpAnimateHeightProps = AnimateHeightProps & {
+  onClick?: () => void
+  isExpanded?: boolean
+  children: React.ReactNode
+}

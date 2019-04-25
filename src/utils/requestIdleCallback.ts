@@ -1,6 +1,8 @@
 /**
  * @api @see https://developers.google.com/web/updates/2015/08/using-requestidlecallback
  * @see https://github.com/Microsoft/TypeScript/issues/21309
+ *
+ * @todo we could also set it on global as side effect
  */
 import { EMPTY_OBJ } from './EMPTY'
 

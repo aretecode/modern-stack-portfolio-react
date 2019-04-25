@@ -80,9 +80,72 @@ export function defaultRenderPicture(
   )
 }
 
+export type DynamicAmpImageProps = PictureIntersectionObserverProps & {
+  url?: string
+  state: PictureIntersectionObserverStateType
+}
+
+export function AmpImage(props: DynamicAmpImageProps): React.ReactNode {
+  const {
+    url = props.src,
+    state,
+    //
+    className,
+    renderPicture,
+    isAlwaysAboveTheFold,
+    srcSizeList,
+    forwardedRef,
+    ...remainingProps
+  } = props as Required<DynamicAmpImageProps>
+  const { isAmp } = React.useContext(AmpContext)
+
+  const renderImageProps = {
+    ...remainingProps,
+    forwardedRef,
+    src: url,
+    className,
+    children: (
+      <>
+        {(isAmp === true ||
+          state.hasIntersected === true ||
+          process.env.NODE_ENV === 'test') && (
+          <>
+            {isAmp === false &&
+              Array.isArray(srcSizeList) === true &&
+              srcSizeList.map(([size, srcSet]) => (
+                <source key={size} media={size} srcSet={srcSet} />
+              ))}
+            <StyledImage
+              isIntersecting={state.isIntersecting}
+              src={url}
+              key="img-when-intersected"
+              width={state.width}
+              height={state.height}
+              {...remainingProps}
+            />
+          </>
+        )}
+        {isAmp === false && (
+          <noscript key="img-for-non-js">
+            <StyledImage src={url} {...remainingProps} />
+          </noscript>
+        )}
+      </>
+    ),
+  }
+
+  // could do in child component
+  if (isAmp === true) {
+    return renderImageProps.children
+  } else {
+    return renderPicture(renderImageProps, state)
+  }
+}
+
 export class PictureIntersectionObserver extends React.PureComponent<
   PictureIntersectionObserverProps,
-  PictureIntersectionObserverStateType
+  PictureIntersectionObserverStateType,
+  DataLoadingContextType
 > {
   static defaultProps = {
     src: `https://noccumpr-cdn.sirv.com/images/full-james-wiens-profile-picture.png?format=webp`,
@@ -91,7 +154,10 @@ export class PictureIntersectionObserver extends React.PureComponent<
     isAlwaysAboveTheFold: false,
   }
   static contextType = DataLoadingContext
-  readonly context: DataLoadingContextType
+  /**
+   * @todo @config @@build @@errorProne issue with babel config for ts properties
+   */
+  // readonly context: DataLoadingContextType
 
   /**
    * @note used any here for usage on any element, then in target, cast to type
@@ -166,7 +232,9 @@ export class PictureIntersectionObserver extends React.PureComponent<
     )
 
     if (this.target === undefined) {
-      console.error('[ObservablePicture] missing target')
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[ObservablePicture] missing target')
+      }
     } else {
       this.observer.observe(this.target as HTMLElement)
     }
@@ -213,66 +281,17 @@ export class PictureIntersectionObserver extends React.PureComponent<
   }
 
   render() {
-    const {
-      src,
-      className,
-      renderPicture,
-      isAlwaysAboveTheFold,
-      srcSizeList,
-      ...remainingProps
-    } = this.props as Required<PictureIntersectionObserverProps>
-
     // @note this is sirv specific
     // can also add &h=${this.state.height}
-    const url = `${src}&w=${this.state.width}`
+    const url = `${this.props.src}&w=${this.state.width}`
 
-    // could split this up a bit
     return (
-      <AmpContext.Consumer>
-        {({ isAmp }) => {
-          const renderImageProps = {
-            ...remainingProps,
-            forwardedRef: this.wrapperRef,
-            src: url,
-            className,
-            children: (
-              <>
-                {(isAmp === true ||
-                  this.state.hasIntersected === true ||
-                  process.env.NODE_ENV === 'test') && (
-                  <>
-                    {isAmp === false &&
-                      Array.isArray(srcSizeList) === true &&
-                      srcSizeList.map(([size, srcSet]) => (
-                        <source key={size} media={size} srcSet={srcSet} />
-                      ))}
-                    <StyledImage
-                      isIntersecting={this.state.isIntersecting}
-                      src={src}
-                      key="img-when-intersected"
-                      width={this.state.width}
-                      height={this.state.height}
-                      {...remainingProps}
-                    />
-                  </>
-                )}
-                {isAmp === false && (
-                  <noscript key="img-for-non-js">
-                    <StyledImage src={url} {...remainingProps} />
-                  </noscript>
-                )}
-              </>
-            ),
-          }
-
-          // could do in child component
-          if (isAmp === true) {
-            return renderImageProps.children
-          } else {
-            return renderPicture(renderImageProps, this.state)
-          }
-        }}
-      </AmpContext.Consumer>
+      <AmpImage
+        {...this.props}
+        src={url}
+        forwardedRef={this.wrapperRef}
+        state={this.state}
+      />
     )
   }
 }

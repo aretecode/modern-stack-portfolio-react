@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyledSeparator } from '../../src/features/Separator'
+import { StyledSeparator } from '../../features/Separator'
 import { StyledTime } from './styled'
 
 export interface TimeRangeProps {

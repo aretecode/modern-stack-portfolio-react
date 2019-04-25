@@ -1,10 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import {
-  AnimateHeight,
-  AnimateHeightContext,
-} from '../../src/features/AnimateHeight'
-import { PortfolioContext } from '../../src/features/PortfolioContext'
+import { AnimateHeight } from '../../features/AnimateHeight/AnimateHeight'
+import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
+import { PortfolioContext } from '../../features/PortfolioContext'
 
 /**
  * @todo split out
@@ -29,7 +27,7 @@ export const StyledSkillsWrap = styled.aside`
     `};
 `
 
-const StyledSkillItem = styled.li`
+export const StyledSkillItem = styled.li`
   display: inline-flex;
   border-radius: 4px;
   margin: 0.25rem;

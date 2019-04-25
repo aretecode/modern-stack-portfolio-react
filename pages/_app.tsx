@@ -18,7 +18,6 @@ import Header from '../src/features/Header'
 import { analyticsContainer } from '../src/features/GoogleTagManager'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { AppContextProvider } from '../src/features/AppContext'
-import { ServiceWorker } from '../src/features/ServiceWorker'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { URL } from '../src/utils/url'
 import { logger } from '../src/log'
@@ -47,6 +46,9 @@ export class InnerApp extends React.PureComponent<{
 
     const contextValue = DataLoading.from(dataLoadingContextValue)
 
+    /**
+     * @todo error boundary around children
+     */
     return (
       <React.StrictMode>
         <ApolloProvider
@@ -62,7 +64,6 @@ export class InnerApp extends React.PureComponent<{
               <Footer />
               <StyledVectorFilter />
               <BelowTheFoldStyles />
-              <ServiceWorker />
             </PortfolioProvider>
           </DataLoadingProvider>
         </ApolloProvider>
@@ -92,7 +93,9 @@ export default class MyApp extends App<{
     const apolloClient = initApolloClient(undefined, url)
 
     if (!process.browser) {
-      logger.debug('[_app] starting ssr (server)')
+      if (process.env.NODE_ENV === 'development') {
+        logger.debug('[_app] starting ssr (server)')
+      }
 
       try {
         /**
@@ -128,14 +131,18 @@ export default class MyApp extends App<{
       // head side effect therefore need to be cleared manually
       Head.rewind()
     } else {
-      logger.debug('[_app] starting ssr (browser, rehydrate)')
+      if (process.env.NODE_ENV === 'development') {
+        logger.debug('[_app] starting ssr (browser, rehydrate)')
+      }
       analyticsContainer.initializeAnalytics()
     }
 
     // Extract query data from the Apollo store
     const apolloClientState = apolloClient.cache.extract()
 
-    logger.debug('[_app] done ssr')
+    if (process.env.NODE_ENV === 'development') {
+      logger.debug('[_app] done ssr')
+    }
 
     return {
       ...appProps,
@@ -156,7 +163,9 @@ export default class MyApp extends App<{
      * using this because the url was out of date
      */
     Router.onRouteChangeComplete = (pathUrl?: string) => {
-      logger.debug('[_app] route complete ' + pathUrl)
+      if (process.env.NODE_ENV === 'development') {
+        logger.debug('[_app] route complete ' + pathUrl)
+      }
       this.setState({
         url: new URL(window.location.href),
       })

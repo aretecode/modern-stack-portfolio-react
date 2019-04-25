@@ -6,10 +6,13 @@
  * could style `Phone` & `Email` on mobile as buttons
  */
 import * as React from 'react'
-import { PortfolioHead } from '../../src/features/PortfolioHead'
-import { PortfolioContext } from '../../src/features/PortfolioContext'
-import { PortfolioSchema } from '../../src/features/PortfolioSchema'
-import { Address } from './Address'
+import { PortfolioHead } from '../../features/PortfolioHead'
+import { PortfolioContext } from '../../features/PortfolioContext'
+import { PortfolioSchema } from '../../features/PortfolioSchema'
+import {
+  AnimateHeightContextProvider,
+  AnimateHeightContext,
+} from '../../features/AnimateHeight/AnimateHeightContext'
 import {
   StyledSocialProfiles,
   StyledName,
@@ -26,20 +29,17 @@ import {
   StyledCardDivider,
 } from './styled'
 import { Skills } from './Skills'
-import {
-  AnimateHeightContextProvider,
-  AnimateHeightContext,
-} from '../../src/features/AnimateHeight'
-import AmpStyles from './AmpStyles'
 
 /**
  * @see https://reactjs.org/docs/hooks-reference.html#usecontext
  */
-function AboutMeImage(props: React.ComponentProps<typeof StyledAboutMeImg>) {
+export function AboutMeImage(
+  props: React.ComponentProps<typeof StyledAboutMeImg>
+) {
   const value = React.useContext(AnimateHeightContext)
   return <StyledAboutMeImg {...props} isExpanded={value.isExpanded} />
 }
-function CardDivider(props: {}) {
+export function CardDivider(props: {}) {
   const value = React.useContext(AnimateHeightContext)
   return <StyledCardDivider isExpanded={value.isExpanded} />
 }
@@ -57,7 +57,6 @@ export function AboutPage() {
   const titleText = `About ${name}`
   return (
     <>
-      <AmpStyles />
       <PortfolioHead titleText={titleText} description={summary} />
       <PortfolioSchema />
       <AnimateHeightContextProvider>
@@ -98,3 +97,5 @@ export function AboutPage() {
     </>
   )
 }
+
+export default AboutPage

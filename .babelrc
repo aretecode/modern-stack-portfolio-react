@@ -2,17 +2,47 @@
   "env": {
     "development": {
       "presets": [
-        "next/babel",
-        "@zeit/next-typescript/babel"
+        [
+          "@babel/preset-env",
+          {
+            "targets": { "chrome": 73 },
+            "debug": true,
+            "modules": false,
+            "useBuiltIns": false,
+            "shippedProposals": true
+          },
+        ],
+        "@babel/preset-react",
+        "@babel/preset-typescript"
       ],
-      "plugins": [["styled-components", { "ssr": true, "pure": true, "displayName": true }]]
+      "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["styled-components", { "ssr": true, "pure": true, "displayName": true }]
+      ]
     },
     "production": {
       "presets": [
-        "next/babel",
-        "@zeit/next-typescript/babel"
+        [
+          "@babel/preset-env",
+          {
+            "targets": { "chrome": 73 },
+            "debug": true,
+            "modules": false,
+            "useBuiltIns": false,
+            "shippedProposals": true
+          },
+        ],
+        "@babel/preset-react",
+        "@babel/preset-typescript"
       ],
-      "plugins": [["styled-components", { "ssr": true, "pure": true, "displayName": false }]]
+      "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["styled-components", { "ssr": true, "pure": true, "displayName": false }]
+      ]
     },
     "test": {
       "presets": [
@@ -24,9 +54,14 @@
             }
           }
         ],
-        "@zeit/next-typescript/babel"
+        "@babel/preset-typescript"
       ],
-      "plugins": [["styled-components", { "ssr": true, "pure": true, "displayName": true }]]
+      "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["styled-components", { "ssr": true, "pure": true, "displayName": true }]
+      ]
     }
   }
 }

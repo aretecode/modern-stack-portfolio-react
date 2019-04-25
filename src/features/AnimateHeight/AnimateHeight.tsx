@@ -1,68 +1,27 @@
 import * as React from 'react'
-import Head from 'next/head'
 import { logger } from '../../log'
 import { AnimateHeightProps, AnimateHeightContextStateType } from './typings'
 import { collapseSection, expandSection } from './utils'
 import { defaultRenderTrigger } from './renderProps'
 import { AnimateHeightContext } from './AnimateHeightContext'
-import { AmpContext } from '../AmpContext'
-
-export type AmpAnimateHeightProps = AnimateHeightProps & {
-  onClick: () => void
-  isExpanded: boolean
-  children: React.ReactNode
-}
-export function AmpAnimateHeight(props: AmpAnimateHeightProps) {
-  const { isAmp } = React.useContext(AmpContext)
-  const { renderTrigger, children, onClick, isExpanded } = props
-
-  /**
-   * @see https://amp.dev/documentation/components/amp-accordion?referrer=ampproject.org
-   * @see /packages/client/pages/About/AmpStyles.tsx
-   * @todo split to a component
-   */
-  if (isAmp === true) {
-    return (
-      <>
-        <Head>
-          <script
-            async
-            custom-element="amp-accordion"
-            src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"
-          />
-        </Head>
-        <amp-accordion layout="container">
-          <section>
-            <header>{renderTrigger!({ isExpanded } as any)}</header>
-            {children}
-          </section>
-        </amp-accordion>
-      </>
-    )
-  } else {
-    return (
-      <>
-        {renderTrigger!({
-          onClick,
-          isExpanded,
-        })}
-        {children}
-      </>
-    )
-  }
-}
 
 /**
  * if needed, can use ref in `componentDidUpdate`
  */
 export class AnimateHeightComponent extends React.PureComponent<
-  AnimateHeightProps
+  AnimateHeightProps,
+  unknown,
+  AnimateHeightContextStateType
 > {
   static defaultProps = {
     renderTrigger: defaultRenderTrigger,
   }
   static contextType = AnimateHeightContext
-  readonly context: AnimateHeightContextStateType
+
+  /**
+   * @todo @@perf @@config @@build doing it like this causes an issue in compilation with babel
+   */
+  // readonly context: AnimateHeightContextStateType
 
   constructor(props: AnimateHeightProps, state: any) {
     super(props, state)
@@ -166,14 +125,14 @@ export class AnimateHeightComponent extends React.PureComponent<
 
   render() {
     const { renderTrigger, children } = this.props
-
     return (
-      <AmpAnimateHeight
-        renderTrigger={renderTrigger}
-        children={children}
-        onClick={this.handleToggle}
-        isExpanded={this.isExpanded}
-      />
+      <>
+        {renderTrigger!({
+          onClick: this.handleToggle,
+          isExpanded: this.isExpanded,
+        })}
+        {children}
+      </>
     )
   }
 }

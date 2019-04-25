@@ -11,15 +11,7 @@ export function toGlobalThis() {
   return process.browser ? (window as any) : (global as any)
 }
 
-export function globalDataLayer() {
-  const dataLayer = toGlobalThis().dataLayer || []
-  return dataLayer as TagManagerEventType[]
-}
-
-export function load() {
-  toGlobalThis().dataLayer = globalDataLayer()
-}
-
 export function trackEvent(args: TagManagerEventType) {
-  globalDataLayer().push(args)
+  const globalDataLayer = toGlobalThis().dataLayer as TagManagerEventType[]
+  globalDataLayer.push(args)
 }
