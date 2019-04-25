@@ -25,7 +25,8 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  */
 const nextConfig = {
   env: envWithoutNodeEnv,
-  // target: 'serverless',
+  target:
+    process.env.DISABLE_SERVERLESS !== undefined ? 'server' : 'serverless',
   webpack(config, options) {
     config.plugins.push(new EnvironmentPlugin(env))
 
