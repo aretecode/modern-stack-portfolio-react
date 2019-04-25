@@ -142,6 +142,9 @@ export function AmpImage(props: DynamicAmpImageProps): JSX.Element {
   }
 }
 
+export const HAS_SUPPORT_FOR_INTERSECTION_OBSERVER =
+  typeof IntersectionObserver !== 'function'
+
 export class PictureIntersectionObserver extends React.PureComponent<
   PictureIntersectionObserverProps,
   PictureIntersectionObserverStateType,
@@ -166,7 +169,9 @@ export class PictureIntersectionObserver extends React.PureComponent<
     this.props.ref || this.props.forwardedRef || React.createRef<any>()
   observer: IntersectionObserver | undefined
   state = {
-    hasIntersected: !!this.props.isAlwaysAboveTheFold,
+    hasIntersected:
+      !!this.props.isAlwaysAboveTheFold ||
+      HAS_SUPPORT_FOR_INTERSECTION_OBSERVER,
     isIntersecting: false,
     height: 0,
     width: 0,
@@ -230,7 +235,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
       if (process.env.NODE_ENV === 'development') {
         console.error('[ObservablePicture] missing target')
       }
-    } else if (typeof IntersectionObserver === 'function') {
+    } else if (HAS_SUPPORT_FOR_INTERSECTION_OBSERVER === true) {
       this.observer = new IntersectionObserver(
         handleObservingChange,
         observerOptions
