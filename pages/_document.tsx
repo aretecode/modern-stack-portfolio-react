@@ -56,7 +56,7 @@ class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
 class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
   render() {
     if (this.props.isAmp === false) {
-      return <link rel="amphtml" href={this.props.href + '?amp'} />
+      return <link rel="amphtml" href={this.props.href + '/amp'} />
     }
 
     return (
@@ -64,7 +64,7 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
         <link
           key={'canonical-link'}
           rel="canonical"
-          href={this.props.href.replace('?amp', '')}
+          href={this.props.href.replace('/amp', '')}
         />
         <style
           key={'style'}
@@ -100,7 +100,7 @@ export interface DocumentProps {
 export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
     const url = fromReqToUrl(ctx.req as any)
-    const isAmp = url.href.includes('?amp')
+    const isAmp = url.href.includes('?amp') || url.href.includes('/amp')
     const ampScripts = new AmpScripts()
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
