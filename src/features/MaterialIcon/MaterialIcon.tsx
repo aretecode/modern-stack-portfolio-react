@@ -32,10 +32,11 @@ export function fromIconNameToPath(name: IconNameType) {
     return 'M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z'
   } else if (name === 'down_arrow') {
     return 'M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z'
-  }
-
-  if (process.env.NODE_ENV === 'development') {
-    throw new Error('must pass icon name into icon component')
+  } else {
+    if (process.env.NODE_ENV === 'development') {
+      throw new Error('must pass icon name into icon component')
+    }
+    return ''
   }
 }
 

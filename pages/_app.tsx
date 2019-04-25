@@ -80,7 +80,7 @@ export default class MyApp extends App<{
   url: URL
 }> {
   static async getInitialProps(appContext: NextAppContext) {
-    const { Component, router, ctx } = appContext
+    const { Component, ctx } = appContext
     const url = fromReqToUrl(ctx.req as any)
     const pageProps = {}
 
@@ -125,7 +125,7 @@ export default class MyApp extends App<{
       }
 
       // load context ssr data
-      const result = await dataLoadingContextValue.all()
+      await dataLoadingContextValue.all()
 
       // getDataFromTree does not call componentWillUnmount
       // head side effect therefore need to be cleared manually

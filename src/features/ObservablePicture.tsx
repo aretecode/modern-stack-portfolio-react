@@ -62,7 +62,7 @@ export type PictureIntersectionObserverProps = ImageProps & {
   renderPicture?: (
     props: PictureIntersectionObserverProps,
     state: PictureIntersectionObserverStateType
-  ) => React.ReactNode
+  ) => JSX.Element
 
   srcSizeList?: SrcSizeListType
   isAlwaysAboveTheFold?: boolean
@@ -85,7 +85,7 @@ export type DynamicAmpImageProps = PictureIntersectionObserverProps & {
   state: PictureIntersectionObserverStateType
 }
 
-export function AmpImage(props: DynamicAmpImageProps): React.ReactNode {
+export function AmpImage(props: DynamicAmpImageProps): JSX.Element {
   const {
     url = props.src,
     state,
@@ -287,7 +287,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
 
     return (
       <AmpImage
-        {...this.props}
+        {...this.props as any}
         src={url}
         forwardedRef={this.wrapperRef}
         state={this.state}

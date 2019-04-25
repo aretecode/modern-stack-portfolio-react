@@ -50,6 +50,9 @@
     ]
   },
   "exclude": [
+    "**/static",
+    "**/_next",
+    "**/dist",
     "**/.next",
     "**/__assets/*",
     "**/__tests__",

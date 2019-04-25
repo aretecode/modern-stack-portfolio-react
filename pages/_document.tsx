@@ -114,7 +114,7 @@ export default class MyDocument extends Document<DocumentProps> {
             return sheet.collectStyles(
               <AmpContext.Provider value={{ isAmp }}>
                 {isAmp === true ? (
-                  <AmpScriptsManager ampScripts={ampScripts}>
+                  <AmpScriptsManager ampScripts={ampScripts as any}>
                     <App {...props} />
                   </AmpScriptsManager>
                 ) : (
@@ -172,15 +172,8 @@ export default class MyDocument extends Document<DocumentProps> {
   }
 
   render() {
-    const {
-      isAmp,
-      title,
-      url,
-      ampScriptTags,
-      ampStyleTag,
-      ...remainingProps
-    } = this.props
-    const shouldLazyLoadAnalytics = url.href.includes('lazyLoadAnalytics')
+    const { isAmp, title, url, ampScriptTags, ampStyleTag } = this.props
+    // const shouldLazyLoadAnalytics = url.href.includes('lazyLoadAnalytics')
 
     return (
       <AmpHtml isAmp={isAmp}>

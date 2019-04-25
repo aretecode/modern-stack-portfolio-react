@@ -15,9 +15,9 @@ export class TimeRange extends React.PureComponent<TimeRangeProps> {
     const { startDate, endDate } = this.props
     return (
       <>
-        <StyledTime datetime={startDate}>{startDate}</StyledTime>
+        <StyledTime dateTime={startDate}>{startDate}</StyledTime>
         <StyledSeparator />
-        <StyledTime datetime={endDate}>{endDate}</StyledTime>
+        <StyledTime dateTime={endDate}>{endDate}</StyledTime>
       </>
     )
   }
