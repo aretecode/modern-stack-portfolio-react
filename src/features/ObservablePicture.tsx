@@ -283,7 +283,10 @@ export class PictureIntersectionObserver extends React.PureComponent<
   render() {
     // @note this is sirv specific
     // can also add &h=${this.state.height}
-    const url = `${this.props.src}&w=${this.state.width}`
+    const url =
+      this.state.width > 0
+        ? `${this.props.src}&w=${this.state.width}`
+        : this.props.src
 
     return (
       <AmpImage
