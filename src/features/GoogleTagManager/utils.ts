@@ -12,6 +12,6 @@ export function toGlobalThis() {
 }
 
 export function trackEvent(args: TagManagerEventType) {
-  const globalDataLayer = toGlobalThis().dataLayer as TagManagerEventType[]
+  const globalDataLayer: TagManagerEventType[] = toGlobalThis().dataLayer || []
   globalDataLayer.push(args)
 }
