@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { ProfileType } from '../../typings'
 import { MaterialIcon } from '../MaterialIcon'
-import { PortfolioContext, PortfolioContextType } from '../PortfolioContext'
+import { PortfolioContext } from '../PortfolioContext'
 import { StyledLink } from '../Link'
 
 /**
@@ -81,25 +81,20 @@ export function renderProfileItem(profile: ProfileType, index?: number) {
  * @poc
  *    <img src="https://user-images.githubusercontent.com/4022631/55691849-01c82e80-59c0-11e9-8c5b-69f64a055b1f.png" />
  */
-export default class SocialProfiles extends React.PureComponent<
-  React.ComponentProps<typeof StyledSocialProfilesWrap>
-> {
-  static contextType = PortfolioContext
-  readonly context: PortfolioContextType
+export default function SocialProfiles(
+  props: React.ComponentProps<typeof StyledSocialProfilesWrap>
+) {
+  const { profiles, resumeWebsite } = React.useContext(PortfolioContext).basics
 
-  render() {
-    const { profiles, resumeWebsite } = this.context.basics
-
-    return (
-      <StyledSocialProfilesWrap {...this.props}>
-        {Array.isArray(profiles) && profiles.map(renderProfileItem)}
-        {resumeWebsite !== '' &&
-          renderProfileItem({
-            url: resumeWebsite,
-            username: 'download resume',
-            network: 'pdf',
-          })}
-      </StyledSocialProfilesWrap>
-    )
-  }
+  return (
+    <StyledSocialProfilesWrap {...props}>
+      {Array.isArray(profiles) && profiles.map(renderProfileItem)}
+      {resumeWebsite !== '' &&
+        renderProfileItem({
+          url: resumeWebsite,
+          username: 'download resume',
+          network: 'pdf',
+        })}
+    </StyledSocialProfilesWrap>
+  )
 }

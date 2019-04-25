@@ -3,8 +3,8 @@ import * as React from 'react'
  * since we are using next, this is not working
  * @example
  *     import { Link as BaseLink, LinkProps } from 'react-router-dom'
+ *     import { LinkProps } from 'react-router-dom'
  */
-import { LinkProps } from 'react-router-dom'
 /**
  * @see https://raw.githubusercontent.com/zeit/next.js/canary/packages/next/client/link.js
  * ^ does not accept className
@@ -12,6 +12,12 @@ import { LinkProps } from 'react-router-dom'
  */
 import BaseLink from 'next/link'
 import styled from 'styled-components'
+
+export type LinkProps = React.HTMLAttributes<HTMLAnchorElement> & {
+  to?: string
+  href?: string
+  rel?: string
+}
 
 export const StyledHref = styled.a``
 

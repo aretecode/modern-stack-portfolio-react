@@ -1,3 +1,1 @@
-export { AboutPage as default } from './AboutPage'
-export { AboutPage } from './AboutPage'
-export { Address } from './Address'
+export { default } from '../../src/pages/About/AboutPage'

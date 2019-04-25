@@ -300,7 +300,7 @@ exports[`app should match snapshot 1`] = `
   object-fit: cover;
   border-radius: 0.125rem;
   box-shadow: none;
-  transition: margin-top 0.5s ease-in-out,max-width 0.24s ease-in-out, height 1s ease-in-out,object-position 0.8s ease-in-out, box-shadow 0.24s ease-in-out;
+  transition: margin-top 0.5s cubic-bezier(0.4,0.0,0.2,1), max-width 0.24s cubic-bezier(0.4,0.0,0.2,1),height 1s cubic-bezier(0.4,0.0,0.2,1), object-position 0.8s cubic-bezier(0.4,0.0,0.2,1), box-shadow 0.24s cubic-bezier(0.4,0.0,0.2,1);
 }
 
 .c17 {
@@ -338,10 +338,6 @@ exports[`app should match snapshot 1`] = `
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-}
-
-.c13 address {
-  color: var(--color-text-unimportant);
 }
 
 .c30 {
@@ -742,7 +738,7 @@ exports[`app should match snapshot 1`] = `
   <script
     type="application/ld+json"
   >
-    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
   </script>
   <main
     class=""
@@ -808,6 +804,7 @@ exports[`app should match snapshot 1`] = `
               >
                 <time
                   class="c11"
+                  datetime="01/02/2013"
                 >
                   01/02/2013
                 </time>
@@ -819,6 +816,7 @@ exports[`app should match snapshot 1`] = `
                 </div>
                 <time
                   class="c11"
+                  datetime="current"
                 >
                   current
                 </time>
@@ -832,7 +830,7 @@ exports[`app should match snapshot 1`] = `
   <script
     type="application/ld+json"
   >
-    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"modern stack web resume in react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
   </script>
   <article
     class="c13"
@@ -939,19 +937,26 @@ exports[`app should match snapshot 1`] = `
         class="c29"
       >
         <svg
-          class="c30"
+          class="c30 "
           role="img"
           title="show"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
         >
           <title>
-            down_arrow
-             icon
+            Arrow pointing down or up
           </title>
-          <path
-            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"
-          />
+          <polygon
+            points="12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04"
+          >
+            <animate
+              attributeName="points"
+              begin="0s"
+              dur="0ms"
+              fill="freeze"
+              values=""
+            />
+          </polygon>
           <path
             d="M0 0h24v24H0V0z"
             fill="none"
@@ -1076,6 +1081,1046 @@ exports[`app should match snapshot 1`] = `
   </footer>
   <svg
     class="c39"
+  >
+    <filter
+      color-interpolation-filters="sRGB"
+      height="100%"
+      id="green-tint"
+      width="100%"
+      x="0"
+      y="0"
+    >
+      <fecolormatrix
+        type="matrix"
+        values="0.36 0 0 0  0.02
+              0.56 0 0 0  0.06
+              0.40 0 0 0  0.16
+                0  0 0 1  0"
+      />
+    </filter>
+  </svg>
+</div>
+`;
+
+exports[`app should match snapshot for amp 1`] = `
+.c5 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c5:link,
+.c5:visited {
+  color: var(--color-link);
+}
+
+.c5:focus {
+  outline: thin dotted;
+}
+
+.c5:hover {
+  color: #aaa;
+}
+
+.c5:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c13 {
+  padding: 1rem;
+  width: 75px;
+  display: inline-flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+  object-position: bottom;
+  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+}
+
+.c14 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c14:link,
+.c14:visited {
+  color: var(--color-link);
+}
+
+.c14:focus {
+  outline: thin dotted;
+}
+
+.c14:hover {
+  color: #aaa;
+}
+
+.c14:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c15 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.c32 {
+  background-color: var(--color-material-background-purple);
+  padding: 2rem 1.25rem;
+}
+
+.c32 p {
+  color: var(--color-text-body);
+}
+
+.c33 {
+  color: #df0909;
+  display: inline-flex;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  height: 12px;
+}
+
+.c34 {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  transform: translateY(1px);
+  display: inline-flex;
+  width: 38px;
+  height: 14px;
+}
+
+.c35 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+  padding-left: 0.3rem;
+  text-decoration: underline;
+}
+
+.c35:link,
+.c35:visited {
+  color: var(--color-link);
+}
+
+.c35:focus {
+  outline: thin dotted;
+}
+
+.c35:hover {
+  color: #aaa;
+}
+
+.c35:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c36 {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  width: 25vw;
+  height: unset;
+}
+
+.c36 > a {
+  width: unset;
+  flex-basis: unset;
+  display: initial;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.c36 > a:last-child {
+  display: none;
+}
+
+.c36 > a > svg:first-child {
+  fill: white;
+}
+
+.c4 {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+.c4 > li {
+  display: inline-flex;
+}
+
+.c4 > li > a {
+  padding: 1rem;
+}
+
+.c0 {
+  background-color: var(--color-material-background-purple);
+  position: absolute;
+  background: rgba(0,0,0,0.2);
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+.c2 {
+  color: var(--color-text-body);
+}
+
+.c1 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c1:link,
+.c1:visited {
+  color: var(--color-link);
+}
+
+.c1:focus {
+  outline: thin dotted;
+}
+
+.c1:hover {
+  color: #aaa;
+}
+
+.c1:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c37 {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.c11 {
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+}
+
+.c24 {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.2em;
+  color: var(--color-link);
+}
+
+.c24:link,
+.c24:visited {
+  color: var(--color-link);
+}
+
+.c24:focus {
+  outline: thin dotted;
+}
+
+.c24:hover {
+  color: #aaa;
+}
+
+.c24:link {
+  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
+}
+
+.c24.c24.c24 {
+  color: unset;
+  text-decoration: initial;
+  letter-spacing: initial;
+}
+
+.c25 {
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+  width: 90%;
+  border: none;
+  border-top: 1px solid var(--color-dark-background-light);
+  border-bottom: 1px solid var(--color-dark-background-dark);
+  opacity: 0.1;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 0;
+  height: 2px;
+  order: 1;
+  transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
+}
+
+.c21 {
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+  color: var(--color-text-secondary);
+  border: none;
+  border-top: 5px solid var(--color-text-secondary);
+  margin: 0;
+  padding: 0;
+  height: 0.75rem;
+  width: 8vw;
+}
+
+.c18 {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+.c20 {
+  font-style: unset;
+  padding-right: 0.15rem;
+  opacity: 0.3;
+}
+
+.c22 {
+  margin-top: 1rem;
+}
+
+.c19 {
+  color: var(--color-dark-background-main);
+  margin: 0;
+  margin-top: -0.5rem;
+  font-size: 1.2rem;
+}
+
+.c16 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: calc(100% - 75px);
+}
+
+.c17 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  word-break: break-word;
+}
+
+.c23 {
+  display: flex;
+  padding: 2rem 0;
+  transition: flex-direction 500ms ease-in-out;
+}
+
+.c23 > section {
+  flex-basis: 50%;
+}
+
+.c23 > section > header {
+  font-weight: bold;
+}
+
+.c12 {
+  background-color: #fff;
+  margin: 9rem 1rem 9rem 1rem;
+  border-radius: 0.125rem;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.c28 {
+  width: 42px;
+  height: 42px;
+}
+
+.c26 {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  transition: justify-content 500ms ease-in-out;
+  margin-right: 1rem;
+}
+
+.c27 {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  appearance: none;
+  user-select: none;
+}
+
+.c29 {
+  overflow: hidden;
+  transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
+  height: 0;
+  background: white;
+  width: 100vw;
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  order: 4;
+}
+
+.c31 {
+  display: inline-flex;
+  border-radius: 4px;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  background: var(--color-dark-background-dark);
+  color: white;
+  border-radius: 6px;
+}
+
+.c30 {
+  margin: 0;
+  padding: 1rem;
+}
+
+.c8 {
+  color: var(--color-text-body);
+  background-color: var(--color-dark-background-main);
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  background-clip: border-box;
+  border-radius: 0.125rem;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+}
+
+.c8 figcaption {
+  padding: 1.25rem;
+}
+
+.c8 header {
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.c8 div[role='separator'],
+.c8 time {
+  font-size: 80%;
+  font-weight: 400;
+  color: var(--color-text-unimportant);
+}
+
+.c8 a {
+  color: var(--color-text-unimportant);
+  border-color: var(--color-text-unimportant);
+  border-width: 1px;
+}
+
+.c8 a:link,
+.c8 a:visited {
+  color: var(--color-text-unimportant);
+}
+
+.c8 a::after {
+  display: none;
+}
+
+.c7 {
+  display: grid;
+  padding: 1rem;
+  grid-gap: 0.5rem;
+  grid-auto-rows: auto;
+}
+
+.c10 {
+  display: inline-flex;
+}
+
+.c9 {
+  margin: 0;
+  padding: 0;
+}
+
+.c6 {
+  background-color: var(--color-orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0 2rem 0;
+}
+
+.c6 > h1 {
+  color: white;
+  font-size: 3em;
+  font-weight: 300;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
+}
+
+@media (max-width:1023px) {
+  .c13 {
+    width: 75%;
+    flex-direction: row;
+    order: 2;
+    height: unset;
+    justify-content: unset;
+    padding: 0 0 0.5rem 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c14 {
+    flex-basis: 33%;
+    width: 33%;
+    text-align: center;
+  }
+}
+
+@media (max-width:480px) {
+  .c3 {
+    width: 100%;
+  }
+}
+
+@media (max-width:480px) {
+  .c0 {
+    height: 7rem;
+  }
+}
+
+@media (max-width:480px) {
+  .c2 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width:480px) {
+  .c1 {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c25 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width:1024px) {
+  .c25 {
+    visibility: hidden;
+    margin: 0;
+  }
+}
+
+@media (min-width:1024px) {
+  .c18 {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width:1024px) {
+  .c18 {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width:1024px) {
+  .c22 {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width:1024px) {
+  .c22 {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width:1024px) {
+  .c19 {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c16 {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c17 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width:1023px) {
+  .c23 {
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+}
+
+@media (max-width:1023px) {
+  .c12 {
+    width: calc(100% - 2rem);
+    height: unset;
+    flex-wrap: wrap;
+    margin: 5.5rem 1rem 2rem 1rem;
+  }
+}
+
+@media (max-width:480px) {
+  .c12 {
+    margin: 8rem 1rem 2rem;
+  }
+}
+
+@media (max-width:1023px) {
+  .c26 {
+    justify-content: center;
+    flex-basis: 25%;
+    order: 3;
+    margin-right: 0;
+    margin-top: -0.25rem;
+  }
+}
+
+@media (min-width:1024px) {
+  .c26 {
+    margin-top: -3.5rem;
+  }
+}
+
+@media (max-width:1023px) {
+  .c27 {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (min-width:1024px) {
+  .c8 {
+    padding: 0 1rem 0 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c8 {
+    box-shadow: 0 1rem 0.75rem rgba(0,0,0,0.19), 0 0.5rem 0.5rem rgba(0,0,0,0.23);
+  }
+}
+
+@media (min-width:1024px) {
+  .c9 {
+    display: grid;
+    grid-template-columns: calc(50vw - 2rem) calc(50vw - 2rem);
+    grid-gap: 1rem;
+  }
+
+  .c9 picture,
+  .c9 img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .c9 figcaption {
+    padding: 1.25rem 0;
+  }
+}
+
+@media (max-width:1023px) {
+  .c9 img {
+    max-height: 65vh;
+  }
+}
+
+@media (max-width:480px) {
+  .c6 {
+    padding-top: 8rem;
+  }
+}
+
+<div>
+  <header
+    class="c0"
+    role="banner"
+  >
+    <a
+      class="c1 "
+      href="/"
+    >
+      <p
+        class="c2"
+        id="logo"
+      />
+    </a>
+    <nav
+      class="c3"
+    >
+      <ul
+        class="c4"
+      >
+        <li>
+          <a
+            class="c5 "
+            href="/Portfolio"
+            rel="me"
+          >
+            work
+          </a>
+        </li>
+        <li>
+          <a
+            class="c5 "
+            href="/"
+            rel="me"
+          >
+            about
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
+  </script>
+  <main
+    class=""
+  >
+    <header
+      class="c6"
+    >
+      <h1>
+        What I've done
+      </h1>
+    </header>
+    <div
+      class="c7"
+    >
+      <article
+        class="c8"
+      >
+        <figure
+          class="c9"
+        >
+          <amp-img
+            alt="work picture for Open Source"
+            height="692"
+            layout="responsive"
+            src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
+            width="1000"
+          />
+          <figcaption>
+            <header>
+              Open Source
+            </header>
+            <section>
+              <strong />
+              <p />
+              <p />
+              <a
+                class="c5"
+                href="https://github.com/aretecode"
+              >
+                https://github.com/aretecode
+              </a>
+            </section>
+            <section>
+              <a
+                class="c5 "
+                href="/Portfolio/Experience?index=0"
+              >
+                <time
+                  class="c10"
+                  datetime="01/02/2013"
+                >
+                  01/02/2013
+                </time>
+                <div
+                  class="c11"
+                  role="separator"
+                >
+                  -
+                </div>
+                <time
+                  class="c10"
+                  datetime="current"
+                >
+                  current
+                </time>
+              </a>
+            </section>
+          </figcaption>
+        </figure>
+      </article>
+    </div>
+  </main>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
+  </script>
+  <article
+    class="c12"
+  >
+    <aside
+      class="c13"
+    >
+      <a
+        class="c14"
+        href="https://www.linkedin.com/in/james-wiens/"
+        rel="me"
+        title="aretecode"
+      >
+        <svg
+          class="c15"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+        >
+          <title>
+            linkedin
+             icon
+          </title>
+          <path
+            d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
+          />
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+        </svg>
+      </a>
+    </aside>
+    <figure
+      class="c16"
+    >
+      <amp-img
+        alt="about me picture"
+        height="600"
+        layout="responsive"
+        src=""
+        width="600"
+      />
+      <figcaption
+        class="c17"
+      >
+        <h1
+          class="c18"
+        />
+        <h2
+          class="c19"
+        >
+          
+          <i
+            class="c20"
+          >
+            ↔
+          </i>
+          
+        </h2>
+        <hr
+          class="c21"
+          role="separator"
+        />
+        <p
+          class="c22"
+        />
+        <nav
+          class="c23"
+        >
+          <section>
+            <header>
+              Phone
+            </header>
+            <a
+              class="c24 "
+              href="tel:12506509455"
+            >
+              +
+              12506509455
+            </a>
+          </section>
+          <section>
+            <header>
+              Email
+            </header>
+            <a
+              class="c24 "
+              href="mailto:james@jameswiens.com"
+            >
+              james@jameswiens.com
+            </a>
+          </section>
+        </nav>
+      </figcaption>
+    </figure>
+    <hr
+      class="c25"
+      role="separator"
+    />
+    <div
+      class="c26"
+      title="show/hide skills"
+    >
+      <button
+        class="c27"
+      >
+        <svg
+          class="c28 "
+          role="img"
+          title="show"
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+        >
+          <title>
+            Arrow pointing down or up
+          </title>
+          <polygon
+            points="12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04"
+          />
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+        </svg>
+      </button>
+    </div>
+    <aside
+      aria-hidden="true"
+      class="c29"
+    >
+      <ul
+        class="c30"
+      >
+        <li
+          class="c31"
+        >
+          skill1
+        </li>
+      </ul>
+    </aside>
+  </article>
+  <footer
+    class="c32"
+  >
+    <p>
+      <span>
+        ©
+        2019
+      </span>
+       
+      <span />
+    </p>
+    <p>
+      <span
+        class=""
+      >
+        Made with
+      </span>
+      <svg
+        class="c33"
+        viewBox="0 0 54 50"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Heart
+        </title>
+        <path
+          d="M24.873 47.201c-1.162-1.341-4.064-3.956-6.449-5.81-7.066-5.496-8.028-6.291-10.897-9.012C2.238 27.364-.008 22.325 0 15.493c.004-3.336.224-4.62 1.131-6.587 1.54-3.335 3.806-5.814 6.704-7.33C9.887.504 10.899.027 14.327.007c3.585-.02 4.34.41 6.449 1.604 2.567 1.452 5.21 4.556 5.756 6.76l.337 1.363.832-1.876c4.7-10.598 19.71-10.44 24.933.264 1.657 3.395 1.839 10.645.37 14.729-1.917 5.327-5.517 9.389-13.839 15.612-5.457 4.082-11.634 10.258-12.064 11.125-.499 1.007-.024.158-2.228-2.386z"
+          fill="red"
+        />
+      </svg>
+      <span
+        class=""
+      >
+        in
+      </span>
+      <svg
+        class="c34"
+        viewBox="0 0 50 25"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Canada, eh
+        </title>
+        <path
+          d="M0 0h50v25H0z"
+          fill="red"
+        />
+        <path
+          d="M12.5 0h25v25h-25z"
+          fill="#FFF"
+        />
+        <path
+          d="M25 2.344l-1.706 3.181c-.194.346-.54.314-.887.12l-1.235-.639.92 4.886c.194.893-.427.893-.733.507l-2.156-2.412-.35 1.225c-.04.16-.217.33-.483.29l-2.725-.574.715 2.603c.154.579.273.819-.154.971l-.972.457 4.691 3.81c.186.144.28.404.214.638l-.41 1.348c1.614-.187 3.062-.467 4.678-.64.142-.014.381.221.38.386l-.214 4.936h.786l-.124-4.925c-.001-.165.216-.411.358-.396 1.616.172 3.064.452 4.679.639l-.41-1.348a.614.614 0 0 1 .213-.638l4.69-3.81-.97-.457c-.428-.152-.309-.392-.155-.971l.715-2.603-2.725.573c-.266.04-.443-.128-.483-.29l-.35-1.224-2.155 2.412c-.307.386-.928.386-.734-.506l.92-4.887-1.235.64c-.347.193-.693.225-.887-.121"
+          fill="red"
+        />
+      </svg>
+    </p>
+    <p>
+      <span
+        class=""
+      >
+        Open Sourced at
+      </span>
+      <a
+        class="c35"
+        href="https://github.com/aretecode/modern-stack-web-portfolio"
+      >
+        github.com/aretecode
+      </a>
+    </p>
+    <aside
+      class="c36 c13"
+    >
+      <a
+        class="c14"
+        href="https://www.linkedin.com/in/james-wiens/"
+        rel="me"
+        title="aretecode"
+      >
+        <svg
+          class="c15"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+        >
+          <title>
+            linkedin
+             icon
+          </title>
+          <path
+            d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
+          />
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+        </svg>
+      </a>
+    </aside>
+  </footer>
+  <svg
+    class="c37"
   >
     <filter
       color-interpolation-filters="sRGB"

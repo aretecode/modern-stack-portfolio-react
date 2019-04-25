@@ -5,10 +5,10 @@
  */
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { SocialProfiles } from '../../src/features/SocialProfiles'
-import { StyledSeparator as Separator } from '../../src/features/Separator'
-import { StyledLink as Link } from '../../src/features/Link'
-import { StyledImage } from '../../src/features/Image'
+import { SocialProfiles } from '../../features/SocialProfiles'
+import { StyledSeparator as Separator } from '../../features/Separator'
+import { StyledLink as Link } from '../../features/Link'
+import { StyledImage } from '../../features/Image'
 
 export const StyledSocialProfiles = styled(SocialProfiles)``
 

@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import styled from 'styled-components'
-import { AmpContextValueType, AmpContext } from './AmpContext'
+import { AmpContext } from './AmpContext'
 import { keep } from '../utils/keep'
 
 /**
@@ -78,28 +78,24 @@ export type ImageProps = (ImagePureProps & ImageAmpProps) & ImageReactProps
 /**
  * can add `<noscript><img>` inside
  * @see https://amp.dev/documentation/examples/components/amp-img/?referrer=ampbyexample.com
+ *
+ * @todo memo
  */
-export class ImageComponentWithoutForwardRef extends React.PureComponent<
-  ImageProps
-> {
-  static contextType = AmpContext
-  readonly context: AmpContextValueType
+export function ImageComponentWithoutForwardRef(props: ImageProps) {
+  const { isAmp } = React.useContext(AmpContext)
+  if (isAmp === false) {
+    const {
+      isIntersecting,
+      height,
+      width,
+      forwardedRef,
+      ...remainingProps
+    } = props as ImagePureProps & ImageReactProps
 
-  render() {
-    if (this.context.isAmp === false) {
-      const {
-        isIntersecting,
-        height,
-        width,
-        forwardedRef,
-        ...remainingProps
-      } = this.props as ImagePureProps & ImageReactProps
-
-      return <img {...remainingProps} ref={forwardedRef} />
-    } else {
-      const props = keep(this.props, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
-      return <amp-img layout="responsive" {...props} />
-    }
+    return <img {...remainingProps} ref={forwardedRef} />
+  } else {
+    const ampProps = keep(props, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
+    return <amp-img layout="responsive" {...ampProps} />
   }
 }
 

@@ -19,7 +19,9 @@ export class DataLoading<DataLoadingTypeArg = object>
     >
   ) {
     if (instance === undefined) {
-      logger.warn('[dataLoading] empty arg')
+      if (process.env.NODE_ENV === 'development') {
+        logger.warn('[dataLoading] empty arg')
+      }
       return new DataLoading()
     } else if (Array.isArray(instance.promiseMapAsArray)) {
       /**
@@ -27,21 +29,27 @@ export class DataLoading<DataLoadingTypeArg = object>
        * @example
        *    new Map(Array.from(new Map().set('eh', 1)))
        */
-      logger.debug('[dataLoading] rehydrating')
+      if (process.env.NODE_ENV === 'development') {
+        logger.debug('[dataLoading] rehydrating')
+      }
       const newInstance = new DataLoading()
       newInstance.promiseMap = new Map(instance.promiseMapAsArray as any)
       newInstance.result = instance.result! || []
       newInstance.all()
       return newInstance
     } else if (isFunction(instance.all)) {
-      logger.debug('[dataLoading] loading from class')
+      if (process.env.NODE_ENV === 'development') {
+        logger.debug('[dataLoading] loading from class')
+      }
       /**
        * we have a class instance
        */
       instance!.all()
       return instance as DataLoading
     } else {
-      logger.warn('[dataLoading] cannot rehydrate')
+      if (process.env.NODE_ENV === 'development') {
+        logger.warn('[dataLoading] cannot rehydrate')
+      }
       /**
        * we cannot rehydrate
        */

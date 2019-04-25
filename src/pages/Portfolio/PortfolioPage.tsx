@@ -3,13 +3,13 @@
  */
 // tslint:disable
 import * as React from 'react'
-import { PortfolioContext } from '../../src/features/PortfolioContext'
-import { PortfolioSchema } from '../../src/features/PortfolioSchema'
-import { PortfolioHead } from '../../src/features/PortfolioHead'
-import { StyledCard } from '../../src/features/Card'
-import { StyledMain } from '../../src/features/Main'
-import { StyledLink } from '../../src/features/Link'
-import { WorkType } from '../../src/typings'
+import { PortfolioContext } from '../../features/PortfolioContext'
+import { PortfolioSchema } from '../../features/PortfolioSchema'
+import { PortfolioHead } from '../../features/PortfolioHead'
+import { StyledCard } from '../../features/Card'
+import { StyledMain } from '../../features/Main'
+import { StyledLink } from '../../features/Link'
+import { WorkType } from '../../typings'
 import {
   StyledGrid,
   StyledCardImage,
@@ -101,3 +101,5 @@ export function PortfolioPage() {
     </>
   )
 }
+
+export default PortfolioPage

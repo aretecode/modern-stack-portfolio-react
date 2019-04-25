@@ -1,0 +1,26 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - "12"
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - .jest/cache
+
+install:
+  - yarn install
+  - yarn add --dev https://github.com/GoogleChromeLabs/lighthousebot
+
+before_script:
+  - yarn danger ci
+
+script:
+   - jest --runInBand --silent
+   - yarn lighthousebot https://jameswiens.dev
+
+notifications:
+  slack: aretecode:iup7yYHuehxb7jdj20BjpimH

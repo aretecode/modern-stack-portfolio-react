@@ -13,7 +13,7 @@ export function defaultRenderTrigger(props: RenderTriggerProps) {
   return (
     <StyledButtonWrap key="wrap" title="show/hide skills">
       <StyledButton onClick={onClick} key="toggle">
-        <StyledLargeMaterialIcon icon={icon} title={text} />
+        <StyledLargeMaterialIcon icon={icon as any} title={text} />
       </StyledButton>
     </StyledButtonWrap>
   )

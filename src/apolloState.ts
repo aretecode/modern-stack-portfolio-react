@@ -3,11 +3,13 @@
  *               it can be used with the `@client` directive
  * @see https://www.apollographql.com/docs/react/essentials/local-state
  */
-import { gql } from 'apollo-boost'
+import { gql, InMemoryCache } from 'apollo-boost'
+import { withClientState } from 'apollo-link-state'
 import { logger } from './log'
 import { Resolvers, ResumeType } from './typings'
 import { addTypeName } from './utils/addTypeName'
 import ResumeQuery from './graphql/Resume'
+import { defaultApolloStatePortfolio } from './constants'
 
 export const typeDefs = gql`
   type ProfileType {
@@ -62,49 +64,6 @@ export const typeDefs = gql`
     ): AddOrUpdateResumeResponse!
   }
 `
-
-export const defaultApolloStatePortfolio = {
-  __typename: 'Resume',
-  basics: {
-    __typename: 'Basics',
-    name: '',
-    label: '',
-    picture: '',
-    email: 'james@jameswiens.com',
-    telephone: '12506509455',
-    website: '',
-    summary: '',
-    profiles: [
-      {
-        __typename: 'Profile',
-        network: 'linkedin',
-        username: 'aretecode',
-        url: 'https://www.linkedin.com/in/james-wiens/',
-      },
-    ],
-    address: '',
-    postalCode: '',
-    city: '',
-    countryCode: '',
-    region: '',
-    resumeWebsite: '',
-    skills: ['skill1'],
-  },
-  work: [
-    {
-      __typename: 'Work',
-      company: 'Open Source',
-      position: '',
-      website: 'https://github.com/aretecode',
-      startDate: '01/02/2013',
-      endDate: 'current',
-      summary: '',
-      highlights: '',
-      picture:
-        'https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png',
-    },
-  ],
-}
 
 // tslint:disable typedef
 // @lint: ^ this is because we have typings for resolvers
@@ -170,3 +129,11 @@ export const apolloState = {
     },
   } as Resolvers,
 }
+
+export const withState = (args: { cache: InMemoryCache }) =>
+  withClientState({
+    cache: args.cache,
+    // removed for production...
+    typeDefs,
+    ...apolloState,
+  })

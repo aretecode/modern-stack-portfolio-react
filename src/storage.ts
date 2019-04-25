@@ -80,7 +80,8 @@ const portfolioKeyValStore = {
   },
   async set<Key extends keyof SpecificPortfolioSchemaType>(
     key: Key,
-    val: SpecificPortfolioSchemaType[Key]['value']
+    // SpecificPortfolioSchemaType[Key]['value']
+    val: any
   ) {
     return (await dbPortfolioPromise).put('portfolio', val, key)
   },

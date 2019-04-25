@@ -1,7 +1,11 @@
+/**
+ * @see https://github.com/zeit/next.js/issues/876
+ */
 const { EnvironmentPlugin } = require('webpack')
 const withTypescript = require('@zeit/next-typescript')
 const withOffline = require('next-offline')
-const { env } = require('./env')
+const withSize = require('next-size')
+const { env, envWithoutNodeEnv } = require('./env')
 
 /**
  * @description Make sure any symlinks in the project folder are resolved:
@@ -17,22 +21,30 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  * @see https://zeit.co/docs/v2/deployments/ignoring-source-paths
  * @see https://github.com/hanford/next-offline/tree/master/examples/now2
  *
- * @todo add DefinePlugin
- * @example
- *   {
- *     DISABLE_CACHE: false,
- *     DISABLE_SSR: false,
- *     LOCAL_PRODUCTION: undefined,
- *     REALM_TYPE: 'browser' | 'node'
- *   }
+ * @see https://nextjs.org/docs#build-time-configuration
  */
 const nextConfig = {
-  target: 'serverless',
+  env: envWithoutNodeEnv,
+  target:
+    process.env.DISABLE_SERVERLESS !== undefined ? 'server' : 'serverless',
   webpack(config, options) {
     config.plugins.push(new EnvironmentPlugin(env))
 
     if (process.env.NODE_ENV === 'production') {
       console.debug('[next] in production mode, not type checking')
+      config.optimization = {
+        ...config.optimization,
+        removeAvailableModules: true,
+        removeEmptyChunks: true,
+        mergeDuplicateChunks: true,
+        occurrenceOrder: true,
+        sideEffects: true,
+        usedExports: true,
+        providedExports: true,
+        concatenateModules: true,
+        nodeEnv: 'production',
+      }
+
       return config
     } else if (options.isServer) {
       console.debug('[next] not type checking server')
@@ -55,6 +67,7 @@ const nextConfig = {
       ],
     })
     config.plugins.push(plugin)
+
     return config
   },
   workboxOpts: {
@@ -81,5 +94,22 @@ const nextConfig = {
 
 const typescriptConfig = withTypescript(nextConfig)
 const workboxConfig = withOffline(typescriptConfig)
+const sizeConfig = withSize(workboxConfig)
 
-module.exports = workboxConfig
+// module.exports = sizeConfig
+const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
+module.exports = withBundleAnalyzer({
+  ...sizeConfig,
+  analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+  analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+  bundleAnalyzerConfig: {
+    server: {
+      analyzerMode: 'static',
+      reportFilename: '../../bundles/server.html',
+    },
+    browser: {
+      analyzerMode: 'static',
+      reportFilename: '../bundles/client.html',
+    },
+  },
+})

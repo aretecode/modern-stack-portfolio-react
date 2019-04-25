@@ -20,6 +20,10 @@ import * as Amp from 'react-amphtml'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
 import { AmpContext } from '../src/features/AmpContext'
 import {
+  AmpServiceWorkerHeadScript,
+  AmpServiceWorkerBodyScript,
+} from '../src/features/ServiceWorker'
+import {
   GoogleTagManagerHeaderScript,
   GoogleTagManagerBodyScript,
 } from '../src/features/GoogleTagManager'
@@ -110,7 +114,7 @@ export default class MyDocument extends Document<DocumentProps> {
             return sheet.collectStyles(
               <AmpContext.Provider value={{ isAmp }}>
                 {isAmp === true ? (
-                  <AmpScriptsManager ampScripts={ampScripts}>
+                  <AmpScriptsManager ampScripts={ampScripts as any}>
                     <App {...props} />
                   </AmpScriptsManager>
                 ) : (
@@ -168,14 +172,8 @@ export default class MyDocument extends Document<DocumentProps> {
   }
 
   render() {
-    const {
-      isAmp,
-      title,
-      url,
-      ampScriptTags,
-      ampStyleTag,
-      ...remainingProps
-    } = this.props
+    const { isAmp, title, url, ampScriptTags, ampStyleTag } = this.props
+    const shouldSkipAnalytics = url.href.includes('shouldSkipAnalytics')
 
     return (
       <AmpHtml isAmp={isAmp}>
@@ -187,10 +185,11 @@ export default class MyDocument extends Document<DocumentProps> {
           <meta itemProp="accessibilityControl" content="fullKeyboardControl" />
           <meta itemProp="accessibilityControl" content="fullMouseControl" />
           <meta itemProp="typicalAgeRange" content="20-60" />
+
           <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
           <link rel="preconnect" href="https://fonts.gstatic.com/" />
           <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
-          <link rel="preconnect" href="https://www.googletagmanager.com" />
+
           <link
             rel="preload"
             href="https://fonts.gstatic.com/s/sourcesanspro/v12/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu3cOWxw.woff2"
@@ -209,11 +208,37 @@ export default class MyDocument extends Document<DocumentProps> {
             as="font"
             crossOrigin={'crossOrigin'}
           />
-          <GoogleTagManagerHeaderScript isAmp={isAmp} />
+
+          <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+          <link rel="preconnect" href="https://www.google-analytics.com" />
+          <link
+            rel="preload"
+            href="https://www.google-analytics.com/analytics.js"
+            as="script"
+            crossOrigin={'crossOrigin'}
+          />
+          <link
+            rel="preload"
+            href={`https://www.googletagmanager.com/gtm.js?id=${
+              process.env.GOOGLE_TAG_MANAGER_WEB_ID
+            }`}
+            as="script"
+            crossOrigin={'crossOrigin'}
+          />
+
+          {shouldSkipAnalytics === false && (
+            <GoogleTagManagerHeaderScript isAmp={isAmp} />
+          )}
+          {isAmp === true && <AmpServiceWorkerHeadScript />}
         </Head>
         <body>
-          <GoogleTagManagerBodyScript isAmp={isAmp} />
+          {shouldSkipAnalytics === false && (
+            <GoogleTagManagerBodyScript isAmp={isAmp} />
+          )}
           <Main />
+          {isAmp === true && <AmpServiceWorkerBodyScript />}
           {isAmp === false && <NextScript />}
         </body>
       </AmpHtml>

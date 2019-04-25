@@ -50,5 +50,7 @@ declare namespace JSX {
     'amp-img': any
     'amp-google-document-embed': any
     'amp-analytics': any
+    'amp-install-serviceworker': any
+    'amp-accordion': any
   }
 }

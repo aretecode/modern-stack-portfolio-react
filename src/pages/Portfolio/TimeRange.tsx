@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyledSeparator } from '../../src/features/Separator'
+import { StyledSeparator } from '../../features/Separator'
 import { StyledTime } from './styled'
 
 export interface TimeRangeProps {
@@ -15,9 +15,9 @@ export class TimeRange extends React.PureComponent<TimeRangeProps> {
     const { startDate, endDate } = this.props
     return (
       <>
-        <StyledTime datetime={startDate}>{startDate}</StyledTime>
+        <StyledTime dateTime={startDate}>{startDate}</StyledTime>
         <StyledSeparator />
-        <StyledTime datetime={endDate}>{endDate}</StyledTime>
+        <StyledTime dateTime={endDate}>{endDate}</StyledTime>
       </>
     )
   }

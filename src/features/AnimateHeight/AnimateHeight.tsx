@@ -9,13 +9,19 @@ import { AnimateHeightContext } from './AnimateHeightContext'
  * if needed, can use ref in `componentDidUpdate`
  */
 export class AnimateHeightComponent extends React.PureComponent<
-  AnimateHeightProps
+  AnimateHeightProps,
+  unknown,
+  AnimateHeightContextStateType
 > {
   static defaultProps = {
     renderTrigger: defaultRenderTrigger,
   }
   static contextType = AnimateHeightContext
-  readonly context: AnimateHeightContextStateType
+
+  /**
+   * @todo @@perf @@config @@build doing it like this causes an issue in compilation with babel
+   */
+  // readonly context: AnimateHeightContextStateType
 
   constructor(props: AnimateHeightProps, state: any) {
     super(props, state)
@@ -119,7 +125,6 @@ export class AnimateHeightComponent extends React.PureComponent<
 
   render() {
     const { renderTrigger, children } = this.props
-
     return (
       <>
         {renderTrigger!({

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ObservablePicture } from '../../src/features/ObservablePicture'
+import { ObservablePicture } from '../../features/ObservablePicture'
 
 export const StyledGrid = styled.div`
   display: grid;

@@ -1,5 +1,5 @@
 import { portfolioKeyValStore } from '../storage'
-import { defaultApolloStatePortfolio } from '../apolloState'
+import { defaultApolloStatePortfolio } from '../constants'
 
 describe('storage', () => {
   it('should work in node using a map', async () => {
