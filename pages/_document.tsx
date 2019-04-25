@@ -173,7 +173,7 @@ export default class MyDocument extends Document<DocumentProps> {
 
   render() {
     const { isAmp, title, url, ampScriptTags, ampStyleTag } = this.props
-    // const shouldLazyLoadAnalytics = url.href.includes('lazyLoadAnalytics')
+    const shouldSkipAnalytics = url.href.includes('shouldSkipAnalytics')
 
     return (
       <AmpHtml isAmp={isAmp}>
@@ -228,11 +228,15 @@ export default class MyDocument extends Document<DocumentProps> {
             crossOrigin={'crossOrigin'}
           />
 
-          <GoogleTagManagerHeaderScript isAmp={isAmp} />
+          {shouldSkipAnalytics === false && (
+            <GoogleTagManagerHeaderScript isAmp={isAmp} />
+          )}
           {isAmp === true && <AmpServiceWorkerHeadScript />}
         </Head>
         <body>
-          <GoogleTagManagerBodyScript isAmp={isAmp} />
+          {shouldSkipAnalytics === false && (
+            <GoogleTagManagerBodyScript isAmp={isAmp} />
+          )}
           <Main />
           {isAmp === true && <AmpServiceWorkerBodyScript />}
           {isAmp === false && <NextScript />}
