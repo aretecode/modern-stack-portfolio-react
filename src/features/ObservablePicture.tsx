@@ -164,7 +164,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
    */
   wrapperRef: React.RefObject<any> =
     this.props.ref || this.props.forwardedRef || React.createRef<any>()
-  observer: IntersectionObserver
+  observer: IntersectionObserver | undefined
   state = {
     hasIntersected: !!this.props.isAlwaysAboveTheFold,
     isIntersecting: false,
@@ -226,22 +226,22 @@ export class PictureIntersectionObserver extends React.PureComponent<
       threshold: [0.0, 1.0],
     }
 
-    this.observer = new IntersectionObserver(
-      handleObservingChange,
-      observerOptions
-    )
-
     if (this.target === undefined) {
       if (process.env.NODE_ENV === 'development') {
         console.error('[ObservablePicture] missing target')
       }
-    } else {
+    } else if (typeof IntersectionObserver === 'function') {
+      this.observer = new IntersectionObserver(
+        handleObservingChange,
+        observerOptions
+      )
+
       this.observer.observe(this.target as HTMLElement)
     }
   }
 
   unobserve() {
-    if (this.target !== undefined) {
+    if (this.target !== undefined && this.observer !== undefined) {
       // Stop watching for intersection events on this specific target Element
       this.observer.unobserve(this.target)
       // Stop observing threshold events on all target elements
