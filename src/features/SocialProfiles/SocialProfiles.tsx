@@ -87,7 +87,7 @@ export default function SocialProfiles(
   const { profiles, resumeWebsite } = React.useContext(PortfolioContext).basics
 
   return (
-    <StyledSocialProfilesWrap {...this.props}>
+    <StyledSocialProfilesWrap {...props}>
       {Array.isArray(profiles) && profiles.map(renderProfileItem)}
       {resumeWebsite !== '' &&
         renderProfileItem({
