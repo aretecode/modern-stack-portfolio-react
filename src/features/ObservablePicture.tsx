@@ -171,7 +171,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
   state = {
     hasIntersected:
       !!this.props.isAlwaysAboveTheFold ||
-      HAS_SUPPORT_FOR_INTERSECTION_OBSERVER,
+      HAS_SUPPORT_FOR_INTERSECTION_OBSERVER === false,
     isIntersecting: false,
     height: 0,
     width: 0,
