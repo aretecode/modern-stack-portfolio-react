@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import { render, waitForElement } from 'react-testing-library'
-import { defaultApolloStatePortfolio } from '../src/apolloState'
+import { defaultApolloStatePortfolio } from '../src/constants'
 import { InnerApp } from '../pages/_app'
 import AboutPage from '../pages/About'
 import PortfolioPage from '../pages/Portfolio'

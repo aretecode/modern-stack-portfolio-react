@@ -804,6 +804,7 @@ exports[`app should match snapshot 1`] = `
               >
                 <time
                   class="c11"
+                  datetime="01/02/2013"
                 >
                   01/02/2013
                 </time>
@@ -815,6 +816,7 @@ exports[`app should match snapshot 1`] = `
                 </div>
                 <time
                   class="c11"
+                  datetime="current"
                 >
                   current
                 </time>
@@ -1125,7 +1127,7 @@ exports[`app should match snapshot for amp 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c14 {
+.c13 {
   padding: 1rem;
   width: 75px;
   display: inline-flex;
@@ -1137,45 +1139,45 @@ exports[`app should match snapshot for amp 1`] = `
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
 }
 
-.c15 {
+.c14 {
   text-decoration: none;
   position: relative;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
 
-.c15:link,
-.c15:visited {
+.c14:link,
+.c14:visited {
   color: var(--color-link);
 }
 
-.c15:focus {
+.c14:focus {
   outline: thin dotted;
 }
 
-.c15:hover {
+.c14:hover {
   color: #aaa;
 }
 
-.c15:link {
+.c14:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c16 {
+.c15 {
   width: 2rem;
   height: 2rem;
 }
 
-.c34 {
+.c32 {
   background-color: var(--color-material-background-purple);
   padding: 2rem 1.25rem;
 }
 
-.c34 p {
+.c32 p {
   color: var(--color-text-body);
 }
 
-.c35 {
+.c33 {
   color: #df0909;
   display: inline-flex;
   padding-right: 0.5rem;
@@ -1183,7 +1185,7 @@ exports[`app should match snapshot for amp 1`] = `
   height: 12px;
 }
 
-.c36 {
+.c34 {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   transform: translateY(1px);
@@ -1192,7 +1194,7 @@ exports[`app should match snapshot for amp 1`] = `
   height: 14px;
 }
 
-.c37 {
+.c35 {
   text-decoration: none;
   position: relative;
   letter-spacing: 0.2em;
@@ -1201,24 +1203,24 @@ exports[`app should match snapshot for amp 1`] = `
   text-decoration: underline;
 }
 
-.c37:link,
-.c37:visited {
+.c35:link,
+.c35:visited {
   color: var(--color-link);
 }
 
-.c37:focus {
+.c35:focus {
   outline: thin dotted;
 }
 
-.c37:hover {
+.c35:hover {
   color: #aaa;
 }
 
-.c37:link {
+.c35:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c38 {
+.c36 {
   flex-direction: row;
   display: flex;
   justify-content: space-between;
@@ -1227,18 +1229,18 @@ exports[`app should match snapshot for amp 1`] = `
   height: unset;
 }
 
-.c38 > a {
+.c36 > a {
   width: unset;
   flex-basis: unset;
   display: initial;
   padding: 1rem 1rem 1rem 0;
 }
 
-.c38 > a:last-child {
+.c36 > a:last-child {
   display: none;
 }
 
-.c38 > a > svg:first-child {
+.c36 > a > svg:first-child {
   fill: white;
 }
 
@@ -1300,7 +1302,7 @@ exports[`app should match snapshot for amp 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c39 {
+.c37 {
   height: 0;
   width: 0;
   visibility: hidden;
@@ -1313,37 +1315,37 @@ exports[`app should match snapshot for amp 1`] = `
   padding: 0 0.5rem;
 }
 
-.c25 {
+.c24 {
   text-decoration: none;
   position: relative;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
 
-.c25:link,
-.c25:visited {
+.c24:link,
+.c24:visited {
   color: var(--color-link);
 }
 
-.c25:focus {
+.c24:focus {
   outline: thin dotted;
 }
 
-.c25:hover {
+.c24:hover {
   color: #aaa;
 }
 
-.c25:link {
+.c24:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c25.c25.c25 {
+.c24.c24.c24 {
   color: unset;
   text-decoration: initial;
   letter-spacing: initial;
 }
 
-.c26 {
+.c25 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
@@ -1360,7 +1362,7 @@ exports[`app should match snapshot for amp 1`] = `
   transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
 }
 
-.c22 {
+.c21 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
@@ -1373,56 +1375,56 @@ exports[`app should match snapshot for amp 1`] = `
   width: 8vw;
 }
 
-.c19 {
+.c18 {
   font-size: 2rem;
   margin-bottom: 0;
 }
 
-.c21 {
+.c20 {
   font-style: unset;
   padding-right: 0.15rem;
   opacity: 0.3;
 }
 
-.c23 {
+.c22 {
   margin-top: 1rem;
 }
 
-.c20 {
+.c19 {
   color: var(--color-dark-background-main);
   margin: 0;
   margin-top: -0.5rem;
   font-size: 1.2rem;
 }
 
-.c17 {
+.c16 {
   margin: 0;
   padding: 0;
   display: flex;
   width: calc(100% - 75px);
 }
 
-.c18 {
+.c17 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   word-break: break-word;
 }
 
-.c24 {
+.c23 {
   display: flex;
   padding: 2rem 0;
   transition: flex-direction 500ms ease-in-out;
 }
 
-.c24 > section {
+.c23 > section {
   flex-basis: 50%;
 }
 
-.c24 > section > header {
+.c23 > section > header {
   font-weight: bold;
 }
 
-.c13 {
+.c12 {
   background-color: #fff;
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
@@ -1432,12 +1434,12 @@ exports[`app should match snapshot for amp 1`] = `
   width: 80%;
 }
 
-.c29 {
+.c28 {
   width: 42px;
   height: 42px;
 }
 
-.c27 {
+.c26 {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -1445,7 +1447,7 @@ exports[`app should match snapshot for amp 1`] = `
   margin-right: 1rem;
 }
 
-.c28 {
+.c27 {
   background: none;
   border: 0;
   color: inherit;
@@ -1457,7 +1459,7 @@ exports[`app should match snapshot for amp 1`] = `
   user-select: none;
 }
 
-.c31 {
+.c29 {
   overflow: hidden;
   transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
   height: 0;
@@ -1469,7 +1471,7 @@ exports[`app should match snapshot for amp 1`] = `
   order: 4;
 }
 
-.c33 {
+.c31 {
   display: inline-flex;
   border-radius: 4px;
   margin: 0.25rem;
@@ -1479,7 +1481,7 @@ exports[`app should match snapshot for amp 1`] = `
   border-radius: 6px;
 }
 
-.c32 {
+.c30 {
   margin: 0;
   padding: 1rem;
 }
@@ -1564,21 +1566,8 @@ exports[`app should match snapshot for amp 1`] = `
   text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
-.c12 > aside {
-  width: 100%;
-}
-
-amp-accordion > section .c30 {
-  max-width: 100%;
-}
-
-amp-accordion > section[expanded=""] .c30 {
-  height: auto;
-  overflow: visible;
-}
-
 @media (max-width:1023px) {
-  .c14 {
+  .c13 {
     width: 75%;
     flex-direction: row;
     order: 2;
@@ -1589,7 +1578,7 @@ amp-accordion > section[expanded=""] .c30 {
 }
 
 @media (max-width:1023px) {
-  .c15 {
+  .c14 {
     flex-basis: 33%;
     width: 33%;
     text-align: center;
@@ -1623,71 +1612,71 @@ amp-accordion > section[expanded=""] .c30 {
 }
 
 @media (max-width:1023px) {
-  .c26 {
+  .c25 {
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width:1024px) {
-  .c26 {
+  .c25 {
     visibility: hidden;
     margin: 0;
   }
 }
 
 @media (min-width:1024px) {
-  .c19 {
+  .c18 {
     margin-top: 3rem;
   }
 }
 
 @media (max-width:1024px) {
-  .c19 {
+  .c18 {
     flex-basis: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c23 {
+  .c22 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c23 {
+  .c22 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c20 {
+  .c19 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c17 {
+  .c16 {
     flex-wrap: wrap;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c18 {
+  .c17 {
     display: flex;
     flex-wrap: wrap;
   }
 }
 
 @media (max-width:1023px) {
-  .c24 {
+  .c23 {
     padding: 0.5rem 0;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c13 {
+  .c12 {
     width: calc(100% - 2rem);
     height: unset;
     flex-wrap: wrap;
@@ -1696,13 +1685,13 @@ amp-accordion > section[expanded=""] .c30 {
 }
 
 @media (max-width:480px) {
-  .c13 {
+  .c12 {
     margin: 8rem 1rem 2rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c27 {
+  .c26 {
     justify-content: center;
     flex-basis: 25%;
     order: 3;
@@ -1712,13 +1701,13 @@ amp-accordion > section[expanded=""] .c30 {
 }
 
 @media (min-width:1024px) {
-  .c27 {
+  .c26 {
     margin-top: -3.5rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c28 {
+  .c27 {
     width: 42px;
     height: 42px;
   }
@@ -1861,6 +1850,7 @@ amp-accordion > section[expanded=""] .c30 {
               >
                 <time
                   class="c10"
+                  datetime="01/02/2013"
                 >
                   01/02/2013
                 </time>
@@ -1872,6 +1862,7 @@ amp-accordion > section[expanded=""] .c30 {
                 </div>
                 <time
                   class="c10"
+                  datetime="current"
                 >
                   current
                 </time>
@@ -1888,19 +1879,19 @@ amp-accordion > section[expanded=""] .c30 {
     {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
   </script>
   <article
-    class="c12 c13"
+    class="c12"
   >
     <aside
-      class="c14"
+      class="c13"
     >
       <a
-        class="c15"
+        class="c14"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c16"
+          class="c15"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -1920,7 +1911,7 @@ amp-accordion > section[expanded=""] .c30 {
       </a>
     </aside>
     <figure
-      class="c17"
+      class="c16"
     >
       <amp-img
         alt="about me picture"
@@ -1930,38 +1921,38 @@ amp-accordion > section[expanded=""] .c30 {
         width="600"
       />
       <figcaption
-        class="c18"
+        class="c17"
       >
         <h1
-          class="c19"
+          class="c18"
         />
         <h2
-          class="c20"
+          class="c19"
         >
           
           <i
-            class="c21"
+            class="c20"
           >
             ↔
           </i>
           
         </h2>
         <hr
-          class="c22"
+          class="c21"
           role="separator"
         />
         <p
-          class="c23"
+          class="c22"
         />
         <nav
-          class="c24"
+          class="c23"
         >
           <section>
             <header>
               Phone
             </header>
             <a
-              class="c25 "
+              class="c24 "
               href="tel:12506509455"
             >
               +
@@ -1973,7 +1964,7 @@ amp-accordion > section[expanded=""] .c30 {
               Email
             </header>
             <a
-              class="c25 "
+              class="c24 "
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
@@ -1983,61 +1974,53 @@ amp-accordion > section[expanded=""] .c30 {
       </figcaption>
     </figure>
     <hr
-      class="c26"
+      class="c25"
       role="separator"
     />
-    <amp-accordion
-      layout="container"
+    <div
+      class="c26"
+      title="show/hide skills"
     >
-      <section>
-        <header>
-          <div
-            class="c27"
-            title="show/hide skills"
-          >
-            <button
-              class="c28"
-            >
-              <svg
-                class="c29 "
-                role="img"
-                title="show"
-                viewBox="0 0 24 24"
-                xmlns="https://www.w3.org/2000/svg"
-              >
-                <title>
-                  Arrow pointing down or up
-                </title>
-                <polygon
-                  points="12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04"
-                />
-                <path
-                  d="M0 0h24v24H0V0z"
-                  fill="none"
-                />
-              </svg>
-            </button>
-          </div>
-        </header>
-        <aside
-          aria-hidden="true"
-          class="c30 c31"
+      <button
+        class="c27"
+      >
+        <svg
+          class="c28 "
+          role="img"
+          title="show"
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
         >
-          <ul
-            class="c32"
-          >
-            <li
-              class="c33"
-            >
-              skill1
-            </li>
-          </ul>
-        </aside>
-      </section>
-    </amp-accordion>
+          <title>
+            Arrow pointing down or up
+          </title>
+          <polygon
+            points="12.5 13.37 18.4 8 20 10.1 12.5 17 5 10.1 6.63 8.04"
+          />
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+        </svg>
+      </button>
+    </div>
+    <aside
+      aria-hidden="true"
+      class="c29"
+    >
+      <ul
+        class="c30"
+      >
+        <li
+          class="c31"
+        >
+          skill1
+        </li>
+      </ul>
+    </aside>
   </article>
   <footer
-    class="c34"
+    class="c32"
   >
     <p>
       <span>
@@ -2054,7 +2037,7 @@ amp-accordion > section[expanded=""] .c30 {
         Made with
       </span>
       <svg
-        class="c35"
+        class="c33"
         viewBox="0 0 54 50"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -2072,7 +2055,7 @@ amp-accordion > section[expanded=""] .c30 {
         in
       </span>
       <svg
-        class="c36"
+        class="c34"
         viewBox="0 0 50 25"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -2100,23 +2083,23 @@ amp-accordion > section[expanded=""] .c30 {
         Open Sourced at
       </span>
       <a
-        class="c37"
+        class="c35"
         href="https://github.com/aretecode/modern-stack-web-portfolio"
       >
         github.com/aretecode
       </a>
     </p>
     <aside
-      class="c38 c14"
+      class="c36 c13"
     >
       <a
-        class="c15"
+        class="c14"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c16"
+          class="c15"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -2137,7 +2120,7 @@ amp-accordion > section[expanded=""] .c30 {
     </aside>
   </footer>
   <svg
-    class="c39"
+    class="c37"
   >
     <filter
       color-interpolation-filters="sRGB"
@@ -2156,10 +2139,5 @@ amp-accordion > section[expanded=""] .c30 {
       />
     </filter>
   </svg>
-  <amp-install-serviceworker
-    data-iframe-src="https://amp.dev/sw.html"
-    layout="nodisplay"
-    src="/service-worker.js"
-  />
 </div>
 `;
