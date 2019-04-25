@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "private": false,
   "sideEffects": false,
+  "main": ".next/server/index.js",
+  "folders": [
+    ".next",
+    "server",
+    "pages",
+    "src"
+  ],
   "scripts": {
     "dev": "next",
     "build": "rm -fr .next && next build && yarn copy",
@@ -11,6 +18,9 @@
     "start": "next start",
     "test": "jest",
     "now-build": "yarn build",
+    "next:build": "yarn build && yarn build:server",
+    "build:server:only": "DISABLE_SERVERLESS=true NODE_ENV=production next build",
+
     "install:workspace": "cd ../../ && yarn install && cd packages/client",
     "prepublishOnly": "rm -rf build && tsc || true",
     "dev:webpack": "webpack-dev",
@@ -22,19 +32,20 @@
     "lint:ts": "tslint --format codeFrame --project tsconfig.json --config tslint.json",
     "build:babel": "NODE_ENV=development BABEL_ENV=development npx babel build/dist --out-dir build/dist || true",
     "test:dev": "jest --config jest.config.js",
-    "build:server": "next build && tsc || true && tsc --project tsconfig.server.json || true",
-    "start:server": "NODE_ENV=production node .next/server",
+    "build:server": "yarn build && yarn build:server:only && tsc || true && tsc --project tsconfig.server.json || true",
+    "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
     "dev:server": "rm -fr dist && rm -fr .next && yarn build:server && yarn start:server"
   },
   "resolutions": {
     "webpack": "4.30.0",
-    "fork-ts-checker-webpack-plugin": "1.0.4",
+    "fork-ts-checker-webpack-plugin": "1.2.0",
     "apollo-link": "1.2.11",
     "typescript": "3.4.5",
     "styled-components": "https://unpkg.com/styled-components-aretecode@4.2.0-fork.4/styled-components-aretecode-4.2.0-fork.4.tgz"
   },
   "dependencies": {
     "next": "8.1.0",
+    "next-server": "8.1.0",
     "next-offline": "3.3.8",
     "react-amphtml": "^3.0.1",
     "react": "^16.8.6",
