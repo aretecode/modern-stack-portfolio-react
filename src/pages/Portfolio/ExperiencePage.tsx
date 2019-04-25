@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AppContext, DEFAULT_URL } from '../../features/AppContext'
+import { AppContext } from '../../features/AppContext'
 import { PortfolioContext } from '../../features/PortfolioContext'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { PortfolioHead } from '../../features/PortfolioHead'

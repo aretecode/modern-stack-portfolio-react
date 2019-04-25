@@ -3,7 +3,6 @@
  */
 import * as React from 'react'
 import { Query } from 'react-apollo'
-import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
 import { isObj } from '../utils/is'
 import ResumeQuery from '../graphql/Resume'
 import { defaultApolloStatePortfolio } from '../constants'

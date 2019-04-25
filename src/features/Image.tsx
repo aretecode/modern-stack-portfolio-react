@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import styled from 'styled-components'
-import { AmpContextValueType, AmpContext } from './AmpContext'
+import { AmpContext } from './AmpContext'
 import { keep } from '../utils/keep'
 
 /**
@@ -78,6 +78,8 @@ export type ImageProps = (ImagePureProps & ImageAmpProps) & ImageReactProps
 /**
  * can add `<noscript><img>` inside
  * @see https://amp.dev/documentation/examples/components/amp-img/?referrer=ampbyexample.com
+ *
+ * @todo memo
  */
 export function ImageComponentWithoutForwardRef(props: ImageProps) {
   const { isAmp } = React.useContext(AmpContext)
