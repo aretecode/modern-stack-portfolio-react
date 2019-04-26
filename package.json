@@ -69,6 +69,7 @@
     "image-size": "0.7.4"
   },
   "devDependencies": {
+    "fork-ts-checker-webpack-plugin": "1.2.0",
     "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
     "@zeit/next-bundle-analyzer": "0.1.2",
     "danger": "7.1.3",

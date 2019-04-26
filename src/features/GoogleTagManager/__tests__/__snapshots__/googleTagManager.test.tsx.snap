@@ -34,13 +34,7 @@ exports[`GoogleTagManager should render *in* AMP mode 2`] = `
 exports[`GoogleTagManager should render in *non* AMP mode 1`] = `
 <div>
   <script>
-    
-window.dataLayer = []; requestIdleCallback(() =&gt; {
-window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-var f=document.getElementsByTagName('script')[0],j=document.createElement('script');
-j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=WEB_ID';f.parentNode.insertBefore(j,f);
-})
-
+    window.dataLayer = []; const lgtm = typeof requestIdleCallback === 'function' ? requestIdleCallback : (fn) =&gt; fn(); lgtm(() =&gt; { window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'}); var f=document.getElementsByTagName('script')[0],j=document.createElement('script'); j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=WEB_ID';f.parentNode.insertBefore(j,f); })
   </script>
 </div>
 `;

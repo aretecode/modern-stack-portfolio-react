@@ -999,7 +999,7 @@ exports[`app should match snapshot 1`] = `
       <svg
         class="c35"
         viewBox="0 0 54 50"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
       >
         <title>
           Heart
@@ -1017,7 +1017,7 @@ exports[`app should match snapshot 1`] = `
       <svg
         class="c36"
         viewBox="0 0 50 25"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
       >
         <title>
           Canada, eh
@@ -2039,7 +2039,7 @@ exports[`app should match snapshot for amp 1`] = `
       <svg
         class="c33"
         viewBox="0 0 54 50"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
       >
         <title>
           Heart
@@ -2057,7 +2057,7 @@ exports[`app should match snapshot for amp 1`] = `
       <svg
         class="c34"
         viewBox="0 0 50 25"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
       >
         <title>
           Canada, eh

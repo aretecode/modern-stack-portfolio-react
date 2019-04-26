@@ -10,6 +10,7 @@ export interface AmpContextValueType {
 export const AmpContext = createContext<AmpContextValueType>({
   isAmp:
     process.env.NODE_ENV !== 'test' && typeof window === 'object'
-      ? window.location.href.includes('?amp')
+      ? window.location.href.includes('?amp') ||
+        window.location.href.includes('/amp')
       : false,
 })

@@ -22,13 +22,11 @@ export function GoogleTagManagerHeaderScript(props: { isAmp?: boolean }) {
       />
     )
   } else {
-    const scriptBody = `
-window.dataLayer = []; requestIdleCallback(() => {
+    const scriptBody = `window.dataLayer = []; const lgtm = typeof requestIdleCallback === 'function' ? requestIdleCallback : (fn) => fn(); lgtm(() => {
 window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
 var f=document.getElementsByTagName('script')[0],j=document.createElement('script');
 j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_MANAGER_WEB_ID}';f.parentNode.insertBefore(j,f);
-})
-`
+})`.replace(/(\n|\s)+/gm, ' ')
     return <Script>{scriptBody}</Script>
   }
 }

@@ -6,7 +6,7 @@ export function SpecialIcon(props: { icon: 'canada' | 'heart' }) {
     return (
       <svg
         viewBox="0 0 50 25"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
         {...remainingProps}
       >
         <title>Canada, eh</title>
@@ -22,7 +22,7 @@ export function SpecialIcon(props: { icon: 'canada' | 'heart' }) {
     return (
       <svg
         viewBox="0 0 54 50"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
         {...remainingProps}
       >
         <title>Heart</title>

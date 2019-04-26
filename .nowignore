@@ -1,3 +1,16 @@
 .next
+dist
 node_modules
 README.md
+.eslintrc
+.prettierignore
+.prettierrc
+.travis.yml
+dangerfile.ts
+jest.config.js
+jest.setup.js
+rollup.config.js
+stylelint.config.js
+.storybook
+__tests__
+stories

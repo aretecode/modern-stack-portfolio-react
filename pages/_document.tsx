@@ -5,6 +5,7 @@
  * @see https://developers.google.com/web/fundamentals/performance/resource-prioritization#preconnect
  * @see https://css-tricks.com/prefetching-preloading-prebrowsing/#article-header-id-3
  * @see https://medium.com/clio-calliope/making-google-fonts-faster-aadf3c02a36d
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
  */
 import * as React from 'react'
 import Document, {
@@ -36,7 +37,7 @@ import {
 class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
   render() {
     return this.props.isAmp === false ? (
-      <Html lang="en" prefix="og: http://ogp.me/ns#">
+      <Html lang="en" prefix="og: https://ogp.me/ns#">
         {this.props.children}
       </Html>
     ) : (
@@ -49,14 +50,26 @@ class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
 
 // tslint:disable:max-classes-per-file
 
+function addAmpToUrl(href: string) {
+  if (href.endsWith('/')) {
+    return href + 'amp'
+  } else if (href.includes('?')) {
+    const [first, second] = href.split('?')
+    return first + '/amp?' + second
+  } else {
+    return href + '/amp'
+  }
+}
+
 /**
  * @note we are inlining this to avoid amp violations where `next` gives duplicate tags
  * @see https://github.com/dfrankland/react-amphtml/blob/7221879f49f289855a2574557afbead811c532a8/src/setup/headerBoilerplate.js
  */
 class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
   render() {
-    if (this.props.isAmp === false) {
-      return <link rel="amphtml" href={this.props.href + '?amp'} />
+    const { isAmp, href } = this.props
+    if (isAmp === false) {
+      return <link rel="amphtml" href={addAmpToUrl(href)} />
     }
 
     return (
@@ -64,7 +77,7 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
         <link
           key={'canonical-link'}
           rel="canonical"
-          href={this.props.href.replace('?amp', '')}
+          href={href.replace('/amp', '')}
         />
         <style
           key={'style'}
@@ -100,7 +113,7 @@ export interface DocumentProps {
 export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
     const url = fromReqToUrl(ctx.req as any)
-    const isAmp = url.href.includes('?amp')
+    const isAmp = url.href.includes('?amp') || url.href.includes('/amp')
     const ampScripts = new AmpScripts()
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
@@ -217,7 +230,7 @@ export default class MyDocument extends Document<DocumentProps> {
             rel="preload"
             href="https://www.google-analytics.com/analytics.js"
             as="script"
-            crossOrigin={'crossOrigin'}
+            // crossOrigin={'crossOrigin'}
           />
           <link
             rel="preload"
@@ -225,7 +238,7 @@ export default class MyDocument extends Document<DocumentProps> {
               process.env.GOOGLE_TAG_MANAGER_WEB_ID
             }`}
             as="script"
-            crossOrigin={'crossOrigin'}
+            // crossOrigin={'crossOrigin'}
           />
 
           {shouldSkipAnalytics === false && (
