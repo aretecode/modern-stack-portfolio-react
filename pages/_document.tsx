@@ -50,6 +50,17 @@ class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
 
 // tslint:disable:max-classes-per-file
 
+function addAmpToUrl(href: string) {
+  if (href.endsWith('/')) {
+    return href + 'amp'
+  } else if (href.includes('?')) {
+    const [first, second] = href.split('?')
+    return first + '/amp?' + second
+  } else {
+    return href + '/amp'
+  }
+}
+
 /**
  * @note we are inlining this to avoid amp violations where `next` gives duplicate tags
  * @see https://github.com/dfrankland/react-amphtml/blob/7221879f49f289855a2574557afbead811c532a8/src/setup/headerBoilerplate.js
@@ -58,12 +69,7 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
   render() {
     const { isAmp, href } = this.props
     if (isAmp === false) {
-      return (
-        <link
-          rel="amphtml"
-          href={href.endsWith('/') ? href + 'amp' : href + '/amp'}
-        />
-      )
+      return <link rel="amphtml" href={addAmpToUrl(href)} />
     }
 
     return (
