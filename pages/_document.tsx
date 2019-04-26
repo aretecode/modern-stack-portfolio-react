@@ -5,6 +5,7 @@
  * @see https://developers.google.com/web/fundamentals/performance/resource-prioritization#preconnect
  * @see https://css-tricks.com/prefetching-preloading-prebrowsing/#article-header-id-3
  * @see https://medium.com/clio-calliope/making-google-fonts-faster-aadf3c02a36d
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
  */
 import * as React from 'react'
 import Document, {
@@ -36,7 +37,7 @@ import {
 class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
   render() {
     return this.props.isAmp === false ? (
-      <Html lang="en" prefix="og: http://ogp.me/ns#">
+      <Html lang="en" prefix="og: https://ogp.me/ns#">
         {this.props.children}
       </Html>
     ) : (
@@ -55,8 +56,14 @@ class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
  */
 class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
   render() {
-    if (this.props.isAmp === false) {
-      return <link rel="amphtml" href={this.props.href + '/amp'} />
+    const { isAmp, href } = this.props
+    if (isAmp === false) {
+      return (
+        <link
+          rel="amphtml"
+          href={href.endsWith('/') ? href + 'amp' : href + '/amp'}
+        />
+      )
     }
 
     return (
@@ -64,7 +71,7 @@ class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
         <link
           key={'canonical-link'}
           rel="canonical"
-          href={this.props.href.replace('/amp', '')}
+          href={href.replace('/amp', '')}
         />
         <style
           key={'style'}
@@ -217,7 +224,7 @@ export default class MyDocument extends Document<DocumentProps> {
             rel="preload"
             href="https://www.google-analytics.com/analytics.js"
             as="script"
-            crossOrigin={'crossOrigin'}
+            // crossOrigin={'crossOrigin'}
           />
           <link
             rel="preload"
@@ -225,7 +232,7 @@ export default class MyDocument extends Document<DocumentProps> {
               process.env.GOOGLE_TAG_MANAGER_WEB_ID
             }`}
             as="script"
-            crossOrigin={'crossOrigin'}
+            // crossOrigin={'crossOrigin'}
           />
 
           {shouldSkipAnalytics === false && (

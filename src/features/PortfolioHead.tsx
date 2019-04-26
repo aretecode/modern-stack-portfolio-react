@@ -11,6 +11,9 @@ import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
 import { PortfolioContext } from './PortfolioContext'
 import { AppContext } from './AppContext'
 
+/**
+ * <link rel="profile" href="https://gmpg.org/xfn/11" />
+ */
 export function PortfolioHead(props: {
   description?: string
   titleText?: string
@@ -110,7 +113,6 @@ export function PortfolioHead(props: {
           href={`${iconBaseUrl}-180x180.png`}
           key="head:icon:180"
         />
-        <link rel="profile" href="http://gmpg.org/xfn/11" />
         <meta name="theme-color" content={'#6200ee'} key="head:color" />
         <meta property="og:type" content="website" />
         <meta
