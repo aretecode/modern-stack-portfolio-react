@@ -143,7 +143,7 @@ export function AmpImage(props: DynamicAmpImageProps): JSX.Element {
 }
 
 export const HAS_SUPPORT_FOR_INTERSECTION_OBSERVER =
-  typeof IntersectionObserver !== 'function'
+  typeof IntersectionObserver === 'function'
 
 export class PictureIntersectionObserver extends React.PureComponent<
   PictureIntersectionObserverProps,
