@@ -36,6 +36,9 @@
     "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
     "dev:server": "rm -fr dist && rm -fr .next && yarn build:server && yarn start:server"
   },
+  "_resolutions": {
+    "webpack": "5.0.0-alpha.11"
+  },
   "resolutions": {
     "webpack": "4.30.0",
     "fork-ts-checker-webpack-plugin": "1.2.0",
