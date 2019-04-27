@@ -83,7 +83,7 @@ export const apolloState = {
           optimistic: true,
         })
 
-        logger.log({ data })
+        logger.debug({ data })
 
         return { ...data!.resume }
       },

@@ -269,7 +269,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
     } else {
       if (process.browser) {
         if (process.env.NODE_ENV === 'development') {
-          logger.log('[fetchData] in browser - not loading')
+          logger.debug('[fetchData] in browser - not loading')
         }
         return
       }
