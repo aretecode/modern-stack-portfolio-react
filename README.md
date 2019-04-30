@@ -1,5 +1,5 @@
 # modern-stack-portfolio-react
-
+[![Build Status](https://travis-ci.org/aretecode/modern-stack-portfolio-react.svg?branch=master)](https://travis-ci.org/aretecode/modern-stack-portfolio-react)
 [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/aretecode/modern-stack-portfolio-react)
 
 See it live at [jameswiens.dev](https://jameswiens.dev)
