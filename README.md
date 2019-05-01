@@ -8,3 +8,23 @@ See it live at [jameswiens.dev](https://jameswiens.dev)
 
 This is the [react](https://reactjs.org) part of the [modern stack portfolio](https://github.com/aretecode/modern-stack-web-portfolio)
 also see the [graphql part](https://github.com/aretecode/modern-stack-portfolio-graphql)
+
+
+## Docker
+1. `yarn build`
+2. `docker build .`
+3. `docker tag __TAG__ aretecode/modern-stack-portfolio-react:v__VERSION__`
+4. `docker push aretecode/modern-stack-portfolio-react:v__VERSION__`
+5. `docker run -d -p 3333:3000 __TAG__`
+
+##### Related
+- [Docker run](https://docs.docker.com/engine/reference/run/)
+- [Medium - A better way to develop nodejs with docker](https://hackernoon.com/a-better-way-to-develop-node-js-with-docker-cd29d3a0093)
+
+##### Kitematic
+- [Install Kitematic](https://github.com/docker/kitematic/releases)
+
+> use `command + r` to refresh
+
+##### Minikube
+- [Install Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
