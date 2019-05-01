@@ -4,12 +4,6 @@
   "private": false,
   "sideEffects": false,
   "main": ".next/server/index.js",
-  "folders": [
-    ".next",
-    "server",
-    "pages",
-    "src"
-  ],
   "scripts": {
     "dev": "next",
     "build": "rm -fr .next && next build && yarn copy",
@@ -20,7 +14,6 @@
     "now-build": "yarn build",
     "next:build": "yarn build && yarn build:server",
     "build:server:only": "DISABLE_SERVERLESS=true NODE_ENV=production next build",
-
     "install:workspace": "cd ../../ && yarn install && cd packages/client",
     "prepublishOnly": "rm -rf build && tsc || true",
     "dev:webpack": "webpack-dev",
@@ -35,6 +28,9 @@
     "build:server": "yarn build && yarn build:server:only && tsc || true && tsc --project tsconfig.server.json || true",
     "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
     "dev:server": "rm -fr dist && rm -fr .next && yarn build:server && yarn start:server"
+  },
+  "_resolutions": {
+    "webpack": "5.0.0-alpha.11"
   },
   "resolutions": {
     "webpack": "4.30.0",
@@ -104,12 +100,12 @@
     "@types/storybook__addon-storyshots": "3.4.9",
     "@types/storybook__addon-knobs": "5.0.0",
     "babel-loader": "8.0.5",
-    "@babel/core": "7.4.3",
-    "@babel/cli": "7.4.3",
+    "@babel/core": "7.4.4",
+    "@babel/cli": "7.4.4",
     "@babel/plugin-syntax-jsx": "7.2.0",
     "@babel/plugin-syntax-object-rest-spread": "7.2.0",
-    "@babel/plugin-proposal-decorators": "7.4.0",
-    "@babel/preset-env": "7.4.3",
+    "@babel/plugin-proposal-decorators": "7.4.4",
+    "@babel/preset-env": "7.4.4",
     "jest": "24.7.1",
     "jest-cli": "24.7.1",
     "ts-jest": "24.0.2",
@@ -125,5 +121,31 @@
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "ts-loader": "5.4.3",
     "date-fns": "1.30.1"
-  }
+  },
+  "folders": [
+    ".next",
+    "server",
+    "pages",
+    "src"
+  ],
+  "license": "MIT",
+  "description": "React client portion of the generic portfolio, written in the modern web stack, used on jameswiens.dev site",
+  "homepage": "https://jameswiens.dev",
+  "author": "James Wiens <james@jameswiens.dev> (https://jameswiens.dev)",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:aretecode/modern-stack-portfolio-react.git"
+  },
+  "keywords": [
+    "jameswiens",
+    "james",
+    "wiens",
+    "dev",
+    "aretecode",
+    "portfolio",
+    "react",
+    "graphql",
+    "typescript",
+    "styled-components"
+  ]
 }
