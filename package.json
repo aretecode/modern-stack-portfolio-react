@@ -36,7 +36,7 @@
   "resolutions": {
     "node-fetch": "2.4.1",
     "webpack": "4.30.0",
-    "fork-ts-checker-webpack-plugin": "1.2.0",
+    "fork-ts-checker-webpack-plugin": "1.3.0",
     "apollo-link": "1.2.11",
     "typescript": "3.4.5",
     "styled-components": "https://unpkg.com/styled-components-aretecode@4.2.0-fork.4/styled-components-aretecode-4.2.0-fork.4.tgz"
@@ -69,7 +69,7 @@
     "image-size": "0.7.4"
   },
   "devDependencies": {
-    "fork-ts-checker-webpack-plugin": "1.2.0",
+    "fork-ts-checker-webpack-plugin": "1.3.0",
     "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
     "@zeit/next-bundle-analyzer": "0.1.2",
     "danger": "7.1.4",
