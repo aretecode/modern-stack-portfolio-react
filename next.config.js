@@ -1,10 +1,9 @@
 /**
+ * @todo might be able to put more of these in build-time only
  * @see https://github.com/zeit/next.js/issues/876
  */
-const { EnvironmentPlugin } = require('webpack')
 const withTypescript = require('@zeit/next-typescript')
 const withOffline = require('next-offline')
-const withSize = require('next-size')
 const { env, envWithoutNodeEnv } = require('./env')
 
 /**
@@ -28,7 +27,10 @@ const nextConfig = {
   target:
     process.env.DISABLE_SERVERLESS !== undefined ? 'server' : 'serverless',
   webpack(config, options) {
-    config.plugins.push(new EnvironmentPlugin(env))
+    if (process.env.IS_DOCKER === undefined) {
+      const { EnvironmentPlugin } = require('webpack')
+      config.plugins.push(new EnvironmentPlugin(env))
+    }
 
     if (process.env.NODE_ENV === 'production') {
       console.debug('[next] in production mode, not type checking')
@@ -94,22 +96,27 @@ const nextConfig = {
 
 const typescriptConfig = withTypescript(nextConfig)
 const workboxConfig = withOffline(typescriptConfig)
-const sizeConfig = withSize(workboxConfig)
 
-// module.exports = sizeConfig
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
-module.exports = withBundleAnalyzer({
-  ...sizeConfig,
-  analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
-  analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
-  bundleAnalyzerConfig: {
-    server: {
-      analyzerMode: 'static',
-      reportFilename: '../../bundles/server.html',
+function withBuildTimeDeps() {
+  const withSize = require('next-size')
+  const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
+  const sizeConfig = withSize(workboxConfig)
+  return withBundleAnalyzer({
+    ...sizeConfig,
+    analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+    analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+    bundleAnalyzerConfig: {
+      server: {
+        analyzerMode: 'static',
+        reportFilename: '../../bundles/server.html',
+      },
+      browser: {
+        analyzerMode: 'static',
+        reportFilename: '../bundles/client.html',
+      },
     },
-    browser: {
-      analyzerMode: 'static',
-      reportFilename: '../bundles/client.html',
-    },
-  },
-})
+  })
+}
+
+module.exports =
+  process.env.IS_DOCKER === undefined ? withBuildTimeDeps() : workboxConfig

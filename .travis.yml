@@ -20,7 +20,9 @@ before_script:
 
 script:
    - jest --runInBand --silent
-   - yarn lighthousebot https://jameswiens.dev
+
+after_success:
+   - yarn lighthousebot --perf=93 --pwa=100 --seo=100 --a11y=100 --bp=100 https://jameswiens.dev || true
 
 notifications:
   slack: aretecode:iup7yYHuehxb7jdj20BjpimH
