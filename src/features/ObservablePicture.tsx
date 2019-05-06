@@ -169,9 +169,13 @@ export class PictureIntersectionObserver extends React.PureComponent<
     this.props.ref || this.props.forwardedRef || React.createRef<any>()
   observer: IntersectionObserver | undefined
   state = {
+    /**
+     * if we pass a prop that says it is in view
+     * or if we have no IntersectionObserver & it's in the browser (because the server should render with <noscript>)
+     */
     hasIntersected:
       !!this.props.isAlwaysAboveTheFold ||
-      HAS_SUPPORT_FOR_INTERSECTION_OBSERVER === false,
+      (HAS_SUPPORT_FOR_INTERSECTION_OBSERVER === false && process.browser),
     isIntersecting: false,
     height: 0,
     width: 0,
