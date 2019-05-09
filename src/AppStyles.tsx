@@ -102,16 +102,10 @@ export const AppStyles = createGlobalStyle`
  * could also style outlines here
  */
 export const BelowTheFoldStyles = createGlobalStyle`
-  ::-moz-selection {
-    background: #e1523d;
-    color: #fff;
-    background: rgba(0,0,0,.5);
-    text-shadow: none;
-  }
   ::selection {
-    background: #e1523d;
+    background: ${(props: { theme: { isDark: boolean } }) =>
+      props.theme.isDark ? 'var(--color-dark-purple)' : 'rgba(0,0,0,.5)'};
     color: #fff;
-    background: rgba(0,0,0,.5);
     text-shadow: none;
   }
 `
