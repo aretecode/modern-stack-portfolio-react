@@ -98,10 +98,10 @@ export function isSet(x: unknown): x is Set<any> {
     .includes('set')
 }
 
-export function isEnumerable<ObjType extends {}, PropType extends keyof ObjType>(
-  obj: ObjType,
-  prop: PropType
-): boolean {
+export function isEnumerable<
+  ObjType extends {},
+  PropType extends keyof ObjType
+>(obj: ObjType, prop: PropType): boolean {
   return isObj(obj) && Object.prototype.propertyIsEnumerable.call(obj, prop)
 }
 
@@ -140,8 +140,14 @@ export function isMatcher(x: any): x is string | AnyFunction | RegExp {
   return isString(x) || isFunction(x) || isRegExp(x)
 }
 
-export function isPrimitive(x: any): x is string | number | symbol | boolean | null | undefined {
+export function isPrimitive(
+  x: any
+): x is string | number | symbol | boolean | null | undefined {
   return isString(x) || isBoolean(x) || isNumber(x) || isSymbol(x) || isNil(x)
+}
+
+export function isPromise<Type = any>(x: any): x is Promise<Type> {
+  return Promise.resolve(x) == x
 }
 
 // tslint:disable cyclomatic-complexity
