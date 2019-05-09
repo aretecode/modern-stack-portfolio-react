@@ -67,3 +67,5 @@ export const StyledLink = styled(DynamicLink)`
     -webkit-tap-highlight-color: rgba(102, 102, 102, 0.5);
   }
 `
+
+export type StyledLinkProps = React.ComponentProps<typeof StyledLink>
