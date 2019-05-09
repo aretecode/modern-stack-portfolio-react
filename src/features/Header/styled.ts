@@ -4,9 +4,13 @@ import { StyledLink } from '../Link'
 export const StyledHeader = styled.header.attrs({
   role: 'banner',
 })`
-  background-color: var(--color-material-background-purple);
+  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${props =>
+    props.theme.isDark
+      ? 'rgba(255, 255, 255, 0.05)'
+      : 'var(--color-material-background-purple)'};
+
   position: absolute;
-  background: rgba(0, 0, 0, 0.2);
   top: 0;
 
   display: flex;

@@ -4,7 +4,12 @@ import { StyledLink } from '../Link'
 import { SpecialIcon } from './SpecialIcon'
 
 export const StyledFooter = styled.footer`
-  background-color: var(--color-material-background-purple);
+  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${props =>
+    props.theme.isDark
+      ? 'var(--color-dark-background-dark-surface)'
+      : 'var(--color-material-background-purple)'};
+
   padding: 2rem 1.25rem;
 
   p {
@@ -49,25 +54,30 @@ export const OpenSourceLink = styled(StyledLink).attrs({
 /**
  * @todo cleanup these styles & move @@codesmell
  * ^ especially remove elements from the dom, rather than styles to hide
+ *
+ * @todo this also has weird effect of these styles not being applied in correct order
+ *       may be styled-components bug (thus using `&&`)
  */
 export const StyledSocialProfiles = styled(SocialProfiles)`
-  flex-direction: row;
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-  width: 25vw;
-  height: unset;
-  > a {
-    width: unset;
-    flex-basis: unset;
-    display: initial;
-    padding: 1rem 1rem 1rem 0;
-    &:last-child {
-      display: none;
-    }
-    > svg {
-      &:first-child {
-        fill: white;
+  && {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    width: 25vw;
+    height: unset;
+    > a {
+      width: unset;
+      flex-basis: unset;
+      display: initial;
+      padding: 1rem 1rem 1rem 0;
+      &:last-child {
+        display: none;
+      }
+      > svg {
+        &:first-child {
+          fill: #fff;
+        }
       }
     }
   }

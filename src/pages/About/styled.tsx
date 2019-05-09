@@ -103,7 +103,12 @@ export const StyledSummary = styled.p`
 `
 
 export const StyledLabel = styled.h2`
-  color: var(--color-dark-background-main);
+  transition: color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${props =>
+    props.theme.isDark
+      ? 'var(--color-dark-purple)'
+      : 'var(--color-dark-background-main)'};
+
   margin: 0;
   margin-top: -0.5rem;
   font-size: 1.2rem;
@@ -132,11 +137,19 @@ export const materialHeightTiming = 'cubic-bezier(0.4, 0.0, 0.2, 1)'
 export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
   display: flex;
   object-fit: cover;
+  user-select: none;
+
+  ${props =>
+    props.theme.isDark &&
+    css`
+      filter: grayscale(98%);
+    `};
 
   border-radius: 0.125rem;
   box-shadow: none;
 
-  transition: margin-top 0.5s ${materialHeightTiming},
+  transition: filter 0.12s cubic-bezier(0.4, 0, 0.2, 1) 0.24s,
+    margin-top 0.5s ${materialHeightTiming},
     max-width 0.24s ${materialHeightTiming}, height 1s ${materialHeightTiming},
     object-position 0.8s ${materialHeightTiming},
     box-shadow 0.24s ${materialHeightTiming};
@@ -207,7 +220,12 @@ export const StyledContactNav = styled.nav`
 `
 
 export const StyledAboutMeArticle = styled.article`
-  background-color: #fff;
+  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${props =>
+    props.theme.isDark ? 'var(--color-dark-background-dark-surface)' : '#fff'};
+  color: ${props => (props.theme.isDark ? 'rgba(255, 255, 255, 1) ' : '#000')};
+
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
