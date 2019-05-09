@@ -4,6 +4,8 @@
 import * as React from 'react'
 import { createContext } from 'react'
 import { URL } from '../utils/url'
+import { EMPTY_ARRAY } from '../utils/EMPTY'
+import { DarkModeHookArrayType } from '../utils/hooks/typings'
 
 /**
  * @todo can observe the scrolling, etc
@@ -21,6 +23,11 @@ export interface AppContextValueType {
    * the available window width
    */
   width?: number
+
+  /**
+   * can set this with hooks...?
+   */
+  darkMode: DarkModeHookArrayType
 }
 
 /**
@@ -32,12 +39,16 @@ export const AppContext = createContext<AppContextValueType>({
   url: DEFAULT_URL as any,
   height: 0,
   width: 0,
+  darkMode: EMPTY_ARRAY as DarkModeHookArrayType,
 })
 
-export class AppContextProvider extends React.PureComponent<{ url: URL }> {
+export class AppContextProvider extends React.PureComponent<{
+  url: URL
+  darkMode?: DarkModeHookArrayType
+}> {
   render() {
-    const { url, children } = this.props
-    const contextValue = { url }
+    const { url = DEFAULT_URL, children, darkMode } = this.props
+    const contextValue = { url, darkMode }
     return (
       <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
     )
