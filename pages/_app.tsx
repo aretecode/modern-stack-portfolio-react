@@ -50,6 +50,24 @@ export function InnerApp(props: {
   const darkMode = useDarkMode()
   const [doesPreferDarkMode, setDarkMode] = darkMode
 
+  /**
+   * @todo the BrightnessIcon should update this
+   *       and we can append when navigating pages
+   *       or we can at least override it by setting the value
+   *
+   * @example
+   *  theme = 'dark' | 'light'
+   */
+  if (url.searchParams.has('theme')) {
+    const theme = url.searchParams.get('theme')
+    // it is dark theme, and dark theme is not true
+    if (theme === 'dark' && doesPreferDarkMode === false) {
+      setDarkMode(true)
+    } else if (theme === 'light' && doesPreferDarkMode !== false) {
+      setDarkMode(false)
+    }
+  }
+
   const theme = {
     isDark: doesPreferDarkMode,
   }
