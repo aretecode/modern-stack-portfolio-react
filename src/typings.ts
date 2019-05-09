@@ -5,23 +5,18 @@
 /**
  * === basics ===
  */
-export type Primitive =
-  | string
-  | number
-  | boolean
-  | symbol
-  | null
-  | undefined
-  | void
+export type Primitive = string | number | boolean | symbol | null | undefined
 
 export type SafePrimitive = string | number | boolean | symbol
+
+export type BasicPrimitives = string | number | boolean
 
 /**
  * === serialized ===
  */
 export interface SerializedObj {
-  [key: string]: Primitive | FrozenSerializedObj | FrozenSerializedArray
-  [key: number]: Primitive | FrozenSerializedObj | FrozenSerializedArray
+  [key: string]: BasicPrimitives | FrozenSerializedObj | FrozenSerializedArray
+  [key: number]: BasicPrimitives | FrozenSerializedObj | FrozenSerializedArray
 }
 
 export type FrozenSerializedObj = Readonly<SerializedObj>
@@ -32,7 +27,7 @@ export interface FrozenSerializedArray extends Readonly<Serialized[]> {
 
 export type Serialized =
   | SerializedObj
-  | Primitive
+  | BasicPrimitives
   | FrozenSerializedObj
   | FrozenSerializedArray
 
