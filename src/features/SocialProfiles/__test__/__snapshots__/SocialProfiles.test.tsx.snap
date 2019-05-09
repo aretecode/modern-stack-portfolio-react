@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SocialProfiles should render all for context 1`] = `
+.c2 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.c2 path:first-of-type {
+  transition: fill 0.24s cubic-bezier(0.4,0,0.2,1);
+  fill: #000;
+}
+
 .c0 {
   padding: 1rem;
   width: 75px;
@@ -10,7 +20,7 @@ exports[`SocialProfiles should render all for context 1`] = `
   align-items: center;
   object-fit: contain;
   object-position: bottom;
-  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+  transition: flex-direction 0.24s cubic-bezier(0,0,0.2,1), width 0.24s cubic-bezier(0,0,0.2,1);
 }
 
 .c1 {
@@ -35,11 +45,6 @@ exports[`SocialProfiles should render all for context 1`] = `
 
 .c1:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
-}
-
-.c2 {
-  width: 2rem;
-  height: 2rem;
 }
 
 @media (max-width:1023px) {
