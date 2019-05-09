@@ -34,16 +34,14 @@ export default createGlobalStyle`
     }
 
 
-    .i-amphtml-accordion-header {
+    > header {
       ${props =>
         props.theme.isDark &&
         css`
           background-color: var(--color-dark-background-dark-surface);
           border-width: 4px;
         `};
-    }
 
-    > header {
       > div {
         width: 100%;
         text-align: center;
