@@ -31,9 +31,7 @@ export function useDarkMode(): DarkModeHookArrayType {
   // If enabledState is defined use it, otherwise fallback to prefersDarkMode.
   // This allows user to override OS level setting on our website.
   const enabled =
-    typeof enabledState !== 'undefined'
-      ? (enabledState as boolean)
-      : prefersDarkMode
+    enabledState !== undefined ? (enabledState as boolean) : prefersDarkMode
 
   // Return enabled state and setter
   return [enabled, setDarkMode as (value: boolean) => void]
