@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ObservablePicture } from '../../features/ObservablePicture'
 
 export const StyledGrid = styled.div`
@@ -22,7 +22,11 @@ export const StyledTime = styled.time`
 export const StyledCardImage = styled(ObservablePicture).attrs({
   loading: 'lazy',
 })`
-  filter: url(#green-tint);
+  ${props =>
+    props.theme.isDark &&
+    css`
+      filter: url(#green-tint);
+    `};
   max-width: 100%;
   > img {
     max-width: 100%;
@@ -69,7 +73,7 @@ export const StyledLeaderBoard = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 0 2rem 0;
+  padding: 4rem 0 0 0;
 
   > h1 {
     color: #fff;
