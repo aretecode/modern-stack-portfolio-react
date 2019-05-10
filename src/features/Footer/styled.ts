@@ -75,7 +75,7 @@ export const StyledSocialProfiles = styled(SocialProfiles)`
         display: none;
       }
       > svg {
-        &:first-child {
+        path:first-of-type {
           fill: #fff;
         }
       }
