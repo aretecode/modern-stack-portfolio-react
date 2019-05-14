@@ -75,7 +75,7 @@
     "danger": "7.1.4",
     "next-size": "2.0.2",
     "@types/gapi.client.tagmanager": "2.0.1",
-    "intersection-observer": "0.6.0",
+    "intersection-observer": "0.7.0",
     "@types/lru-cache": "5.1.0",
     "@types/image-size": "0.7.0",
     "@types/mkdirp": "0.5.2",
