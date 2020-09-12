@@ -46,7 +46,7 @@
     "next-server": "8.1.0",
     "@zeit/next-typescript": "^1.1.1",
     "next-offline": "3.4.0",
-    "node-fetch": "2.5.0",
+    "node-fetch": "2.6.1",
     "react-amphtml": "^3.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
