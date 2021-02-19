@@ -1,8 +1,8 @@
+/* eslint-disable max-statements */
 /**
  * @todo might be able to put more of these in build-time only
  * @see https://github.com/zeit/next.js/issues/876
  */
-const withTypescript = require('@zeit/next-typescript')
 const withOffline = require('next-offline')
 const { env, envWithoutNodeEnv } = require('./env')
 
@@ -23,6 +23,7 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  * @see https://nextjs.org/docs#build-time-configuration
  */
 const nextConfig = {
+  amp: 'hybrid',
   env: envWithoutNodeEnv,
   target:
     process.env.DISABLE_SERVERLESS !== undefined ? 'server' : 'serverless',
@@ -58,7 +59,6 @@ const nextConfig = {
     const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
     const plugin = new ForkTsCheckerWebpackPlugin({
       tsconfig: require.resolve('./tsconfig.json'),
-      tslint: require.resolve('./tslint.json'),
       useTypescriptIncrementalApi: true,
       checkSyntacticErrors: true,
       watch: [resolveApp('src'), resolveApp('pages')],
@@ -94,8 +94,7 @@ const nextConfig = {
   },
 }
 
-const typescriptConfig = withTypescript(nextConfig)
-const workboxConfig = withOffline(typescriptConfig)
+const workboxConfig = withOffline(nextConfig)
 
 function withBuildTimeDeps() {
   const withSize = require('next-size')
