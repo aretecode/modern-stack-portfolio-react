@@ -11,6 +11,8 @@ import { StyleSheetManager } from 'styled-components'
 import { ApolloClient } from 'apollo-boost'
 import * as React from 'react'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
+import { ThemeProvider } from 'styled-components'
+//
 import { initApolloClient } from '../src/apolloClient'
 import '../src/apolloStateRehydrate'
 import { PortfolioProvider } from '../src/features/PortfolioContext'
@@ -28,28 +30,52 @@ import {
   DataLoading,
   DataLoadingProvider,
 } from '../src/features/ServerSideRendering'
+import { useDarkMode } from '../src/utils/hooks/useDarkMode'
 
-export class InnerApp extends React.PureComponent<{
+export function InnerApp(props: {
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
   url: URL
   dataLoadingContextValue: DataLoading
-}> {
-  render() {
-    const {
-      apolloClient,
-      dataLoadingContextValue,
-      apolloClientState,
-      url,
-      children,
-    } = this.props
+  children?: React.ReactChildren
+}) {
+  const {
+    apolloClient,
+    dataLoadingContextValue,
+    apolloClientState,
+    url,
+    children,
+  } = props
 
-    const contextValue = DataLoading.from(dataLoadingContextValue)
+  const contextValue = DataLoading.from(dataLoadingContextValue)
+  const darkMode = useDarkMode()
+  const [doesPreferDarkMode, setDarkMode] = darkMode
 
-    /**
-     * @todo error boundary around children
-     */
-    return (
+  /**
+   * @todo the BrightnessIcon should update this
+   *       and we can append when navigating pages
+   *       or we can at least override it by setting the value
+   *
+   * @example
+   *  theme = 'dark' | 'light'
+   */
+  if (url?.searchParams.has('theme')) {
+    const theme = url.searchParams.get('theme')
+    // it is dark theme, and dark theme is not true
+    if (theme === 'dark' && doesPreferDarkMode === false) {
+      setDarkMode(true)
+    } else if (theme === 'light' && doesPreferDarkMode !== false) {
+      setDarkMode(false)
+    }
+  }
+
+  const theme = {
+    isDark: doesPreferDarkMode,
+  }
+
+  /** @todo error boundary around children */
+  return (
+    <AppContextProvider url={url} darkMode={darkMode}>
       <React.StrictMode>
         <ApolloProvider
           client={
@@ -58,19 +84,21 @@ export class InnerApp extends React.PureComponent<{
           }
         >
           <DataLoadingProvider contextValue={contextValue}>
-            <PortfolioProvider>
-              <AppStyles />
-              <Header />
-              {children}
-              <Footer />
-              <StyledVectorFilter />
-              <BelowTheFoldStyles />
-            </PortfolioProvider>
+            <ThemeProvider theme={theme}>
+              <PortfolioProvider>
+                <AppStyles />
+                <Header />
+                {children}
+                <Footer />
+                <StyledVectorFilter />
+                <BelowTheFoldStyles />
+              </PortfolioProvider>
+            </ThemeProvider>
           </DataLoadingProvider>
         </ApolloProvider>
       </React.StrictMode>
-    )
-  }
+    </AppContextProvider>
+  )
 }
 
 export default class MyApp extends App<{
@@ -199,15 +227,13 @@ export default class MyApp extends App<{
 
     return (
       <StyleSheetManager disableVendorPrefixes>
-        <AppContextProvider url={urlObj}>
-          <InnerApp
-            apolloClientState={apolloClientState}
-            url={urlObj}
-            dataLoadingContextValue={dataLoadingContextValue!}
-          >
-            <Component {...pageProps} />
-          </InnerApp>
-        </AppContextProvider>
+        <InnerApp
+          apolloClientState={apolloClientState}
+          url={urlObj}
+          dataLoadingContextValue={dataLoadingContextValue!}
+        >
+          <Component {...pageProps} />
+        </InnerApp>
       </StyleSheetManager>
     )
   }

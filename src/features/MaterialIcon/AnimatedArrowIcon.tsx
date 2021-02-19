@@ -1,4 +1,6 @@
 /**
+ * @todo abstract this + AnimatedBrightnessIcon
+ *
  * @see https://medium.com/@aniboaz/animate-svg-4fa7dd00e860
  * @see https://css-tricks.com/guide-svg-animations-smil/
  * @see https://code.likeagirl.io/how-to-build-svg-code-and-svg-animations-7bb1e42f6ef
@@ -7,35 +9,20 @@
  * @see https://properdesign.rs/blog/2015/02/animating-svg-with-beginelement/
  * @see https://css-tricks.com/restart-css-animation/
  * @see https://medium.freecodecamp.org/how-to-build-animated-microinteractions-in-react-aab1cb9fe7c8
+ * @see https://blog.greggant.com/posts/2018/10/10/svg-path-d-animation-in-2018.html
+ * @see http://franzheidl.github.io/keysplines/
  * @example http://plouc.github.io/react-svg-buttons/
  * @example https://codesandbox.io/s/mqw8m78q1j
  * @example https://codesandbox.io/s/nr87l4q6w0
  * @example https://codesandbox.io/s/2wl104v5mr
  * @example https://codesandbox.io/s/30y689wok5
- *
- * @todo split up this file
  */
 import * as React from 'react'
 import { useContext, useState, useRef } from 'react'
-import styled from 'styled-components'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
 import { AmpContext } from '../AmpContext'
-
-/**
- * for better perf (_at least, bundle size_), could reuse this in the other `svg`s
- */
-export const StyledVector = styled.svg.attrs({
-  role: 'img' as string,
-  viewBox: '0 0 24 24' as string,
-  xmlns: 'https://www.w3.org/2000/svg' as string,
-})``
-
-export interface AnimatedArrowIconProps {
-  icon: 'up' | 'down'
-}
-export type AnimationRefType = React.MutableRefObject<
-  SVGAnimateElement & { beginElement: () => void; endElement: () => void }
->
+import { StyledVector } from './StyledVector'
+import { AnimatedArrowIconProps, AnimationRefType } from './typings'
 
 export const UP_ARROW_SINGLE_PATH_VALUE =
   '12.4846802 8 19.9693604 14.8939819 18.386673 16.9936981 12.4846802 11.6221466 6.61653912 16.9414647 5 14.8939819'

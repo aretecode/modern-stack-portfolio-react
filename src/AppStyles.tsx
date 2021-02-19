@@ -23,10 +23,15 @@ export const AppStyles = createGlobalStyle`
     --color-purple-blue: #3f51b5;
     --color-material-background-purple: #6200ee;
 
+    --color-dark-background-dark-surface: #121212;
+    --color-dark-purple: #BB86FC;
+    --color-dark-background-dark: #232f34;
+    --color-dark-background-dark: #000000;
+
     --color-orange: #ff5722;
     --color-deep-blue: #3b50ce;
     --color-dark-background-main: #344955;
-    --color-dark-background-dark: #232f34;
+
     --color-dark-background-light: #4a6572;
     --color-link: #fff;
 
@@ -85,7 +90,9 @@ export const AppStyles = createGlobalStyle`
   }
   #__next {
     min-height: inherit;
-    background-color: var(--color-dark-background-dark);
+    transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: ${(props: { theme: { isDark: boolean } }) =>
+      props.theme.isDark ? 'var(--color-dark-background-dark)' : '#f5f5f5'};
     display: flex;
     flex-direction: column;
   }
@@ -95,16 +102,10 @@ export const AppStyles = createGlobalStyle`
  * could also style outlines here
  */
 export const BelowTheFoldStyles = createGlobalStyle`
-  ::-moz-selection {
-    background: #e1523d;
-    color: #fff;
-    background: rgba(0,0,0,.5);
-    text-shadow: none;
-  }
   ::selection {
-    background: #e1523d;
+    background: ${(props: { theme: { isDark: boolean } }) =>
+      props.theme.isDark ? 'var(--color-dark-purple)' : 'rgba(0,0,0,.5)'};
     color: #fff;
-    background: rgba(0,0,0,.5);
     text-shadow: none;
   }
 `

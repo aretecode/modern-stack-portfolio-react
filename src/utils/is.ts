@@ -144,6 +144,10 @@ export function isPrimitive(
   return isString(x) || isBoolean(x) || isNumber(x) || isSymbol(x) || isNil(x)
 }
 
+export function isPromise<Type = any>(x: any): x is Promise<Type> {
+  return Promise.resolve(x) == x
+}
+
 export function isNative(
   x: unknown
 ): x is

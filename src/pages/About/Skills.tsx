@@ -10,9 +10,15 @@ import { PortfolioContext } from '../../features/PortfolioContext'
  */
 export const StyledSkillsWrap = styled.aside`
   overflow: hidden;
-  transition: margin-top 0.62s ease-in-out, height 0.24s ease-out;
+  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-top 0.62s cubic-bezier(0.4, 0, 0.2, 1), height 0.24s ease-out;
   height: 0;
-  background: white;
+
+  background-color: ${props =>
+    props.theme.isDark ? 'var(--color-dark-background-dark-surface)' : '#fff'};
+  color: ${props => (props.theme.isDark ? '#fff' : '#1b1b1b')};
+
   width: 100vw;
   flex-basis: 100%;
   display: flex;
@@ -23,7 +29,9 @@ export const StyledSkillsWrap = styled.aside`
     props.isExpanded === true &&
     css`
       margin-top: 1.5rem;
-      transition: margin-top 0s ease-in-out, height 0.48s ease-out;
+      transition: margin-top 0s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.24s cubic-bezier(0.4, 0, 0.2, 1), height 0.48s ease-out;
     `};
 `
 
@@ -32,8 +40,13 @@ export const StyledSkillItem = styled.li`
   border-radius: 4px;
   margin: 0.25rem;
   padding: 0.5rem;
-  background: var(--color-dark-background-dark);
-  color: white;
+
+  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${props =>
+    props.theme.isDark ? '#fff' : 'var(--color-dark-background-dark)'};
+  color: ${props => (props.theme.isDark ? '#1b1b1b' : '#fff')};
+
   border-radius: 6px;
 `
 

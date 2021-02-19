@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App> should match snapshot 1`] = `
+.c6 {
+  user-select: none;
+}
+
 .c1 {
   text-decoration: none;
   position: relative;
@@ -25,7 +29,17 @@ exports[`<App> should match snapshot 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c14 {
+.c20 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.c20 path:first-of-type {
+  transition: fill 0.24s cubic-bezier(0.4,0,0.2,1);
+  fill: #fff;
+}
+
+.c18 {
   padding: 1rem;
   width: 75px;
   display: inline-flex;
@@ -34,24 +48,20 @@ exports[`<App> should match snapshot 1`] = `
   align-items: center;
   object-fit: contain;
   object-position: bottom;
-  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+  transition: flex-direction 0.24s cubic-bezier(0,0,0.2,1), width 0.24s cubic-bezier(0,0,0.2,1);
 }
 
-.c16 {
-  width: 2rem;
-  height: 2rem;
-}
-
-.c34 {
-  background-color: var(--color-material-background-purple);
+.c38 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: var(--color-dark-background-dark-surface);
   padding: 2rem 1.25rem;
 }
 
-.c34 p {
+.c38 p {
   color: var(--color-text-body);
 }
 
-.c35 {
+.c39 {
   color: #df0909;
   display: inline-flex;
   padding-right: 0.5rem;
@@ -59,7 +69,7 @@ exports[`<App> should match snapshot 1`] = `
   height: 12px;
 }
 
-.c36 {
+.c40 {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   transform: translateY(1px);
@@ -68,12 +78,12 @@ exports[`<App> should match snapshot 1`] = `
   height: 14px;
 }
 
-.c37 {
+.c41 {
   padding-left: 0.3rem;
   text-decoration: underline;
 }
 
-.c38 {
+.c42.c42 {
   flex-direction: row;
   display: flex;
   justify-content: space-between;
@@ -82,19 +92,19 @@ exports[`<App> should match snapshot 1`] = `
   height: unset;
 }
 
-.c38 > a {
+.c42.c42 > a {
   width: unset;
   flex-basis: unset;
   display: initial;
   padding: 1rem 1rem 1rem 0;
 }
 
-.c38 > a:last-child {
+.c42.c42 > a:last-child {
   display: none;
 }
 
-.c38 > a > svg:first-child {
-  fill: white;
+.c42.c42 > a > svg path:first-of-type {
+  fill: #fff;
 }
 
 .c5 {
@@ -112,10 +122,30 @@ exports[`<App> should match snapshot 1`] = `
   padding: 1rem;
 }
 
+.c9.c9 {
+  fill: transparent;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 0.12s cubic-bezier(0.4,0,0.2,1), fill 0.48s cubic-bezier(0.4,0,0.2,1);
+}
+
+.c7 > g > path {
+  fill: #000;
+}
+
+.c7 > g > polygon {
+  fill: #fff;
+}
+
+.c8 {
+  width: 24px;
+  height: 24px;
+}
+
 .c0 {
-  background-color: var(--color-material-background-purple);
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: rgba(255,255,255,0.05);
   position: absolute;
-  background: rgba(0,0,0,0.2);
   top: 0;
   display: flex;
   align-items: center;
@@ -131,20 +161,20 @@ exports[`<App> should match snapshot 1`] = `
   color: var(--color-text-body);
 }
 
-.c39 {
+.c43 {
   height: 0;
   width: 0;
   visibility: hidden;
   position: absolute;
 }
 
-.c26.c26.c26 {
+.c30.c30.c30 {
   color: unset;
   text-decoration: initial;
   letter-spacing: initial;
 }
 
-.c27 {
+.c31 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
@@ -161,7 +191,7 @@ exports[`<App> should match snapshot 1`] = `
   transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
 }
 
-.c23 {
+.c27 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
@@ -174,65 +204,70 @@ exports[`<App> should match snapshot 1`] = `
   width: 8vw;
 }
 
-.c20 {
+.c24 {
   font-size: 2rem;
   margin-bottom: 0;
 }
 
-.c22 {
+.c26 {
   font-style: unset;
   padding-right: 0.15rem;
   opacity: 0.3;
 }
 
-.c24 {
+.c28 {
   margin-top: 1rem;
 }
 
-.c21 {
-  color: var(--color-dark-background-main);
+.c25 {
+  transition: color 0.24s cubic-bezier(0.4,0,0.2,1);
+  color: var(--color-dark-purple);
   margin: 0;
   margin-top: -0.5rem;
   font-size: 1.2rem;
 }
 
-.c18 {
+.c22 {
   display: flex;
   object-fit: cover;
+  user-select: none;
+  filter: grayscale(98%);
   border-radius: 0.125rem;
   box-shadow: none;
-  transition: margin-top 0.5s cubic-bezier(0.4,0.0,0.2,1), max-width 0.24s cubic-bezier(0.4,0.0,0.2,1),height 1s cubic-bezier(0.4,0.0,0.2,1), object-position 0.8s cubic-bezier(0.4,0.0,0.2,1), box-shadow 0.24s cubic-bezier(0.4,0.0,0.2,1);
+  transition: filter 0.12s cubic-bezier(0.4,0,0.2,1) 0.24s, margin-top 0.5s cubic-bezier(0.4,0.0,0.2,1), max-width 0.24s cubic-bezier(0.4,0.0,0.2,1),height 1s cubic-bezier(0.4,0.0,0.2,1), object-position 0.8s cubic-bezier(0.4,0.0,0.2,1), box-shadow 0.24s cubic-bezier(0.4,0.0,0.2,1);
 }
 
-.c17 {
+.c21 {
   margin: 0;
   padding: 0;
   display: flex;
   width: calc(100% - 75px);
 }
 
-.c19 {
+.c23 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   word-break: break-word;
 }
 
-.c25 {
+.c29 {
   display: flex;
   padding: 2rem 0;
   transition: flex-direction 500ms ease-in-out;
 }
 
-.c25 > section {
+.c29 > section {
   flex-basis: 50%;
 }
 
-.c25 > section > header {
+.c29 > section > header {
   font-weight: bold;
 }
 
-.c13 {
-  background-color: #fff;
+.c17 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: var(--color-dark-background-dark-surface);
+  color: rgba(255,255,255,1);
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
@@ -241,20 +276,25 @@ exports[`<App> should match snapshot 1`] = `
   width: 80%;
 }
 
-.c30 {
+.c34 {
   width: 42px;
   height: 42px;
 }
 
-.c28 {
+.c34 > polygon {
+  transition: fill 0.24s cubic-bezier(0.4,0,0.2,1);
+  fill: #fff;
+}
+
+.c32 {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  transition: justify-content 500ms ease-in-out;
+  transition: justify-content 0.5s cubic-bezier(0.4,0,0.2,1);
   margin-right: 1rem;
 }
 
-.c29 {
+.c33 {
   background: none;
   border: 0;
   color: inherit;
@@ -266,11 +306,12 @@ exports[`<App> should match snapshot 1`] = `
   user-select: none;
 }
 
-.c31 {
+.c35 {
   overflow: hidden;
-  transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1), margin-top 0.62s cubic-bezier(0.4,0,0.2,1),height 0.24s ease-out;
   height: 0;
-  background: white;
+  background-color: var(--color-dark-background-dark-surface);
+  color: #fff;
   width: 100vw;
   flex-basis: 100%;
   display: flex;
@@ -278,22 +319,24 @@ exports[`<App> should match snapshot 1`] = `
   order: 4;
 }
 
-.c33 {
+.c37 {
   display: inline-flex;
   border-radius: 4px;
   margin: 0.25rem;
   padding: 0.5rem;
-  background: var(--color-dark-background-dark);
-  color: white;
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: #fff;
+  color: #1b1b1b;
   border-radius: 6px;
 }
 
-.c32 {
+.c36 {
   margin: 0;
   padding: 1rem;
 }
 
-.c8 {
+.c12 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1);
   color: var(--color-text-body);
   background-color: var(--color-dark-background-main);
   margin: 0;
@@ -309,87 +352,93 @@ exports[`<App> should match snapshot 1`] = `
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
-.c8 figcaption {
+.c12 img {
+  border-radius: 0.125rem 0;
+}
+
+.c12 figcaption {
   padding: 1.25rem;
 }
 
-.c8 header {
+.c12 header {
+  transition: inherit;
   color: var(--color-text-secondary);
   font-size: 1.5rem;
   font-weight: 300;
 }
 
-.c8 div[role='separator'],
-.c8 time {
+.c12 div[role='separator'],
+.c12 time {
   font-size: 80%;
   font-weight: 400;
   color: var(--color-text-unimportant);
 }
 
-.c8 a {
+.c12 a {
   color: var(--color-text-unimportant);
   border-color: var(--color-text-unimportant);
   border-width: 1px;
 }
 
-.c8 a:link,
-.c8 a:visited {
+.c12 a:link,
+.c12 a:visited {
   color: var(--color-text-unimportant);
 }
 
-.c8 a::after {
+.c12 a::after {
   display: none;
 }
 
-.c7 {
+.c11 {
   display: grid;
   padding: 1rem;
   grid-gap: 0.5rem;
   grid-auto-rows: auto;
 }
 
-.c11 {
+.c15 {
   display: inline-flex;
 }
 
-.c10 {
+.c14 {
   filter: url(#green-tint);
   max-width: 100%;
 }
 
-.c10 > img {
+.c14 > img {
   max-width: 100%;
 }
 
-.c9 {
+.c13 {
   margin: 0;
   padding: 0;
 }
 
-.c6 {
-  background-color: var(--color-orange);
+.c10 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: var(--color-dark-background-dark-surface);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 0 2rem 0;
+  padding: 4rem 0 0 0;
 }
 
-.c6 > h1 {
-  color: white;
+.c10 > h1 {
+  color: #fff;
   font-size: 3em;
   font-weight: 300;
   text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
-.c12 {
+.c16 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
 }
 
 @media (max-width:1023px) {
-  .c14 {
+  .c18 {
     width: 75%;
     flex-direction: row;
     order: 2;
@@ -400,7 +449,7 @@ exports[`<App> should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c15 {
+  .c19 {
     flex-basis: 33%;
     width: 33%;
     text-align: center;
@@ -434,62 +483,62 @@ exports[`<App> should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c27 {
+  .c31 {
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width:1024px) {
-  .c27 {
+  .c31 {
     visibility: hidden;
     margin: 0;
   }
 }
 
 @media (min-width:1024px) {
-  .c20 {
+  .c24 {
     margin-top: 3rem;
   }
 }
 
 @media (max-width:1024px) {
-  .c20 {
+  .c24 {
     flex-basis: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c24 {
+  .c28 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c24 {
+  .c28 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c21 {
+  .c25 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:500px) {
-  .c18 {
+  .c22 {
     object-position: left;
   }
 }
 
 @media (max-width:1023px) {
-  .c18 {
+  .c22 {
     width: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c18 {
+  .c22 {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
     height: 120%;
     object-position: left;
@@ -500,28 +549,28 @@ exports[`<App> should match snapshot 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c17 {
+  .c21 {
     flex-wrap: wrap;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c19 {
+  .c23 {
     display: flex;
     flex-wrap: wrap;
   }
 }
 
 @media (max-width:1023px) {
-  .c25 {
+  .c29 {
     padding: 0.5rem 0;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c13 {
+  .c17 {
     width: calc(100% - 2rem);
     height: unset;
     flex-wrap: wrap;
@@ -530,13 +579,13 @@ exports[`<App> should match snapshot 1`] = `
 }
 
 @media (max-width:480px) {
-  .c13 {
+  .c17 {
     margin: 8rem 1rem 2rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c28 {
+  .c32 {
     justify-content: center;
     flex-basis: 25%;
     order: 3;
@@ -546,57 +595,63 @@ exports[`<App> should match snapshot 1`] = `
 }
 
 @media (min-width:1024px) {
-  .c28 {
+  .c32 {
     margin-top: -3.5rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c29 {
+  .c33 {
     width: 42px;
     height: 42px;
   }
 }
 
 @media (min-width:1024px) {
-  .c8 {
+  .c12 {
     padding: 0 1rem 0 0;
+  }
+
+  .c12 img {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0.125rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c8 {
+  .c12 {
     box-shadow: 0 1rem 0.75rem rgba(0,0,0,0.19), 0 0.5rem 0.5rem rgba(0,0,0,0.23);
   }
 }
 
 @media (min-width:1024px) {
-  .c9 {
+  .c13 {
     display: grid;
     grid-template-columns: calc(50vw - 2rem) calc(50vw - 2rem);
     grid-gap: 1rem;
   }
 
-  .c9 picture,
-  .c9 img {
+  .c13 picture,
+  .c13 img {
     height: 100%;
     width: 100%;
     object-fit: cover;
   }
 
-  .c9 figcaption {
+  .c13 figcaption {
     padding: 1.25rem 0;
   }
 }
 
 @media (max-width:1023px) {
-  .c9 img {
+  .c13 img {
     max-height: 65vh;
   }
 }
 
 @media (max-width:480px) {
-  .c6 {
+  .c10 {
     padding-top: 8rem;
   }
 }
@@ -641,6 +696,44 @@ exports[`<App> should match snapshot 1`] = `
         </li>
       </ul>
     </nav>
+    <svg
+      class="c6 c7 c8"
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="https://www.w3.org/2000/svg"
+    >
+      <title>
+        Brightness Icon
+      </title>
+      <desc>
+        An animated image, transitioning between a sun and a moon
+      </desc>
+      <g>
+        <polygon
+          points="20 15.31 23.31 12 20 8.69 20 4 15.31 4 12 0.69 8.69 4 4 4 4 8.69 0.69 12 4 15.31 4 20 8.69 20 12 23.31 15.31 20 20 20"
+        />
+        <path
+          d="M11.9949374,18.0053564 C8.97056925,18.0053564 5.98781556,15.6088503 5.98781556,12 C5.98781556,8.39114971 8.97056925,5.99402647 11.9949374,5.99402647 C16.0164601,5.99402647 18.0020592,8.99824992 18.0020592,12 C18.0020592,15.0017501 15.9874562,18.0053564 11.9949374,18.0053564 Z"
+        >
+          <animate
+            attributeName="d"
+            begin="0s"
+            dur="240ms"
+            fill="freeze"
+            keySplines="0.9 0.1 0.1 0.9"
+            values="M11.9949374,18.0053564 C8.97056925,18.0053564 5.98781556,15.6088503 5.98781556,12 C5.98781556,8.39114971 8.97056925,5.99402647 11.9949374,5.99402647 C16.0164601,5.99402647 18.0020592,8.99824992 18.0020592,12 C18.0020592,15.0017501 15.9874562,18.0053564 11.9949374,18.0053564 Z;M12.5,18 C10.8318231,18 10.0152775,17.8642326 8.96591604,17.284968 C7.91655461,16.7057035 5.98781556,14.7923877 5.98781556,12 C5.98781556,9.20761233 7.41109679,7.7118608 9.02170537,6.77297869 C9.82204333,6.24410999 10.5020793,5.93633719 12.5,6 C15.8083169,6.10541798 18.0020592,8.69 18.0020592,12 C18.0020592,15.31 15.8099803,18 12.5,18 Z;M12.5,18 C11.61,18 10.76,17.8 10,17.45 C12.06,16.5 13.5,14.42 13.5,12 C13.5,9.58 12.06,7.5 10,6.55 C10.76,6.2 11.61,6 12.5,6 C15.81,6 18.0020592,8.69 18.0020592,12 C18.0020592,15.31 15.81,18 12.5,18 Z"
+          />
+        </path>
+      </g>
+      <path
+        class="c9"
+        d="M12,8 C9.79,8 8,9.79 8,12 C8,14.21 9.79,16 12,16 C14.21,16 16,14.21 16,12 C16,9.79 14.21,8 12,8 Z"
+      />
+      <path
+        d="M0 0h24v24H0V0z"
+        fill="none"
+      />
+    </svg>
   </header>
   <script
     type="application/ld+json"
@@ -651,23 +744,23 @@ exports[`<App> should match snapshot 1`] = `
     class=""
   >
     <header
-      class="c6"
+      class="c10"
     >
       <h1>
         What I've done
       </h1>
     </header>
     <div
-      class="c7"
+      class="c11"
     >
       <article
-        class="c8"
+        class="c12"
       >
         <figure
-          class="c9"
+          class="c13"
         >
           <picture
-            class="c10"
+            class="c14"
           >
             <source
               media="(max-width: 800px)"
@@ -709,19 +802,19 @@ exports[`<App> should match snapshot 1`] = `
                 href="/Portfolio/Experience?index=0"
               >
                 <time
-                  class="c11"
+                  class="c15"
                   datetime="01/02/2013"
                 >
                   01/02/2013
                 </time>
                 <div
-                  class="c12"
+                  class="c16"
                   role="separator"
                 >
                   -
                 </div>
                 <time
-                  class="c11"
+                  class="c15"
                   datetime="current"
                 >
                   current
@@ -739,19 +832,19 @@ exports[`<App> should match snapshot 1`] = `
     {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
   </script>
   <article
-    class="c13"
+    class="c17"
   >
     <aside
-      class="c14"
+      class="c18"
     >
       <a
-        class="c1 c15"
+        class="c1 c19"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c16"
+          class="c20"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -770,46 +863,46 @@ exports[`<App> should match snapshot 1`] = `
       </a>
     </aside>
     <figure
-      class="c17"
+      class="c21"
     >
       <img
         alt="about me picture"
-        class="c18"
+        class="c22"
         src=""
       />
       <figcaption
-        class="c19"
+        class="c23"
       >
         <h1
-          class="c20"
+          class="c24"
         />
         <h2
-          class="c21"
+          class="c25"
         >
           
           <i
-            class="c22"
+            class="c26"
           >
             ↔
           </i>
           
         </h2>
         <hr
-          class="c23"
+          class="c27"
           role="separator"
         />
         <p
-          class="c24"
+          class="c28"
         />
         <nav
-          class="c25"
+          class="c29"
         >
           <section>
             <header>
               Phone
             </header>
             <a
-              class="c1 c26"
+              class="c1 c30"
               href="tel:12506509455"
             >
               +
@@ -821,7 +914,7 @@ exports[`<App> should match snapshot 1`] = `
               Email
             </header>
             <a
-              class="c1 c26"
+              class="c1 c30"
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
@@ -831,18 +924,18 @@ exports[`<App> should match snapshot 1`] = `
       </figcaption>
     </figure>
     <hr
-      class="c27"
+      class="c31"
       role="separator"
     />
     <div
-      class="c28"
+      class="c32"
       title="show/hide skills"
     >
       <button
-        class="c29"
+        class="c33"
       >
         <svg
-          class="c30"
+          class="c6 c34"
           role="img"
           title="show"
           viewBox="0 0 24 24"
@@ -871,13 +964,13 @@ exports[`<App> should match snapshot 1`] = `
     </div>
     <aside
       aria-hidden="true"
-      class="c31"
+      class="c35"
     >
       <ul
-        class="c32"
+        class="c36"
       >
         <li
-          class="c33"
+          class="c37"
         >
           skill1
         </li>
@@ -885,7 +978,7 @@ exports[`<App> should match snapshot 1`] = `
     </aside>
   </article>
   <footer
-    class="c34"
+    class="c38"
   >
     <p>
       <span>
@@ -902,7 +995,7 @@ exports[`<App> should match snapshot 1`] = `
         Made with
       </span>
       <svg
-        class="c35"
+        class="c39"
         viewBox="0 0 54 50"
         xmlns="https://www.w3.org/2000/svg"
       >
@@ -920,7 +1013,7 @@ exports[`<App> should match snapshot 1`] = `
         in
       </span>
       <svg
-        class="c36"
+        class="c40"
         viewBox="0 0 50 25"
         xmlns="https://www.w3.org/2000/svg"
       >
@@ -948,23 +1041,23 @@ exports[`<App> should match snapshot 1`] = `
         Open Sourced at
       </span>
       <a
-        class="c1 c37"
+        class="c1 c41"
         href="https://github.com/aretecode/modern-stack-web-portfolio"
       >
         github.com/aretecode
       </a>
     </p>
     <aside
-      class="c14 c38"
+      class="c18 c42"
     >
       <a
-        class="c1 c15"
+        class="c1 c19"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c16"
+          class="c20"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -984,7 +1077,7 @@ exports[`<App> should match snapshot 1`] = `
     </aside>
   </footer>
   <svg
-    class="c39"
+    class="c43"
   >
     <filter
       color-interpolation-filters="sRGB"
@@ -1007,6 +1100,10 @@ exports[`<App> should match snapshot 1`] = `
 `;
 
 exports[`<App> should match snapshot for amp 1`] = `
+.c6 {
+  user-select: none;
+}
+
 .c1 {
   text-decoration: none;
   position: relative;
@@ -1031,7 +1128,17 @@ exports[`<App> should match snapshot for amp 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c13 {
+.c19 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.c19 path:first-of-type {
+  transition: fill 0.24s cubic-bezier(0.4,0,0.2,1);
+  fill: #fff;
+}
+
+.c17 {
   padding: 1rem;
   width: 75px;
   display: inline-flex;
@@ -1040,24 +1147,20 @@ exports[`<App> should match snapshot for amp 1`] = `
   align-items: center;
   object-fit: contain;
   object-position: bottom;
-  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+  transition: flex-direction 0.24s cubic-bezier(0,0,0.2,1), width 0.24s cubic-bezier(0,0,0.2,1);
 }
 
-.c15 {
-  width: 2rem;
-  height: 2rem;
-}
-
-.c32 {
-  background-color: var(--color-material-background-purple);
+.c36 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: var(--color-dark-background-dark-surface);
   padding: 2rem 1.25rem;
 }
 
-.c32 p {
+.c36 p {
   color: var(--color-text-body);
 }
 
-.c33 {
+.c37 {
   color: #df0909;
   display: inline-flex;
   padding-right: 0.5rem;
@@ -1065,7 +1168,7 @@ exports[`<App> should match snapshot for amp 1`] = `
   height: 12px;
 }
 
-.c34 {
+.c38 {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   transform: translateY(1px);
@@ -1074,12 +1177,12 @@ exports[`<App> should match snapshot for amp 1`] = `
   height: 14px;
 }
 
-.c35 {
+.c39 {
   padding-left: 0.3rem;
   text-decoration: underline;
 }
 
-.c36 {
+.c40.c40 {
   flex-direction: row;
   display: flex;
   justify-content: space-between;
@@ -1088,19 +1191,19 @@ exports[`<App> should match snapshot for amp 1`] = `
   height: unset;
 }
 
-.c36 > a {
+.c40.c40 > a {
   width: unset;
   flex-basis: unset;
   display: initial;
   padding: 1rem 1rem 1rem 0;
 }
 
-.c36 > a:last-child {
+.c40.c40 > a:last-child {
   display: none;
 }
 
-.c36 > a > svg:first-child {
-  fill: white;
+.c40.c40 > a > svg path:first-of-type {
+  fill: #fff;
 }
 
 .c5 {
@@ -1118,10 +1221,30 @@ exports[`<App> should match snapshot for amp 1`] = `
   padding: 1rem;
 }
 
+.c9.c9 {
+  fill: transparent;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 0.12s cubic-bezier(0.4,0,0.2,1), fill 0.48s cubic-bezier(0.4,0,0.2,1);
+}
+
+.c7 > g > path {
+  fill: #000;
+}
+
+.c7 > g > polygon {
+  fill: #fff;
+}
+
+.c8 {
+  width: 24px;
+  height: 24px;
+}
+
 .c0 {
-  background-color: var(--color-material-background-purple);
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: rgba(255,255,255,0.05);
   position: absolute;
-  background: rgba(0,0,0,0.2);
   top: 0;
   display: flex;
   align-items: center;
@@ -1137,20 +1260,20 @@ exports[`<App> should match snapshot for amp 1`] = `
   color: var(--color-text-body);
 }
 
-.c37 {
+.c41 {
   height: 0;
   width: 0;
   visibility: hidden;
   position: absolute;
 }
 
-.c24.c24.c24 {
+.c28.c28.c28 {
   color: unset;
   text-decoration: initial;
   letter-spacing: initial;
 }
 
-.c25 {
+.c29 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
@@ -1167,7 +1290,7 @@ exports[`<App> should match snapshot for amp 1`] = `
   transition: margin-top 0.96s ease-in-out,margin-left 0.24s ease-in-out;
 }
 
-.c21 {
+.c25 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
@@ -1180,57 +1303,60 @@ exports[`<App> should match snapshot for amp 1`] = `
   width: 8vw;
 }
 
-.c18 {
+.c22 {
   font-size: 2rem;
   margin-bottom: 0;
 }
 
-.c20 {
+.c24 {
   font-style: unset;
   padding-right: 0.15rem;
   opacity: 0.3;
 }
 
-.c22 {
+.c26 {
   margin-top: 1rem;
 }
 
-.c19 {
-  color: var(--color-dark-background-main);
+.c23 {
+  transition: color 0.24s cubic-bezier(0.4,0,0.2,1);
+  color: var(--color-dark-purple);
   margin: 0;
   margin-top: -0.5rem;
   font-size: 1.2rem;
 }
 
-.c16 {
+.c20 {
   margin: 0;
   padding: 0;
   display: flex;
   width: calc(100% - 75px);
 }
 
-.c17 {
+.c21 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   word-break: break-word;
 }
 
-.c23 {
+.c27 {
   display: flex;
   padding: 2rem 0;
   transition: flex-direction 500ms ease-in-out;
 }
 
-.c23 > section {
+.c27 > section {
   flex-basis: 50%;
 }
 
-.c23 > section > header {
+.c27 > section > header {
   font-weight: bold;
 }
 
-.c12 {
-  background-color: #fff;
+.c16 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: var(--color-dark-background-dark-surface);
+  color: rgba(255,255,255,1);
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
@@ -1239,20 +1365,25 @@ exports[`<App> should match snapshot for amp 1`] = `
   width: 80%;
 }
 
-.c28 {
+.c32 {
   width: 42px;
   height: 42px;
 }
 
-.c26 {
+.c32 > polygon {
+  transition: fill 0.24s cubic-bezier(0.4,0,0.2,1);
+  fill: #fff;
+}
+
+.c30 {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  transition: justify-content 500ms ease-in-out;
+  transition: justify-content 0.5s cubic-bezier(0.4,0,0.2,1);
   margin-right: 1rem;
 }
 
-.c27 {
+.c31 {
   background: none;
   border: 0;
   color: inherit;
@@ -1264,11 +1395,12 @@ exports[`<App> should match snapshot for amp 1`] = `
   user-select: none;
 }
 
-.c29 {
+.c33 {
   overflow: hidden;
-  transition: margin-top 0.62s ease-in-out,height 0.24s ease-out;
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1), margin-top 0.62s cubic-bezier(0.4,0,0.2,1),height 0.24s ease-out;
   height: 0;
-  background: white;
+  background-color: var(--color-dark-background-dark-surface);
+  color: #fff;
   width: 100vw;
   flex-basis: 100%;
   display: flex;
@@ -1276,22 +1408,24 @@ exports[`<App> should match snapshot for amp 1`] = `
   order: 4;
 }
 
-.c31 {
+.c35 {
   display: inline-flex;
   border-radius: 4px;
   margin: 0.25rem;
   padding: 0.5rem;
-  background: var(--color-dark-background-dark);
-  color: white;
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: #fff;
+  color: #1b1b1b;
   border-radius: 6px;
 }
 
-.c30 {
+.c34 {
   margin: 0;
   padding: 1rem;
 }
 
-.c8 {
+.c12 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s cubic-bezier(0.4,0,0.2,1);
   color: var(--color-text-body);
   background-color: var(--color-dark-background-main);
   margin: 0;
@@ -1307,78 +1441,84 @@ exports[`<App> should match snapshot for amp 1`] = `
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
-.c8 figcaption {
+.c12 img {
+  border-radius: 0.125rem 0;
+}
+
+.c12 figcaption {
   padding: 1.25rem;
 }
 
-.c8 header {
+.c12 header {
+  transition: inherit;
   color: var(--color-text-secondary);
   font-size: 1.5rem;
   font-weight: 300;
 }
 
-.c8 div[role='separator'],
-.c8 time {
+.c12 div[role='separator'],
+.c12 time {
   font-size: 80%;
   font-weight: 400;
   color: var(--color-text-unimportant);
 }
 
-.c8 a {
+.c12 a {
   color: var(--color-text-unimportant);
   border-color: var(--color-text-unimportant);
   border-width: 1px;
 }
 
-.c8 a:link,
-.c8 a:visited {
+.c12 a:link,
+.c12 a:visited {
   color: var(--color-text-unimportant);
 }
 
-.c8 a::after {
+.c12 a::after {
   display: none;
 }
 
-.c7 {
+.c11 {
   display: grid;
   padding: 1rem;
   grid-gap: 0.5rem;
   grid-auto-rows: auto;
 }
 
-.c10 {
+.c14 {
   display: inline-flex;
 }
 
-.c9 {
+.c13 {
   margin: 0;
   padding: 0;
 }
 
-.c6 {
-  background-color: var(--color-orange);
+.c10 {
+  transition: background-color 0.24s cubic-bezier(0.4,0,0.2,1);
+  background-color: var(--color-dark-background-dark-surface);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 0 2rem 0;
+  padding: 4rem 0 0 0;
 }
 
-.c6 > h1 {
-  color: white;
+.c10 > h1 {
+  color: #fff;
   font-size: 3em;
   font-weight: 300;
   text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
-.c11 {
+.c15 {
   color: var(--color-text-body);
   display: inline-flex;
   padding: 0 0.5rem;
 }
 
 @media (max-width:1023px) {
-  .c13 {
+  .c17 {
     width: 75%;
     flex-direction: row;
     order: 2;
@@ -1389,7 +1529,7 @@ exports[`<App> should match snapshot for amp 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c14 {
+  .c18 {
     flex-basis: 33%;
     width: 33%;
     text-align: center;
@@ -1423,44 +1563,44 @@ exports[`<App> should match snapshot for amp 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c25 {
+  .c29 {
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width:1024px) {
-  .c25 {
+  .c29 {
     visibility: hidden;
     margin: 0;
   }
 }
 
 @media (min-width:1024px) {
-  .c18 {
+  .c22 {
     margin-top: 3rem;
   }
 }
 
 @media (max-width:1024px) {
-  .c18 {
+  .c22 {
     flex-basis: 100%;
   }
 }
 
 @media (min-width:1024px) {
-  .c22 {
+  .c26 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c22 {
+  .c26 {
     flex-basis: 100%;
   }
 }
 
 @media (max-width:1024px) {
-  .c19 {
+  .c23 {
     flex-basis: 100%;
   }
 }
@@ -1478,28 +1618,28 @@ exports[`<App> should match snapshot for amp 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c16 {
+  .c20 {
     flex-wrap: wrap;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c17 {
+  .c21 {
     display: flex;
     flex-wrap: wrap;
   }
 }
 
 @media (max-width:1023px) {
-  .c23 {
+  .c27 {
     padding: 0.5rem 0;
     width: 100%;
   }
 }
 
 @media (max-width:1023px) {
-  .c12 {
+  .c16 {
     width: calc(100% - 2rem);
     height: unset;
     flex-wrap: wrap;
@@ -1508,13 +1648,13 @@ exports[`<App> should match snapshot for amp 1`] = `
 }
 
 @media (max-width:480px) {
-  .c12 {
+  .c16 {
     margin: 8rem 1rem 2rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c26 {
+  .c30 {
     justify-content: center;
     flex-basis: 25%;
     order: 3;
@@ -1524,57 +1664,63 @@ exports[`<App> should match snapshot for amp 1`] = `
 }
 
 @media (min-width:1024px) {
-  .c26 {
+  .c30 {
     margin-top: -3.5rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c27 {
+  .c31 {
     width: 42px;
     height: 42px;
   }
 }
 
 @media (min-width:1024px) {
-  .c8 {
+  .c12 {
     padding: 0 1rem 0 0;
+  }
+
+  .c12 img {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0.125rem;
   }
 }
 
 @media (max-width:1023px) {
-  .c8 {
+  .c12 {
     box-shadow: 0 1rem 0.75rem rgba(0,0,0,0.19), 0 0.5rem 0.5rem rgba(0,0,0,0.23);
   }
 }
 
 @media (min-width:1024px) {
-  .c9 {
+  .c13 {
     display: grid;
     grid-template-columns: calc(50vw - 2rem) calc(50vw - 2rem);
     grid-gap: 1rem;
   }
 
-  .c9 picture,
-  .c9 img {
+  .c13 picture,
+  .c13 img {
     height: 100%;
     width: 100%;
     object-fit: cover;
   }
 
-  .c9 figcaption {
+  .c13 figcaption {
     padding: 1.25rem 0;
   }
 }
 
 @media (max-width:1023px) {
-  .c9 img {
+  .c13 img {
     max-height: 65vh;
   }
 }
 
 @media (max-width:480px) {
-  .c6 {
+  .c10 {
     padding-top: 8rem;
   }
 }
@@ -1619,6 +1765,35 @@ exports[`<App> should match snapshot for amp 1`] = `
         </li>
       </ul>
     </nav>
+    <svg
+      class="c6 c7 c8"
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="https://www.w3.org/2000/svg"
+    >
+      <title>
+        Brightness Icon
+      </title>
+      <desc>
+        An animated image, transitioning between a sun and a moon
+      </desc>
+      <g>
+        <polygon
+          points="20 15.31 23.31 12 20 8.69 20 4 15.31 4 12 0.69 8.69 4 4 4 4 8.69 0.69 12 4 15.31 4 20 8.69 20 12 23.31 15.31 20 20 20"
+        />
+        <path
+          d="M11.9949374,18.0053564 C8.97056925,18.0053564 5.98781556,15.6088503 5.98781556,12 C5.98781556,8.39114971 8.97056925,5.99402647 11.9949374,5.99402647 C16.0164601,5.99402647 18.0020592,8.99824992 18.0020592,12 C18.0020592,15.0017501 15.9874562,18.0053564 11.9949374,18.0053564 Z"
+        />
+      </g>
+      <path
+        class="c9"
+        d="M12,8 C9.79,8 8,9.79 8,12 C8,14.21 9.79,16 12,16 C14.21,16 16,14.21 16,12 C16,9.79 14.21,8 12,8 Z"
+      />
+      <path
+        d="M0 0h24v24H0V0z"
+        fill="none"
+      />
+    </svg>
   </header>
   <script
     type="application/ld+json"
@@ -1629,20 +1804,20 @@ exports[`<App> should match snapshot for amp 1`] = `
     class=""
   >
     <header
-      class="c6"
+      class="c10"
     >
       <h1>
         What I've done
       </h1>
     </header>
     <div
-      class="c7"
+      class="c11"
     >
       <article
-        class="c8"
+        class="c12"
       >
         <figure
-          class="c9"
+          class="c13"
         >
           <amp-img
             alt="work picture for Open Source"
@@ -1670,19 +1845,19 @@ exports[`<App> should match snapshot for amp 1`] = `
                 href="/Portfolio/Experience?index=0"
               >
                 <time
-                  class="c10"
+                  class="c14"
                   datetime="01/02/2013"
                 >
                   01/02/2013
                 </time>
                 <div
-                  class="c11"
+                  class="c15"
                   role="separator"
                 >
                   -
                 </div>
                 <time
-                  class="c10"
+                  class="c14"
                   datetime="current"
                 >
                   current
@@ -1700,19 +1875,19 @@ exports[`<App> should match snapshot for amp 1`] = `
     {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":"","sameAs":["https://www.linkedin.com/in/james-wiens/","https://orcid.org/0000-0002-6397-6217"],"url":"","email":"james@jameswiens.com","telephone":"12506509455","description":"","image":"","address":{"@type":"PostalAddress","addressLocality":"","addressRegion":"","postalCode":"","streetAddress":""},"knowsAbout":["skill1"]},{"@type":"SoftwareSourceCode","description":"Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo","name":"Modern Stack Web Portfolio","url":"https://github.com/aretecode/modern-stack-web-portfolio","keywords":"portfolio,opensource,react,typescript,graphql,apollo","datePublished":"2019-03-15","dateCreated":"2019-03-20","creator":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"image":{"@type":"ImageObject","url":"https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png","height":866,"width":3140}},{"@type":"WebSite","name":"","url":"","@id":"http://localhost:3000"},{"@type":"Organization","url":"/Portfolio/Experience?index=0","name":"Open Source","member":{"@type":"OrganizationRole","member":{"@type":"Person","@id":"https://orcid.org/0000-0002-6397-6217","name":""},"startDate":"01/02/2013","endDate":"current","roleName":""}},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"/Portfolio/Experience?index=0"}]}]}
   </script>
   <article
-    class="c12"
+    class="c16"
   >
     <aside
-      class="c13"
+      class="c17"
     >
       <a
-        class="c1 c14"
+        class="c1 c18"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c15"
+          class="c19"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -1731,7 +1906,7 @@ exports[`<App> should match snapshot for amp 1`] = `
       </a>
     </aside>
     <figure
-      class="c16"
+      class="c20"
     >
       <amp-img
         alt="about me picture"
@@ -1741,38 +1916,38 @@ exports[`<App> should match snapshot for amp 1`] = `
         width="600"
       />
       <figcaption
-        class="c17"
+        class="c21"
       >
         <h1
-          class="c18"
+          class="c22"
         />
         <h2
-          class="c19"
+          class="c23"
         >
           
           <i
-            class="c20"
+            class="c24"
           >
             ↔
           </i>
           
         </h2>
         <hr
-          class="c21"
+          class="c25"
           role="separator"
         />
         <p
-          class="c22"
+          class="c26"
         />
         <nav
-          class="c23"
+          class="c27"
         >
           <section>
             <header>
               Phone
             </header>
             <a
-              class="c1 c24"
+              class="c1 c28"
               href="tel:12506509455"
             >
               +
@@ -1784,7 +1959,7 @@ exports[`<App> should match snapshot for amp 1`] = `
               Email
             </header>
             <a
-              class="c1 c24"
+              class="c1 c28"
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
@@ -1794,18 +1969,18 @@ exports[`<App> should match snapshot for amp 1`] = `
       </figcaption>
     </figure>
     <hr
-      class="c25"
+      class="c29"
       role="separator"
     />
     <div
-      class="c26"
+      class="c30"
       title="show/hide skills"
     >
       <button
-        class="c27"
+        class="c31"
       >
         <svg
-          class="c28"
+          class="c6 c32"
           role="img"
           title="show"
           viewBox="0 0 24 24"
@@ -1826,14 +2001,14 @@ exports[`<App> should match snapshot for amp 1`] = `
     </div>
     <aside
       aria-hidden="true"
-      class="c29"
+      class="c33"
       style="height: 0px;"
     >
       <ul
-        class="c30"
+        class="c34"
       >
         <li
-          class="c31"
+          class="c35"
         >
           skill1
         </li>
@@ -1841,7 +2016,7 @@ exports[`<App> should match snapshot for amp 1`] = `
     </aside>
   </article>
   <footer
-    class="c32"
+    class="c36"
   >
     <p>
       <span>
@@ -1858,7 +2033,7 @@ exports[`<App> should match snapshot for amp 1`] = `
         Made with
       </span>
       <svg
-        class="c33"
+        class="c37"
         viewBox="0 0 54 50"
         xmlns="https://www.w3.org/2000/svg"
       >
@@ -1876,7 +2051,7 @@ exports[`<App> should match snapshot for amp 1`] = `
         in
       </span>
       <svg
-        class="c34"
+        class="c38"
         viewBox="0 0 50 25"
         xmlns="https://www.w3.org/2000/svg"
       >
@@ -1904,23 +2079,23 @@ exports[`<App> should match snapshot for amp 1`] = `
         Open Sourced at
       </span>
       <a
-        class="c1 c35"
+        class="c1 c39"
         href="https://github.com/aretecode/modern-stack-web-portfolio"
       >
         github.com/aretecode
       </a>
     </p>
     <aside
-      class="c13 c36"
+      class="c17 c40"
     >
       <a
-        class="c1 c14"
+        class="c1 c18"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
       >
         <svg
-          class="c15"
+          class="c19"
           role="img"
           viewBox="0 0 24 24"
           xmlns="https://www.w3.org/2000/svg"
@@ -1940,7 +2115,7 @@ exports[`<App> should match snapshot for amp 1`] = `
     </aside>
   </footer>
   <svg
-    class="c37"
+    class="c41"
   >
     <filter
       color-interpolation-filters="sRGB"

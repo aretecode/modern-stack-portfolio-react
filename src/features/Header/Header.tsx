@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Navigation } from '../Navigation'
 import { PortfolioContext } from '../PortfolioContext'
+import { StyledAnimatedBrightnessIcon } from '../MaterialIcon/AnimatedBrightnessIcon'
 import { StyledHeader, StyledLogo, StyledLogoLink } from './styled'
 
 function fromContextNameToSimpleText(name: string) {
@@ -17,6 +18,7 @@ export default function Header(props: { className?: string }) {
         <StyledLogo>{nameText}</StyledLogo>
       </StyledLogoLink>
       <Navigation />
+      <StyledAnimatedBrightnessIcon />
     </StyledHeader>
   )
 }

@@ -25,6 +25,16 @@ exports[`SocialProfiles should render all for context 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
+.c3 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.c3 path:first-of-type {
+  transition: fill 0.24s cubic-bezier(0.4,0,0.2,1);
+  fill: #000;
+}
+
 .c0 {
   padding: 1rem;
   width: 75px;
@@ -34,12 +44,7 @@ exports[`SocialProfiles should render all for context 1`] = `
   align-items: center;
   object-fit: contain;
   object-position: bottom;
-  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
-}
-
-.c3 {
-  width: 2rem;
-  height: 2rem;
+  transition: flex-direction 0.24s cubic-bezier(0,0,0.2,1), width 0.24s cubic-bezier(0,0,0.2,1);
 }
 
 @media (max-width:1023px) {

@@ -1,9 +1,19 @@
 /**
+ * @todo add to schema for jsonresume
+ *  - nationality
+ *  - height
+ *  - gender
+ *  - birthPlace
+ *  - birthDate
+ *  - education
+ *  - sameAs (for other links not in the ui)
+ *
  * could also make schema per component
  * but that wasn't needed here
  *
  * could also have a `withSchema` here that could consume the context
  *
+ * @see https://jsonld.com/social-network-profiles/
  * @see https://developers.google.com/search/docs/data-types/speakable
  * @see https://hackernoon.com/everything-you-need-to-know-about-google-knowledge-graph-and-how-to-get-included-e14c07f95fe6
  * @see https://www.searchenginejournal.com/maximize-reach-using-googles-knowledge-graph/144579/

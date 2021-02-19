@@ -7,12 +7,17 @@ import { AnimatedArrowIcon } from '../MaterialIcon'
 export const StyledLargeMaterialIcon = styled(AnimatedArrowIcon)`
   width: 42px;
   height: 42px;
+
+  > polygon {
+    transition: fill 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+    fill: ${props => (props.theme.isDark ? '#fff' : '#000')};
+  }
 `
 export const StyledButtonWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  transition: justify-content 500ms ease-in-out;
+  transition: justify-content 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   margin-right: 1rem;
 
   @media (max-width: 1023px) {

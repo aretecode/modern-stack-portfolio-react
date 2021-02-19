@@ -1,8 +1,11 @@
-import { createGlobalStyle } from 'styled-components'
+import { css, createGlobalStyle } from 'styled-components'
 import { StyledButtonWrap } from '../../../features/AnimateHeight/styled'
 import { StyledAboutMeArticle } from '../styled'
 import { StyledSkillsWrap } from '../Skills'
 
+/**
+ * @todo higher brightness for header
+ */
 export default createGlobalStyle`
   amp-img {
     width: 100%;
@@ -31,13 +34,23 @@ export default createGlobalStyle`
     }
 
 
-    > header > div {
-      width: 100%;
-      text-align: center;
-      > button > svg {
-        transition: transform 0.24s ease-in-out;
+    > header {
+      ${props =>
+        props.theme.isDark &&
+        css`
+          background-color: var(--color-dark-background-dark-surface);
+          border-width: 4px;
+        `};
+
+      > div {
+        width: 100%;
+        text-align: center;
+        > button > svg {
+          transition: transform 0.24s ease-in-out;
+        }
       }
     }
+
     > section {
       ${StyledSkillsWrap} {
         max-width: 100%;
