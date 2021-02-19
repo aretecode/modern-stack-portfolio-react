@@ -110,6 +110,13 @@ export interface DocumentProps {
   ampStyleTag?: React.ReactNode
 }
 export default class MyDocument extends Document<DocumentProps> {
+  constructor(props: any, state: any) {
+    super(props, state)
+    if (typeof document === 'object') {
+      webVitals()
+    }
+  }
+  //  eslint-disable-next-line max-statements
   static async getInitialProps(ctx: Required<NextDocumentContext>) {
     const url = fromReqToUrl(ctx.req as any)
     const isAmp = url.href.includes('?amp') || url.href.includes('/amp')
