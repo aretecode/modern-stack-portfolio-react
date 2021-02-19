@@ -10,7 +10,7 @@
             "modules": false,
             "useBuiltIns": false,
             "shippedProposals": true
-          },
+          }
         ],
         "@babel/preset-react",
         "@babel/preset-typescript"
@@ -18,8 +18,13 @@
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        ["@babel/plugin-proposal-class-properties", { "loose": true }],
-        ["styled-components", { "ssr": true, "pure": true, "displayName": true }]
+        "@babel/plugin-proposal-class-properties",
+        ["styled-components", {
+          "ssr": true,
+          "pure": true,
+          "displayName": true,
+          "preprocess": false
+        }]
       ]
     },
     "production": {
@@ -32,7 +37,7 @@
             "modules": false,
             "useBuiltIns": false,
             "shippedProposals": true
-          },
+          }
         ],
         "@babel/preset-react",
         "@babel/preset-typescript"
@@ -40,8 +45,13 @@
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        ["@babel/plugin-proposal-class-properties", { "loose": true }],
-        ["styled-components", { "ssr": true, "pure": true, "displayName": false }]
+        "@babel/plugin-proposal-class-properties",
+        ["styled-components", {
+          "ssr": true,
+          "pure": true,
+          "displayName": false,
+          "preprocess": false
+        }]
       ]
     },
     "test": {
@@ -59,8 +69,13 @@
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        ["@babel/plugin-proposal-class-properties", { "loose": true }],
-        ["styled-components", { "ssr": true, "pure": true, "displayName": true }]
+        "@babel/plugin-proposal-class-properties",
+        ["styled-components", {
+          "ssr": true,
+          "pure": true,
+          "displayName": true,
+          "preprocess": false
+        }]
       ]
     }
   }

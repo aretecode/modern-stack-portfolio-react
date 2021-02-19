@@ -13,8 +13,8 @@ const setupJestConfig = (dirName = '<rootDir>') => {
     setupFilesAfterEnv: ['./jest.setup.js'],
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
     testMatch: [
-      dirName + '/__tests__/**/*.(j|t)s?(x)',
-      dirName + '/src/**/__tests__/**/*.(j|t)s?(x)',
+      dirName + '/__tests__/**/*.test.(j|t)s?(x)',
+      dirName + '/src/**/__tests__/**/*.test.(j|t)s?(x)',
       dirName + '/src/**/?(*.)(test).(j|t)s?(x)',
     ],
     testPathIgnorePatterns: [
@@ -44,7 +44,8 @@ const setupJestConfig = (dirName = '<rootDir>') => {
      */
     globals: {
       'ts-jest': {
-        tsConfig: require('./tsconfig.test.json').compilerOptions,
+        isolatedModules: true,
+        tsconfig: require('./tsconfig.test.json').compilerOptions,
         diagnostics: {
           warnOnly: true,
         },

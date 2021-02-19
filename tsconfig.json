@@ -4,21 +4,23 @@
     "outDir": "dist",
     "module": "esnext",
     "target": "es2018",
-    "lib": ["es2018", "es2017", "es2016", "es2015", "dom"],
+    "lib": [
+      "es2018",
+      "es2017",
+      "es2016",
+      "es2015",
+      "dom"
+    ],
     "sourceMap": true,
-
     "resolveJsonModule": true,
     "allowJs": false,
     "declaration": true,
-
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
@@ -26,7 +28,6 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-
     "plugins": [
       {
         "name": "typescript-styled-plugin",
@@ -47,7 +48,11 @@
           "float": "error"
         }
       }
-    ]
+    ],
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
   },
   "exclude": [
     "**/static",
@@ -65,5 +70,10 @@
     "webpack",
     "jest",
     "public"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }
