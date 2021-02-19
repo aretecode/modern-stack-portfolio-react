@@ -1,12 +1,17 @@
-import { logger } from '../log'
+/* eslint-disable max-statements */
+/* eslint-disable max-depth */
 import { Request as ExpressRequest } from 'express'
+import { UnknownObj } from '../typings'
+import { logger } from '../log'
 import { URL } from './url'
 
 /**
  * @todo test - copy from elsewhere
  * @see https://developer.mozilla.org/en-US/docs/Web/API/URL
  */
-export function fromReqToUrl(req: ExpressRequest): typeof URL {
+export function fromReqToUrl(
+  req: ExpressRequest & { url?: string; headers: UnknownObj }
+): typeof URL {
   if (req === undefined) {
     if (process.browser) {
       if (process.env.NODE_ENV === 'development') {

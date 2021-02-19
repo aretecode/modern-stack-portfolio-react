@@ -5,12 +5,8 @@
  */
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { SocialProfiles } from '../../features/SocialProfiles'
-import { StyledSeparator as Separator } from '../../features/Separator'
 import { StyledLink as Link } from '../../features/Link'
-import { StyledImage } from '../../features/Image'
-
-export const StyledSocialProfiles = styled(SocialProfiles)``
+import { Image } from '../../features/Image'
 
 export const StyledLink = styled(Link)`
   &&& {
@@ -24,11 +20,15 @@ export const StyledLink = styled(Link)`
  * @todo @@perf add keys and use a resize hook to only show dom on mobile
  * we could make `Separator` `hr` by default
  * @see https://material.io/design/components/cards.html#anatomy
+ * @example styled(Separator)
  */
-export const StyledCardDivider = styled(Separator).attrs({
-  children: undefined,
-  as: 'hr',
+export const StyledCardDivider = styled.hr.attrs({
+  role: 'separator',
 })`
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+
   width: 90%;
   border: none;
   border-top: 1px solid var(--color-dark-background-light);
@@ -61,10 +61,13 @@ export const StyledCardDivider = styled(Separator).attrs({
   }
 `
 
-export const StyledTextLineSeparator = styled(Separator).attrs({
-  children: undefined,
-  as: 'hr',
+export const StyledTextLineSeparator = styled.hr.attrs({
+  role: 'separator',
 })`
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+
   color: var(--color-text-secondary);
   border: none;
   border-top: 5px solid var(--color-text-secondary);
@@ -119,11 +122,11 @@ export const StyledLabel = styled.h2`
  */
 export type FilteredAboutMeImageProps = {
   isExpanded?: boolean
-} & React.ComponentProps<typeof StyledImage>
+} & React.ComponentProps<typeof Image>
 const FilteredAboutMeImage = ({
   isExpanded,
   ...remaining
-}: FilteredAboutMeImageProps) => <StyledImage {...remaining} />
+}: FilteredAboutMeImageProps) => <Image {...remaining} />
 
 /**
  * @see https://material.io/design/motion/speed.html#easing for material easing on y axis

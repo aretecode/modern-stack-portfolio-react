@@ -2,8 +2,8 @@ import * as React from 'react'
 import { PortfolioHead } from '../../../features/PortfolioHead'
 import { PortfolioContext } from '../../../features/PortfolioContext'
 import { PortfolioSchema } from '../../../features/PortfolioSchema'
+import { SocialProfiles } from '../../../features/SocialProfiles'
 import {
-  StyledSocialProfiles,
   StyledName,
   StyledSummary,
   StyledLabel,
@@ -36,7 +36,7 @@ export function AboutPage() {
       <PortfolioHead titleText={titleText} description={summary} />
       <PortfolioSchema />
       <StyledAboutMeArticle>
-        <StyledSocialProfiles />
+        <SocialProfiles />
         <StyledFigure>
           <AboutMeImage
             src={picture}

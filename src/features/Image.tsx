@@ -2,7 +2,6 @@
  * added support for forwardRef, which would make this a breaking change according to https://reactjs.org/docs/forwarding-refs.html
  */
 import * as React from 'react'
-import styled from 'styled-components'
 import { AmpContext } from './AmpContext'
 import { keep } from '../utils/keep'
 
@@ -30,7 +29,7 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
   'on',
   'id',
   'placeholder',
-])
+] as const)
 
 export interface ImagePureProps {
   /** @required */
@@ -108,5 +107,3 @@ export const Image = React.forwardRef(
     return React.createElement(ImageComponentWithoutForwardRef, mergedProps)
   }
 )
-
-export const StyledImage = styled(Image)``

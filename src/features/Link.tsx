@@ -21,25 +21,26 @@ export type LinkProps = React.HTMLAttributes<HTMLAnchorElement> & {
 
 export const StyledHref = styled.a``
 
-export class DynamicLink extends React.PureComponent<
-  LinkProps & { theme?: any }
-> {
-  render() {
-    const { to, href, theme, ...remainingProps } = this.props
-    const toHref = (to || href || '') as string
+export const DynamicLink = (props: LinkProps & { theme?: any }) => {
+  const { to, href, theme, ...remainingProps } = props
+  const toHref = (to || href || '') as string
 
-    if (toHref.includes('http')) {
-      return <a {...remainingProps} href={toHref} />
-    } else {
-      const { children, ...remaining } = remainingProps
-      return (
-        <BaseLink href={toHref}>
-          <StyledHref {...remaining} href={toHref}>
-            {children}
-          </StyledHref>
-        </BaseLink>
-      )
-    }
+  if (
+    toHref.includes('http') ||
+    toHref.startsWith('tel:') ||
+    toHref.startsWith('mailto:')
+  ) {
+    // eslint-disable-next-line
+    return <a {...remainingProps} href={toHref} />
+  } else {
+    const { children, ...remaining } = remainingProps
+    return (
+      <BaseLink href={toHref}>
+        <StyledHref {...remaining} href={toHref}>
+          {children}
+        </StyledHref>
+      </BaseLink>
+    )
   }
 }
 

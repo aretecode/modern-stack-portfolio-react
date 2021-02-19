@@ -15,7 +15,7 @@ export interface PortfolioContextType {
 }
 
 export const PortfolioContext = React.createContext<PortfolioContextType>(
-  defaultApolloStatePortfolio
+  defaultApolloStatePortfolio as any
 )
 
 /**
@@ -25,10 +25,7 @@ export function isValidResumeValue(
   response: GraphqlProps<ResumeResponse>
 ): response is GraphqlProps<Required<ResumeResponse>> {
   return (
-    isObj(response) === true &&
-    isObj(response.data) === true &&
-    isObj(response.data!.resume) === true &&
-    Array.isArray(response.data!.resume.work) &&
+    Array.isArray(response.data?.resume?.work) &&
     isObj(response.data!.resume.basics) === true &&
     Object.keys(response.data!.resume.basics).length > 0
   )
@@ -50,7 +47,7 @@ export class PortfolioProvider extends React.PureComponent {
   renderContext = (response: GraphqlProps<ResumeResponse>) => {
     const value = fromResponseToSafeValue(response)
     return (
-      <PortfolioContext.Provider value={value}>
+      <PortfolioContext.Provider value={value as any}>
         {this.props.children}
       </PortfolioContext.Provider>
     )

@@ -75,7 +75,6 @@ module.exports = baseConfig => {
   const plugin = new ForkTsCheckerWebpackPlugin({
     // async: false,
     tsconfig: require.resolve('../tsconfig.json'),
-    tslint: require.resolve('../../../tslint.json'),
     measureCompilationTime: true,
     useTypescriptIncrementalApi: true,
     checkSyntacticErrors: true,

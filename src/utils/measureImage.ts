@@ -1,4 +1,3 @@
-// tslint:disable:no-var-requires
 // @lint this file is dynamically including only on the server
 
 /**

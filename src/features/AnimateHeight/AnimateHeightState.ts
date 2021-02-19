@@ -9,6 +9,6 @@ export class AnimateHeightState implements AnimateHeightContextStateType {
   maxHeight = undefined
   isExpanded = false
   set(key: keyof AnimateHeightContextStateType, value: number | boolean): void {
-    this[key] = value
+    this[key as any] = value
   }
 }

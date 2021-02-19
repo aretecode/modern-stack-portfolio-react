@@ -67,9 +67,7 @@ function createDevLinks() {
           return data
         })
       } else {
-        // tslint:disable:no-null-keyword
         return null
-        // tslint:enable:no-null-keyword
       }
     })
 
@@ -83,8 +81,7 @@ function createDevLinks() {
  * @see apolloClient
  */
 if (!process.browser) {
-  // tslint:disable:no-var-requires
-  (global as any).fetch = require('node-fetch')
+  ;(global as any).fetch = require('node-fetch')
 }
 
 let apolloClientInstance: ApolloClient<any> = undefined as any

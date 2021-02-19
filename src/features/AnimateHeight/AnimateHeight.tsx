@@ -96,7 +96,6 @@ export class AnimateHeightComponent extends React.PureComponent<
   get isExpanded() {
     return this.context.isExpanded
   }
-  // tslint:disable:no-flag-args
   // @lint this is a value
   setIsExpanded = (isExpanded: boolean) => {
     this.context.set('isExpanded', isExpanded)

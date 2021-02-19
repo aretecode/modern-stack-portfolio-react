@@ -27,7 +27,6 @@ const ssrCache = new LRUCache({
   maxAge: 1000 * 60 * 60 * 24 * 30,
 })
 
-// tslint:disable:align
 const preparing = app.prepare()
 
 /**

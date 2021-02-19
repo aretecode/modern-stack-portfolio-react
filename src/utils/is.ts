@@ -12,7 +12,6 @@ export function hasIn<T, K extends keyof T>(obj: T, key: K): boolean {
 }
 export const isIn = (obj: any, prop: any) => prop in Object(obj)
 
-// tslint-disable-next-line
 export function isFunction(x: any): x is AnyFunction {
   return typeof x === 'function'
 }
@@ -75,7 +74,6 @@ export function isDate(x: any): x is Date {
   return x instanceof Date
 }
 
-// tslint:disable:no-flag-args
 export function isTrue(x: boolean): x is true {
   return x === true
 }
@@ -98,10 +96,10 @@ export function isSet(x: unknown): x is Set<any> {
     .includes('set')
 }
 
-export function isEnumerable<ObjType extends {}, PropType extends keyof ObjType>(
-  obj: ObjType,
-  prop: PropType
-): boolean {
+export function isEnumerable<
+  ObjType extends {},
+  PropType extends keyof ObjType
+>(obj: ObjType, prop: PropType): boolean {
   return isObj(obj) && Object.prototype.propertyIsEnumerable.call(obj, prop)
 }
 
@@ -140,12 +138,12 @@ export function isMatcher(x: any): x is string | AnyFunction | RegExp {
   return isString(x) || isFunction(x) || isRegExp(x)
 }
 
-export function isPrimitive(x: any): x is string | number | symbol | boolean | null | undefined {
+export function isPrimitive(
+  x: any
+): x is string | number | symbol | boolean | null | undefined {
   return isString(x) || isBoolean(x) || isNumber(x) || isSymbol(x) || isNil(x)
 }
 
-// tslint:disable cyclomatic-complexity
-// tslint:disable ban-types
 export function isNative(
   x: unknown
 ): x is

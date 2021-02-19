@@ -26,7 +26,7 @@
  */
 import * as React from 'react'
 import { logger } from '../log'
-import { StyledImage, ImageProps } from './Image'
+import { Image, ImageProps } from './Image'
 import { AmpContext } from './AmpContext'
 import { measureImage } from '../utils/measureImage'
 import {
@@ -89,7 +89,6 @@ export function AmpImage(props: DynamicAmpImageProps): JSX.Element {
   const {
     url = props.src,
     state,
-    //
     className,
     renderPicture,
     isAlwaysAboveTheFold,
@@ -115,19 +114,19 @@ export function AmpImage(props: DynamicAmpImageProps): JSX.Element {
               srcSizeList.map(([size, srcSet]) => (
                 <source key={size} media={size} srcSet={srcSet} />
               ))}
-            <StyledImage
+            <Image
+              {...remainingProps}
               isIntersecting={state.isIntersecting}
               src={url}
-              key="img-when-intersected"
+              key="int"
               width={state.width}
               height={state.height}
-              {...remainingProps}
             />
           </>
         )}
         {isAmp === false && (
-          <noscript key="img-for-non-js">
-            <StyledImage src={url} {...remainingProps} />
+          <noscript key="non-js">
+            <Image {...remainingProps} src={url} />
           </noscript>
         )}
       </>
@@ -157,10 +156,6 @@ export class PictureIntersectionObserver extends React.PureComponent<
     isAlwaysAboveTheFold: false,
   }
   static contextType = DataLoadingContext
-  /**
-   * @todo @config @@build @@errorProne issue with babel config for ts properties
-   */
-  // readonly context: DataLoadingContextType
 
   /**
    * @note used any here for usage on any element, then in target, cast to type
@@ -271,10 +266,10 @@ export class PictureIntersectionObserver extends React.PureComponent<
         width: value.width,
       }
     } else {
+      if (process.env.NODE_ENV === 'development' && process.browser) {
+        logger.debug('[fetchData] in browser - not loading')
+      }
       if (process.browser) {
-        if (process.env.NODE_ENV === 'development') {
-          logger.debug('[fetchData] in browser - not loading')
-        }
         return
       }
       const dimensionsPromise = measureImage(src)
@@ -299,7 +294,7 @@ export class PictureIntersectionObserver extends React.PureComponent<
 
     return (
       <AmpImage
-        {...this.props as any}
+        {...(this.props as any)}
         src={url}
         forwardedRef={this.wrapperRef}
         state={this.state}

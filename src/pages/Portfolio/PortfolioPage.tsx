@@ -1,7 +1,6 @@
 /**
  * to do this properly, we would load it from graphql
  */
-// tslint:disable
 import * as React from 'react'
 import { PortfolioContext } from '../../features/PortfolioContext'
 import { PortfolioSchema } from '../../features/PortfolioSchema'

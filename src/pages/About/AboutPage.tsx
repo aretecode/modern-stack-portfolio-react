@@ -13,8 +13,8 @@ import {
   AnimateHeightContextProvider,
   AnimateHeightContext,
 } from '../../features/AnimateHeight/AnimateHeightContext'
+import { SocialProfiles } from '../../features/SocialProfiles'
 import {
-  StyledSocialProfiles,
   StyledName,
   StyledSummary,
   StyledLabel,
@@ -61,7 +61,7 @@ export function AboutPage() {
       <PortfolioSchema />
       <AnimateHeightContextProvider>
         <StyledAboutMeArticle>
-          <StyledSocialProfiles />
+          <SocialProfiles />
           <StyledFigure>
             <AboutMeImage
               src={picture}

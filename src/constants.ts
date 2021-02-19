@@ -39,4 +39,4 @@ export const defaultApolloStatePortfolio = {
         'https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png',
     },
   ],
-}
+} as const

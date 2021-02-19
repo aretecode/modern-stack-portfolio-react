@@ -1,7 +1,7 @@
 /**
  * @see https://www.apollographql.com/docs/apollo-server/features/metrics.html#Granular-Logs
  */
-import * as pino from 'pino'
+import pino from 'pino'
 
 export const logger = pino({
   /**

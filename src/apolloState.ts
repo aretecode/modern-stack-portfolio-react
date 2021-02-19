@@ -65,9 +65,6 @@ export const typeDefs = gql`
   }
 `
 
-// tslint:disable typedef
-// @lint: ^ this is because we have typings for resolvers
-//          no need to define for each method
 export const apolloState = {
   // @todo as WithTypeNameRecursive<ResumeType>
   defaults: {

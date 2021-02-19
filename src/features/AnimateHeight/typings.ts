@@ -18,8 +18,6 @@ export interface AnimateHeightContextStateType {
   height: number
   maxHeight: undefined | number
   isExpanded: boolean
-  // tslint:disable:unified-signatures
-  // tslint:disable:no-flag-args
   // @lint boolean is a value, and type signature is for readability
   set(key: 'height', value: number): void
   set(key: 'maxHeight', value: number): void

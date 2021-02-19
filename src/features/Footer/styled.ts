@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { SocialProfiles } from '../SocialProfiles'
-import { StyledLink } from '../Link'
+import { StyledLink, DynamicLink } from '../Link'
 import { SpecialIcon } from './SpecialIcon'
 
 export const StyledFooter = styled.footer`
@@ -38,7 +38,7 @@ export const MadeWithText = styled.span``
 /**
  * @todo move to dynamic
  */
-export const OpenSourceLink = styled(StyledLink).attrs({
+export const OpenSourceLink = styled(StyledLink as typeof DynamicLink).attrs({
   to: 'https://github.com/aretecode/modern-stack-web-portfolio',
   children: 'github.com/aretecode',
 })`
