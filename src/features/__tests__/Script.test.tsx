@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render } from 'react-testing-library'
+import { render } from '../../../__tests__/render'
 import { Script } from '../Script'
 
 describe('Script', () => {
@@ -11,13 +11,13 @@ describe('Script', () => {
     const children = { isTest: true }
     const { container } = render(<Script children={children} />)
 
-    expect(container.firstChild!.getAttribute('type')).toEqual(
+    expect(container.querySelector('script').getAttribute('type')).toEqual(
       'application/ld+json'
     )
   })
   it('should have no type when children is not an object', () => {
     const { container } = render(<Script />)
-    expect(container.firstChild!.getAttribute('type')).toEqual(null)
+    expect(container.querySelector('script').getAttribute('type')).toEqual(null)
   })
   it('should work when children is a string', () => {
     const children = { isTest: true }

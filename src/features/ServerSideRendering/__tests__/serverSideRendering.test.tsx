@@ -14,7 +14,6 @@ import {
   Response as OriginalExpressResponse,
 } from 'express'
 import { StaticRouter } from 'react-router-dom'
-import Helmet, { HelmetData } from 'react-helmet'
 import { ServerStyleSheet } from 'styled-components'
 import { initApolloClient } from '../../../apolloClient'
 import { logger } from '../../../log'
@@ -37,8 +36,8 @@ export async function getDataFromTreeDataLoading(
   namedArgs: GetMarkupFromTreeOptions
 ) {
   const { contextValue } = namedArgs
-  const data = await contextValue!.all()
-  return data
+  const contextData = await contextValue!.all()
+  return contextData
 }
 
 export interface ReactRouterContext {
@@ -60,22 +59,6 @@ export type ExpressRequest = OriginalExpressRequest & {
 export type ExpressResponse = OriginalExpressResponse
 
 export const cache = new Map()
-
-/**
- * @see https://github.com/styled-components/styled-components/issues/378
- * @see https://github.com/nfl/react-helmet/issues/216
- */
-function renderHelmet(helmetObj: HelmetData) {
-  return (
-    <>
-      {helmetObj.title.toComponent()}
-      {helmetObj.base.toComponent()}
-      {helmetObj.meta.toComponent()}
-      {helmetObj.link.toComponent()}
-      {helmetObj.style.toComponent()}
-    </>
-  )
-}
 
 export function fromRequestToHash(req: ExpressRequest): string {
   const query = req.query || req.params || req.body
@@ -105,6 +88,7 @@ class Component extends React.PureComponent {
   }
 }
 
+/* eslint-disable max-statements */
 export async function serverSideRenderMiddleware(
   req: ExpressRequest,
   res: ExpressResponse

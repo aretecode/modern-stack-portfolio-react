@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { render } from 'react-testing-library'
+import { render } from '../../../__tests__/render'
 import { Image } from '../Image'
 import { AmpContext } from '../AmpContext'
 
 describe('Image', () => {
   it('should render empty without an error (except for types)', () => {
-    const { container } = render(<Image />)
+    const { container } = render(<Image src="" alt="" />)
     expect(container.innerHTML).toContain('<img')
   })
   it('should render an "amp-img" when providing an AmpContext', () => {
@@ -24,7 +24,8 @@ describe('Image', () => {
         <Image src={src} ignored={true} />
       </AmpContext.Provider>
     )
-    expect(container.firstChild!.getAttribute('src')).toEqual(src)
-    expect(container.firstChild!.getAttribute('ignored')).toEqual(null)
+    const img = container.querySelector('[src]')!
+    expect(img.getAttribute('src')).toEqual(src)
+    expect(img.getAttribute('ignored')).toEqual(null)
   })
 })

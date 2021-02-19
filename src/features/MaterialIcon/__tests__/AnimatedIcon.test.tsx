@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { render, fireEvent } from 'react-testing-library'
+import { fireEvent } from '@testing-library/react'
+import { render } from '../../../../__tests__/render'
 import {
   UP_ARROW_PATH_VALUE,
   DOWN_ARROW_PATH_VALUE,
@@ -14,9 +15,7 @@ describe('AnimatedArrowIcon', () => {
   })
 
   describe('rendering', () => {
-    /**
-     * could also test initial path values
-     */
+    // eslint-disable-next-line max-statements
     it('should have the values in the correct direction', async () => {
       const view = <AnimatedArrowIcon />
       const { container, rerender } = render(view)

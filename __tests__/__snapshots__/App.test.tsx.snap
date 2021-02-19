@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`app should match snapshot 1`] = `
-.c5 {
+exports[`<App> should match snapshot 1`] = `
+.c1 {
   text-decoration: none;
   position: relative;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
 
-.c5:link,
-.c5:visited {
+.c1:link,
+.c1:visited {
   color: var(--color-link);
 }
 
-.c5:focus {
+.c1:focus {
   outline: thin dotted;
 }
 
-.c5:hover {
+.c1:hover {
   color: #aaa;
 }
 
-.c5:link {
+.c1:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
@@ -35,30 +35,6 @@ exports[`app should match snapshot 1`] = `
   object-fit: contain;
   object-position: bottom;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
-}
-
-.c15 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c15:link,
-.c15:visited {
-  color: var(--color-link);
-}
-
-.c15:focus {
-  outline: thin dotted;
-}
-
-.c15:hover {
-  color: #aaa;
-}
-
-.c15:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c16 {
@@ -93,29 +69,8 @@ exports[`app should match snapshot 1`] = `
 }
 
 .c37 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
   padding-left: 0.3rem;
   text-decoration: underline;
-}
-
-.c37:link,
-.c37:visited {
-  color: var(--color-link);
-}
-
-.c37:focus {
-  outline: thin dotted;
-}
-
-.c37:hover {
-  color: #aaa;
-}
-
-.c37:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c38 {
@@ -142,18 +97,18 @@ exports[`app should match snapshot 1`] = `
   fill: white;
 }
 
-.c4 {
+.c5 {
   display: flex;
   justify-content: space-around;
   padding: 0;
   margin: 0;
 }
 
-.c4 > li {
+.c5 > li {
   display: inline-flex;
 }
 
-.c4 > li > a {
+.c5 > li > a {
   padding: 1rem;
 }
 
@@ -172,32 +127,8 @@ exports[`app should match snapshot 1`] = `
   padding-right: 0.5rem;
 }
 
-.c2 {
+.c3 {
   color: var(--color-text-body);
-}
-
-.c1 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c1:link,
-.c1:visited {
-  color: var(--color-link);
-}
-
-.c1:focus {
-  outline: thin dotted;
-}
-
-.c1:hover {
-  color: #aaa;
-}
-
-.c1:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c39 {
@@ -205,36 +136,6 @@ exports[`app should match snapshot 1`] = `
   width: 0;
   visibility: hidden;
   position: absolute;
-}
-
-.c12 {
-  color: var(--color-text-body);
-  display: inline-flex;
-  padding: 0 0.5rem;
-}
-
-.c26 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c26:link,
-.c26:visited {
-  color: var(--color-link);
-}
-
-.c26:focus {
-  outline: thin dotted;
-}
-
-.c26:hover {
-  color: #aaa;
-}
-
-.c26:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c26.c26.c26 {
@@ -481,6 +382,12 @@ exports[`app should match snapshot 1`] = `
   text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
+.c12 {
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+}
+
 @media (max-width:1023px) {
   .c14 {
     width: 75%;
@@ -501,7 +408,7 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:480px) {
-  .c3 {
+  .c4 {
     width: 100%;
   }
 }
@@ -513,14 +420,14 @@ exports[`app should match snapshot 1`] = `
 }
 
 @media (max-width:480px) {
-  .c2 {
+  .c3 {
     text-align: center;
     margin-bottom: 0;
   }
 }
 
 @media (max-width:480px) {
-  .c1 {
+  .c2 {
     width: 100%;
     flex-basis: 100%;
   }
@@ -700,23 +607,23 @@ exports[`app should match snapshot 1`] = `
     role="banner"
   >
     <a
-      class="c1 "
+      class="c1 c2"
       href="/"
     >
       <p
-        class="c2"
+        class="c3"
         id="logo"
       />
     </a>
     <nav
-      class="c3"
+      class="c4"
     >
       <ul
-        class="c4"
+        class="c5"
       >
         <li>
           <a
-            class="c5 "
+            class="c1"
             href="/Portfolio"
             rel="me"
           >
@@ -725,7 +632,7 @@ exports[`app should match snapshot 1`] = `
         </li>
         <li>
           <a
-            class="c5 "
+            class="c1"
             href="/"
             rel="me"
           >
@@ -776,7 +683,6 @@ exports[`app should match snapshot 1`] = `
             />
             <img
               alt="work picture for Open Source"
-              class=""
               loading="lazy"
               src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
             />
@@ -791,7 +697,7 @@ exports[`app should match snapshot 1`] = `
               <p />
               <p />
               <a
-                class="c5"
+                class="c1"
                 href="https://github.com/aretecode"
               >
                 https://github.com/aretecode
@@ -799,7 +705,7 @@ exports[`app should match snapshot 1`] = `
             </section>
             <section>
               <a
-                class="c5 "
+                class="c1"
                 href="/Portfolio/Experience?index=0"
               >
                 <time
@@ -839,7 +745,7 @@ exports[`app should match snapshot 1`] = `
       class="c14"
     >
       <a
-        class="c15"
+        class="c1 c15"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
@@ -851,8 +757,7 @@ exports[`app should match snapshot 1`] = `
           xmlns="https://www.w3.org/2000/svg"
         >
           <title>
-            linkedin
-             icon
+            linkedin icon
           </title>
           <path
             d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
@@ -869,7 +774,7 @@ exports[`app should match snapshot 1`] = `
     >
       <img
         alt="about me picture"
-        class="c18 "
+        class="c18"
         src=""
       />
       <figcaption
@@ -904,7 +809,7 @@ exports[`app should match snapshot 1`] = `
               Phone
             </header>
             <a
-              class="c26 "
+              class="c1 c26"
               href="tel:12506509455"
             >
               +
@@ -916,7 +821,7 @@ exports[`app should match snapshot 1`] = `
               Email
             </header>
             <a
-              class="c26 "
+              class="c1 c26"
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
@@ -937,7 +842,7 @@ exports[`app should match snapshot 1`] = `
         class="c29"
       >
         <svg
-          class="c30 "
+          class="c30"
           role="img"
           title="show"
           viewBox="0 0 24 24"
@@ -985,7 +890,7 @@ exports[`app should match snapshot 1`] = `
     <p>
       <span>
         ©
-        2019
+        2021
       </span>
        
       <span />
@@ -1043,17 +948,17 @@ exports[`app should match snapshot 1`] = `
         Open Sourced at
       </span>
       <a
-        class="c37"
+        class="c1 c37"
         href="https://github.com/aretecode/modern-stack-web-portfolio"
       >
         github.com/aretecode
       </a>
     </p>
     <aside
-      class="c38 c14"
+      class="c14 c38"
     >
       <a
-        class="c15"
+        class="c1 c15"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
@@ -1065,8 +970,7 @@ exports[`app should match snapshot 1`] = `
           xmlns="https://www.w3.org/2000/svg"
         >
           <title>
-            linkedin
-             icon
+            linkedin icon
           </title>
           <path
             d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
@@ -1102,28 +1006,28 @@ exports[`app should match snapshot 1`] = `
 </div>
 `;
 
-exports[`app should match snapshot for amp 1`] = `
-.c5 {
+exports[`<App> should match snapshot for amp 1`] = `
+.c1 {
   text-decoration: none;
   position: relative;
   letter-spacing: 0.2em;
   color: var(--color-link);
 }
 
-.c5:link,
-.c5:visited {
+.c1:link,
+.c1:visited {
   color: var(--color-link);
 }
 
-.c5:focus {
+.c1:focus {
   outline: thin dotted;
 }
 
-.c5:hover {
+.c1:hover {
   color: #aaa;
 }
 
-.c5:link {
+.c1:link {
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
@@ -1137,30 +1041,6 @@ exports[`app should match snapshot for amp 1`] = `
   object-fit: contain;
   object-position: bottom;
   transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
-}
-
-.c14 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c14:link,
-.c14:visited {
-  color: var(--color-link);
-}
-
-.c14:focus {
-  outline: thin dotted;
-}
-
-.c14:hover {
-  color: #aaa;
-}
-
-.c14:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c15 {
@@ -1195,29 +1075,8 @@ exports[`app should match snapshot for amp 1`] = `
 }
 
 .c35 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
   padding-left: 0.3rem;
   text-decoration: underline;
-}
-
-.c35:link,
-.c35:visited {
-  color: var(--color-link);
-}
-
-.c35:focus {
-  outline: thin dotted;
-}
-
-.c35:hover {
-  color: #aaa;
-}
-
-.c35:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c36 {
@@ -1244,18 +1103,18 @@ exports[`app should match snapshot for amp 1`] = `
   fill: white;
 }
 
-.c4 {
+.c5 {
   display: flex;
   justify-content: space-around;
   padding: 0;
   margin: 0;
 }
 
-.c4 > li {
+.c5 > li {
   display: inline-flex;
 }
 
-.c4 > li > a {
+.c5 > li > a {
   padding: 1rem;
 }
 
@@ -1274,32 +1133,8 @@ exports[`app should match snapshot for amp 1`] = `
   padding-right: 0.5rem;
 }
 
-.c2 {
+.c3 {
   color: var(--color-text-body);
-}
-
-.c1 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c1:link,
-.c1:visited {
-  color: var(--color-link);
-}
-
-.c1:focus {
-  outline: thin dotted;
-}
-
-.c1:hover {
-  color: #aaa;
-}
-
-.c1:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c37 {
@@ -1307,36 +1142,6 @@ exports[`app should match snapshot for amp 1`] = `
   width: 0;
   visibility: hidden;
   position: absolute;
-}
-
-.c11 {
-  color: var(--color-text-body);
-  display: inline-flex;
-  padding: 0 0.5rem;
-}
-
-.c24 {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0.2em;
-  color: var(--color-link);
-}
-
-.c24:link,
-.c24:visited {
-  color: var(--color-link);
-}
-
-.c24:focus {
-  outline: thin dotted;
-}
-
-.c24:hover {
-  color: #aaa;
-}
-
-.c24:link {
-  -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
 .c24.c24.c24 {
@@ -1566,6 +1371,12 @@ exports[`app should match snapshot for amp 1`] = `
   text-shadow: 0 1px 0 rgba(255,255,255,0.55),0 2px 0 rgba(0,0,0,0.1), 0 3px 0 rgba(0,0,0,0.1),0 4px 0 rgba(0,0,0,0.1);
 }
 
+.c11 {
+  color: var(--color-text-body);
+  display: inline-flex;
+  padding: 0 0.5rem;
+}
+
 @media (max-width:1023px) {
   .c13 {
     width: 75%;
@@ -1586,7 +1397,7 @@ exports[`app should match snapshot for amp 1`] = `
 }
 
 @media (max-width:480px) {
-  .c3 {
+  .c4 {
     width: 100%;
   }
 }
@@ -1598,14 +1409,14 @@ exports[`app should match snapshot for amp 1`] = `
 }
 
 @media (max-width:480px) {
-  .c2 {
+  .c3 {
     text-align: center;
     margin-bottom: 0;
   }
 }
 
 @media (max-width:480px) {
-  .c1 {
+  .c2 {
     width: 100%;
     flex-basis: 100%;
   }
@@ -1652,6 +1463,18 @@ exports[`app should match snapshot for amp 1`] = `
   .c19 {
     flex-basis: 100%;
   }
+}
+
+@media (max-width:500px) {
+
+}
+
+@media (max-width:1023px) {
+
+}
+
+@media (min-width:1024px) {
+
 }
 
 @media (max-width:1023px) {
@@ -1762,23 +1585,23 @@ exports[`app should match snapshot for amp 1`] = `
     role="banner"
   >
     <a
-      class="c1 "
+      class="c1 c2"
       href="/"
     >
       <p
-        class="c2"
+        class="c3"
         id="logo"
       />
     </a>
     <nav
-      class="c3"
+      class="c4"
     >
       <ul
-        class="c4"
+        class="c5"
       >
         <li>
           <a
-            class="c5 "
+            class="c1"
             href="/Portfolio"
             rel="me"
           >
@@ -1787,7 +1610,7 @@ exports[`app should match snapshot for amp 1`] = `
         </li>
         <li>
           <a
-            class="c5 "
+            class="c1"
             href="/"
             rel="me"
           >
@@ -1823,10 +1646,8 @@ exports[`app should match snapshot for amp 1`] = `
         >
           <amp-img
             alt="work picture for Open Source"
-            height="692"
             layout="responsive"
             src="https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png"
-            width="1000"
           />
           <figcaption>
             <header>
@@ -1837,7 +1658,7 @@ exports[`app should match snapshot for amp 1`] = `
               <p />
               <p />
               <a
-                class="c5"
+                class="c1"
                 href="https://github.com/aretecode"
               >
                 https://github.com/aretecode
@@ -1845,7 +1666,7 @@ exports[`app should match snapshot for amp 1`] = `
             </section>
             <section>
               <a
-                class="c5 "
+                class="c1"
                 href="/Portfolio/Experience?index=0"
               >
                 <time
@@ -1885,7 +1706,7 @@ exports[`app should match snapshot for amp 1`] = `
       class="c13"
     >
       <a
-        class="c14"
+        class="c1 c14"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
@@ -1897,8 +1718,7 @@ exports[`app should match snapshot for amp 1`] = `
           xmlns="https://www.w3.org/2000/svg"
         >
           <title>
-            linkedin
-             icon
+            linkedin icon
           </title>
           <path
             d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
@@ -1952,7 +1772,7 @@ exports[`app should match snapshot for amp 1`] = `
               Phone
             </header>
             <a
-              class="c24 "
+              class="c1 c24"
               href="tel:12506509455"
             >
               +
@@ -1964,7 +1784,7 @@ exports[`app should match snapshot for amp 1`] = `
               Email
             </header>
             <a
-              class="c24 "
+              class="c1 c24"
               href="mailto:james@jameswiens.com"
             >
               james@jameswiens.com
@@ -1985,7 +1805,7 @@ exports[`app should match snapshot for amp 1`] = `
         class="c27"
       >
         <svg
-          class="c28 "
+          class="c28"
           role="img"
           title="show"
           viewBox="0 0 24 24"
@@ -2007,6 +1827,7 @@ exports[`app should match snapshot for amp 1`] = `
     <aside
       aria-hidden="true"
       class="c29"
+      style="height: 0px;"
     >
       <ul
         class="c30"
@@ -2025,7 +1846,7 @@ exports[`app should match snapshot for amp 1`] = `
     <p>
       <span>
         ©
-        2019
+        2021
       </span>
        
       <span />
@@ -2083,17 +1904,17 @@ exports[`app should match snapshot for amp 1`] = `
         Open Sourced at
       </span>
       <a
-        class="c35"
+        class="c1 c35"
         href="https://github.com/aretecode/modern-stack-web-portfolio"
       >
         github.com/aretecode
       </a>
     </p>
     <aside
-      class="c36 c13"
+      class="c13 c36"
     >
       <a
-        class="c14"
+        class="c1 c14"
         href="https://www.linkedin.com/in/james-wiens/"
         rel="me"
         title="aretecode"
@@ -2105,8 +1926,7 @@ exports[`app should match snapshot for amp 1`] = `
           xmlns="https://www.w3.org/2000/svg"
         >
           <title>
-            linkedin
-             icon
+            linkedin icon
           </title>
           <path
             d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"

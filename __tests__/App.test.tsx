@@ -2,16 +2,17 @@
  * @see https://github.com/zeit/next.js/blob/master/examples/with-jest/__tests__/index.test.js
  */
 import * as React from 'react'
-import { render, waitForElement } from 'react-testing-library'
+import { waitFor } from '@testing-library/react'
+import { render } from './render'
 import { defaultApolloStatePortfolio } from '../src/constants'
 import { InnerApp } from '../pages/_app'
 import AboutPage from '../pages/About'
 import PortfolioPage from '../pages/Portfolio'
 import { AmpContext } from '../src/features/AmpContext'
 
-const sleep = async (time: number) => Promise.resolve(time)
+const sleep = (time: number) => Promise.resolve(time)
 
-describe('app', () => {
+describe('<App>', () => {
   it('should match snapshot', async () => {
     const view = (
       <InnerApp>
@@ -22,8 +23,10 @@ describe('app', () => {
     const { container, rerender, getByText } = render(view)
     rerender(view)
     console.log('[tests] App - waiting')
-    await waitForElement(() =>
-      getByText(defaultApolloStatePortfolio.work[0].company)
+    await waitFor(() =>
+      expect(() =>
+        getByText(defaultApolloStatePortfolio.work[0].company)
+      ).not.toThrowError()
     )
     await sleep(5000)
 
@@ -43,8 +46,10 @@ describe('app', () => {
     const { container, rerender, getByText } = render(view)
     rerender(view)
     console.log('[tests] App - waiting')
-    await waitForElement(() =>
-      getByText(defaultApolloStatePortfolio.work[0].company)
+    await waitFor(() =>
+      expect(() =>
+        getByText(defaultApolloStatePortfolio.work[0].company)
+      ).not.toThrowError()
     )
     await sleep(5000)
 

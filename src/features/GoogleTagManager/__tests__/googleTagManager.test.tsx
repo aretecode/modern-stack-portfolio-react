@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render } from 'react-testing-library'
+import { render } from '../../../../__tests__/render'
 import * as exported from '../index'
 import { AmpContext } from '../../AmpContext'
 import {

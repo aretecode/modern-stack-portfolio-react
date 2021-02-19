@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SocialProfiles should render all for context 1`] = `
-.c0 {
-  padding: 1rem;
-  width: 75px;
-  display: inline-flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-  object-fit: contain;
-  object-position: bottom;
-  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
-}
-
 .c1 {
   text-decoration: none;
   position: relative;
@@ -37,7 +25,19 @@ exports[`SocialProfiles should render all for context 1`] = `
   -webkit-tap-highlight-color: rgba(102,102,102,0.5);
 }
 
-.c2 {
+.c0 {
+  padding: 1rem;
+  width: 75px;
+  display: inline-flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+  object-position: bottom;
+  transition: flex-direction 0.24s ease-in-out,width 0.24s ease-in-out;
+}
+
+.c3 {
   width: 2rem;
   height: 2rem;
 }
@@ -54,7 +54,7 @@ exports[`SocialProfiles should render all for context 1`] = `
 }
 
 @media (max-width:1023px) {
-  .c1 {
+  .c2 {
     flex-basis: 33%;
     width: 33%;
     text-align: center;
@@ -66,20 +66,19 @@ exports[`SocialProfiles should render all for context 1`] = `
     class="c0"
   >
     <a
-      class="c1"
+      class="c1 c2"
       href="https://www.linkedin.com/in/james-wiens/"
       rel="me"
       title="aretecode"
     >
       <svg
-        class="c2"
+        class="c3"
         role="img"
         viewBox="0 0 24 24"
         xmlns="https://www.w3.org/2000/svg"
       >
         <title>
-          linkedin
-           icon
+          linkedin icon
         </title>
         <path
           d="M16.893 20.452v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286h-3.555zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
