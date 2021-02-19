@@ -13,12 +13,13 @@ import Document, {
   Head,
   Main,
   NextScript,
-  NextDocumentContext,
+  DocumentContext as NextDocumentContext,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 import { AmpScripts, AmpScriptsManager } from 'react-amphtml/setup'
 import * as Amp from 'react-amphtml'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
+import { webVitals } from '../src/utils/webVitals'
 import { AmpContext } from '../src/features/AmpContext'
 import {
   AmpServiceWorkerHeadScript,
@@ -47,8 +48,6 @@ class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
     )
   }
 }
-
-// tslint:disable:max-classes-per-file
 
 function addAmpToUrl(href: string) {
   if (href.endsWith('/')) {
@@ -234,9 +233,7 @@ export default class MyDocument extends Document<DocumentProps> {
           />
           <link
             rel="preload"
-            href={`https://www.googletagmanager.com/gtm.js?id=${
-              process.env.GOOGLE_TAG_MANAGER_WEB_ID
-            }`}
+            href={`https://www.googletagmanager.com/gtm.js?id=${process.env.GOOGLE_TAG_MANAGER_WEB_ID}`}
             as="script"
             // crossOrigin={'crossOrigin'}
           />

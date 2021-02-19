@@ -4,9 +4,10 @@
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/with-apollo-client.js#L23
  * @tutorial https://www.apollographql.com/docs/react/recipes/server-side-rendering.html
  */
-import App, { Container, NextAppContext } from 'next/app'
+import App, { AppContext as NextAppContextType } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
+import { StyleSheetManager } from 'styled-components'
 import { ApolloClient } from 'apollo-boost'
 import * as React from 'react'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
@@ -28,7 +29,6 @@ import {
   DataLoadingProvider,
 } from '../src/features/ServerSideRendering'
 
-// tslint:disable:max-classes-per-file
 export class InnerApp extends React.PureComponent<{
   apolloClientState?: UnknownObj
   apolloClient?: ApolloClient<any>
@@ -53,7 +53,8 @@ export class InnerApp extends React.PureComponent<{
       <React.StrictMode>
         <ApolloProvider
           client={
-            apolloClient || initApolloClient(apolloClientState as any, url)
+            apolloClient ||
+            (initApolloClient(apolloClientState as any, url) as any)
           }
         >
           <DataLoadingProvider contextValue={contextValue}>
@@ -79,7 +80,8 @@ export default class MyApp extends App<{
   dataLoadingContextValue?: DataLoading
   url: URL
 }> {
-  static async getInitialProps(appContext: NextAppContext) {
+  // eslint-disable-next-line max-statements
+  static async getInitialProps(appContext: NextAppContextType) {
     const { Component, ctx } = appContext
     const url = fromReqToUrl(ctx.req as any)
     const pageProps = {}
@@ -162,7 +164,7 @@ export default class MyApp extends App<{
      * @see https://github.com/zeit/next.js/issues/4044
      * using this because the url was out of date
      */
-    Router.onRouteChangeComplete = (pathUrl?: string) => {
+    ;(Router as any).onRouteChangeComplete = (pathUrl?: string) => {
       if (process.env.NODE_ENV === 'development') {
         logger.debug('[_app] route complete ' + pathUrl)
       }
@@ -196,7 +198,7 @@ export default class MyApp extends App<{
     } = this.props
 
     return (
-      <Container>
+      <StyleSheetManager disableVendorPrefixes>
         <AppContextProvider url={urlObj}>
           <InnerApp
             apolloClientState={apolloClientState}
@@ -206,7 +208,7 @@ export default class MyApp extends App<{
             <Component {...pageProps} />
           </InnerApp>
         </AppContextProvider>
-      </Container>
+      </StyleSheetManager>
     )
   }
 }
