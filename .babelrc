@@ -2,23 +2,10 @@
   "env": {
     "development": {
       "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": { "chrome": 73 },
-            "debug": true,
-            "modules": false,
-            "useBuiltIns": false,
-            "shippedProposals": true
-          }
-        ],
-        "@babel/preset-react",
-        "@babel/preset-typescript"
+        "next/babel"
       ],
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
-        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        "@babel/plugin-proposal-class-properties",
         ["styled-components", {
           "ssr": true,
           "pure": true,
@@ -29,23 +16,10 @@
     },
     "production": {
       "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": { "chrome": 73 },
-            "debug": true,
-            "modules": false,
-            "useBuiltIns": false,
-            "shippedProposals": true
-          }
-        ],
-        "@babel/preset-react",
-        "@babel/preset-typescript"
+        "next/babel"
       ],
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
-        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        "@babel/plugin-proposal-class-properties",
         ["styled-components", {
           "ssr": true,
           "pure": true,
@@ -64,12 +38,11 @@
             }
           }
         ],
+        "@babel/preset-react",
         "@babel/preset-typescript"
       ],
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
-        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        "@babel/plugin-proposal-class-properties",
         ["styled-components", {
           "ssr": true,
           "pure": true,
