@@ -45,9 +45,7 @@ export const aboutMePageDynamicColorStyles = css`
   @media (prefers-color-scheme: dark) {
     ${aboutMePageDarkStyles};
   }
-  @media not (prefers-color-scheme: dark) {
-    ${props => props.theme.isDark && aboutMePageDarkStyles};
-  }
+  ${props => props.theme.isDark && aboutMePageDarkStyles};
 `
 
 const darkColorStyles = css`
@@ -101,9 +99,7 @@ const appStylesUglified = css`
   @media (prefers-color-scheme: dark) {
     ${darkColorStyles};
   }
-  @media not (prefers-color-scheme: dark) {
-    ${props => props.theme.isDark && darkColorStyles};
-  }
+  ${props => props.theme.isDark && darkColorStyles};
 
   @font-face {
     font-family: 'Source Sans Pro';
