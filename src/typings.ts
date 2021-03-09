@@ -133,6 +133,7 @@ export interface AddressType {
 }
 /** @alias PersonType */
 export interface BasicsType {
+  orcid: string
   name: string
   label: string
   image: ImageObjectType
