@@ -4,14 +4,7 @@ export function toGoogleTagManager() {
   return (window as any).gta as typeof gapi.client
 }
 
-/**
- * @todo move & reuse & test
- */
-export function toGlobalThis() {
-  return process.browser ? (window as any) : (global as any)
-}
-
 export function trackEvent(args: TagManagerEventType) {
-  const globalDataLayer: TagManagerEventType[] = toGlobalThis().dataLayer || []
+  const globalDataLayer: TagManagerEventType[] = globalThis.dataLayer ?? []
   globalDataLayer.push(args)
 }
