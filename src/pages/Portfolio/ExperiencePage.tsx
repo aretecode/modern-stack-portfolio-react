@@ -1,12 +1,12 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
 import { AppContext } from '../../features/AppContext'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { StyledMain } from '../../features/Main'
-import { ResumeType } from '../../typings'
+import type { ResumeType } from '../../typings'
 import { StyledGrid, StyledLeaderBoard } from './styled'
 import { renderWork } from './PortfolioPage'
-import { useRouter } from 'next/router'
 
 /**
  * @file @name PortfolioWorkExperienceItemPage
@@ -28,7 +28,6 @@ export default function PortfolioWorkExperienceItemPage({
     : pid
   const index: number = Number(pidIndex ?? searchIndex)
   const workItem = work?.[index]
-  console.log({ rest, pid, workItem, index, url })
 
   /** @todo show 404 */
   if (workItem === undefined) {

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useAmp } from 'next/amp'
 import { keep } from '../../utils/keep'
+import { logger } from '../../log'
 
 export interface AmpImageProps {
   noloading?: unknown
@@ -42,17 +43,32 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
  * @todo use amp/image when their styles are fixed
  * @example
  *   return <Image {...props} />
+ *
+ * @todo remove hack for the width & height
  */
 export const AmpCompatImage: React.FC<ImageProps> = props => {
   const isAmp = useAmp()
+  const {
+    width = 606,
+    height = width,
+    src = 'https://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=1&h=1&q=1',
+    alt = 'Missing description! Sorry about that, eh.',
+    ...rest
+  } = props
+  const merged = { height, width, src, alt, ...rest } as const
+
+  if (!props.height && !props.width) {
+    logger.error('[AmpImage] - did not pass in width or image')
+  }
+
   if (isAmp) {
-    const ampProps = keep(props, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
-    return <amp-img layout="responsive" height={ampProps.width} {...ampProps} />
+    const ampProps = keep(merged, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
+    return <amp-img layout="responsive" {...ampProps} />
   }
 
   // @lint this is passed in as a prop
   // eslint-disable-next-line jsx-a11y/alt-text
-  return <img crossOrigin="anonymous" {...props} />
+  return <img crossOrigin="anonymous" {...merged} />
 }
 
 export default AmpCompatImage

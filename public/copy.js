@@ -18,13 +18,13 @@ const asyncCopyFile = promisify(copyFile)
  * @todo test this, especially the date by writing file reading
  */
 const now = Date.now()
-const { format } = require('date-fns')
+const { formatISO9075 } = require('date-fns')
 const { writeFile } = require('fs')
 const { env } = require('../env')
 const asyncWriteFile = promisify(writeFile)
 async function updateSiteMap() {
   console.debug('[update] updating site map')
-  const isoDate = format(now, 'yyyy-MM-ddTHH:mm:ss.SSSz')
+  const isoDate = formatISO9075(now)
 
   // errors in google, have submitted the issue to them
   // <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/Portfolio/?amp" />

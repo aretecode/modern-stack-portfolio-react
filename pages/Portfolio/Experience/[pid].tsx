@@ -18,7 +18,7 @@ const GET_EXPERIENCE_IDS = gql`
   }
 `
 
-export const getStaticPaths: GetStaticPaths<any> = async() => {
+export const getStaticPaths: GetStaticPaths<any> = async () => {
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<{
     website: {
@@ -37,14 +37,12 @@ export const getStaticPaths: GetStaticPaths<any> = async() => {
     paths: gqlResponse.data.website.workCollection.items.map(({ id }) => ({
       params: { pid: id },
     })),
-    fallback: true,
+    fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps = async context => {
   const response = await getStaticPropsCommon(context)
-
-  console.log({ response })
 
   return response
 }
