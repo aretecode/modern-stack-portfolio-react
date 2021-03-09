@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async context => {
     logger.error(gqlResponse.errors)
     return {
       redirect: {
-        destination: 'https://jameswiens.dev',
+        destination: '/',
         permanent: false,
       },
     }

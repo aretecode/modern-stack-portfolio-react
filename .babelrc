@@ -2,7 +2,13 @@
   "env": {
     "development": {
       "presets": [
-        "next/babel"
+        ["next/babel",  {
+          "preset-env": {
+            "targets": {
+              "chrome": "77"
+            }
+          }
+        }]
       ],
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
@@ -16,7 +22,13 @@
     },
     "production": {
       "presets": [
-        "next/babel"
+        ["next/babel",  {
+          "preset-env": {
+            "targets": {
+              "chrome": "77"
+            }
+          }
+        }]
       ],
       "plugins": [
         "@babel/plugin-syntax-dynamic-import",
