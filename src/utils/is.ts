@@ -1,76 +1,70 @@
 import { AnyArrayOrObj, AnyArray, Real, Empty, AnyFunction } from '../typings'
 
+/**
+ * @alias hasOwnProp
+ * @alias hasOwnProperty
+ */
 export function has<T, K extends keyof T>(obj: T, key: K): T[K] {
   return Object.prototype.hasOwnProperty.bind(Object)(obj, key)
 }
 
-export const hasOwnProperty = has
-export const hasOwnProp = has
-
 export function hasIn<T, K extends keyof T>(obj: T, key: K): boolean {
   return !!(key in obj)
 }
-export const isIn = (obj: any, prop: any) => prop in Object(obj)
-
-export function isFunction(x: any): x is AnyFunction {
+export function isIn<Obj extends {}, Prop extends keyof Obj>(
+  obj: Obj,
+  prop: Prop
+) {
+  return prop in Object(obj)
+}
+export function isFunction(x: unknown): x is AnyFunction {
   return typeof x === 'function'
 }
-
-export function isNumber(x: any): x is number {
+export function isNumber(x: unknown): x is number {
   return typeof x === 'number'
 }
-export const isNumberPrimitive = isNumber
-
-export function isString(x: any): x is string {
+export function isString(x: unknown): x is string {
   return typeof x === 'string'
 }
-export const isStringPrimitive = isString
-
-export function isBoolean(x: any): x is boolean {
+export function isBoolean(x: unknown): x is boolean {
   return x === true || x === false
 }
-export const isBooleanPrimitive = isBoolean
-
-export function isNull(x: any): x is null {
+export function isNull(x: unknown): x is null {
   return x === null
 }
-export function isUndefined(x: any): x is undefined {
+export function isUndefined(x: unknown): x is undefined {
   return x === undefined
 }
-export function isNil(x: any): x is null | undefined {
+/** @alias isNullOrUndefined */
+export function isNil(x: unknown): x is null | undefined {
   return isNull(x) || isUndefined(x)
 }
-export const isNullOrUndefined = isNil
-export function isArray(x: any): x is AnyArray {
+export function isArray(x: unknown): x is AnyArray {
   return Array.isArray(x)
 }
-
-export function isArrayLike<T>(x: any): x is ArrayLike<T> {
+export function isArrayLike<T>(x: unknown): x is ArrayLike<T> {
   return isArray(x)
 }
 
-export function isObj(x: any): x is AnyArrayOrObj {
+/**
+ * related: isObjPure, isObjTag, isObjNotNull
+ */
+export function isObj(x: unknown): x is AnyArrayOrObj {
   return isNull(x) === false && (typeof x === 'object' || isArray(x))
 }
-export const isObjPure = isObj
-export const isObjTag = isObj
-
-export const IS_WEAKMAP_USABLE = typeof WeakMap !== 'undefined'
 
 export type Indexable = string | number
-export function isIndexable(x: any): x is Indexable {
+export function isIndexable(x: unknown): x is Indexable {
   return isNumber('number') || isString(x)
 }
 
-export function isSymbol(x: any): x is symbol {
+export function isSymbol(x: unknown): x is symbol {
   return typeof x === 'symbol'
 }
-
-export function isRegExp(x: any): x is RegExp {
+export function isRegExp(x: unknown): x is RegExp {
   return x instanceof RegExp
 }
-
-export function isDate(x: any): x is Date {
+export function isDate(x: unknown): x is Date {
   return x instanceof Date
 }
 
@@ -81,19 +75,14 @@ export function isFalse(x: boolean): x is false {
   return x === false
 }
 
-export const isObjNotNull = isObj
-
 export function isMap(x: unknown): x is Map<any, any> {
-  return Object.prototype.toString
-    .call(Object, x)
-    .toLowerCase()
-    .includes('map')
+  return Object.prototype.toString.call(Object, x).toLowerCase().includes('map')
 }
 export function isSet(x: unknown): x is Set<any> {
-  return Object.prototype.toString
-    .call(Object, x)
-    .toLowerCase()
-    .includes('set')
+  return Object.prototype.toString.call(Object, x).toLowerCase().includes('set')
+}
+export function isCollection(x: unknown): x is Map<any, any> | Set<any> {
+  return isMap(x) || isSet(x)
 }
 
 export function isEnumerable<
@@ -103,12 +92,8 @@ export function isEnumerable<
   return isObj(obj) && Object.prototype.propertyIsEnumerable.call(obj, prop)
 }
 
-export function isReal(x: any): x is Real {
+export function isReal(x: unknown): x is Real {
   return !Number.isNaN(x) && !isNil(x)
-}
-
-export function isCollection(x: any): x is Map<any, any> | Set<any> {
-  return isMap(x) || isSet(x)
 }
 
 /**
@@ -118,7 +103,7 @@ export function isCollection(x: any): x is Map<any, any> | Set<any> {
  *   array || string => .length === 0
  *   object => Object.keys().length === 0
  */
-export function isEmpty(x: any): x is Empty {
+export function isEmpty(x: unknown): x is Empty {
   return isNil(x)
     ? true
     : isCollection(x)
@@ -130,21 +115,21 @@ export function isEmpty(x: any): x is Empty {
     : false
 }
 
-export function isIterator(x: any): x is Iterator<any> {
+export function isIterator(x: unknown): x is Iterator<any> {
   return Object.prototype.toString.call(x).includes('Iterator')
 }
 
-export function isMatcher(x: any): x is string | AnyFunction | RegExp {
+export function isMatcher(x: unknown): x is string | AnyFunction | RegExp {
   return isString(x) || isFunction(x) || isRegExp(x)
 }
 
 export function isPrimitive(
-  x: any
+  x: unknown
 ): x is string | number | symbol | boolean | null | undefined {
   return isString(x) || isBoolean(x) || isNumber(x) || isSymbol(x) || isNil(x)
 }
 
-export function isPromise<Type = any>(x: any): x is Promise<Type> {
+export function isPromise<Type = any>(x: unknown): x is Promise<Type> {
   return Promise.resolve(x) == x
 }
 
@@ -183,16 +168,16 @@ export function isNative(
   )
 }
 
-export function isAsyncIsh(x: any): x is Promise<any> {
+export function isAsyncIsh(x: unknown): x is Promise<any> {
   const tag = Object.toString.prototype.call(x)
   return tag.includes('Promise') || tag.includes('Async')
 }
-export function isIteratable(x: any) {
+export function isIteratable(x: unknown) {
   // ez ones
-  if (isObjNotNull(x) || isArray(x)) {
+  if (isObj(x) || isArray(x)) {
     return true
   } else {
-    const notIteratable =
+    const isNonIteratable =
       isPrimitive(x) ||
       isRegExp(x) ||
       isDate(x) ||
@@ -202,9 +187,9 @@ export function isIteratable(x: any) {
       isError(x)
 
     // not-not is iteratable
-    return !notIteratable
+    return !isNonIteratable
   }
 }
-export function isError(x: any): x is Error {
+export function isError(x: unknown): x is Error {
   return Object.prototype.toString.call(x).includes('Error')
 }
