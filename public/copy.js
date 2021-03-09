@@ -24,7 +24,7 @@ const { env } = require('../env')
 const asyncWriteFile = promisify(writeFile)
 async function updateSiteMap() {
   console.debug('[update] updating site map')
-  const isoDate = format(now, 'YYYY-MM-DDTHH:mm:ss.SSSZ')
+  const isoDate = format(now, 'yyyy-MM-ddTHH:mm:ss.SSSz')
 
   // errors in google, have submitted the issue to them
   // <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/Portfolio/?amp" />
@@ -48,7 +48,7 @@ async function updateSiteMap() {
   </url>
 </urlset>
 `
-  const siteMapPath = resolveApp('static/sitemap.xml')
+  const siteMapPath = resolveApp('public/sitemap.xml')
   await asyncWriteFile(siteMapPath, siteMap)
   console.debug('[update] site map updated')
 }
@@ -72,9 +72,9 @@ async function copyFromTo(from, to) {
  */
 async function copyFilesToDist() {
   console.debug('[scripts] starting copying')
-  await copyFromTo('static/robots.txt', 'robots.txt')
-  await copyFromTo('static/manifest.json', 'manifest.json')
-  await copyFromTo('static/sitemap.xml', 'sitemap.xml')
+  await copyFromTo('public/robots.txt', 'robots.txt')
+  await copyFromTo('public/manifest.json', 'manifest.json')
+  await copyFromTo('public/sitemap.xml', 'sitemap.xml')
   console.debug('[scripts] done copying')
 }
 
