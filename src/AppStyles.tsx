@@ -10,8 +10,7 @@ import { createGlobalStyle } from 'styled-components'
  * @see https://developers.google.com/web/updates/2016/02/font-display
  * @see https://fonts.google.com/specimen/Roboto
  * @see https://material.io/design/color/color-usage.html#
- *
- * @todo https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme (dark-mode)
  *
  * --color-text-unimportant-bad-contrast: #6c757d;
  */
@@ -21,26 +20,38 @@ export const AppStyles = createGlobalStyle`
     --color-pink: #ff4081;
     --color-soft-purple: #5c6bc0;
     --color-purple-blue: #3f51b5;
+
     --color-material-background-purple: #6200ee;
+    --color-light-material-background-purple: rgba(0, 0, 0, 0.35);
 
     --color-dark-background-dark-surface: #121212;
     --color-dark-purple: #BB86FC;
-    --color-dark-background-dark: #232f34;
     --color-dark-background-dark: #000000;
+
+    --color-text-heading-main: #000000;
 
     --color-orange: #ff5722;
     --color-deep-blue: #3b50ce;
-    --color-dark-background-main: #344955;
+    --color-dark-background-main: #232f34;
+    --color-dark-background-light: #344955;
+    --color-light-background-main: #f5f5f5;
 
-    --color-dark-background-light: #4a6572;
+    --color-dark-background-lighter: #4a6572;
     --color-link: #fff;
+    --color-dark-link: #344955;
 
     --color-background-secondary: #232f34;
     --color-background-main: #344955;
     --color-text-heading: #fff;
     --color-text-body: #fff;
     --color-text-secondary: #03dac6;
-    --color-text-unimportant: #bbb;
+    --color-text-unimportant: ${props =>
+      props.theme.isDark ? '#bbb' : '#3b3b3b'};
+
+    --footer-background: ${props =>
+      props.theme.isDark
+        ? 'var(--color-dark-background-dark-surface)'
+        : 'var(--color-material-background-purple)'};
   }
 
   @font-face {
@@ -92,7 +103,7 @@ export const AppStyles = createGlobalStyle`
     min-height: inherit;
     transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: ${(props: { theme: { isDark: boolean } }) =>
-      props.theme.isDark ? 'var(--color-dark-background-dark)' : '#f5f5f5'};
+      props.theme.isDark ? 'var(--color-dark-background-main)' : '#ddd'};
     display: flex;
     flex-direction: column;
   }
