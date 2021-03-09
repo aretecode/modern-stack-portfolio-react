@@ -174,7 +174,7 @@ function fromContextToSchema(
         '@type': 'ListItem',
         // starts @1
         position: index + 1,
-        url: basePortfolioUrl + index,
+        url: basePortfolioUrl + workItem.id,
       }
     }),
   }
