@@ -1,4 +1,4 @@
-import { Serialized } from '../../typings'
+import type { Serialized } from '../../typings'
 
 export type DarkModeHookArrayType = [
   boolean | Promise<boolean>,

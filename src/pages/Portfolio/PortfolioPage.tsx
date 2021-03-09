@@ -7,7 +7,7 @@ import { StyledMain } from '../../features/Main'
 import Picture from '../..//features/Picture/Picture'
 import Footer from '../../features/Footer'
 import Header from '../../features/Header'
-import { WorkType, ResumeType } from '../../typings'
+import type { WorkType, ResumeType } from '../../typings'
 import {
   StyledLink,
   StyledGrid,
@@ -43,6 +43,7 @@ export function renderWork(work: WorkType, index: number) {
             <StyledCardImage
               loading={index === 0 ? 'eager' : 'lazy'}
               {...imgProps}
+              {...work.image}
               {...fx.card}
             />
           )}

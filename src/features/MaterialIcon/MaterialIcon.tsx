@@ -7,7 +7,7 @@
  */
 import * as React from 'react'
 import styled from 'styled-components'
-import { IconNameType } from './typings'
+import type { IconNameType } from './typings'
 
 export const iconInvisibleSquarePathView = (
   <path fill="none" d="M0 0h24v24H0V0z" key="background" />

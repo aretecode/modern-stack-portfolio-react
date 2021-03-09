@@ -1,7 +1,7 @@
 /**
  * @see https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
  */
-import { AnyObj } from '../typings'
+import type { AnyObj } from '../typings'
 
 export const keep = <
   Obj extends {} = AnyObj,

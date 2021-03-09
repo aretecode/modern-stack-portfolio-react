@@ -3,7 +3,7 @@
  */
 import { useState } from 'react'
 import { portfolioKeyValStore } from '../../storage'
-import { Serialized } from '../../typings'
+import type { Serialized } from '../../typings'
 import {
   SerializedOrCallbackToSerialized,
   DarkModeHookArrayType,
@@ -27,7 +27,7 @@ export function useIndexDb(
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValue = async (value: SerializedOrCallbackToSerialized) => {
+  const setValue = async(value: SerializedOrCallbackToSerialized) => {
     // Allow value to be a function so we have same API as useState
     const valueToStore =
       typeof value === 'function' ? value(storedValue as Serialized) : value

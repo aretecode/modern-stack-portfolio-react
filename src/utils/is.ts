@@ -1,4 +1,10 @@
-import { AnyArrayOrObj, AnyArray, Real, Empty, AnyFunction } from '../typings'
+import type {
+  AnyArrayOrObj,
+  AnyArray,
+  Real,
+  Empty,
+  AnyFunction,
+} from '../typings'
 
 /**
  * @alias hasOwnProp

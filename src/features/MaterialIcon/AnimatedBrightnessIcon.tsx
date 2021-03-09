@@ -3,11 +3,11 @@
  */
 import * as React from 'react'
 import { useState, useRef } from 'react'
+import { useAmp } from 'next/amp'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
 import { StyledVector } from './StyledVector'
-import { AnimationRefType, AnimatedIconRenderPropArgs } from './typings'
+import type { AnimationRefType, AnimatedIconRenderPropArgs } from './typings'
 import styled, { css } from 'styled-components'
-import { useAmp } from 'next/amp'
 
 export const BRIGHTNESS_PATH_4 =
   'M12.5,18 C11.61,18 10.76,17.8 10,17.45 C12.06,16.5 13.5,14.42 13.5,12 C13.5,9.58 12.06,7.5 10,6.55 C10.76,6.2 11.61,6 12.5,6 C15.81,6 18.0020592,8.69 18.0020592,12 C18.0020592,15.31 15.81,18 12.5,18 Z'
