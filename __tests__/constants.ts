@@ -1,3 +1,9 @@
+export const nonApollo = {
+  repoUrl: 'https://github.com/aretecode/modern-stack-web-portfolio',
+  workSummaryPicture:
+    'https://noccumpr-cdn.sirv.com/images/james-wiens-work-experience-combined-filtered.png',
+} as const
+
 export const defaultApolloStatePortfolio = {
   __typename: 'Resume',
   basics: {
@@ -35,8 +41,7 @@ export const defaultApolloStatePortfolio = {
       endDate: 'current',
       summary: '',
       highlights: '',
-      picture:
-        'https://user-images.githubusercontent.com/4022631/55686780-04f0f980-5983-11e9-8152-204681b0840f.png',
+      picture: nonApollo.workSummaryPicture,
     },
   ],
 } as const

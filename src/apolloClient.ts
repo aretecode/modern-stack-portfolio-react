@@ -1,27 +1,29 @@
 /**
+ * @see https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js
  * @see https://www.apollographql.com/docs/react/advanced/boost-migration
  * @see https://github.com/bitinn/node-fetch/issues/49
  * @see https://github.com/apollographql/apollo-link/issues/83
  * @see https://github.com/github/fetch#sending-cookies
  * @see https://www.apollographql.com/docs/react/features/performance.html#cache-redirects
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/init-apollo.js
- * @note https://www.apollographql.com/docs/link/links/state < docs are not accurate for apollo-boost with state link
  */
+const merge = require('deepmerge')
+import * as React from 'react'
+import { AppProps } from 'next/app'
 import {
   ApolloClient,
-  HttpLink,
   ApolloLink,
-  ApolloClientOptions,
+  HttpLink,
   NormalizedCacheObject,
-} from 'apollo-boost'
-import { InMemoryCache } from 'apollo-boost'
-import { onError } from 'apollo-link-error'
+  InMemoryCache,
+} from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
 import { GraphQLError } from 'graphql'
-import { isEmpty, isObj } from './utils/is'
-import { EMPTY_OBJ, EMPTY_ARRAY } from './utils/EMPTY'
+import { isArray, isEmpty, isObj } from './utils/is'
+import { EMPTY_ARRAY } from './utils/EMPTY'
 import { logger } from './log'
 
-const IS_BROWSER = typeof window === 'object'
+export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 /**
  * this should eliminate some of the deps in production
@@ -62,7 +64,7 @@ function createDevLinks() {
       logger.info(`starting request for ${operation.operationName}`)
 
       if (forward !== undefined) {
-        return forward(operation).map(data => {
+        return forward(operation).map((data: any) => {
           logger.info(`ending request for ${operation.operationName}`)
           return data
         })
@@ -86,40 +88,17 @@ if (!process.browser) {
 
 let apolloClientInstance: ApolloClient<any> = undefined as any
 
-/**
- * changed to this because of the server usage
- * if we need access to these links outside we can change this
- */
-export function createInstance(
-  initialState: NormalizedCacheObject = (IS_BROWSER
-    ? window.__APOLLO_STATE__
-    : EMPTY_OBJ) as NormalizedCacheObject,
-  url?: URL
-) {
+function createApolloClient(url?: URL) {
   const httpLink = new ApolloLink((operation, forward) => {
     const httpLinkActual = new HttpLink({
-      get uri() {
-        /**
-         * 1. if env is NOT `readonly`, and we pass in `url`, and we have `graphql` in params, use it
-         * 2. if it's NODE_ENV `development`, use localhost:4000
-         * 3. if it's the browser, use `/graphql` (_same origin_)
-         * 4. use `now.sh` deployment of graphql from `env`
-         */
-        return process.env.READONLY !== 'true' &&
-          isObj(url) &&
-          url.searchParams.has('graphql')
-          ? url.searchParams.get('graphql')!
-          : process.env.NODE_ENV === 'development'
-          ? `http://localhost:4000/graphql?n=${operation.operationName}`
-          : process.browser
-          ? '/graphql'
-          : process.env.GRAPHQL_API_URL
-      },
-
+      uri:
+        'https://graphql.contentful.com/content/v1/spaces/2n52ochjp8f3?access_token=f14JMgwbHNoD1kzz54hwAd1Rsy_ZzAShU7055-dWP30',
       /**
+       * @idea use `GET` to cache
        * @see https://github.com/apollographql/apollo-link/issues/236#issuecomment-348176745
+       * @example
+       *   fetchOptions: { method: 'GET' },
        */
-      // fetchOptions: { method: 'GET' },
 
       /**
        * @@security should be same-origin in real production
@@ -130,60 +109,67 @@ export function createInstance(
     return httpLinkActual.request(operation, forward)
   })
 
-  /**
-   * @api @see https://github.com/apollographql/apollo-cache-persist#react
-   * @api @see https://www.apollographql.com/docs/react/features/cache-updates.html#normalization
-   */
-  const inMemoryCache = new InMemoryCache()
-  const cache = inMemoryCache.restore(initialState)
-
-  /**
-   * @note currently only used for test env because
-   *       - it's hijacking the http request
-   *       - we switched to the apollo server graphql
-   *
-   * @todo this is not dead code eliminating properly
-   *       at least it is not eliminating exports correctly
-   */
-  const stateLink =
-    process.env.NODE_ENV === 'test' &&
-    require('./apolloState').withState({ cache })
-
-  /**
-   * @requires https://github.com/apollographql/apollo-client/blob/master/docs/source/recipes/server-side-rendering.md#store-rehydration
-   * @see https://github.com/apollographql/apollo-client/issues/1419
-   * @see https://github.com/apollographql/apollo-client/blob/82a846c9591bcff975cc28d3786105b80a49b4ba/src/queries/queryTransform.ts#L30
-   * @see https://github.com/apollographql/apollo-client/issues/1913#issuecomment-348359030
-   */
-  const clientConfig: ApolloClientOptions<any> = {
-    link: ApolloLink.from(
-      [...createDevLinks(), stateLink as ApolloLink, httpLink].filter(Boolean)
-    ),
-    cache,
-    ssrMode: !process.browser,
+  return new ApolloClient({
+    ssrMode: typeof window === 'undefined',
     ssrForceFetchDelay: process.browser ? 100 : undefined,
     connectToDevTools: process.browser,
+    link: ApolloLink.from([...createDevLinks(), httpLink].filter(Boolean)),
+    headers: {
+      authorization: `Bearer ${'f14JMgwbHNoD1kzz54hwAd1Rsy_ZzAShU7055-dWP30'}`,
+    },
+    cache: new InMemoryCache({}),
+  })
+}
+
+const isEqual = <Type extends unknown>(x: Type, y: Type) => {
+  if (isObj(x) && isObj(y)) {
+    return Object.keys(x).every(key => isEqual(x[key], y[key]))
+  } else if (isArray(x) && isArray(y)) {
+    return x.every((item, index) => isEqual(x[index], y[index]))
   }
-
-  const client = new ApolloClient(clientConfig)
-
-  return client
+  return x === y
 }
 
 export function initApolloClient(
-  initialState?: NormalizedCacheObject,
+  initialState: NormalizedCacheObject | null = null,
   url?: URL
 ) {
-  // Make sure to create a new client for every server-side request so that data
-  // isn't shared between connections (which would be bad)
-  if (!process.browser) {
-    return createInstance(initialState, url)
+  const _apolloClient = apolloClientInstance ?? createApolloClient(url)
+
+  // If your page has Next.js data fetching methods that use Apollo Client,
+  // the initial state gets hydrated here
+  if (initialState) {
+    // Get existing cache, loaded during client side data fetching
+    const existingCache = _apolloClient.extract()
+
+    // Merge the existing cache into data passed from getStaticProps/getServerSideProps
+    const data = merge(initialState, existingCache, {
+      // combine arrays using object equality (like in sets)
+      arrayMerge: (destinationArray: any[], sourceArray: any[]) => [
+        ...sourceArray,
+        ...destinationArray.filter((d: unknown) =>
+          sourceArray.every((s: unknown) => !isEqual(d, s))
+        ),
+      ],
+    })
+
+    // Restore the cache with the merged data
+    _apolloClient.cache.restore(data)
+  }
+  // For SSG and SSR always create a new Apollo Client
+  if (typeof window === 'undefined') {
+    return _apolloClient
+  }
+  // Create the Apollo Client once in the client
+  if (!apolloClientInstance) {
+    apolloClientInstance = _apolloClient
   }
 
-  // Reuse client on the client-side
-  if (apolloClientInstance === undefined) {
-    apolloClientInstance = createInstance(initialState, url)
-  }
+  return _apolloClient
+}
 
-  return apolloClientInstance
+export function useApollo(pageProps: AppProps) {
+  const state = pageProps[APOLLO_STATE_PROP_NAME]
+  const store = React.useMemo(() => initApolloClient(state), [state])
+  return store
 }

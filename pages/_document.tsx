@@ -1,4 +1,5 @@
 /**
+ * @see https://nextjs.org/docs/advanced-features/custom-document
  * @see http://microformats.org/wiki/rel-profile
  * @see https://nextjs.org/docs/
  * @see https://github.com/dfrankland/react-amphtml/issues/29
@@ -16,11 +17,7 @@ import Document, {
   DocumentContext as NextDocumentContext,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { AmpScripts, AmpScriptsManager } from 'react-amphtml/setup'
-import * as Amp from 'react-amphtml'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
-import { webVitals } from '../src/utils/webVitals'
-import { AmpContext } from '../src/features/AmpContext'
 import {
   AmpServiceWorkerHeadScript,
   AmpServiceWorkerBodyScript,
@@ -29,78 +26,7 @@ import {
   GoogleTagManagerHeaderScript,
   GoogleTagManagerBodyScript,
 } from '../src/features/GoogleTagManager'
-
-/* eslint-disable react/no-danger */
-/**
- * @note not using context here as it would be used 2x in the render flow
- * @note would use keys if this switched during 1 request
- */
-class AmpHtml extends React.PureComponent<{ isAmp?: boolean }> {
-  render() {
-    return this.props.isAmp === false ? (
-      <Html lang="en" prefix="og: https://ogp.me/ns#">
-        {this.props.children}
-      </Html>
-    ) : (
-      <Amp.Html specName="html ⚡ for top-level html" lang="en" amp="amp">
-        {this.props.children}
-      </Amp.Html>
-    )
-  }
-}
-
-function addAmpToUrl(href: string) {
-  if (href.endsWith('/')) {
-    return href + 'amp'
-  } else if (href.includes('?')) {
-    const [first, second] = href.split('?')
-    return first + '/amp?' + second
-  } else {
-    return href + '/amp'
-  }
-}
-
-/**
- * @note we are inlining this to avoid amp violations where `next` gives duplicate tags
- * @see https://github.com/dfrankland/react-amphtml/blob/7221879f49f289855a2574557afbead811c532a8/src/setup/headerBoilerplate.js
- */
-class AmpHeader extends React.PureComponent<{ href: string; isAmp: boolean }> {
-  render() {
-    const { isAmp, href } = this.props
-    if (isAmp === false) {
-      return <link rel="amphtml" href={addAmpToUrl(href)} />
-    }
-
-    return (
-      <>
-        <link
-          key={'canonical-link'}
-          rel="canonical"
-          href={href.replace('/amp', '')}
-        />
-        <style
-          key={'style'}
-          amp-boilerplate=""
-          dangerouslySetInnerHTML={{
-            __html: `
-          body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-        `,
-          }}
-        />
-        <noscript key={'noscript'}>
-          <style
-            amp-boilerplate=""
-            dangerouslySetInnerHTML={{
-              __html: `
-            body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
-          `,
-            }}
-          />
-        </noscript>
-      </>
-    )
-  }
-}
+import { logger } from '../src/log'
 
 export interface DocumentProps {
   isAmp: boolean
@@ -108,21 +34,21 @@ export interface DocumentProps {
   url: URL
   ampScriptTags?: React.ReactNode
   ampStyleTag?: React.ReactNode
+  ampStyles?: string
 }
 export default class MyDocument extends Document<DocumentProps> {
-  constructor(props: any, state: any) {
-    super(props, state)
-    if (typeof document === 'object') {
-      webVitals()
-    }
-  }
-  //  eslint-disable-next-line max-statements
-  static async getInitialProps(ctx: Required<NextDocumentContext>) {
-    const url = fromReqToUrl(ctx.req as any)
-    const isAmp = url.href.includes('?amp') || url.href.includes('/amp')
-    const ampScripts = new AmpScripts()
+  // eslint-disable-next-line max-statements
+  public static async getInitialProps(ctx: Required<NextDocumentContext>) {
+    const url = ctx.req ? fromReqToUrl(ctx.req as any) : { href: '' }
+
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
+
+    if (!url.href) {
+      logger.error('missing url!!!')
+    }
+
+    const isAmp = url.href.includes('?amp') || url.href.includes('/amp')
 
     try {
       ctx.renderPage = () =>
@@ -130,59 +56,24 @@ export default class MyDocument extends Document<DocumentProps> {
           enhanceApp: (App: React.ComponentType) => (props: {
             [key: string]: unknown
           }) => {
-            return sheet.collectStyles(
-              <AmpContext.Provider value={{ isAmp }}>
-                {isAmp === true ? (
-                  <AmpScriptsManager ampScripts={ampScripts as any}>
-                    <App {...props} />
-                  </AmpScriptsManager>
-                ) : (
-                  <App {...props} />
-                )}
-              </AmpContext.Provider>
-            )
+            return sheet.collectStyles(<App {...props} />)
           },
         })
 
-      const ampScriptTags = isAmp === true && ampScripts.getScriptElements()
       const initialProps = await Document.getInitialProps(ctx)
-
       const styleElements = sheet.getStyleElement()
-
-      // AMP only allows for 1 style tag, so we need to compbine all the style
-      // tags generated by styled-components
-      /* eslint-disable react/no-danger */
-      const ampStyleTag = isAmp === true && (
-        <style
-          amp-custom=""
-          dangerouslySetInnerHTML={{
-            __html: styleElements.reduce(
-              (
-                css,
-                {
-                  props: {
-                    dangerouslySetInnerHTML: { __html = '' } = {} as any,
-                  } = {} as any,
-                } = {} as any
-              ) => `${css}${__html}`,
-              ''
-            ),
-          }}
-        />
-      )
 
       return {
         isAmp,
         url,
         ...initialProps,
+        /** @see https://github.com/vercel/next.js/blob/a107dcb73268500e926856a224767788bcfa12fd/packages/next/pages/_document.tsx#L488 */
         styles: (
           <>
             {initialProps.styles}
-            {isAmp === false && styleElements}
+            {styleElements}
           </>
         ),
-        ampScriptTags,
-        ampStyleTag,
       }
       /* eslint-enable */
     } finally {
@@ -190,24 +81,51 @@ export default class MyDocument extends Document<DocumentProps> {
     }
   }
 
-  render() {
-    const { isAmp, title, url, ampScriptTags, ampStyleTag } = this.props
+  public render() {
+    const { isAmp, title, url } = this.props
     const shouldSkipAnalytics = url.href.includes('shouldSkipAnalytics')
 
     return (
-      <AmpHtml isAmp={isAmp}>
+      <Html lang="en" prefix="og: https://ogp.me/ns#">
         <Head>
-          <AmpHeader href={url.href} isAmp={isAmp} />
+          {isAmp && (
+            <>
+              <style
+                key={'style'}
+                amp-boilerplate=""
+                dangerouslySetInnerHTML={{
+                  __html: `
+          body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
+        `,
+                }}
+              />
+              <noscript key={'noscript'}>
+                <style
+                  amp-boilerplate=""
+                  dangerouslySetInnerHTML={{
+                    __html: `
+            body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
+          `,
+                  }}
+                />
+              </noscript>
+            </>
+          )}
           {title}
-          {ampScriptTags}
-          {ampStyleTag}
+          <meta name="robots" content="index,follow" />
+          <meta name="googlebot" content="index,follow" />
+
           <meta itemProp="accessibilityControl" content="fullKeyboardControl" />
           <meta itemProp="accessibilityControl" content="fullMouseControl" />
           <meta itemProp="typicalAgeRange" content="20-60" />
 
           <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
           <link rel="preconnect" href="https://fonts.gstatic.com/" />
-          <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
+
+          <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+          <link rel="preconnect" href="https://www.google-analytics.com" />
 
           <link
             rel="preload"
@@ -228,37 +146,31 @@ export default class MyDocument extends Document<DocumentProps> {
             crossOrigin={'crossOrigin'}
           />
 
-          <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-          <link rel="preconnect" href="https://www.googletagmanager.com" />
-          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-          <link rel="preconnect" href="https://www.google-analytics.com" />
           <link
             rel="preload"
             href="https://www.google-analytics.com/analytics.js"
             as="script"
-            // crossOrigin={'crossOrigin'}
           />
           <link
             rel="preload"
             href={`https://www.googletagmanager.com/gtm.js?id=${process.env.GOOGLE_TAG_MANAGER_WEB_ID}`}
             as="script"
-            // crossOrigin={'crossOrigin'}
           />
 
           {shouldSkipAnalytics === false && (
-            <GoogleTagManagerHeaderScript isAmp={isAmp} />
+            <GoogleTagManagerHeaderScript isAmp={isAmp} key="gtag-head" />
           )}
-          {isAmp === true && <AmpServiceWorkerHeadScript />}
+          {isAmp === true && <AmpServiceWorkerHeadScript key="worker-head" />}
         </Head>
         <body>
           {shouldSkipAnalytics === false && (
-            <GoogleTagManagerBodyScript isAmp={isAmp} />
+            <GoogleTagManagerBodyScript isAmp={isAmp} key="gtag-body" />
           )}
           <Main />
-          {isAmp === true && <AmpServiceWorkerBodyScript />}
-          {isAmp === false && <NextScript />}
+          {isAmp === true && <AmpServiceWorkerBodyScript key="worker-body" />}
+          <NextScript />
         </body>
-      </AmpHtml>
+      </Html>
     )
   }
 }
