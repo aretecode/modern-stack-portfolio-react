@@ -106,11 +106,11 @@ function fromContextToSchema(
    */
   function fromWorkItemToOrganization(
     workItem: WorkType,
-    index: number
+    index?: number
   ): Schema.Organization {
     return {
       '@type': 'Organization',
-      url: basePortfolioUrl + index,
+      url: basePortfolioUrl + workItem.id,
       name: workItem.company,
       member: {
         '@type': 'OrganizationRole',

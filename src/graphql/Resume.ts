@@ -59,6 +59,7 @@ export default gql`
     srcSizes
   }
   fragment workItem on WorkExperience {
+    id
     company
     position
     startDate

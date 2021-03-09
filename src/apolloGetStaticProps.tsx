@@ -1,13 +1,11 @@
 /** @file download data on the server so that it does not need to be fetched on the browser. runs at compile time and run time. */
 import { GetStaticProps } from 'next'
-import { ResumeResponse, ResumeType } from './typings'
+import type { ResumeResponse, ResumeType } from './typings'
 import ResumeQuery from './graphql/Resume'
 import { initApolloClient } from './apolloClient'
 import { logger } from './log'
 
 export const getStaticProps: GetStaticProps = async context => {
-  console.log({ context })
-
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<ResumeResponse>({
     query: ResumeQuery,

@@ -147,6 +147,7 @@ export interface BasicsType {
   skills: string[]
 }
 export interface WorkType {
+  id: string
   company: string
   position: string
   website: string

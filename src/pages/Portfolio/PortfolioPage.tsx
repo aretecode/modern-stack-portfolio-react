@@ -68,7 +68,7 @@ export function renderWork(work: WorkType, index: number) {
             <StyledLink to={work.website}>{work.website}</StyledLink>
           </section>
           <StyledExperienceSection>
-            <StyledLink to={`/Portfolio/Experience/${index}`}>
+            <StyledLink to={`/Portfolio/Experience/${work.id}?index=${index}`}>
               <TimeRange startDate={work.startDate} endDate={work.endDate} />
             </StyledLink>
           </StyledExperienceSection>

@@ -15,28 +15,31 @@ export default function PortfolioWorkExperienceItemPage({
   person,
   work,
   openSource,
+  ...rest
 }: ResumeType) {
   const {
     query: { pid = -42 },
   } = useRouter()
   const { url } = React.useContext(AppContext)
-  const { name, summary } = person
-
-  const index = +pid
-  const workItem = work[index]
+  const pidIndex = work?.findIndex(({ id }) => id == pid)
+  /** @todo this does not load yet, was going to do as backwards compatibility */
+  const searchIndex = url.searchParams?.has('index')
+    ? +url.searchParams.get('index')!
+    : pid
+  const index: number = Number(pidIndex ?? searchIndex)
+  const workItem = work?.[index]
+  console.log({ rest, pid, workItem, index, url })
 
   /** @todo show 404 */
   if (workItem === undefined) {
     return <h1>Not found</h1>
   }
 
-  const titleText = `${name}'s Portfolio - ${workItem.company}`
-
   return (
     <>
       <PortfolioHead
-        titleText={titleText}
-        description={summary}
+        titleText={`${person.name}'s Portfolio - ${workItem.company}`}
+        description={person.summary}
         {...person}
         image={workItem.image}
       />
