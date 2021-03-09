@@ -1,8 +1,4 @@
 /**
- * @file @todo ensure all have named `Type` or `i`
- */
-
-/**
  * === basics ===
  */
 export type Primitive = string | number | boolean | symbol | null | undefined
@@ -37,7 +33,7 @@ export type Real = AnyArrayOrObj | SafePrimitive
  * === any ===
  */
 
-export interface AnyObj extends Object {
+export interface AnyObj {
   [key: string]: any
   [key: number]: any
 }
@@ -69,21 +65,6 @@ export type RecursiveRequired<Type> = {
 }
 
 /**
- * @description to add __typename
- * @todo this does not work if it is using a type union
- *    @example `Eh[] | string[]`
- */
-export type WithTypeNameRecursive<Type extends {}> = {
-  [Key in keyof Type]: Type[Key] extends Primitive | Primitive[]
-    ? Type[Key]
-    : Type[Key] extends any[]
-    ? WithTypeNameRecursive<Type[Key]>
-    : Type[Key] extends {}
-    ? Type[Key] & { __typename: string }
-    : Type[Key]
-} & { __typename?: string }
-
-/**
  * === empty ===
  */
 
@@ -105,94 +86,62 @@ export interface EmptyArray<Value = any> extends Array<Value> {
 export type EmptyFunctionType = () => void
 
 /**
- * === apollo ===
- */
-import { ApolloCache } from 'apollo-cache'
-import { NormalizedCacheObject } from 'apollo-cache-inmemory'
-
-export type ResolverContext<ContextType extends object = {}> = {
-  [key: string]: unknown
-  cache: ApolloCache<NormalizedCacheObject>
-} & ContextType
-
-export type Resolver<
-  ArgsType extends object = AnyObj,
-  ContextType extends object = {},
-  ResponseType extends object = AnyObj
-> = (
-  obj: unknown,
-  args: ArgsType,
-  context: ResolverContext<ContextType>,
-  info: unknown
-) => ResponseType | Promise<ResponseType>
-
-export interface Resolvers<
-  ArgsType extends object = AnyObj,
-  ContextType extends object = {},
-  ResponseType extends object = AnyObj
-> {
-  Mutation?: { [key: string]: Resolver<ArgsType, ContextType, ResponseType> }
-  Query?: { [key: string]: Resolver<ArgsType, ContextType, ResponseType> }
-}
-
-/**
- * === graphql react ===
- */
-import { QueryResult, OperationVariables } from 'react-apollo'
-
-export interface GraphqlPropsLoading<ResponseDataType = any> {
-  loading: true
-  data?: undefined
-}
-
-export interface GraphqlPropsLoaded<ResponseDataType> {
-  loading: false | boolean
-  data: ResponseDataType
-}
-
-export type GraphqlPropsLoadingOrLoaded<ResponseDataType> =
-  | GraphqlPropsLoaded<ResponseDataType>
-  | GraphqlPropsLoading<ResponseDataType>
-
-export type PartialReadonly<Type> = Partial<Readonly<Type>>
-
-export type GraphqlProps<
-  ResponseDataType extends object = AnyObj,
-  VariablesType extends OperationVariables = OperationVariables
-> = {
-  /**
-   * @see https://github.com/Microsoft/TypeScript/issues/24413
-   * @description not sure how this override will affect the condition ^
-   */
-  loading: boolean
-  error?: Error
-} & Readonly<QueryResult<ResponseDataType, VariablesType>>
-
-/**
  * === data ===
- * @todo rename to `Portfolio`
  */
 
+export interface ImageObjectType {
+  url: string
+  width: number
+  height: number
+  title: string
+  description?: string
+  srcSizes: ReadonlyArray<
+    [
+      /** MediaSize */
+      string,
+      /** URL */
+      string,
+      /** Width */
+      number,
+      /** height */
+      number
+    ]
+  >
+}
+export interface OpenSourceType {
+  description: string
+  name: string
+  codeRepository: string
+  url: string
+  keywords: string[] | string
+  datePublished: string
+  dateCreated: string
+  creator: BasicsType
+  image: ImageObjectType
+}
 export interface ProfileType {
   network: string
   username: string
   url: string
 }
-export interface BasicsType {
-  name: string
-  label: string
-  picture: string
-  email: string
-  telephone: string
-  website: string
-  summary: string
+export interface AddressType {
   address: string
   postalCode: string
   city: string
   countryCode: string
   region: string
+}
+/** @alias PersonType */
+export interface BasicsType {
+  name: string
+  label: string
+  image: ImageObjectType
+  email: string
+  telephone: string
+  website: string
+  summary: string
+  address: AddressType
   profiles: ProfileType[]
-
   resumeWebsite: string
   skills: string[]
 }
@@ -204,14 +153,33 @@ export interface WorkType {
   endDate: string
   summary: string
   highlights: string[] | string
-  picture: string
+  image: ImageObjectType
 }
 export interface ResumeType {
   /** currently optional */
   id?: string
-  basics: BasicsType
+  person: BasicsType
   work: WorkType[]
+  openSource: OpenSourceType
+}
+
+export interface WebsiteType {
+  id?: string
+  person: BasicsType & {
+    profilesCollection: {
+      items: ProfileType[]
+    }
+  }
+  openSource: OpenSourceType
+  workCollection: {
+    items: WorkType[]
+  }
+  projectsCollection: {
+    items: OpenSourceType
+  }
+  iconBaseUrl?: string
+  iconSvgUrl?: string
 }
 export interface ResumeResponse {
-  resume: ResumeType
+  website: WebsiteType
 }
