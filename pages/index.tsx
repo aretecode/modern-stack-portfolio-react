@@ -1,6 +1,2 @@
-import * as React from 'react'
-import AboutPage from './About'
-
-export default function Index() {
-  return <AboutPage />
-}
+export const config = { amp: 'hybrid' }
+export { default, getStaticProps } from './About'
