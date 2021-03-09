@@ -6,12 +6,12 @@
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://jameswiens.dev/Portfolio</loc>
-    <lastmod>2019-04-20T20:36:52.961-07:00</lastmod>
+    <lastmod>2021-03-09 01:32:08</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://jameswiens.dev/</loc>
-    <lastmod>2019-04-20T20:36:52.961-07:00</lastmod>
+    <lastmod>2021-03-09 01:32:08</lastmod>
     <priority>0.90</priority>
   </url>
 </urlset>
