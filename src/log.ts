@@ -1,7 +1,8 @@
 /**
  * @see https://www.apollographql.com/docs/apollo-server/features/metrics.html#Granular-Logs
  */
-import pino from 'pino'
+import type { BaseLogger, LogFn } from 'pino'
+const pino = require('pino')
 
 export const logger = pino({
   /**
@@ -18,4 +19,4 @@ export const logger = pino({
   prettyPrint: process.env.NODE_ENV === 'development' && {
     colorize: true,
   },
-})
+}) as BaseLogger & { log: LogFn }
