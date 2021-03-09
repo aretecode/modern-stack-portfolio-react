@@ -1,15 +1,9 @@
-/**
- * @todo could also use PageContext
- */
 import * as React from 'react'
 import { createContext } from 'react'
 import { URL } from '../utils/url'
 import { EMPTY_ARRAY } from '../utils/EMPTY'
 import { DarkModeHookArrayType } from '../utils/hooks/typings'
 
-/**
- * @todo can observe the scrolling, etc
- */
 export interface AppContextValueType {
   /**
    * url of the current page (_universal_)
@@ -23,7 +17,6 @@ export interface AppContextValueType {
    * the available window width
    */
   width?: number
-
   /**
    * can set this with hooks...?
    */
@@ -46,17 +39,15 @@ export const AppContext = createContext<AppContextValueType>(
   DEFAULT_APP_CONTEXT
 )
 
-export class AppContextProvider extends React.PureComponent<{
+export const AppContextProvider: React.FC<{
   url: URL
   darkMode?: DarkModeHookArrayType
-}> {
-  render() {
-    const { url = DEFAULT_URL, children, darkMode } = this.props
-    const contextValue = { ...DEFAULT_APP_CONTEXT, url, darkMode }
-    return (
-      <AppContext.Provider value={contextValue as any}>
-        {children}
-      </AppContext.Provider>
-    )
-  }
+}> = props => {
+  const { url = DEFAULT_URL, children, darkMode } = props
+  const contextValue = { ...DEFAULT_APP_CONTEXT, url, darkMode }
+  return (
+    <AppContext.Provider value={contextValue as any}>
+      {children}
+    </AppContext.Provider>
+  )
 }
