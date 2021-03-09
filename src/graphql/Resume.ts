@@ -1,57 +1,98 @@
-import { gql } from 'apollo-boost'
+import { gql } from '@apollo/client'
 
 /**
- * @todo dynamically toggle `@client`
- * - could export as template string, but then we cannot optimize with babel
- * - could write a second query and compare perf on both
- * - apolloState is imported by apolloClient
- *   so how to do the circular dep if apolloState is supposed to fetch non-client?
- *   - could inject
- *   - could `require`
- *   - could `fetch`
- *   - could do a `link`
- *   - could search
+ * @todo
+ * - make id part of the env
+ * - rename the property for orcid
  */
 export default gql`
-  query Resume {
-    resume {
-      __typename
-      basics {
-        __typename
-        name
-        label
-        picture
-        email
-        telephone
-        website
-        summary
-        address
-        postalCode
-        city
-        countryCode
-        region
-
-        resumeWebsite
-        skills
-
-        profiles {
-          __typename
-          network
-          username
-          url
+  query {
+    website(id: "6Hj7WP8kLonf5VHyQPoES3") {
+      person {
+        ...personBasics
+        address {
+          ...addressFragment
+        }
+        profilesCollection {
+          items {
+            ...networkFragment
+          }
         }
       }
-      work {
-        __typename
-        company
-        position
-        website
-        startDate
-        endDate
-        summary
-        highlights
-        picture
+      workCollection {
+        items {
+          ...workItem
+        }
       }
+      projectsCollection {
+        items {
+          description
+          name
+          codeRepository
+          url
+          keywords
+          datePublished
+          dateCreated
+          creator {
+            ...personBasics
+          }
+          image {
+            ...imageFragment
+          }
+        }
+      }
+      iconBaseUrl
+      iconSvgUrl
     }
+  }
+  fragment networkFragment on Profiles {
+    network
+    username
+    url
+  }
+  fragment imageFragment on ImageObject {
+    url
+    width
+    height
+    title
+    description: caption
+    srcSizes
+  }
+  fragment workItem on WorkExperience {
+    company
+    position
+    startDate
+    endDate
+    website
+    image {
+      ...imageFragment
+    }
+    summary {
+      json
+    }
+    highlights {
+      json
+    }
+  }
+  fragment personBasics on Basics {
+    name
+    label
+    email
+    telephone
+    website
+    summary
+    resumeWebsite
+    skills
+    orcid: ocid
+    image {
+      ...imageFragment
+    }
+  }
+  fragment addressFragment on Address {
+    address
+    postalCode
+    city
+    countryCode
+    region
   }
 `
