@@ -1,101 +1,95 @@
 /**
  * @see https://material.io/design/components/cards.html#actions
  * @file @todo move out the `⇔` @@hack
- * @todo on mobile, could expand to full screen
- *
- * could style `Phone` & `Email` on mobile as buttons
+ * @idea on mobile, could expand to full screen
+ * @idea could style `Phone` & `Email` on mobile as buttons
  */
 import * as React from 'react'
+import { useAmp } from 'next/amp'
+import type { ResumeType } from '../../typings'
+import Footer from '../../features/Footer'
+import Header from '../../features/Header'
 import { PortfolioHead } from '../../features/PortfolioHead'
-import { PortfolioContext } from '../../features/PortfolioContext'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
-import {
-  AnimateHeightContextProvider,
-  AnimateHeightContext,
-} from '../../features/AnimateHeight/AnimateHeightContext'
+import { AnimateHeightContextProvider } from '../../features/AnimateHeight/AnimateHeightContext'
 import { SocialProfiles } from '../../features/SocialProfiles'
 import {
   StyledName,
   StyledSummary,
   StyledLabel,
   StyledAboutMeArticle,
-  StyledAboutMeImg,
   StyledArrow,
   StyledLink,
   StyledContactNav,
   StyledFigCaption,
   StyledFigure,
   StyledTextLineSeparator,
-  StyledCardDivider,
+  StyledAboutMeMain,
+  CardDivider,
 } from './styled'
 import { Skills } from './Skills'
+import AboutMePicture from './AboutMePicture'
+import AmpAboutPage from './amp/AmpAboutPage'
 
-/**
- * @see https://reactjs.org/docs/hooks-reference.html#usecontext
- */
-export function AboutMeImage(
-  props: React.ComponentProps<typeof StyledAboutMeImg>
-) {
-  const value = React.useContext(AnimateHeightContext)
-  return <StyledAboutMeImg {...props} isExpanded={value.isExpanded} />
-}
-export function CardDivider(props: {}) {
-  const value = React.useContext(AnimateHeightContext)
-  return <StyledCardDivider isExpanded={value.isExpanded} />
-}
+export default function AboutPage({ person, work, openSource }: ResumeType) {
+  const isAmp = useAmp()
 
-export function AboutPage() {
+  if (isAmp) {
+    return <AmpAboutPage person={person} work={work} openSource={openSource} />
+  }
+
   const {
     name,
     label = '',
-    picture,
     summary,
     telephone,
     email,
-  } = React.useContext(PortfolioContext).basics
-
+    profiles,
+    resumeWebsite,
+    skills,
+    image,
+  } = person
   const titleText = `About ${name}`
   return (
     <>
-      <PortfolioHead titleText={titleText} description={summary} />
-      <PortfolioSchema />
+      <PortfolioHead titleText={titleText} description={summary} {...person} />
+      <PortfolioSchema person={person} work={work} openSource={openSource} />
+      <Header name={name} />
       <AnimateHeightContextProvider>
-        <StyledAboutMeArticle>
-          <SocialProfiles />
-          <StyledFigure>
-            <AboutMeImage
-              src={picture}
-              height={'600'}
-              width={'600'}
-              alt="about me picture"
-            />
-            <StyledFigCaption>
-              <StyledName>{name}</StyledName>
-              <StyledLabel>
-                {label.split('⇔').shift()}
-                <StyledArrow>↔</StyledArrow>
-                {label.split('⇔').pop()}
-              </StyledLabel>
-              <StyledTextLineSeparator />
-              <StyledSummary>{summary}</StyledSummary>
-              <StyledContactNav>
-                <section>
-                  <header>Phone</header>
-                  <StyledLink to={`tel:${telephone}`}>+{telephone}</StyledLink>
-                </section>
-                <section>
-                  <header>Email</header>
-                  <StyledLink to={`mailto:${email}`}>{email}</StyledLink>
-                </section>
-              </StyledContactNav>
-            </StyledFigCaption>
-          </StyledFigure>
-          <CardDivider />
-          <Skills />
-        </StyledAboutMeArticle>
+        <StyledAboutMeMain>
+          <StyledAboutMeArticle>
+            <SocialProfiles profiles={profiles} resumeWebsite={resumeWebsite} />
+            <StyledFigure>
+              <AboutMePicture image={image} />
+              <StyledFigCaption>
+                <StyledName>{name}</StyledName>
+                <StyledLabel>
+                  {label.split('⇔').shift()}
+                  <StyledArrow>↔</StyledArrow>
+                  {label.split('⇔').pop()}
+                </StyledLabel>
+                <StyledTextLineSeparator />
+                <StyledSummary>{summary}</StyledSummary>
+                <StyledContactNav>
+                  <section>
+                    <header>Phone</header>
+                    <StyledLink to={`tel:${telephone}`}>
+                      +{telephone}
+                    </StyledLink>
+                  </section>
+                  <section>
+                    <header>Email</header>
+                    <StyledLink to={`mailto:${email}`}>{email}</StyledLink>
+                  </section>
+                </StyledContactNav>
+              </StyledFigCaption>
+            </StyledFigure>
+            <CardDivider />
+            <Skills skills={skills} />
+          </StyledAboutMeArticle>
+        </StyledAboutMeMain>
       </AnimateHeightContextProvider>
+      <Footer name={name} openSource={openSource} />
     </>
   )
 }
-
-export default AboutPage

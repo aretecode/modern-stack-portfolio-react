@@ -1,12 +1,8 @@
 import * as React from 'react'
 import { AmpAnimateHeight } from '../../../features/AnimateHeight/amp'
-import { PortfolioContext } from '../../../features/PortfolioContext'
 import { StyledSkillsWrap, StyledSkillItem, StyledSkillList } from '../Skills'
 
-export function Skills(props: {}) {
-  const portfolioContext = React.useContext(PortfolioContext)
-  const { skills } = portfolioContext.basics
-
+export function Skills({ skills }: { skills: string[] }) {
   return (
     <AmpAnimateHeight>
       <StyledSkillsWrap>

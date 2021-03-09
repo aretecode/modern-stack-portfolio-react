@@ -1,15 +1,13 @@
 /**
- * @todo `useDark` here (separate 1 level higher - brightness toggle)
- *
  * @see http://betravis.github.io/shape-tools/path-to-polygon/
  */
 import * as React from 'react'
-import { useContext, useState, useRef } from 'react'
-import { AppContext } from '../AppContext'
-import { AmpContext } from '../AmpContext'
+import { useState, useRef } from 'react'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
 import { StyledVector } from './StyledVector'
 import { AnimationRefType, AnimatedIconRenderPropArgs } from './typings'
+import styled, { css } from 'styled-components'
+import { useAmp } from 'next/amp'
 
 export const BRIGHTNESS_PATH_4 =
   'M12.5,18 C11.61,18 10.76,17.8 10,17.45 C12.06,16.5 13.5,14.42 13.5,12 C13.5,9.58 12.06,7.5 10,6.55 C10.76,6.2 11.61,6 12.5,6 C15.81,6 18.0020592,8.69 18.0020592,12 C18.0020592,15.31 15.81,18 12.5,18 Z'
@@ -18,7 +16,6 @@ export const BRIGHTNESS_PATH_4_PART =
 export const BRIGHTNESS_PATH_5 =
   'M11.9949374,18.0053564 C8.97056925,18.0053564 5.98781556,15.6088503 5.98781556,12 C5.98781556,8.39114971 8.97056925,5.99402647 11.9949374,5.99402647 C16.0164601,5.99402647 18.0020592,8.99824992 18.0020592,12 C18.0020592,15.0017501 15.9874562,18.0053564 11.9949374,18.0053564 Z'
 
-import styled, { css } from 'styled-components'
 const DotPath = styled.path`
   && {
     fill: transparent;
@@ -63,18 +60,16 @@ const StyledAnimatedVector = styled(StyledVector)`
 `
 
 export function AnimatedBrightnessIcon(props: { [key: string]: unknown }) {
-  const { isAmp } = useContext(AmpContext)
-  const [doesPreferDarkMode, setDarkMode] = useContext(AppContext).darkMode
+  const isAmp = useAmp()
 
   const animationRef = useRef() as AnimationRefType
-  const [direction, setDirection] = useState('down')
+  const [direction, setDirection] = useState<'up' | 'down'>('down')
 
   const [hasRenderedAndAnimated, setHasRenderedAndAnimated] = useState(false)
   const state = { hasRenderedAndAnimated, direction }
 
   const handleClick = () => {
     setDirection(direction === 'up' ? 'down' : 'up')
-    setDarkMode(!doesPreferDarkMode)
     setHasRenderedAndAnimated(true)
 
     // we do not have this in test env

@@ -1,7 +1,7 @@
 import * as React from 'react'
+import * as useAmpModule from 'next/amp'
 import { render } from '../../../__tests__/render'
-import { Image } from '../Image'
-import { AmpContext } from '../AmpContext'
+import Image from '../Picture/Image'
 
 describe('Image', () => {
   it('should render empty without an error (except for types)', () => {
@@ -9,20 +9,24 @@ describe('Image', () => {
     expect(container.innerHTML).toContain('<img')
   })
   it('should render an "amp-img" when providing an AmpContext', () => {
+    jest.spyOn(useAmpModule, 'useAmp').mockImplementation(() => true)
+
     const { container } = render(
-      <AmpContext.Provider value={{ isAmp: true }}>
-        <Image />
-      </AmpContext.Provider>
+      <>
+        <Image src={'https://google.com'} alt={'google'} />
+      </>
     )
     expect(container.innerHTML).toContain('<amp-img')
   })
   it('should render an "amp-img" with only amp attributes', () => {
+    jest.spyOn(useAmpModule, 'useAmp').mockImplementation(() => true)
+
     const src =
       'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
     const { container } = render(
-      <AmpContext.Provider value={{ isAmp: true }}>
+      <>
         <Image src={src} ignored={true} />
-      </AmpContext.Provider>
+      </>
     )
     const img = container.querySelector('[src]')!
     expect(img.getAttribute('src')).toEqual(src)

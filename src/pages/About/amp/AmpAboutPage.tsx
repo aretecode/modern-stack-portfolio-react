@@ -1,8 +1,10 @@
 import * as React from 'react'
+import type { ResumeType } from '../../../typings'
 import { PortfolioHead } from '../../../features/PortfolioHead'
-import { PortfolioContext } from '../../../features/PortfolioContext'
 import { PortfolioSchema } from '../../../features/PortfolioSchema'
 import { SocialProfiles } from '../../../features/SocialProfiles'
+import Footer from '../../../features/Footer'
+import Header from '../../../features/Header'
 import {
   StyledName,
   StyledSummary,
@@ -14,36 +16,36 @@ import {
   StyledFigCaption,
   StyledFigure,
   StyledTextLineSeparator,
+  CardDivider,
 } from '../styled'
-import { AboutMeImage, CardDivider } from '../AboutPage'
+import { AboutMeImage } from '../AboutMePicture'
 import AmpStyles from './AmpStyles'
 import { Skills } from './AmpSkills'
 
-export function AboutPage() {
+export default function AboutPage({ person, work, openSource }: ResumeType) {
   const {
     name,
     label = '',
-    picture,
     summary,
     telephone,
     email,
-  } = React.useContext(PortfolioContext).basics
+    image,
+    profiles,
+    resumeWebsite,
+    skills,
+  } = person
 
   const titleText = `About ${name}`
   return (
     <>
+      <Header name={name} />
       <AmpStyles />
-      <PortfolioHead titleText={titleText} description={summary} />
-      <PortfolioSchema />
+      <PortfolioHead titleText={titleText} description={summary} {...person} />
+      <PortfolioSchema person={person} work={work} openSource={openSource} />
       <StyledAboutMeArticle>
-        <SocialProfiles />
+        <SocialProfiles profiles={profiles} resumeWebsite={resumeWebsite} />
         <StyledFigure>
-          <AboutMeImage
-            src={picture}
-            height={'600'}
-            width={'600'}
-            alt="about me picture"
-          />
+          <AboutMeImage image={image} />
           <StyledFigCaption>
             <StyledName>{name}</StyledName>
             <StyledLabel>
@@ -66,10 +68,9 @@ export function AboutPage() {
           </StyledFigCaption>
         </StyledFigure>
         <CardDivider />
-        <Skills />
+        <Skills skills={skills} />
       </StyledAboutMeArticle>
+      <Footer name={name} openSource={openSource} />
     </>
   )
 }
-
-export default AboutPage

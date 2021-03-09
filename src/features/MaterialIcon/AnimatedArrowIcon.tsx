@@ -1,6 +1,5 @@
 /**
  * @todo abstract this + AnimatedBrightnessIcon
- *
  * @see https://medium.com/@aniboaz/animate-svg-4fa7dd00e860
  * @see https://css-tricks.com/guide-svg-animations-smil/
  * @see https://code.likeagirl.io/how-to-build-svg-code-and-svg-animations-7bb1e42f6ef
@@ -18,11 +17,11 @@
  * @example https://codesandbox.io/s/30y689wok5
  */
 import * as React from 'react'
-import { useContext, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
-import { AmpContext } from '../AmpContext'
 import { StyledVector } from './StyledVector'
 import { AnimatedArrowIconProps, AnimationRefType } from './typings'
+import { useAmp } from 'next/amp'
 
 export const UP_ARROW_SINGLE_PATH_VALUE =
   '12.4846802 8 19.9693604 14.8939819 18.386673 16.9936981 12.4846802 11.6221466 6.61653912 16.9414647 5 14.8939819'
@@ -58,7 +57,7 @@ export const AnimatedArrowIcon = (
   props: Partial<AnimatedArrowIconProps> & React.HTMLAttributes<SVGElement>
 ) => {
   const { icon, ...remainingProps } = props
-  const { isAmp } = useContext(AmpContext)
+  const isAmp = useAmp()
   const animationRef = useRef() as AnimationRefType
   const [direction, setDirection] = useState('down')
   /**

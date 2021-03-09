@@ -1,12 +1,12 @@
 import { css, createGlobalStyle } from 'styled-components'
 import { StyledButtonWrap } from '../../../features/AnimateHeight/styled'
+import { darkModeCheckboxStyles } from '../../../features/DarkMode/AmpStyles'
 import { StyledAboutMeArticle } from '../styled'
 import { StyledSkillsWrap } from '../Skills'
 
-/**
- * @todo higher brightness for header
- */
 export default createGlobalStyle`
+  ${darkModeCheckboxStyles};
+
   amp-img {
     width: 100%;
     height: auto;
@@ -33,15 +33,17 @@ export default createGlobalStyle`
       margin-top: unset;
     }
 
-
-    > header {
+    > section > header.amp-accordion-header {
       ${props =>
         props.theme.isDark &&
         css`
           background-color: var(--color-dark-background-dark-surface);
           border-width: 4px;
         `};
+    }
 
+    /* @todo */
+    > header {
       > div {
         width: 100%;
         text-align: center;
@@ -55,6 +57,7 @@ export default createGlobalStyle`
       ${StyledSkillsWrap} {
         max-width: 100%;
       }
+
 
       &[expanded=""] {
         svg {

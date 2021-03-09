@@ -4,9 +4,17 @@
  *         we would style parts of the pieces in presets & larger pieces
  */
 import * as React from 'react'
+import Image from 'next/image'
 import styled, { css } from 'styled-components'
 import { StyledLink as Link } from '../../features/Link'
-import { Image } from '../../features/Image'
+import AmpCompatImage from '../../features/Picture/Image'
+import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
+import { StyledMain } from '../../features/Main'
+import { webpBackgroundStyles } from '../../features/BackgroundStyles'
+
+export const StyledAboutMeMain = styled(StyledMain)`
+  ${webpBackgroundStyles};
+`
 
 export const StyledLink = styled(Link)`
   &&& {
@@ -31,7 +39,7 @@ export const StyledCardDivider = styled.hr.attrs({
 
   width: 90%;
   border: none;
-  border-top: 1px solid var(--color-dark-background-light);
+  border-top: 1px solid var(--color-dark-background-lighter);
   border-bottom: 1px solid var(--color-dark-background-dark);
   opacity: 0.1;
   margin: 0 auto;
@@ -60,6 +68,11 @@ export const StyledCardDivider = styled.hr.attrs({
           `};
   }
 `
+
+export function CardDivider(props: {}) {
+  const value = React.useContext(AnimateHeightContext)
+  return <StyledCardDivider isExpanded={value.isExpanded} />
+}
 
 export const StyledTextLineSeparator = styled.hr.attrs({
   role: 'separator',
@@ -131,10 +144,11 @@ export type FilteredAboutMeImageProps = {
 const FilteredAboutMeImage = ({
   isExpanded,
   ...remaining
-}: FilteredAboutMeImageProps) => <Image {...remaining} />
+}: FilteredAboutMeImageProps) => <AmpCompatImage {...remaining} />
 
 /**
  * @see https://material.io/design/motion/speed.html#easing for material easing on y axis
+ * @note "object-position" is tightly coupled to the image src
  */
 export const materialHeightTiming = 'cubic-bezier(0.4, 0.0, 0.2, 1)'
 export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
@@ -150,6 +164,7 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
 
   border-radius: 0.125rem;
   box-shadow: none;
+  object-position: top;
 
   transition: filter 0.12s cubic-bezier(0.4, 0, 0.2, 1) 0.24s,
     margin-top 0.5s ${materialHeightTiming},
@@ -157,26 +172,39 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
     object-position 0.8s ${materialHeightTiming},
     box-shadow 0.24s ${materialHeightTiming};
 
-  @media (max-width: 500px) {
-    object-position: left;
+  @media (max-width: 800px) {
+    max-height: 40vh;
   }
   @media (max-width: 1023px) {
     width: 100%;
   }
   @media (min-width: 1024px) {
+    /* make it vertical */
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
       0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     height: 120%;
-    object-position: left;
     margin-top: -3rem;
-    max-width: 21rem;
+    max-width: 24rem;
     flex-basis: 30%;
+
+    object-position: 30% 50%;
 
     ${(props: { isExpanded?: boolean }) =>
       props.isExpanded === true &&
       css`
         box-shadow: none;
       `};
+  }
+  @media (min-width: 1200px) {
+    max-width: 28rem;
+  }
+  @media (min-width: 1400px) {
+    height: 56vh;
+    max-width: 32rem;
+  }
+  @media (min-width: 2000px) {
+    max-height: 75vh;
+    max-width: unset;
   }
 `
 
@@ -186,9 +214,20 @@ export const StyledFigure = styled.figure`
   display: flex;
   width: calc(100% - 75px);
 
+  > {
+    min-width: 400px;
+  }
+
   @media (max-width: 1023px) {
     flex-wrap: wrap;
     width: 100%;
+  }
+
+  @media (min-width: 1400px) {
+    max-height: 30vh;
+  }
+  @media (min-width: 2000px) {
+    max-height: 40vh;
   }
 `
 
@@ -224,20 +263,33 @@ export const StyledContactNav = styled.nav`
 
 export const StyledAboutMeArticle = styled.article`
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+    color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+
   background-color: ${props =>
     props.theme.isDark ? 'var(--color-dark-background-dark-surface)' : '#fff'};
   color: ${props => (props.theme.isDark ? 'rgba(255, 255, 255, 1) ' : '#000')};
 
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: ${props =>
+    props.theme.isDark
+      ? '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)'
+      : `0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);`};
 
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
-
+  @media (min-width: 1201px) {
+    width: 90%;
+  }
+  @media (min-width: 1601px) {
+    width: 85%;
+  }
+  @media (max-width: 1200px) {
+    width: calc(100% - 2rem);
+  }
   @media (max-width: 1023px) {
     width: calc(100% - 2rem);
     height: unset;
@@ -247,4 +299,36 @@ export const StyledAboutMeArticle = styled.article`
   @media (max-width: 480px) {
     margin: 8rem 1rem 2rem;
   }
+`
+
+export const StyledAboutMeImgWrap = styled.div`
+  display: flex;
+  min-width: 300px;
+
+  @media (max-width: 1023px) and (min-width: 720px) {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  &:after {
+    @media (max-width: 1023px) and (min-width: 720px) {
+      display: initial;
+    }
+  }
+  > div {
+    z-index: 1;
+    * {
+      z-index: 1;
+    }
+    @media (max-width: 1023px) and (min-width: 720px) {
+      width: 100%;
+      text-align: center;
+      align-self: center;
+    }
+  }
+}
 `
