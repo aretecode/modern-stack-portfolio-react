@@ -31,7 +31,12 @@ import { Skills } from './Skills'
 import AboutMePicture from './AboutMePicture'
 import AmpAboutPage from './amp/AmpAboutPage'
 
-export default function AboutPage({ person, work, openSource }: ResumeType) {
+export default function AboutPage({
+  person,
+  work,
+  openSource,
+  ...rest
+}: ResumeType) {
   const isAmp = useAmp()
 
   if (isAmp) {
@@ -52,7 +57,12 @@ export default function AboutPage({ person, work, openSource }: ResumeType) {
   const titleText = `About ${name}`
   return (
     <>
-      <PortfolioHead titleText={titleText} description={summary} {...person} />
+      <PortfolioHead
+        titleText={titleText}
+        description={summary}
+        {...person}
+        {...rest}
+      />
       <PortfolioSchema person={person} work={work} openSource={openSource} />
       <Header name={name} />
       <AnimateHeightContextProvider>

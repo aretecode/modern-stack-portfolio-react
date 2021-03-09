@@ -83,7 +83,12 @@ export function renderWork(work: WorkType, index: number) {
  * @idea could provide a cool graph to sort resumes/portfolios too and highlight
  * like build your own github
  */
-export function PortfolioPage({ person, work, openSource }: ResumeType) {
+export function PortfolioPage({
+  person,
+  work,
+  openSource,
+  ...rest
+}: ResumeType) {
   const isAmp = useAmp()
   const fx = React.useMemo(
     () =>
@@ -98,6 +103,7 @@ export function PortfolioPage({ person, work, openSource }: ResumeType) {
       {isAmp && <AmpStyles />}
       <PortfolioHead
         {...person}
+        {...rest}
         titleText={`${person.name}'s Portfolio`}
         description={person.summary}
         image={person.image}

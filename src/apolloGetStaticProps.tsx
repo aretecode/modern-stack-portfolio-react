@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async context => {
     logger.error(gqlResponse.errors)
     return {
       redirect: {
-        destination: '/',
+        destination: 'https://jameswiens.dev',
         permanent: false,
       },
     }
@@ -27,6 +27,8 @@ export const getStaticProps: GetStaticProps = async context => {
 
   return {
     props: {
+      iconBaseUrl: gqlResponse.data.website.iconBaseUrl,
+      iconSvgUrl: gqlResponse.data.website.iconSvgUrl,
       openSource: gqlResponse.data.website.projectsCollection.items[0],
       person: {
         ...gqlResponse.data.website.person,

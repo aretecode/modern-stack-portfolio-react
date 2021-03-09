@@ -22,7 +22,12 @@ import { AboutMeImage } from '../AboutMePicture'
 import AmpStyles from './AmpStyles'
 import { Skills } from './AmpSkills'
 
-export default function AboutPage({ person, work, openSource }: ResumeType) {
+export default function AboutPage({
+  person,
+  work,
+  openSource,
+  ...rest
+}: ResumeType) {
   const {
     name,
     label = '',
@@ -40,7 +45,12 @@ export default function AboutPage({ person, work, openSource }: ResumeType) {
     <>
       <Header name={name} />
       <AmpStyles />
-      <PortfolioHead titleText={titleText} description={summary} {...person} />
+      <PortfolioHead
+        titleText={titleText}
+        description={summary}
+        {...person}
+        {...rest}
+      />
       <PortfolioSchema person={person} work={work} openSource={openSource} />
       <StyledAboutMeArticle>
         <SocialProfiles profiles={profiles} resumeWebsite={resumeWebsite} />

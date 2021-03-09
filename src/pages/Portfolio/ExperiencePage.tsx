@@ -40,6 +40,7 @@ export default function PortfolioWorkExperienceItemPage({
         titleText={`${person.name}'s Portfolio - ${workItem.company}`}
         description={person.summary}
         {...person}
+        {...rest}
         image={workItem.image}
       />
       <PortfolioSchema

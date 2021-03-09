@@ -76,7 +76,11 @@ const nextConfig = {
 
     return config
   },
-  /** next-offline typings @todo */
+  /**
+   * @todo next-offline typings
+   * @todo other config
+   *   @see https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-build#.injectManifest
+   */
   workboxOpts: {
     swDest: 'static/service-worker.js',
   },

@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
 
 const lightImg =
-  'http://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=2000&q=75&blur=50&lightness=30&format=webp'
+  'https://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=2000&q=75&blur=50&lightness=30&format=webp'
 const darkImg =
-  'http://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=2000&q=75&blur=50&lightness=30&format=webp'
+  'https://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=2000&q=75&blur=50&lightness=30&format=webp'
 const modernBrowserTestImg =
   'https://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=1&h=1&q=1'
 
