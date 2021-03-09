@@ -1,5 +1,9 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import {
+  cancelIdleCallback,
+  requestIdleCallback,
+} from '../../utils/requestIdleCallback'
 import { AnimateHeight } from '../../features/AnimateHeight/AnimateHeight'
 import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
 
@@ -14,9 +18,8 @@ export const StyledSkillsWrap = styled.aside`
     margin-top 0.62s cubic-bezier(0.4, 0, 0.2, 1), height 0.24s ease-out;
   height: 0;
 
-  background-color: ${props =>
-    props.theme.isDark ? 'var(--color-dark-background-dark-surface)' : '#fff'};
-  color: ${props => (props.theme.isDark ? '#fff' : '#1b1b1b')};
+  background-color: var(--theme-skills-background);
+  color: var(--theme-color);
 
   width: 100vw;
   flex-basis: 100%;
@@ -42,9 +45,8 @@ export const StyledSkillItem = styled.li`
 
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: ${props =>
-    props.theme.isDark ? '#fff' : 'var(--color-dark-background-dark)'};
-  color: ${props => (props.theme.isDark ? '#1b1b1b' : '#fff')};
+  background-color: var(--theme-skills-item-color);
+  color: var(--theme-skills-item-background);
 
   border-radius: 6px;
 `
@@ -57,10 +59,32 @@ export const StyledSkillList = styled.ul`
 export function Skills({ skills }: { skills: string[] }) {
   const animateHeight = React.useContext(AnimateHeightContext)
   const animateRef = React.createRef<any>()
+  const [isHidden, setIsHidden] = React.useState(true)
+
+  /** this prevents it from painting the element, hiding it, then re-painting it */
+  React.useEffect(() => {
+    const idleId = requestIdleCallback(() => {
+      setIsHidden(false)
+    })
+    return () => cancelIdleCallback(idleId)
+  }, [])
+
+  const hidingProps = React.useMemo(
+    () => ({
+      hidden: isHidden ? true : false,
+      className: isHidden ? 'visually-hidden' : '',
+      style: isHidden ? { display: 'none' } : {},
+    }),
+    [isHidden]
+  )
 
   return (
-    <AnimateHeight isDefaultExpanded={false} ref={animateRef}>
-      <StyledSkillsWrap ref={animateRef} isExpanded={animateHeight.isExpanded}>
+    <AnimateHeight isDefaultExpanded={false} ref={animateRef} {...hidingProps}>
+      <StyledSkillsWrap
+        ref={animateRef}
+        isExpanded={animateHeight.isExpanded}
+        {...hidingProps}
+      >
         <StyledSkillList>
           {skills.map(x => (
             <StyledSkillItem key={x}>{x}</StyledSkillItem>

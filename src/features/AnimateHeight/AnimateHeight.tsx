@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { logger } from '../../log'
-import { AnimateHeightProps, AnimateHeightContextStateType } from './typings'
+import type {
+  AnimateHeightProps,
+  AnimateHeightContextStateType,
+} from './typings'
 import { collapseSection, expandSection } from './utils'
-import { defaultRenderTrigger } from './renderProps'
+import AnimateHeightTrigger from './AnimateHeightTrigger'
 import { AnimateHeightContext } from './AnimateHeightContext'
 
 /**
@@ -13,9 +16,6 @@ export class AnimateHeightComponent extends React.PureComponent<
   unknown,
   AnimateHeightContextStateType
 > {
-  public static defaultProps = {
-    renderTrigger: defaultRenderTrigger,
-  }
   public static contextType = AnimateHeightContext
 
   constructor(props: AnimateHeightProps, state: any) {
@@ -118,13 +118,16 @@ export class AnimateHeightComponent extends React.PureComponent<
   }
 
   public render() {
-    const { renderTrigger, children } = this.props
+    const { children, ...rest } = this.props as Required<AnimateHeightProps>
+
     return (
       <>
-        {renderTrigger!({
-          onClick: this.handleToggle,
-          isExpanded: this.isExpanded,
-        })}
+        <AnimateHeightTrigger
+          key="trigger"
+          onClick={this.handleToggle}
+          isExpanded={this.isExpanded}
+          {...rest}
+        />
         {children}
       </>
     )

@@ -11,14 +11,8 @@ export const StyledCard = styled.article`
 
     transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
       color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-    color: ${props =>
-      props.theme.isDark
-        ? 'var(--color-text-body)'
-        : 'var(--color-dark-background-main)'};
-    background-color: ${props =>
-      props.theme.isDark
-        ? 'var(--color-dark-background-light)'
-        : 'var(--color-light-background-main)'};
+    color: var(--theme-card-color);
+    background-color: var(--theme-card-background);
 
     margin: 0;
     padding: 0;
@@ -65,18 +59,11 @@ export const StyledCard = styled.article`
               padding-top: 20%;
             `
           : ''};
-      background-color: ${props =>
-        props.theme.isDark
-          ? 'rgba(52,73,85,0.9)'
-          : 'var(--color-light-background-main)'};
+      background-color: var(--theme-card-figcaption-background);
     }
     header {
       transition: inherit;
-      color: ${props =>
-        props.theme.isDark
-          ? 'var(--color-text-secondary)'
-          : 'var(--color-text-heading-main)'};
-
+      color: var(--theme-card-header);
       font-size: 1.5rem;
       font-weight: 300;
     }

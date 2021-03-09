@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
-import { AppContext } from '../../features/AppContext'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { StyledMain } from '../../features/Main'
@@ -20,13 +19,8 @@ export default function PortfolioWorkExperienceItemPage({
   const {
     query: { pid = -42 },
   } = useRouter()
-  const { url } = React.useContext(AppContext)
   const pidIndex = work?.findIndex(({ id }) => id == pid)
-  /** @todo this does not load yet, was going to do as backwards compatibility */
-  const searchIndex = url.searchParams?.has('index')
-    ? +url.searchParams.get('index')!
-    : pid
-  const index: number = Number(pidIndex ?? searchIndex)
+  const index: number = Number(pidIndex)
   const workItem = work?.[index]
 
   /** @todo show 404 */

@@ -19,9 +19,9 @@ import {
 } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { GraphQLError } from 'graphql'
-import { isArray, isEmpty, isObj } from './utils/is'
-import { EMPTY_ARRAY } from './utils/EMPTY'
-import { logger } from './log'
+import { isArray, isEmpty, isObj } from '../utils/is'
+import { EMPTY_ARRAY } from '../utils/EMPTY'
+import { logger } from '../log'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 

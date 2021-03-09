@@ -6,6 +6,9 @@
 import * as React from 'react'
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
+import { aboutMePageDynamicColorStyles } from '../../AppStyles'
+import Header from '../../features/Header'
+import Footer from '../../features/Footer'
 import { StyledLink as Link } from '../../features/Link'
 import AmpCompatImage from '../../features/Picture/Image'
 import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
@@ -14,8 +17,14 @@ import { webpBackgroundStyles } from '../../features/BackgroundStyles'
 
 export const StyledAboutMeMain = styled(StyledMain)`
   ${webpBackgroundStyles};
+  ${aboutMePageDynamicColorStyles};
 `
-
+export const StyledHeader = styled(Header)`
+  ${aboutMePageDynamicColorStyles};
+`
+export const StyledFooter = styled(Footer)`
+  ${aboutMePageDynamicColorStyles};
+`
 export const StyledLink = styled(Link)`
   &&& {
     color: unset;
@@ -267,17 +276,12 @@ export const StyledAboutMeArticle = styled.article`
     box-shadow 0.24s cubic-bezier(0.4, 0, 0.2, 1),
     background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
 
-  background-color: ${props =>
-    props.theme.isDark ? 'var(--color-dark-background-dark-surface)' : '#fff'};
-  color: ${props => (props.theme.isDark ? 'rgba(255, 255, 255, 1) ' : '#000')};
+  background-color: var(--theme-about-me-article-background);
+  color: var(--theme-about-me-article-color);
 
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
-  box-shadow: ${props =>
-    props.theme.isDark
-      ? '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)'
-      : `0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);`};
+  box-shadow: var(--theme-about-me-image-shadow);
 
   display: flex;
   flex-wrap: wrap;
@@ -299,36 +303,4 @@ export const StyledAboutMeArticle = styled.article`
   @media (max-width: 480px) {
     margin: 8rem 1rem 2rem;
   }
-`
-
-export const StyledAboutMeImgWrap = styled.div`
-  display: flex;
-  min-width: 300px;
-
-  @media (max-width: 1023px) and (min-width: 720px) {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    align-self: center;
-    align-items: center;
-    padding-left: 10%;
-    padding-right: 10%;
-  }
-  &:after {
-    @media (max-width: 1023px) and (min-width: 720px) {
-      display: initial;
-    }
-  }
-  > div {
-    z-index: 1;
-    * {
-      z-index: 1;
-    }
-    @media (max-width: 1023px) and (min-width: 720px) {
-      width: 100%;
-      text-align: center;
-      align-self: center;
-    }
-  }
-}
 `

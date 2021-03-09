@@ -10,13 +10,10 @@ const modernBrowserTestImg =
 export const webpBackgroundStyles = css`
   --bg: url('${darkImg}');
   ${props =>
-    props.theme.isDark
-      ? css`
-          --bg: url('${darkImg}');
-        `
-      : css`
-          --bg: url('${lightImg}');
-        `}
+    !props.theme.isDark &&
+    css`
+      --bg: url('${lightImg}');
+    `}
 
   /** @see https://dev.to/janhohner/webp-support-detection-with-supports-and-media-1fm */
   @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {

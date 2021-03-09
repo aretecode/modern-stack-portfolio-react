@@ -20,7 +20,7 @@
  */
 import * as React from 'react'
 import * as Schema from 'schema-dts'
-import { WorkType, BasicsType, ResumeType } from '../typings'
+import type { WorkType, BasicsType, ResumeType } from '../typings'
 import Script from './Script'
 
 export type PersonSchemaType = Exclude<Schema.Person, string> & {

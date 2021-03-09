@@ -6,7 +6,7 @@ import CanadaIcon from './icons/CanadaIcon'
 
 export const StyledFooter = styled.footer`
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: var(--footer-background);
+  background-color: var(--theme-footer-background);
   padding: 2rem 1.25rem;
 
   p {

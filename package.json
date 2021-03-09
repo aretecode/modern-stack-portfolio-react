@@ -372,7 +372,7 @@
       "import/export": "error",
       "no-continue": "off",
       "no-loop-func": "error",
-      "camelcase": "error",
+      "camelcase": "off",
       "new-cap": "off",
       "id-length": [
         "warn",

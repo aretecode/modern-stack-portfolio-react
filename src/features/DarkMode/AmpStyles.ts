@@ -17,14 +17,14 @@ export const darkModeCheckboxStyles = css`
     content: '☀️ ';
   }
   #dark-mode:checked ~ * {
-    color: ${props => (props.theme.isDark ? '#fff' : '#000')};
+    color: var(--theme-material-icon-fill);
   }
   label[for='dark-mode']::before {
     content: '🌒 ';
   }
   #dark-mode,
   label[for='dark-mode'] {
-    color: ${props => (props.theme.isDark ? '#fff' : '#000')};
+    color: var(--theme-material-icon-fill);
     top: 1rem;
     right: 0.25rem;
   }

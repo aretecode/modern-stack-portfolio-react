@@ -5,17 +5,7 @@ export const StyledHeader = styled.header.attrs({
   role: 'banner',
 })`
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: ${props =>
-    props.theme.isDark
-      ? 'var(--color-light-material-background-purple)'
-      : 'var(--color-material-background-purple)'};
-
-  ${props =>
-    globalThis.location?.href.toLowerCase().includes('portfolio')
-      ? css`
-          background-color: var(--color-material-background-purple);
-        `
-      : ''};
+  background-color: var(--theme-header-background);
 
   ${props =>
     !props.theme.isAmp

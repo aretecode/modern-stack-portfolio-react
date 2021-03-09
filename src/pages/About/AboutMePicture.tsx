@@ -18,5 +18,18 @@ export default React.memo(function AboutMePicture(props: {
   image: ImageObjectType
   className?: string
 }) {
-  return <Picture {...props} RenderImage={AboutMeImage} />
+  return (
+    <Picture
+      {...props}
+      RenderImage={imgProps => {
+        return (
+          <AboutMeImage
+            loading={'eager'}
+            srcSizes={props.image.srcSizes}
+            {...imgProps}
+          />
+        )
+      }}
+    />
+  )
 })

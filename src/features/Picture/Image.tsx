@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useAmp } from 'next/amp'
+import type { ImageObjectType } from '../../typings'
 import { keep } from '../../utils/keep'
 import { logger } from '../../log'
 
@@ -46,13 +47,16 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
  *
  * @todo remove hack for the width & height
  */
-export const AmpCompatImage: React.FC<ImageProps> = props => {
+export const AmpCompatImage: React.FC<
+  ImageProps & { srcSizes?: ImageObjectType['srcSizes'] }
+> = props => {
   const isAmp = useAmp()
   const {
     width = 606,
     height = width,
     src = 'https://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=1&h=1&q=1',
     alt = 'Missing description! Sorry about that, eh.',
+    srcSizes = [],
     ...rest
   } = props
   const merged = { height, width, src, alt, ...rest } as const
@@ -62,8 +66,40 @@ export const AmpCompatImage: React.FC<ImageProps> = props => {
   }
 
   if (isAmp) {
+    /** find unique sizes and create a srcSet */
+    const [sizesProp, srcSetProp] = React.useMemo(() => {
+      const srcSizesFiltered = srcSizes.filter((item, index) => {
+        const [, , srcWidth] = item
+        const other = srcSizes.find((x, index2) => {
+          if (index2 === index) {
+            return false
+          }
+          if (x[2] === srcWidth) {
+            return true
+          }
+          return false
+        })
+        return other === undefined
+      })
+      const srcSet = srcSizesFiltered
+        .map(([size, url, srcWidth]) => `${url} ${srcWidth}w`)
+        .join(',')
+      const sizes = srcSizesFiltered
+        .map(([size, url, srcWidth]) => `${size} ${srcWidth}w`)
+        .join(', ')
+
+      return [sizes, srcSet]
+    }, [srcSizes])
+
     const ampProps = keep(merged, IMAGE_PROP_LIST_TO_KEEP_IN_AMP)
-    return <amp-img layout="responsive" {...ampProps} />
+    return (
+      <amp-img
+        layout="responsive"
+        srcSet={srcSetProp || undefined}
+        sizes={sizesProp || undefined}
+        {...ampProps}
+      />
+    )
   }
 
   // @lint this is passed in as a prop

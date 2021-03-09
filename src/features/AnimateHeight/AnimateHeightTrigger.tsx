@@ -4,9 +4,11 @@ import {
   StyledButtonWrap,
   StyledButton,
 } from './styled'
-import { RenderTriggerProps } from './typings'
+import type { RenderTriggerProps } from './typings'
 
-export function defaultRenderTrigger(props: RenderTriggerProps) {
+export default React.memo(function AnimateHeightTrigger(
+  props: RenderTriggerProps
+) {
   const { isExpanded, onClick } = props
   const text = isExpanded ? 'hide' : 'show'
   const icon = isExpanded ? 'up_arrow' : 'down_arrow'
@@ -17,4 +19,4 @@ export function defaultRenderTrigger(props: RenderTriggerProps) {
       </StyledButton>
     </StyledButtonWrap>
   )
-}
+})

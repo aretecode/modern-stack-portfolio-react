@@ -4,7 +4,7 @@
 import { isPromise } from '../../utils/is'
 import { useIndexDb } from '../../utils/hooks/useIndexDb'
 import { useMedia } from '../../utils/hooks/useMedia'
-import { DarkModeHookArrayType } from '../../utils/hooks/typings'
+import type { DarkModeHookArrayType } from '../../utils/hooks/typings'
 
 /**
  * @see https://usehooks.com/useDarkMode/

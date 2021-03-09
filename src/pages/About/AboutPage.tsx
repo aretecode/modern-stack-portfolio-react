@@ -7,13 +7,13 @@
 import * as React from 'react'
 import { useAmp } from 'next/amp'
 import type { ResumeType } from '../../typings'
-import Footer from '../../features/Footer'
-import Header from '../../features/Header'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { AnimateHeightContextProvider } from '../../features/AnimateHeight/AnimateHeightContext'
 import { SocialProfiles } from '../../features/SocialProfiles'
 import {
+  StyledHeader,
+  StyledFooter,
   StyledName,
   StyledSummary,
   StyledLabel,
@@ -64,7 +64,7 @@ export default function AboutPage({
         {...rest}
       />
       <PortfolioSchema person={person} work={work} openSource={openSource} />
-      <Header name={name} />
+      <StyledHeader name={name} />
       <AnimateHeightContextProvider>
         <StyledAboutMeMain>
           <StyledAboutMeArticle>
@@ -99,7 +99,7 @@ export default function AboutPage({
           </StyledAboutMeArticle>
         </StyledAboutMeMain>
       </AnimateHeightContextProvider>
-      <Footer name={name} openSource={openSource} />
+      <StyledFooter name={name} openSource={openSource} />
     </>
   )
 }

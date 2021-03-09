@@ -8,7 +8,7 @@ export const StyledSocialProfileIcon = styled(MaterialIcon)`
 
   path:first-of-type {
     transition: fill 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-    fill: ${props => (props.theme.isDark ? `#fff` : '#000')};
+    fill: var(--theme-material-icon-fill);
   }
 `
 

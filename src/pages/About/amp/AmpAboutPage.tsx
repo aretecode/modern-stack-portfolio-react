@@ -18,7 +18,7 @@ import {
   StyledTextLineSeparator,
   CardDivider,
 } from '../styled'
-import { AboutMeImage } from '../AboutMePicture'
+import AboutMePicture from '../AboutMePicture'
 import AmpStyles from './AmpStyles'
 import { Skills } from './AmpSkills'
 
@@ -41,6 +41,7 @@ export default function AboutPage({
   } = person
 
   const titleText = `About ${name}`
+
   return (
     <>
       <Header name={name} />
@@ -55,7 +56,7 @@ export default function AboutPage({
       <StyledAboutMeArticle>
         <SocialProfiles profiles={profiles} resumeWebsite={resumeWebsite} />
         <StyledFigure>
-          <AboutMeImage image={image} />
+          <AboutMePicture image={image} />
           <StyledFigCaption>
             <StyledName>{name}</StyledName>
             <StyledLabel>

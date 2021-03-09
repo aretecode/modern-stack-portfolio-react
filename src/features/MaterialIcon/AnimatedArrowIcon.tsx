@@ -20,7 +20,7 @@ import * as React from 'react'
 import { useState, useRef } from 'react'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
 import { StyledVector } from './StyledVector'
-import { AnimatedArrowIconProps, AnimationRefType } from './typings'
+import type { AnimatedArrowIconProps, AnimationRefType } from './typings'
 import { useAmp } from 'next/amp'
 
 export const UP_ARROW_SINGLE_PATH_VALUE =

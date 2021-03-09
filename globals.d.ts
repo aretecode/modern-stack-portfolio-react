@@ -16,6 +16,7 @@ declare var dataLayer: any[]
 
 declare global {
   interface Window {
+    readonly gtag: any
     readonly requestIdleCallback?: RequestIdleCallbackFunctionType
     readonly cancelIdleCallback?: (handle: any) => void
     readonly __LAST_PUBLISH_TIMESTAMP__: number
@@ -25,6 +26,7 @@ declare global {
 }
 
 interface Window {
+  readonly gtag: any
   readonly requestIdleCallback?: RequestIdleCallbackFunctionType
   readonly cancelIdleCallback?: (handle: any) => void
   readonly __LAST_PUBLISH_TIMESTAMP__: number

@@ -3,16 +3,13 @@
  */
 import * as React from 'react'
 import Head from 'next/head'
-import { defaultRenderTrigger } from '../renderProps'
-import { AmpAnimateHeightProps } from '../typings'
+import AnimateHeightTrigger from '../AnimateHeightTrigger'
+import type { AmpAnimateHeightProps } from '../typings'
 
 export function AmpAnimateHeight(props: AmpAnimateHeightProps) {
-  const { renderTrigger = defaultRenderTrigger, children } = props
-
   /**
    * @see https://amp.dev/documentation/components/amp-accordion?referrer=ampproject.org
    * @see /packages/client/pages/About/AmpStyles.tsx
-   * @todo split to a component
    */
   return (
     <>
@@ -26,9 +23,9 @@ export function AmpAnimateHeight(props: AmpAnimateHeightProps) {
       <amp-accordion layout="container">
         <section>
           <header className="amp-accordion-header">
-            {renderTrigger({ isExpanded: false } as any)}
+            <AnimateHeightTrigger isExpanded={false} />
           </header>
-          {children}
+          {props.children}
         </section>
       </amp-accordion>
     </>

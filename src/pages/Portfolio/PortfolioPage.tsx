@@ -6,7 +6,6 @@ import { StyledCard } from '../../features/Card'
 import { StyledMain } from '../../features/Main'
 import Picture from '../..//features/Picture/Picture'
 import Footer from '../../features/Footer'
-import Header from '../../features/Header'
 import type { WorkType, ResumeType } from '../../typings'
 import {
   StyledLink,
@@ -15,6 +14,7 @@ import {
   StyledCardFigure,
   StyledLeaderBoard,
   StyledExperienceSection,
+  StyledHeader,
 } from './styled'
 import TimeRange from './TimeRange'
 import AmpStyles from './AmpStyles'
@@ -43,7 +43,6 @@ export function renderWork(work: WorkType, index: number) {
             <StyledCardImage
               loading={index === 0 ? 'eager' : 'lazy'}
               {...imgProps}
-              {...work.image}
               {...fx.card}
             />
           )}
@@ -109,7 +108,7 @@ export function PortfolioPage({
         image={person.image}
       />
       <PortfolioSchema person={person} work={work} openSource={openSource} />
-      <Header name={person.name} />
+      <StyledHeader name={person.name} />
       <StyledMain>
         <StyledLeaderBoard {...fx}>
           <h1>What I&apos;ve done</h1>

@@ -11,8 +11,8 @@ import * as React from 'react'
  * @see https://github.com/zeit/next.js/issues/1942#issuecomment-313925454
  */
 import BaseLink from 'next/link'
-import styled, { css } from 'styled-components'
 import { useAmp } from 'next/amp'
+import styled from 'styled-components'
 
 export type LinkProps = React.HTMLAttributes<HTMLAnchorElement> & {
   to?: string
@@ -63,7 +63,7 @@ export const StyledLink = styled(DynamicLink)`
     outline: thin dotted;
   }
   &:hover {
-    color: #aaa;
+    color: var(--color-link-hover);
   }
   &:link {
     -webkit-tap-highlight-color: rgba(102, 102, 102, 0.5);

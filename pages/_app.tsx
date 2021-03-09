@@ -4,15 +4,15 @@
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/with-apollo-client.js#L23
  * @tutorial https://www.apollographql.com/docs/react/recipes/server-side-rendering.html
  */
-import { AppProps, NextWebVitalsMetric } from 'next/app'
+import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import { useAmp } from 'next/amp'
 import { StyleSheetManager } from 'styled-components'
 import * as React from 'react'
-import { ApolloProvider } from '@apollo/client'
+// import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
-import { useApollo } from '../src/apolloClient'
-import { analyticsContainer } from '../src/features/GoogleTagManager'
+// import { useApollo } from '../src/graphql/apolloClient'
+import { trackPageView } from '../src/features/GoogleTagManager'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { AppContextProvider } from '../src/features/AppContext'
 import { URL } from '../src/utils/url'
@@ -23,14 +23,10 @@ import {
   useDarkModeUrl,
 } from '../src/features/DarkMode/useDarkMode'
 
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-  if (process.env.NODE_ENV === 'development') {
-    logger.info(metric)
-  }
-}
+export { reportWebVitals } from '../src/features/GoogleTagManager/webVitals'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const apolloClient = useApollo(pageProps)
+  // const apolloClient = useApollo(pageProps)
 
   if (process.env.NODE_ENV === 'development') {
     logger.debug('[_app] render ')
@@ -48,7 +44,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     if (process.env.NODE_ENV === 'development') {
       logger.debug('[_app] starting ssr (browser, rehydrate)')
     }
-    analyticsContainer.initializeAnalytics()
+    trackPageView()
   }, [])
 
   const darkMode = useDarkMode()
@@ -66,13 +62,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <>
           <AppStyles />
           <AppContextProvider url={url} darkMode={darkMode}>
-            <ApolloProvider client={apolloClient}>
-              <>
-                <Component {...pageProps} />
-                <StyledVectorFilter />
-                <BelowTheFoldStyles />
-              </>
-            </ApolloProvider>
+            {/* <ApolloProvider client={apolloClient}> */}
+            <>
+              <Component {...pageProps} />
+              <StyledVectorFilter />
+              <BelowTheFoldStyles />
+            </>
+            {/* </ApolloProvider> */}
           </AppContextProvider>
         </>
       </ThemeProvider>

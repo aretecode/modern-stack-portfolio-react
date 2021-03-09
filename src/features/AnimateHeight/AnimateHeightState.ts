@@ -1,4 +1,4 @@
-import { AnimateHeightContextStateType } from './typings'
+import type { AnimateHeightContextStateType } from './typings'
 
 /**
  * could also do this with hooks, but this an example app and showing a few different methods

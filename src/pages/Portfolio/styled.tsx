@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components'
 import AmpCompatImage from '../../features/Picture/Image'
 import { StyledLink as BaseStyledLink } from '../../features/Link'
+import Header from '../../features/Header'
+
+export const StyledHeader = styled(Header)`
+  background-color: var(--color-material-background-purple);
+`
 
 export const StyledGrid = styled.div`
   display: grid;

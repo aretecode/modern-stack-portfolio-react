@@ -69,6 +69,12 @@ export function PortfolioHead(
   return (
     <>
       <Head>
+        {/* @see https://web.dev/color-scheme/ */}
+        <meta
+          name="color-scheme"
+          content="dark light"
+          key="head:color-scheme"
+        />
         <link rel="shortcut icon" href="/favicon.png" key="head:icon" />
         <link rel="manifest" href="/manifest.json" key="head:manifest" />
         <link

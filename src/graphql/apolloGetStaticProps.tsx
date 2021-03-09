@@ -1,11 +1,11 @@
 /** @file download data on the server so that it does not need to be fetched on the browser. runs at compile time and run time. */
-import { GetStaticProps } from 'next'
-import type { ResumeResponse, ResumeType } from './typings'
-import ResumeQuery from './graphql/Resume'
+import type { GetStaticProps } from 'next'
+import type { ResumeResponse, ResumeType } from '../typings'
+import ResumeQuery from './Resume'
 import { initApolloClient } from './apolloClient'
-import { logger } from './log'
+import { logger } from '../log'
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getStaticProps: GetStaticProps<ResumeType> = async context => {
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<ResumeResponse>({
     query: ResumeQuery,
@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async context => {
     }
   } else if (process.env.NODE_ENV !== 'production') {
     logger.debug('graphql_get_static_props')
-    logger.info(gqlResponse.data)
+    // logger.debug(gqlResponse.data)
   }
 
   return {

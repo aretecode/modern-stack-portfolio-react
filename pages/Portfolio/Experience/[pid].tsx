@@ -1,49 +1,29 @@
-/** @todo use gql to query just work by id */
-import { gql } from '@apollo/client'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { initApolloClient } from '../../../src/apolloClient'
-import { getStaticProps as getStaticPropsCommon } from '../../../src/apolloGetStaticProps'
+import type { GetStaticProps } from 'next'
+import type { ResumeType } from '../../../src/typings'
+import { getStaticProps as getStaticPropsCommon } from '../../../src/graphql/apolloGetStaticProps'
+
+export { getStaticPaths } from '../../../src/graphql/apolloGetStaticExperiencePages'
 
 export const config = { amp: 'hybrid' }
 
-const GET_EXPERIENCE_IDS = gql`
-  query {
-    website(id: "6Hj7WP8kLonf5VHyQPoES3") {
-      workCollection {
-        items {
-          id
-        }
-      }
-    }
-  }
-`
-
-export const getStaticPaths: GetStaticPaths<any> = async () => {
-  const apolloClient = initApolloClient()
-  const gqlResponse = await apolloClient.query<{
-    website: {
-      workCollection: {
-        items: {
-          id: string
-        }[]
-      }
-    }
-  }>({
-    query: GET_EXPERIENCE_IDS,
-    errorPolicy: 'all',
-  })
-
-  return {
-    paths: gqlResponse.data.website.workCollection.items.map(({ id }) => ({
-      params: { pid: id },
-    })),
-    fallback: false,
-  }
-}
-
 export const getStaticProps: GetStaticProps = async context => {
+  const { pid } = context.params as { pid?: string }
   const response = await getStaticPropsCommon(context)
 
+  const responseWithProps = response as {
+    props: ResumeType
+    revalidate?: number | boolean
+  }
+  if (responseWithProps.props) {
+    const { props, ...rest } = responseWithProps
+    return {
+      ...rest,
+      props: {
+        ...props,
+        work: props.work.filter(workItem => workItem.id === pid),
+      },
+    }
+  }
   return response
 }
 

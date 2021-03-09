@@ -1,17 +1,15 @@
-import { AnyFunction } from '../../typings'
+import * as React from 'react'
+import type { AnyFunction } from '../../typings'
 
 export interface AnimateHeightProps {
   className?: string
   forwardedRef?: React.RefObject<any>
   children?: React.ReactNode
-
   /**
    * currently only accepting props
    * ...could accept state also
    */
   isDefaultExpanded?: boolean
-
-  renderTrigger?: (props: RenderTriggerProps) => React.ReactNode
 }
 
 export interface AnimateHeightContextStateType {
@@ -26,7 +24,8 @@ export interface AnimateHeightContextStateType {
 
 export interface RenderTriggerProps {
   isExpanded: boolean
-  onClick: AnyFunction
+  /** optional for amp */
+  onClick?: AnyFunction
 }
 
 export type AmpAnimateHeightProps = AnimateHeightProps & {

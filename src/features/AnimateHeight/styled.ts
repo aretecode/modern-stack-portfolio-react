@@ -3,7 +3,6 @@ import { AnimatedArrowIcon } from '../MaterialIcon'
 
 /**
  * this default styled trigger is specific to portfolio page
- * @idea `    fill: ${props =>props.theme.isDark ? '#fff' : 'var(--color-dark-background-main)'};` for header darkmode styles
  */
 export const StyledLargeMaterialIcon = styled(AnimatedArrowIcon)`
   width: 42px;
@@ -11,7 +10,7 @@ export const StyledLargeMaterialIcon = styled(AnimatedArrowIcon)`
 
   > polygon {
     transition: fill 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-    fill: ${props => (props.theme.isDark ? '#fff' : '#000')};
+    fill: var(--theme-material-icon-fill);
   }
 `
 export const StyledButtonWrap = styled.div`
