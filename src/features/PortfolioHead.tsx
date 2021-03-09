@@ -2,70 +2,69 @@
  * @see https://github.com/zeit/next.js/issues/257
  * @see https://github.com/zeit/next.js/issues/2072
  * @see https://github.com/zeit/next.js/issues/4998
- *
- * @todo could improve @@performance here
  */
 import * as React from 'react'
 import Head from 'next/head'
-import { EMPTY_ARRAY, EMPTY_OBJ } from '../utils/EMPTY'
-import { PortfolioContext } from './PortfolioContext'
+import type { WebsiteType, BasicsType, ProfileType } from '../typings'
+import { EMPTY_OBJ } from '../utils/EMPTY'
 import { AppContext } from './AppContext'
 
-/**
- * <link rel="profile" href="https://gmpg.org/xfn/11" />
- */
-export function PortfolioHead(props: {
-  description?: string
-  titleText?: string
-  siteName?: string
-  image?: string
-  iconBaseUrl?: string
-  iconSvgUrl?: string
-}) {
-  const portfolioContext = React.useContext(PortfolioContext)
-  const { url } = React.useContext(AppContext)
-
-  const {
-    summary,
-    picture,
-    name,
-    profiles = EMPTY_ARRAY,
-  } = portfolioContext.basics
-  const {
-    /**
-     * @todo get image dimensions dynamically
-     *  <meta property="og:image:width" content="1200" />
-     *  <meta property="og:image:height" content="628" />
-     *
-     * @todo get these from graphql
-     */
-    iconSvgUrl = 'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo-vector.svg',
-    iconBaseUrl = 'https://noccumpr-cdn.sirv.com/images/james-wiens-icon/james-wiens-code-logo',
-    description = summary,
-    image = picture,
-    titleText = name + ' Context',
-    siteName = name + ' Site',
-  } = props
-
-  const foundTwitter = profiles.find(x => x.network === 'twitter') || EMPTY_OBJ
+function useFindTwitterProfile(profiles: ProfileType[]) {
+  const foundTwitter = React.useMemo(
+    (): ProfileType =>
+      profiles.find(x => x.network === 'twitter') ?? (EMPTY_OBJ as ProfileType),
+    [profiles]
+  )
 
   if (process.env.NODE_ENV === 'development') {
     if (foundTwitter === undefined) {
       throw new Error('requires twitter for twitter cards')
     }
   }
+  return foundTwitter.username
+}
 
-  const twitter = foundTwitter!.username
-  const labelValueList = [
-    {
-      label: 'Portfolio',
-      value: `${url.origin}/Portfolio`,
-    },
-    {
-      label: 'About',
-      value: `${url.origin}`,
-    },
-  ]
+/**
+ * <link rel="profile" href="https://gmpg.org/xfn/11" />
+ */
+export function PortfolioHead(
+  props: {
+    children?: React.ReactChild
+    description?: string
+    titleText?: string
+    siteName?: string
+    isProfilePage?: boolean
+  } & BasicsType &
+    Pick<WebsiteType, 'iconBaseUrl' | 'iconSvgUrl'>
+) {
+  const { url } = React.useContext(AppContext)
+  const {
+    summary,
+    image,
+    name,
+    profiles,
+    iconSvgUrl,
+    iconBaseUrl,
+    description = summary,
+    titleText = name + ' Context',
+    siteName = name + ' Site',
+  } = props
+
+  const twitter = useFindTwitterProfile(profiles)
+
+  const labelValueList = React.useMemo(
+    () => [
+      {
+        label: 'Portfolio',
+        value: `${url.origin}/Portfolio`,
+      },
+      {
+        label: 'About',
+        value: `${url.origin}`,
+      },
+    ],
+    [url.origin]
+  )
 
   return (
     <>
@@ -114,7 +113,31 @@ export function PortfolioHead(props: {
           key="head:icon:180"
         />
         <meta name="theme-color" content={'#6200ee'} key="head:color" />
-        <meta property="og:type" content="website" />
+
+        {props.isProfilePage ? (
+          <>
+            <meta property="og:type" content="profile" />
+            <meta
+              key={'profile:first_name'}
+              name={`profile:first_name`}
+              content={name.split(' ').shift()}
+            />
+            <meta
+              key={'profile:last_name'}
+              name={`profile:last_name`}
+              content={name.split(' ').pop()}
+            />
+            <meta
+              key={'profile:username'}
+              name={`profile:username`}
+              content={'aretecode'}
+            />
+          </>
+        ) : (
+          <>
+            <meta property="og:type" content="website" />
+          </>
+        )}
         <meta
           property="og:site_name"
           content={siteName}
@@ -123,10 +146,12 @@ export function PortfolioHead(props: {
         <meta property="og:locale" content="en_CA" key="head:og:locale" />
         <meta
           property="og:image:secure_url"
-          content={image}
+          content={image.url}
           key="head:og:image:secure_url"
         />
-        <meta property="og:image" content={image} key="head:og:image" />
+        <meta property="og:image" content={image.url} key="head:og:image" />
+        <meta property="og:image:width" content={`${image.width}`} />
+        <meta property="og:image:height" content={`${image.height}`} />
         <meta property="og:title" content={titleText} key="head:og:title" />
         <title key="head:title">{titleText}</title>
         <meta name="description" content={description} key="head:description" />
@@ -157,9 +182,12 @@ export function PortfolioHead(props: {
           content={description}
           key="head:twitter:description"
         />
-        <meta name="twitter:image" content={image} key="head:twitter:image" />
+        <meta
+          name="twitter:image"
+          content={image.url}
+          key="head:twitter:image"
+        />
         <meta name="twitter:url" content={url.href} key="head:twitter:url" />
-
         {labelValueList.map((labelValueItem, index) => {
           const { label, value } = labelValueItem
           return [
@@ -175,6 +203,7 @@ export function PortfolioHead(props: {
             />,
           ]
         })}
+        {props.children}
       </Head>
     </>
   )

@@ -1,11 +1,10 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { PortfolioContext } from './PortfolioContext'
-import { AmpContext } from './AmpContext'
+import { useAmp } from 'next/amp'
+import type { BasicsType } from '../typings'
 
-export default function GoogleDocument() {
-  const { resumeWebsite } = React.useContext(PortfolioContext).basics
-  const { isAmp } = React.useContext(AmpContext)
+export default function GoogleDocument({ resumeWebsite }: BasicsType) {
+  const isAmp = useAmp()
 
   return (
     isAmp === true &&

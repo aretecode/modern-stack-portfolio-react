@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PortfolioContext } from '../PortfolioContext'
+import type { OpenSourceType } from '../../typings'
 import {
   StyledFooter,
   MadeWithText,
@@ -9,13 +9,19 @@ import {
   StyledSocialProfiles,
 } from './styled'
 
-export default function Footer(props: { className?: string }) {
-  const context = React.useContext(PortfolioContext)
+export default React.memo(function Footer({
+  name,
+  openSource,
+  ...props
+}: {
+  openSource: OpenSourceType
+  className?: string
+  name?: string
+}) {
   return (
-    <StyledFooter {...props}>
+    <StyledFooter {...props} role="contentinfo">
       <p>
-        <span>©{new Date().getFullYear()}</span>{' '}
-        <span>{context.basics.name}</span>
+        <span>©{new Date().getFullYear()}</span> <span>{name}</span>
       </p>
       <p>
         <MadeWithText>Made with</MadeWithText>
@@ -25,9 +31,11 @@ export default function Footer(props: { className?: string }) {
       </p>
       <p>
         <MadeWithText>Open Sourced at</MadeWithText>
-        <OpenSourceLink />
+        <OpenSourceLink href={openSource.url}>
+          github.com/aretecode
+        </OpenSourceLink>
       </p>
       <StyledSocialProfiles />
     </StyledFooter>
   )
-}
+})

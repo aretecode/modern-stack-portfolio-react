@@ -19,25 +19,13 @@
  * @see https://www.searchenginejournal.com/maximize-reach-using-googles-knowledge-graph/144579/
  */
 import * as React from 'react'
-/**
- * this makes vscode hang :/
- */
-// import {
-//   Organization as BaseOrganizationSchemaType,
-//   Person as BasePersonSchemaType,
-//   SoftwareSourceCode as BaseSoftwareSourceCodeSchemaType,
-//   WebSite as BaseWebSiteSchemaType,
-//   ItemList as BaseItemListSchemaType,
-// } from 'schema-dts'
-import { WorkType, AnyObj } from '../typings'
-import { PortfolioContext, PortfolioContextType } from './PortfolioContext'
-import { Script } from './Script'
+import * as Schema from 'schema-dts'
+import { WorkType, BasicsType, ResumeType } from '../typings'
+import Script from './Script'
 
-export type SoftwareSourceCodeSchemaType = AnyObj
-export type ItemListSchemaType = AnyObj
-export type WebSiteSchemaType = AnyObj
-export type OrganizationSchemaType = AnyObj
-export type PersonSchemaType = { '@id': string } & AnyObj
+export type PersonSchemaType = Exclude<Schema.Person, string> & {
+  '@id': string
+}
 export interface SchemaOptionsType {
   workIndex?: number
 }
@@ -45,13 +33,8 @@ export interface SchemaOptionsType {
 /**
  * @todo https://schema.org/contributor for open source
  */
-export function fromContextToPersonSchema(context: PortfolioContextType) {
-  const { basics } = context
-
-  /**
-   * @todo add this to data
-   */
-  const personId = 'https://orcid.org/0000-0002-6397-6217'
+export function fromContextToPersonSchema(basics: BasicsType) {
+  const personId = `https://orcid.org/${basics.orcid}`
 
   const personSchema: PersonSchemaType = {
     '@type': 'Person',
@@ -62,20 +45,16 @@ export function fromContextToPersonSchema(context: PortfolioContextType) {
     email: basics.email,
     telephone: basics.telephone,
     description: basics.summary,
-    image: basics.picture,
+    image: basics.image.url,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: basics.city,
-      addressRegion: basics.region,
-      postalCode: basics.postalCode,
-      streetAddress: basics.address,
+      addressLocality: basics.address.city,
+      addressRegion: basics.address.region,
+      postalCode: basics.address.postalCode,
+      streetAddress: basics.address.address,
     },
-    /**
-     * @see https://schema.org/knowsAbout
-     */
-    knowsAbout: basics.skills.map(skill => {
-      return skill
-    }),
+    /** @see https://schema.org/knowsAbout */
+    knowsAbout: basics.skills.map(skill => skill),
   }
 
   const shortPersonSchema: PersonSchemaType = {
@@ -88,6 +67,10 @@ export function fromContextToPersonSchema(context: PortfolioContextType) {
     personId,
     personSchema,
     shortPersonSchema,
+  } as {
+    personId: string
+    personSchema: PersonSchemaType
+    shortPersonSchema: PersonSchemaType
   }
 }
 
@@ -110,12 +93,11 @@ export function fromContextToPersonSchema(context: PortfolioContextType) {
  */
 
 function fromContextToSchema(
-  context: PortfolioContextType,
+  { work, person, openSource }: ResumeType,
   options: SchemaOptionsType
 ) {
-  const { work } = context
-  const { personSchema, shortPersonSchema } = fromContextToPersonSchema(context)
-  const basePortfolioUrl = personSchema.url + '/Portfolio/Experience?index='
+  const { personSchema, shortPersonSchema } = fromContextToPersonSchema(person)
+  const basePortfolioUrl = personSchema.url + '/Portfolio/Experience/'
 
   /**
    * could scope this function outside, so it is not a closure
@@ -125,7 +107,7 @@ function fromContextToSchema(
   function fromWorkItemToOrganization(
     workItem: WorkType,
     index: number
-  ): OrganizationSchemaType {
+  ): Schema.Organization {
     return {
       '@type': 'Organization',
       url: basePortfolioUrl + index,
@@ -136,27 +118,20 @@ function fromContextToSchema(
         startDate: workItem.startDate,
         endDate: workItem.endDate,
         roleName: workItem.position,
-      },
+      } as any,
     }
   }
 
-  const openSourceSchema: SoftwareSourceCodeSchemaType = {
+  const { image: openSourceImage, ...openSourceProps } = openSource
+
+  const openSourceSchema: Schema.SoftwareSourceCode = {
     '@type': 'SoftwareSourceCode',
-    description:
-      'Generic, web portfolio, configurable at runtime, with all the latest greatest features in a modern technology stack: react, amp, pwa, jest, storybook, next, monorepo, styled-components, graphql, apollo',
-    name: 'Modern Stack Web Portfolio',
-    url: 'https://github.com/aretecode/modern-stack-web-portfolio',
-    keywords: 'portfolio,opensource,react,typescript,graphql,apollo',
-    datePublished: '2019-03-15',
-    dateCreated: '2019-03-20',
+    ...openSourceProps,
     creator: shortPersonSchema,
     image: {
       '@type': 'ImageObject',
-      url:
-        'https://noccumpr-cdn.sirv.com/images/modern-stack-skeletons-web-lighthouse.png',
-      height: 866,
-      width: 3140,
-    },
+      ...openSourceImage,
+    } as any,
   }
 
   /**
@@ -165,8 +140,9 @@ function fromContextToSchema(
    * @todo https://schema.org/AboutPage
    * @see https://schema.org/mentions
    * @todo https://schema.org/isPartOf
+   * @todo https://serpact.com/schema-org-structured-data-basic-markup/ with WPFooter?
    */
-  const siteSchema: WebSiteSchemaType = {
+  const siteSchema: Schema.WebSite = {
     '@type': 'WebSite',
     name: personSchema.url,
     url: personSchema.url,
@@ -191,7 +167,7 @@ function fromContextToSchema(
    *              2. **separate**: _list of links to other pages_
    *              #1 is preferred, but we'll need to implement #2
    */
-  const carouselList: ItemListSchemaType = {
+  const carouselList: Schema.ItemList = {
     '@type': 'ItemList',
     itemListElement: work.map((workItem, index) => {
       return {
@@ -211,14 +187,14 @@ function fromContextToSchema(
    */
   if (options.workIndex === undefined) {
     const workList = work.map(fromWorkItemToOrganization)
-    graphList.push(...workList)
-    graphList.push(carouselList)
+    graphList.push(...(workList as any[]))
+    graphList.push(carouselList as any)
   } else {
     const workItem = fromWorkItemToOrganization(
       work[options.workIndex],
       options.workIndex
     )
-    graphList.unshift(workItem)
+    graphList.unshift(workItem as any)
   }
 
   return {
@@ -227,8 +203,8 @@ function fromContextToSchema(
   }
 }
 
-export function PortfolioSchema(props: SchemaOptionsType) {
-  const context = React.useContext(PortfolioContext)
-  const schemaData = fromContextToSchema(context, props)
-  return <Script children={schemaData} />
+export function PortfolioSchema(props: SchemaOptionsType & ResumeType) {
+  const { workIndex, ...context } = props
+  const schemaData = fromContextToSchema(context, { workIndex })
+  return <Script type={'application/ld+json'}>{schemaData}</Script>
 }
