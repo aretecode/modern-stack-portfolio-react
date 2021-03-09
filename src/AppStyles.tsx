@@ -42,9 +42,6 @@ export const aboutMePageLightStyles = css`
 `
 export const aboutMePageDynamicColorStyles = css`
   ${aboutMePageLightStyles};
-  @media (prefers-color-scheme: dark) {
-    ${aboutMePageDarkStyles};
-  }
   ${props => props.theme.isDark && aboutMePageDarkStyles};
 `
 
@@ -53,39 +50,16 @@ const darkColorStyles = css`
   --color-link-hover: #aaa;
   --color-text-body: #fff;
   --color-text-unimportant: #bbb;
-
   --color-text-body: #fff;
   --theme-card-color: #fff;
   --theme-material-icon-fill: #fff;
   --color-text-unimportant: #bbb;
-
   --theme-card-figcaption-background: rgba(52, 73, 85, 0.9);
   --theme-card-header: var(--color-text-secondary);
   --theme-card-background: #344955;
-
   --theme-selection-background: #bb86fc;
   --theme-footer-background: var(--color-dark-background-dark-surface);
   --theme-page-background: #232f34;
-`
-
-const lightColorStyle = css`
-  --color-link: #fff;
-  --color-link-hover: #aaa;
-  --color-text-body: #fff;
-  --color-text-unimportant: #bbb;
-
-  --theme-card-figcaption-background: #f5f5f5;
-  --theme-card-background: #f5f5f5;
-
-  --theme-card-header: #000000;
-  --theme-card-color: #232f34;
-
-  --theme-material-icon-fill: #000;
-  --theme-header-background: var(--color-material-background-purple);
-  --theme-selection-background: rgba(0, 0, 0, 0.5);
-  --color-text-unimportant: #3b3b3b;
-  --theme-footer-background: var(--color-material-background-purple);
-  --theme-page-background: #ddd;
 `
 
 const appStylesUglified = css`
@@ -94,12 +68,27 @@ const appStylesUglified = css`
     --color-text-secondary: #03dac6;
     --color-orange: #ff5722;
     --color-dark-background-dark-surface: #121212;
-    ${lightColorStyle};
+    --color-link: #fff;
+    --color-link-hover: #aaa;
+    --color-text-body: #fff;
+    --color-text-unimportant: #bbb;
+    --theme-card-figcaption-background: #f5f5f5;
+    --theme-card-background: #f5f5f5;
+    --theme-card-header: #000000;
+    --theme-card-color: #232f34;
+    --theme-material-icon-fill: #000;
+    --theme-header-background: var(--color-material-background-purple);
+    --theme-selection-background: rgba(0, 0, 0, 0.5);
+    --color-text-unimportant: #3b3b3b;
+    --theme-footer-background: var(--color-material-background-purple);
+    --theme-page-background: #ddd;
   }
   @media (prefers-color-scheme: dark) {
     ${darkColorStyles};
   }
-  ${props => props.theme.isDark && darkColorStyles};
+  :root {
+    ${props => props.theme.isDark && darkColorStyles};
+  }
 
   @font-face {
     font-family: 'Source Sans Pro';

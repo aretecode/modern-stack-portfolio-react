@@ -1,9 +1,5 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import {
-  cancelIdleCallback,
-  requestIdleCallback,
-} from '../../utils/requestIdleCallback'
 import { AnimateHeight } from '../../features/AnimateHeight/AnimateHeight'
 import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
 
@@ -63,10 +59,7 @@ export function Skills({ skills }: { skills: string[] }) {
 
   /** this prevents it from painting the element, hiding it, then re-painting it */
   React.useEffect(() => {
-    const idleId = requestIdleCallback(() => {
-      setIsHidden(false)
-    })
-    return () => cancelIdleCallback(idleId)
+    setIsHidden(false)
   }, [])
 
   const hidingProps = React.useMemo(

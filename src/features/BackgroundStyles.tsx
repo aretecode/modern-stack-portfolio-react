@@ -8,6 +8,7 @@ const modernBrowserTestImg =
   'https://noccumpr.sirv.com/images/meow-bg-color--blur.jpg?w=1&h=1&q=1'
 
 export const webpBackgroundStyles = css`
+  background-color: var(--color-material-background-purple);
   --bg: url('${darkImg}');
   ${props =>
     !props.theme.isDark &&
