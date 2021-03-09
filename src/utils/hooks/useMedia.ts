@@ -43,7 +43,7 @@ export function useMedia(
     mediaQueryLists.forEach(mql => mql.addListener(handler))
     // Remove listeners on cleanup
     return () => mediaQueryLists.forEach(mql => mql.removeListener(handler))
-  },        EMPTY_ARRAY) // Empty array ensures effect is only run on mount and unmount
+  }, EMPTY_ARRAY) // Empty array ensures effect is only run on mount and unmount
 
   return value
 }
