@@ -1,15 +1,12 @@
 import styled from 'styled-components'
 import { SocialProfiles } from '../SocialProfiles'
-import { StyledLink, DynamicLink } from '../Link'
-import { SpecialIcon } from './SpecialIcon'
+import { StyledLink } from '../Link'
+import HeartIcon from './icons/HeartIcon'
+import CanadaIcon from './icons/CanadaIcon'
 
 export const StyledFooter = styled.footer`
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: ${props =>
-    props.theme.isDark
-      ? 'var(--color-dark-background-dark-surface)'
-      : 'var(--color-material-background-purple)'};
-
+  background-color: var(--footer-background);
   padding: 2rem 1.25rem;
 
   p {
@@ -17,9 +14,7 @@ export const StyledFooter = styled.footer`
   }
 `
 
-export const MadeWithHeart = styled(SpecialIcon).attrs({
-  icon: 'heart',
-})`
+export const MadeWithHeart = styled(HeartIcon)`
   color: #df0909;
   display: inline-flex;
   padding-right: 0.5rem;
@@ -27,9 +22,7 @@ export const MadeWithHeart = styled(SpecialIcon).attrs({
   height: 12px;
 `
 
-export const CanadaEh = styled(SpecialIcon).attrs({
-  icon: 'canada',
-})`
+export const CanadaEh = styled(CanadaIcon)`
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   transform: translateY(1px);
@@ -40,13 +33,7 @@ export const CanadaEh = styled(SpecialIcon).attrs({
 
 export const MadeWithText = styled.span``
 
-/**
- * @todo move to dynamic
- */
-export const OpenSourceLink = styled(StyledLink as typeof DynamicLink).attrs({
-  to: 'https://github.com/aretecode/modern-stack-web-portfolio',
-  children: 'github.com/aretecode',
-})`
+export const OpenSourceLink = styled(StyledLink)`
   padding-left: 0.3rem;
   text-decoration: underline;
 `
