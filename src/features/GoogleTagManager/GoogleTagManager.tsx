@@ -2,16 +2,15 @@
  * @note this file is ServerSide only
  * @see _document
  */
+import { useAmp } from 'next/amp'
 import * as React from 'react'
-import { AmpContext } from '../AmpContext'
-import { Script } from '../Script'
+import Script from '../Script'
 
 const GOOGLE_TAG_MANAGER_AMP_ID = process.env.GOOGLE_TAG_MANAGER_AMP_ID
 const GOOGLE_TAG_MANAGER_WEB_ID = process.env.GOOGLE_TAG_MANAGER_WEB_ID
 
 export function GoogleTagManagerHeaderScript(props: { isAmp?: boolean }) {
-  const isAmp =
-    props.isAmp !== undefined ? props.isAmp : React.useContext(AmpContext).isAmp
+  const isAmp = useAmp()
 
   if (isAmp) {
     return (
@@ -32,8 +31,7 @@ j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_MANA
 }
 
 export function GoogleTagManagerBodyScript(props: { isAmp?: boolean }) {
-  const isAmp =
-    props.isAmp !== undefined ? props.isAmp : React.useContext(AmpContext).isAmp
+  const isAmp = useAmp()
 
   if (isAmp) {
     return (
@@ -49,6 +47,7 @@ export function GoogleTagManagerBodyScript(props: { isAmp?: boolean }) {
     return (
       <noscript>
         <iframe
+          title="google tag manager analytics"
           src="https://www.googletagmanager.com/ns.html?id=GTM-P58WR63"
           height="0"
           width="0"

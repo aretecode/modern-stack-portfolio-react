@@ -1,13 +1,13 @@
 import { trackEvent } from './utils'
 
 export class AnalyticsContainer {
-  initializeAnalytics() {
+  public initializeAnalytics() {
     this.trackPageView()
   }
-  trackPageView() {
+  public trackPageView() {
     trackEvent({ event: 'pageView' })
   }
-  trackColorChange() {
+  public trackColorChange() {
     trackEvent({ event: 'colorChange', theme: 'dark' })
   }
 }
