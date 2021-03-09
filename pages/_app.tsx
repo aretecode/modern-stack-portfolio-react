@@ -9,9 +9,7 @@ import Router from 'next/router'
 import { useAmp } from 'next/amp'
 import { StyleSheetManager } from 'styled-components'
 import * as React from 'react'
-// import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
-// import { useApollo } from '../src/graphql/apolloClient'
 import { trackPageView } from '../src/features/GoogleTagManager'
 import { StyledVectorFilter } from '../src/features/VectorFilter'
 import { AppContextProvider } from '../src/features/AppContext'
@@ -26,8 +24,6 @@ import {
 export { reportWebVitals } from '../src/features/GoogleTagManager/webVitals'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  // const apolloClient = useApollo(pageProps)
-
   if (process.env.NODE_ENV === 'development') {
     logger.debug('[_app] render ')
   }
@@ -62,13 +58,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <>
           <AppStyles />
           <AppContextProvider url={url} darkMode={darkMode}>
-            {/* <ApolloProvider client={apolloClient}> */}
             <>
               <Component {...pageProps} />
               <StyledVectorFilter />
               <BelowTheFoldStyles />
             </>
-            {/* </ApolloProvider> */}
           </AppContextProvider>
         </>
       </ThemeProvider>
