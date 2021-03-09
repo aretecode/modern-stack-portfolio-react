@@ -91,9 +91,12 @@ const appStylesUglified = css`
     --color-text-secondary: #03dac6;
     --color-orange: #ff5722;
     --color-dark-background-dark-surface: #121212;
-
-    ${props => (props.theme.isDark ? darkColorStyles : lightColorStyle)}
+    ${lightColorStyle};
   }
+  @media (prefers-color-scheme: dark) {
+    ${darkColorStyles};
+  }
+  ${props => props.theme.isDark && darkColorStyles};
 
   @font-face {
     font-family: 'Source Sans Pro';

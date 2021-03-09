@@ -27,12 +27,6 @@
        "purpose": "maskable"
     },
     {
-      "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/maskable/james-wiens-code-logo--maskable--256x256.png",
-      "sizes": "256x256",
-      "type": "image/png",
-       "purpose": "maskable"
-    },
-    {
       "src": "https://noccumpr-cdn.sirv.com/images/james-wiens-icon/maskable/james-wiens-code-logo--maskable--192x192.png",
       "sizes": "192x192",
       "type": "image/png",
