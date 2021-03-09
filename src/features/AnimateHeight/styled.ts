@@ -3,6 +3,7 @@ import { AnimatedArrowIcon } from '../MaterialIcon'
 
 /**
  * this default styled trigger is specific to portfolio page
+ * @idea `    fill: ${props =>props.theme.isDark ? '#fff' : 'var(--color-dark-background-main)'};` for header darkmode styles
  */
 export const StyledLargeMaterialIcon = styled(AnimatedArrowIcon)`
   width: 42px;

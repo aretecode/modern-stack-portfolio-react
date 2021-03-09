@@ -40,7 +40,7 @@ export function expandSection(element: HTMLElement) {
   element.style.height = sectionHeight + 'px'
 
   // when the next css transition finishes (which should be the one we just triggered)
-  element.addEventListener('transitionend', function(event: TransitionEvent) {
+  element.addEventListener('transitionend', function (event: TransitionEvent) {
     // @todo invalid
     // remove this event listener so it only gets triggered once
     // element.removeEventListener('transitionend', arguments.callee)

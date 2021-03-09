@@ -5,10 +5,13 @@ import { AnimateHeightContextStateType } from './typings'
  * could also add an `observe` method & `forceUpdate` higher up
  */
 export class AnimateHeightState implements AnimateHeightContextStateType {
-  height = 0
-  maxHeight = undefined
-  isExpanded = false
-  set(key: keyof AnimateHeightContextStateType, value: number | boolean): void {
+  public height = 0
+  public maxHeight: number = undefined as any
+  public isExpanded = false
+  public set(
+    key: keyof AnimateHeightContextStateType,
+    value: number | boolean
+  ): void {
     this[key as any] = value
   }
 }

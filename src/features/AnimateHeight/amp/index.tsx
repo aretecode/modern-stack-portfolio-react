@@ -25,7 +25,9 @@ export function AmpAnimateHeight(props: AmpAnimateHeightProps) {
       </Head>
       <amp-accordion layout="container">
         <section>
-          <header>{renderTrigger({ isExpanded: false } as any)}</header>
+          <header className="amp-accordion-header">
+            {renderTrigger({ isExpanded: false } as any)}
+          </header>
           {children}
         </section>
       </amp-accordion>

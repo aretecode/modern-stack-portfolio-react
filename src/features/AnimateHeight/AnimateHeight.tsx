@@ -13,15 +13,10 @@ export class AnimateHeightComponent extends React.PureComponent<
   unknown,
   AnimateHeightContextStateType
 > {
-  static defaultProps = {
+  public static defaultProps = {
     renderTrigger: defaultRenderTrigger,
   }
-  static contextType = AnimateHeightContext
-
-  /**
-   * @todo @@perf @@config @@build doing it like this causes an issue in compilation with babel
-   */
-  // readonly context: AnimateHeightContextStateType
+  public static contextType = AnimateHeightContext
 
   constructor(props: AnimateHeightProps, state: any) {
     super(props, state)
@@ -33,12 +28,12 @@ export class AnimateHeightComponent extends React.PureComponent<
     this.context.set('isExpanded', isExpanded)
   }
 
-  updateRefTimeout: any = undefined
+  protected updateRefTimeout: any = undefined
 
   /**
    * @todo move data out of ui
    */
-  async componentDidMount() {
+  public async componentDidMount() {
     if (this.isExpanded === false) {
       const { forwardedRef } = this.props
 
@@ -93,28 +88,28 @@ export class AnimateHeightComponent extends React.PureComponent<
    * added here for ease of change
    * though it has a negligible perf hit
    */
-  get isExpanded() {
+  protected get isExpanded() {
     return this.context.isExpanded
   }
   // @lint this is a value
-  setIsExpanded = (isExpanded: boolean) => {
+  protected setIsExpanded = (isExpanded: boolean) => {
     this.context.set('isExpanded', isExpanded)
     /**
      * required to update the arrow icon
      */
     this.forceUpdate()
   }
-  handleShow = () => {
+  protected handleShow = () => {
     const { forwardedRef } = this.props
     expandSection(forwardedRef!.current)
     this.setIsExpanded(true)
   }
-  handleHide = () => {
+  protected handleHide = () => {
     const { forwardedRef } = this.props as Required<AnimateHeightProps>
     collapseSection(forwardedRef!.current)
     this.setIsExpanded(false)
   }
-  handleToggle = () => {
+  protected handleToggle = () => {
     if (this.isExpanded) {
       this.handleHide()
     } else {
@@ -122,7 +117,7 @@ export class AnimateHeightComponent extends React.PureComponent<
     }
   }
 
-  render() {
+  public render() {
     const { renderTrigger, children } = this.props
     return (
       <>

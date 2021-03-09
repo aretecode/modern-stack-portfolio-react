@@ -3,9 +3,9 @@ import { createContext } from 'react'
 import { AnimateHeightContextStateType } from './typings'
 import { AnimateHeightState } from './AnimateHeightState'
 
-export const AnimateHeightContext = createContext<
-  AnimateHeightContextStateType
->(new AnimateHeightState())
+export const AnimateHeightContext = createContext<AnimateHeightContextStateType>(
+  new AnimateHeightState()
+)
 
 /**
  * @note this only updates because state is getting destructured
@@ -15,17 +15,20 @@ export const AnimateHeightContext = createContext<
  *       and as such, can be ErrorProne
  */
 export class AnimateHeightContextProvider extends React.PureComponent {
-  state = {
+  public state = {
     height: 0,
-    maxHeight: undefined,
+    maxHeight: (undefined as any) as number,
     isExpanded: false,
   }
 
-  set = (key: keyof AnimateHeightContextStateType, value: number | boolean) => {
+  private set = (
+    key: keyof AnimateHeightContextStateType,
+    value: number | boolean
+  ) => {
     this.setState({ [key]: value })
   }
 
-  render() {
+  public render() {
     return (
       <AnimateHeightContext.Provider value={{ ...this.state, set: this.set }}>
         {this.props.children}
