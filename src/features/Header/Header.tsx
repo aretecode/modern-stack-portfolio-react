@@ -1,24 +1,29 @@
 import * as React from 'react'
 import { Navigation } from '../Navigation'
-import { PortfolioContext } from '../PortfolioContext'
-import { StyledAnimatedBrightnessIcon } from '../MaterialIcon/AnimatedBrightnessIcon'
-import { StyledHeader, StyledLogo, StyledLogoLink } from './styled'
+import { DarkModeToggle } from '../DarkMode/DarkModeToggle'
+import { StyledHeader } from './styled'
+import { LogoLink } from './Logo'
 
 function fromContextNameToSimpleText(name: string) {
-  return name.replace(/\s+/, '').toLowerCase()
+  return name.replace(' ', '').toLowerCase()
 }
 
-export default function Header(props: { className?: string }) {
-  const { name } = React.useContext(PortfolioContext).basics
+export default function Header({
+  name,
+  ...rest
+}: {
+  className?: string
+  name: string
+}) {
   const nameText = fromContextNameToSimpleText(name)
 
   return (
-    <StyledHeader {...props}>
-      <StyledLogoLink to="/">
-        <StyledLogo>{nameText}</StyledLogo>
-      </StyledLogoLink>
-      <Navigation />
-      <StyledAnimatedBrightnessIcon />
+    <StyledHeader {...rest}>
+      <>
+        <LogoLink name={nameText} key="logo" />
+        <Navigation key="nav" />
+        <DarkModeToggle key="darkmode" />
+      </>
     </StyledHeader>
   )
 }
