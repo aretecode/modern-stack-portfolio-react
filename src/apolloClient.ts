@@ -90,15 +90,14 @@ let apolloClientInstance: ApolloClient<any> = undefined as any
 
 function createApolloClient(url?: URL) {
   const httpLink = new ApolloLink((operation, forward) => {
+    /**
+     * @idea use `GET` to cache
+     * @see https://github.com/apollographql/apollo-link/issues/236#issuecomment-348176745
+     * @example
+     *   fetchOptions: { method: 'GET' },
+     */
     const httpLinkActual = new HttpLink({
-      uri:
-        'https://graphql.contentful.com/content/v1/spaces/2n52ochjp8f3?access_token=f14JMgwbHNoD1kzz54hwAd1Rsy_ZzAShU7055-dWP30',
-      /**
-       * @idea use `GET` to cache
-       * @see https://github.com/apollographql/apollo-link/issues/236#issuecomment-348176745
-       * @example
-       *   fetchOptions: { method: 'GET' },
-       */
+      uri: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}?access_token=${process.env.CONTENTFUL_TOKEN}`,
 
       /**
        * @@security should be same-origin in real production
@@ -115,13 +114,16 @@ function createApolloClient(url?: URL) {
     connectToDevTools: process.browser,
     link: ApolloLink.from([...createDevLinks(), httpLink].filter(Boolean)),
     headers: {
-      authorization: `Bearer ${'f14JMgwbHNoD1kzz54hwAd1Rsy_ZzAShU7055-dWP30'}`,
+      authorization: `Bearer ${process.env.CONTENTFUL_TOKEN}`,
     },
     cache: new InMemoryCache({}),
   })
 }
 
-const isEqual = <Type extends unknown>(x: Type, y: Type) => {
+const isEqual = <T1 extends unknown, T2 extends unknown>(
+  x: T1,
+  y: T2
+): boolean => {
   if (isObj(x) && isObj(y)) {
     return Object.keys(x).every(key => isEqual(x[key], y[key]))
   } else if (isArray(x) && isArray(y)) {
