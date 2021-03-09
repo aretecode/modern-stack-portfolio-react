@@ -2,7 +2,6 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { AnimateHeight } from '../../features/AnimateHeight/AnimateHeight'
 import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
-import { PortfolioContext } from '../../features/PortfolioContext'
 
 /**
  * @todo split out
@@ -55,11 +54,9 @@ export const StyledSkillList = styled.ul`
   padding: 1rem;
 `
 
-export function Skills(props: {}) {
+export function Skills({ skills }: { skills: string[] }) {
   const animateHeight = React.useContext(AnimateHeightContext)
-  const portfolioContext = React.useContext(PortfolioContext)
   const animateRef = React.createRef<any>()
-  const { skills } = portfolioContext.basics
 
   return (
     <AnimateHeight isDefaultExpanded={false} ref={animateRef}>
