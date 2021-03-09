@@ -7,18 +7,15 @@ export interface TimeRangeProps {
   startDate: string
 }
 
-/**
- * could use date-fns here
- */
-export class TimeRange extends React.PureComponent<TimeRangeProps> {
-  render() {
-    const { startDate, endDate } = this.props
-    return (
-      <>
-        <StyledTime dateTime={startDate}>{startDate}</StyledTime>
-        <StyledSeparator />
-        <StyledTime dateTime={endDate}>{endDate}</StyledTime>
-      </>
-    )
-  }
-}
+export default React.memo(function TimeRange({
+  startDate,
+  endDate,
+}: TimeRangeProps) {
+  return (
+    <>
+      <StyledTime dateTime={startDate}>{startDate}</StyledTime>
+      <StyledSeparator />
+      <StyledTime dateTime={endDate}>{endDate}</StyledTime>
+    </>
+  )
+})
