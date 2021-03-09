@@ -8,9 +8,12 @@ export const StyledNav = styled.nav`
 
 export const StyledNavList = styled.ul`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0;
   margin: 0;
+  @media (max-width: 480px) {
+    justify-content: unset;
+  }
 
   > li {
     display: inline-flex;
