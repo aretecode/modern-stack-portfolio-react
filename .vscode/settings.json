@@ -1,0 +1,132 @@
+{
+  "editor.lightbulb.enabled": false,
+  "editor.fontFamily": "'Operator Mono Lig', 'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false
+  },
+  "workbench.settings.openDefaultSettings": false,
+  "eslint.alwaysShowStatus": true,
+  "editor.rulers": [80],
+  "editor.renderControlCharacters": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.renderIndentGuides": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "json.format.enable": false,
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "editor.formatOnPaste": false,
+  "eslint.run": "onType",
+  "search.exclude": {
+    "**/public": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/*.json": true,
+    "**/*unused/**": true,
+    "**/*snapshots__": true,
+    "**/.next": true
+  },
+  "files.exclude": {
+    "**/.babelrc": true,
+
+    "**/jest.config.js": true,
+    "**/jest.setup.js": true,
+    "**/jest.config.setup.js": true,
+
+    "**/rollup.config.js": true,
+
+    "**/ecosystem.config.js": true,
+    "**/dangerfile.ts": true,
+    "**/stylelint.config.js": true,
+    "**/.eslintrc.js": true,
+    "**/.travis.yml": true,
+
+    "**/.vercelignore": true,
+    "**/vercel.json": true,
+
+    "**/tsconfig.json": true,
+    "**/tsconfig.eslint.json": true,
+    "**/tsconfig.test.json": true,
+    "**/tsconfig.prod.json": true,
+    "**/tsconfig.server.json": true,
+
+    "**/package-lock.json": true,
+    "**/yarn.lock": true,
+    "**/.yarnrc": true,
+
+    ".dockerignore": true,
+    "Dockerfile": true,
+
+    "next-env.d.ts": true,
+    "**/next.config.js": true,
+    "**/.next": true,
+
+    "globals.d.ts": true,
+
+    "packages/*/config": true,
+    "packages/*/dist": true,
+
+    "**/.storybook": true,
+
+    "**/.gitignore": true,
+    "**/.gitmodules": true,
+    "**/.editorconfig": true,
+
+    "**/.vercel": true,
+    "**/node_modules": true,
+    "**/.tmp/": true,
+    "**/public": true,
+    "**/out": true,
+    "**/build": true,
+
+    "**/*.js.snap": true,
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/yarn.lock": true,
+    "**/node_modules/**": true,
+    "**/npm-packages-offline-cache": true,
+    "**/*.js.snap": true,
+    "**/public/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.tmp/**": true,
+    "**/scripts/**": true,
+    "**/config/**": true,
+    "**/@@/**": true
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggest.showSnippets": false,
+  "emmet.showSuggestionsAsSnippets": false,
+  "editor.snippetSuggestions": "top",
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.scopes": ["blocks"],
+  "gitlens.codeLens.symbolScopes": ["blocks"],
+  "gitlens.hovers.annotations.details": false,
+  "gitlens.hovers.annotations.enabled": false,
+  "gitlens.recentChanges.highlight.locations": ["gutter", "overview"],
+  "cSpell.words": [
+    "autofix",
+    "productlist",
+    "promisify"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
