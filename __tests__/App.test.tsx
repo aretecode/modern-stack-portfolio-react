@@ -2,23 +2,22 @@
  * @see https://github.com/zeit/next.js/blob/master/examples/with-jest/__tests__/index.test.js
  */
 import * as React from 'react'
+import * as useAmpModule from 'next/amp'
 import { waitFor } from '@testing-library/react'
 import { render } from './render'
 import { defaultApolloStatePortfolio } from '../src/constants'
-import { InnerApp } from '../pages/_app'
 import AboutPage from '../pages/About'
 import PortfolioPage from '../pages/Portfolio'
-import { AmpContext } from '../src/features/AmpContext'
 
 const sleep = (time: number) => Promise.resolve(time)
 
 describe('<App>', () => {
   it('should match snapshot', async () => {
     const view = (
-      <InnerApp>
+      <>
         <PortfolioPage />
         <AboutPage />
-      </InnerApp>
+      </>
     )
     const { container, rerender, getByText } = render(view)
     rerender(view)
@@ -35,13 +34,13 @@ describe('<App>', () => {
   })
 
   it('should match snapshot for amp', async () => {
+    jest.spyOn(useAmpModule, 'useAmp').mockImplementation(() => true)
+
     const view = (
-      <AmpContext.Provider value={{ isAmp: true }}>
-        <InnerApp>
-          <PortfolioPage />
-          <AboutPage />
-        </InnerApp>
-      </AmpContext.Provider>
+      <>
+        <PortfolioPage />
+        <AboutPage />
+      </>
     )
     const { container, rerender, getByText } = render(view)
     rerender(view)
