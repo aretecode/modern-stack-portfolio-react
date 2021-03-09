@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 /* eslint-disable max-depth */
-import { Request as ExpressRequest } from 'express'
+import type { Request as ExpressRequest } from 'express'
 import { UnknownObj } from '../typings'
 import { logger } from '../log'
 import { URL } from './url'
