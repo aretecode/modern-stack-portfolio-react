@@ -11,7 +11,8 @@ import * as React from 'react'
  * @see https://github.com/zeit/next.js/issues/1942#issuecomment-313925454
  */
 import BaseLink from 'next/link'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { useAmp } from 'next/amp'
 
 export type LinkProps = React.HTMLAttributes<HTMLAnchorElement> & {
   to?: string
@@ -19,11 +20,14 @@ export type LinkProps = React.HTMLAttributes<HTMLAnchorElement> & {
   rel?: string
 }
 
-export const StyledHref = styled.a``
-
-export const DynamicLink = (props: LinkProps & { theme?: any }) => {
+export const DynamicLink = React.memo((props: LinkProps & { theme?: any }) => {
+  const isAmp = useAmp()
   const { to, href, theme, ...remainingProps } = props
   const toHref = (to || href || '') as string
+  const toHrefAmp =
+    toHref.startsWith('/') && toHref.endsWith('amp=1') && isAmp
+      ? `${toHref}?amp=1`
+      : toHref
 
   if (
     toHref.includes('http') ||
@@ -35,23 +39,20 @@ export const DynamicLink = (props: LinkProps & { theme?: any }) => {
   } else {
     const { children, ...remaining } = remainingProps
     return (
-      <BaseLink href={toHref}>
-        <StyledHref {...remaining} href={toHref}>
+      <BaseLink href={toHrefAmp}>
+        <a {...remaining} href={toHrefAmp}>
           {children}
-        </StyledHref>
+        </a>
       </BaseLink>
     )
   }
-}
+})
 
-/**
- * could use styled theme
- */
+/** @idea could use styled theme */
 export const StyledLink = styled(DynamicLink)`
   text-decoration: none;
   position: relative;
   letter-spacing: 0.2em;
-
   color: var(--color-link);
 
   &:link,
@@ -66,6 +67,28 @@ export const StyledLink = styled(DynamicLink)`
   }
   &:link {
     -webkit-tap-highlight-color: rgba(102, 102, 102, 0.5);
+  }
+
+  /* link effects */
+  & {
+    position: relative;
+  }
+  &::after {
+    content: '';
+    background-color: #fff;
+    mix-blend-mode: exclusion;
+    position: absolute;
+    height: 0;
+    width: calc(100% + 16px);
+    left: -2px;
+    bottom: -4px;
+    transition: height 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover::after {
+    height: calc(100% + 8px);
+    width: calc(100%);
   }
 `
 
