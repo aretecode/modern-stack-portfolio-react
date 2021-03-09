@@ -1,15 +1,20 @@
 import styled, { css } from 'styled-components'
-import { ObservablePicture } from '../../features/ObservablePicture'
+import AmpCompatImage from '../../features/Picture/Image'
+import { StyledLink as BaseStyledLink } from '../../features/Link'
 
 export const StyledGrid = styled.div`
   display: grid;
   padding: 1rem;
   grid-gap: 0.5rem;
   grid-auto-rows: auto;
+
+  @media (max-width: 420px) {
+    padding: 0;
+  }
 `
 
 /**
- * could use https://amp.dev/documentation/examples/components/amp-timeago/
+ * @idea could use https://amp.dev/documentation/examples/components/amp-timeago/
  */
 export const StyledTime = styled.time`
   display: inline-flex;
@@ -19,14 +24,13 @@ export const StyledTime = styled.time`
  * @see https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
  * @see https://addyosmani.com/blog/lazy-loading/
  */
-export const StyledCardImage = styled(ObservablePicture).attrs({
-  loading: 'lazy',
-})`
+export const StyledCardImage = styled(AmpCompatImage)`
   ${props =>
     props.theme.isDark &&
     css`
       filter: url(#green-tint);
     `};
+  object-fit: cover;
   max-width: 100%;
   > img {
     max-width: 100%;
@@ -52,22 +56,28 @@ export const StyledCardFigure = styled.figure`
       padding: 1.25rem 0;
     }
   }
+
   @media (max-width: 1023px) {
     img {
       max-height: 65vh;
     }
   }
+  @media (max-width: 800px) {
+    img {
+      max-height: 15vh;
+    }
+  }
+  @media (max-width: 480px) {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 `
 
-/**
- * could pick a colour from a colour scheme each time...
- */
 export const StyledLeaderBoard = styled.header`
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: ${props =>
-    props.theme.isDark
-      ? 'var(--color-dark-background-dark-surface)'
-      : 'var(--color-orange)'};
+  background-color: var(--color-orange);
 
   display: flex;
   flex-direction: column;
@@ -86,4 +96,12 @@ export const StyledLeaderBoard = styled.header`
   @media (max-width: 480px) {
     padding-top: 8rem;
   }
+`
+
+export const StyledLink = styled(BaseStyledLink)`
+  padding: 0.5rem 0;
+`
+
+export const StyledExperienceSection = styled.section`
+  display: flex;
 `

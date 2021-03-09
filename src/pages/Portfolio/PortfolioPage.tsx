@@ -1,43 +1,53 @@
-/**
- * to do this properly, we would load it from graphql
- */
 import * as React from 'react'
-import { PortfolioContext } from '../../features/PortfolioContext'
+import { useAmp } from 'next/amp'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { StyledCard } from '../../features/Card'
 import { StyledMain } from '../../features/Main'
-import { StyledLink } from '../../features/Link'
-import { WorkType } from '../../typings'
+import Picture from '../..//features/Picture/Picture'
+import Footer from '../../features/Footer'
+import Header from '../../features/Header'
+import { WorkType, ResumeType } from '../../typings'
 import {
+  StyledLink,
   StyledGrid,
   StyledCardImage,
   StyledCardFigure,
   StyledLeaderBoard,
+  StyledExperienceSection,
 } from './styled'
-import { TimeRange } from './TimeRange'
+import TimeRange from './TimeRange'
+import AmpStyles from './AmpStyles'
 
-/**
- * @hack images with specific sizes
- */
 export function renderWork(work: WorkType, index: number) {
+  const isAmp = useAmp()
+  const fx = React.useMemo(
+    () =>
+      ({
+        card: isAmp
+          ? { 'amp-fx': 'parallax', 'data-parallax-factor': '1.15' }
+          : {},
+        caption: isAmp
+          ? { 'amp-fx': 'parallax', 'data-parallax-factor': '1.19' }
+          : {},
+      } as const),
+    [isAmp]
+  )
+
   return (
     <StyledCard key={work.company + work.startDate + work.endDate}>
       <StyledCardFigure>
-        <StyledCardImage
-          width="1000"
-          height="692"
-          isAlwaysAboveTheFold={index === 0}
-          src={work.picture}
-          loading="lazy"
-          srcSizeList={[
-            ['(max-width: 800px)', work.picture.replace('m-', 'm-')],
-            ['(max-width: 1024px)', work.picture.replace('m-', 'w-m-')],
-            ['(min-width: 2000px)', work.picture.replace('m-', 'xl-')],
-          ]}
-          alt={`work picture for ${work.company}`}
-        />
-        <figcaption>
+        <Picture
+          image={work.image}
+          RenderImage={imgProps => (
+            <StyledCardImage
+              loading={index === 0 ? 'eager' : 'lazy'}
+              {...imgProps}
+              {...fx.card}
+            />
+          )}
+        ></Picture>
+        <figcaption {...fx.caption}>
           <header>{work.company}</header>
           <section>
             <strong>{work.position}</strong>
@@ -57,11 +67,11 @@ export function renderWork(work: WorkType, index: number) {
             <p>{work.summary}</p>
             <StyledLink to={work.website}>{work.website}</StyledLink>
           </section>
-          <section>
-            <StyledLink to={`/Portfolio/Experience?index=${index}`}>
+          <StyledExperienceSection>
+            <StyledLink to={`/Portfolio/Experience/${index}`}>
               <TimeRange startDate={work.startDate} endDate={work.endDate} />
             </StyledLink>
-          </section>
+          </StyledExperienceSection>
         </figcaption>
       </StyledCardFigure>
     </StyledCard>
@@ -69,34 +79,39 @@ export function renderWork(work: WorkType, index: number) {
 }
 
 /**
- * could provide a cool graph to sort resumes/portfolios too and highlight
+ * @idea could provide a cool graph to sort resumes/portfolios too and highlight
  * like build your own github
  */
-export function PortfolioPage() {
-  const portfolioContext = React.useContext(PortfolioContext)
-  const { summary, name } = portfolioContext.basics
-  const titleText = `${name}'s Portfolio`
-
-  /**
-   * @todo move static url out
-   */
-  const imageUrl =
-    'https://noccumpr-cdn.sirv.com/images/james-wiens-work-experience-combined-filtered.png'
+export function PortfolioPage({ person, work, openSource }: ResumeType) {
+  const isAmp = useAmp()
+  const fx = React.useMemo(
+    () =>
+      isAmp
+        ? ({ 'amp-fx': 'parallax', 'data-parallax-factor': '1.3' } as const)
+        : {},
+    []
+  )
 
   return (
     <>
+      {isAmp && <AmpStyles />}
       <PortfolioHead
-        titleText={titleText}
-        description={summary}
-        image={imageUrl}
+        {...person}
+        titleText={`${person.name}'s Portfolio`}
+        description={person.summary}
+        image={person.image}
       />
-      <PortfolioSchema />
+      <PortfolioSchema person={person} work={work} openSource={openSource} />
+      <Header name={person.name} />
       <StyledMain>
-        <StyledLeaderBoard>
-          <h1>What I've done</h1>
+        <StyledLeaderBoard {...fx}>
+          <h1>What I&apos;ve done</h1>
         </StyledLeaderBoard>
-        <StyledGrid>{portfolioContext.work.map(renderWork)}</StyledGrid>
+        <StyledGrid className="parallax-image-window">
+          {work.map(renderWork)}
+        </StyledGrid>
       </StyledMain>
+      <Footer name={person.name} openSource={openSource} />
     </>
   )
 }

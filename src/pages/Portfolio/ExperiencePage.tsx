@@ -1,38 +1,35 @@
 import * as React from 'react'
 import { AppContext } from '../../features/AppContext'
-import { PortfolioContext } from '../../features/PortfolioContext'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { StyledMain } from '../../features/Main'
+import { ResumeType } from '../../typings'
 import { StyledGrid, StyledLeaderBoard } from './styled'
 import { renderWork } from './PortfolioPage'
+import { useRouter } from 'next/router'
 
 /**
- * @todo when we put this in `Portfolio`
- *       routing as a nested route does not properly update `_document`
- *       and `url` is wrong...
  * @file @name PortfolioWorkExperienceItemPage
  */
-export default function PortfolioWorkExperienceItemPage() {
+export default function PortfolioWorkExperienceItemPage({
+  person,
+  work,
+  openSource,
+}: ResumeType) {
+  const {
+    query: { pid = -42 },
+  } = useRouter()
   const { url } = React.useContext(AppContext)
-  const portfolioContext = React.useContext(PortfolioContext)
-  const { basics } = portfolioContext
-  const { name, summary } = basics
+  const { name, summary } = person
 
-  const index = url.searchParams.has('index')
-    ? +url.searchParams.get('index')!
-    : -42
+  const index = +pid
+  const workItem = work[index]
 
-  const workItem = portfolioContext.work[index]
-
-  /**
-   * @todo show 404
-   */
+  /** @todo show 404 */
   if (workItem === undefined) {
     return <h1>Not found</h1>
   }
 
-  const imageUrl = workItem.picture
   const titleText = `${name}'s Portfolio - ${workItem.company}`
 
   return (
@@ -40,9 +37,15 @@ export default function PortfolioWorkExperienceItemPage() {
       <PortfolioHead
         titleText={titleText}
         description={summary}
-        image={imageUrl}
+        {...person}
+        image={workItem.image}
       />
-      <PortfolioSchema workIndex={index} />
+      <PortfolioSchema
+        person={person}
+        work={work}
+        openSource={openSource}
+        workIndex={index}
+      />
       <StyledMain>
         <StyledLeaderBoard>
           <h1>{workItem.company}</h1>
