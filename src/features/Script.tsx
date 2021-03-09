@@ -18,7 +18,7 @@ function serializeScriptChildren(children: unknown): string {
     : (children as string)
 }
 
-export const Script = React.memo((props: ScriptProps) => {
+export default React.memo(function Script(props: ScriptProps) {
   const {
     type,
     src,

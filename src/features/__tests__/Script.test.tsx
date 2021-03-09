@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from '../../../__tests__/render'
-import { Script } from '../Script'
+import Script from '../Script'
 
 describe('Script', () => {
   it('should render empty without an error (except for types)', () => {
