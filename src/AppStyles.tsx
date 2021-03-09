@@ -24,6 +24,7 @@ export const aboutMePageDarkStyles = css`
   --theme-skills-item-color: #fff;
   --theme-label-color: #bb86fc;
   --theme-about-me-article-background: #000;
+  --theme-header-background: rgba(0, 0, 0, 0.35);
   --theme-about-me-image-shadow: '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)';
   --theme-about-me-article-color: rgba(255, 255, 255, 1);
 `
@@ -40,8 +41,13 @@ export const aboutMePageLightStyles = css`
   --theme-about-me-image-shadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)';
 `
 export const aboutMePageDynamicColorStyles = css`
-  ${props =>
-    props.theme.isDark ? aboutMePageDarkStyles : aboutMePageLightStyles};
+  ${aboutMePageLightStyles};
+  @media (prefers-color-scheme: dark) {
+    ${aboutMePageDarkStyles};
+  }
+  @media not (prefers-color-scheme: dark) {
+    ${props => props.theme.isDark && aboutMePageDarkStyles};
+  }
 `
 
 const darkColorStyles = css`
@@ -59,7 +65,6 @@ const darkColorStyles = css`
   --theme-card-header: var(--color-text-secondary);
   --theme-card-background: #344955;
 
-  --theme-header-background: rgba(0, 0, 0, 0.35);
   --theme-selection-background: #bb86fc;
   --theme-footer-background: var(--color-dark-background-dark-surface);
   --theme-page-background: #232f34;
@@ -96,7 +101,9 @@ const appStylesUglified = css`
   @media (prefers-color-scheme: dark) {
     ${darkColorStyles};
   }
-  ${props => props.theme.isDark && darkColorStyles};
+  @media not (prefers-color-scheme: dark) {
+    ${props => props.theme.isDark && darkColorStyles};
+  }
 
   @font-face {
     font-family: 'Source Sans Pro';
