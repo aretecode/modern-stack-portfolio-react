@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
-    "module": "esnext",
-    "target": "es2018",
+    "noEmit": true,
+    "module": "ESNext",
+    "target": "ESNext",
     "lib": [
       "es2020",
       "es2019",
@@ -13,29 +12,28 @@
       "es2015",
       "dom"
     ],
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "allowJs": false,
-    "declaration": true,
-    "jsx": "preserve",
-    "moduleResolution": "node",
+    "declaration": false,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
     "importHelpers": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    /* @todo @fixme */
-    "noUnusedLocals": false,
-    "strict": false,
-    "noEmit": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": false,
     "isolatedModules": true,
+    "sourceMap": true,
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "jsx": "preserve",
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks": false,
     "plugins": [
       {
         "name": "typescript-styled-plugin",
@@ -56,11 +54,21 @@
           "float": "error"
         }
       }
-    ]
+    ],
   },
+  "include": [
+    "dangerfile.ts",
+    "next-env.d.ts",
+    "globals.d.ts",
+    "pages/**/*",
+    "src/**/*",
+    "*.js",
+    "*.ts",
+    "stories/**/*",
+    "__tests__/**/*"
+  ],
   "exclude": [
     "**/static",
-    "**/_next",
     "**/dist",
     "**/.next",
     "**/__assets/*",
@@ -73,11 +81,8 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "public"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "public",
+    ".next",
+    ".scratch"
   ]
 }

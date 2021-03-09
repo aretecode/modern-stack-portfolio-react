@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "modern-stack-portfolio-react-client",
   "env": {
     "IS_NOW": "true",
     "STYLIS_SHOULD_PREFIX": "false",
@@ -68,6 +67,13 @@
       }
     },
     {
+      "src": "/public/(.*)",
+      "dest": "/public/$1",
+      "headers": {
+        "cache-control": "max-age=43200, s-maxage=86400"
+      }
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1",
       "headers": {
@@ -78,7 +84,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/next"
+      "use": "@vercel/next"
     }
   ]
 }

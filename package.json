@@ -6,121 +6,126 @@
   "main": ".next/server/index.js",
   "scripts": {
     "dev": "next",
-    "build": "rm -fr .next && next build && yarn copy",
+    "build": "rm -fr .next && next build && npm run copy && npm run export",
     "export": "next export",
-    "copy": "node static/copy",
+    "copy": "node public/copy",
     "start": "next start",
+    "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
     "test": "jest",
-    "now-build": "yarn build",
-    "next:build": "yarn build && yarn build:server",
-    "docker:build": "IS_DOCKER=true DISABLE_SERVERLESS=true yarn build && yarn build:server",
-    "build:server:only": "DISABLE_SERVERLESS=true NODE_ENV=production next build",
-    "install:workspace": "cd ../../ && yarn install && cd packages/client",
+    "test:dev": "jest --config jest.config.js",
     "prepublishOnly": "rm -rf build && tsc || true",
+    "now-build": "npm run build",
+    "build:next": "npm run build && npm run build:server",
+    "build:docker": "IS_DOCKER=true DISABLE_SERVERLESS=true npm run build && npm run build:server",
+    "build:server:only": "DISABLE_SERVERLESS=true NODE_ENV=production next build",
+    "build:storybook": "STORYBOOK_DISPLAY_WARNING=true DISPLAY_WARNING=true build-storybook -c ./ -c .storybook",
+    "build:babel": "NODE_ENV=development BABEL_ENV=development npx babel build/dist --out-dir build/dist || true",
+    "build:server": "npm run build && npm run build:server:only && tsc || true && tsc --project tsconfig.server.json || true",
+    "install:workspace": "cd ../../ && npm run install && cd packages/client",
     "dev:webpack": "webpack-dev",
     "dev:storybook": "start-storybook -p 9001 -c .storybook",
-    "git:push": "yarn autofix && yarn test",
-    "fix:all": "yarn prettier && yarn styledlint",
+    "dev:analyze": "SHOULD_ANALYZE_BUNDLE=true npm run start:server",
+    "dev:server": "rm -fr dist && rm -fr .next && npm run build:server && npm run start:server",
+    "git:push": "npm run autofix && npm run test",
+    "fix:all": "npm run prettier && npm run styledlint",
     "fix:prettier": "prettier --write src/**/*.{ts,tsx} && prettier --write src/*.{ts,tsx}",
     "lint:style": "stylelint './src/**/*.(tsx|ts)' --config './stylelint.config.js'",
-    "lint:ts": "tslint --format codeFrame --project tsconfig.json --config tslint.json",
-    "build:babel": "NODE_ENV=development BABEL_ENV=development npx babel build/dist --out-dir build/dist || true",
-    "test:dev": "jest --config jest.config.js",
-    "build:server": "yarn build && yarn build:server:only && tsc || true && tsc --project tsconfig.server.json || true",
-    "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
-    "dev:server": "rm -fr dist && rm -fr .next && yarn build:server && yarn start:server"
-  },
-  "_resolutions": {
-    "webpack": "5.0.0-alpha.11"
-  },
-  "__resolutions": {
-    "node-fetch": "2.6.1",
-    "fork-ts-checker-webpack-plugin": "3.1.0",
-    "apollo-link": "1.2.11",
-    "styled-components": "5.2.1"
+    "lint": "eslint '{src,pages,stories}/**/*.{ts,tsx}' --ignore-path .gitignore --quiet",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier:write": "prettier --write './**/*.{js,ts,tsx,scss}' --ignore-path .gitignore",
+    "prettier:check": "prettier --check './**/*.{js,ts,tsx,scss}' --ignore-path .gitignore",
+    "fix": "npm run prettier:write && npm run lint:fix"
   },
   "dependencies": {
-    "next": "10.0.7",
-    "next-server": "9.0.5",
-    "@zeit/next-typescript": "^1.1.1",
+    "@apollo/client": "3.3.11",
+    "@contentful/rich-text-html-renderer": "14.1.2",
+    "history": "5.0.0",
+    "idb": "6.0.0",
+    "idb-keyval": "5.0.4",
+    "mkdirp": "1.0.4",
+    "next": "10.0.8",
     "next-offline": "5.0.3",
     "node-fetch": "2.6.1",
-    "react-amphtml": "^4.0.2",
+    "pino": "6.11.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.1",
-    "styled-components": "5.2.1",
-    "express": "4.17.1",
-    "react-router-dom": "5.2.0",
     "react-router": "5.2.0",
-    "react-router-config": "5.1.1",
-    "history": "5.0.0",
-    "react-apollo": "3.1.5",
-    "apollo-client": "2.6.10",
-    "apollo-boost": "0.4.9",
-    "apollo-link-state": "0.4.2",
-    "apollo-cache-persist": "0.1.1",
-    "pino": "6.11.0",
-    "idb": "4.0.5",
-    "idb-keyval": "3.2.0",
-    "mkdirp": "1.0.4",
-    "image-size": "0.9.3"
+    "react-router-dom": "5.2.0",
+    "styled-components": "5.2.1"
   },
   "devDependencies": {
-    "web-vitals": "1.1.0",
-    "raf": "3.4.1",
-    "fork-ts-checker-webpack-plugin": "3.1.0",
-    "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
-    "@zeit/next-bundle-analyzer": "0.1.2",
-    "danger": "10.6.2",
-    "next-size": "2.1.0",
-    "@types/gapi.client.tagmanager": "2.0.2",
-    "intersection-observer": "0.12.0",
-    "@types/lru-cache": "5.1.0",
-    "@types/image-size": "0.8.0",
-    "@types/mkdirp": "1.0.1",
-    "schema-dts": "0.4.5",
-    "pino-pretty": "4.5.0",
-    "@types/pino": "6.3.5",
-    "graphql": "15.5.0",
-    "@types/graphql": "14.5.0",
-    "@types/history": "4.7.8",
-    "@types/react-router": "5.1.11",
-    "@types/react-router-dom": "5.1.7",
-    "@types/express": "^4.17.11",
-    "@types/webpack-env": "^1.16.0",
-    "typescript": "4.1.5",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "@types/styled-components": "5.1.7",
-    "babel-plugin-styled-components": "1.12.0",
-    "stylelint": "13.10.0",
-    "stylelint-processor-styled-components": "1.10.0",
-    "@storybook/addon-storyshots": "^6.1.18",
-    "@storybook/addon-knobs": "^6.1.18",
-    "@storybook/react": "^6.1.18",
-    "babel-loader": "8.2.2",
-    "@babel/core": "7.12.16",
     "@babel/cli": "7.12.16",
+    "@babel/core": "7.12.16",
+    "@babel/plugin-proposal-decorators": "7.12.13",
     "@babel/plugin-syntax-jsx": "7.12.13",
     "@babel/plugin-syntax-object-rest-spread": "7.8.3",
-    "@babel/plugin-proposal-decorators": "7.12.13",
     "@babel/preset-env": "7.12.16",
-    "jest": "26.6.3",
-    "jest-cli": "26.6.3",
-    "ts-jest": "26.5.1",
-    "jest-styled-components": "7.0.3",
-    "@types/jest": "26.0.20",
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "@next/bundle-analyzer": "10.0.7",
+    "@storybook/addon-a11y": "6.1.18",
+    "@storybook/addon-controls": "6.1.18",
+    "@storybook/addon-docs": "6.1.18",
+    "@storybook/addon-essentials": "6.1.18",
+    "@storybook/addon-graphql": "6.1.18",
+    "@storybook/addon-knobs": "6.1.18",
+    "@storybook/addon-storyshots": "6.1.18",
+    "@storybook/addon-storysource": "6.1.18",
+    "@storybook/react": "6.1.18",
     "@testing-library/react": "11.2.5",
     "@testing-library/react-hooks": "5.0.3",
     "@testing-library/user-event": "12.7.1",
-    "ts-node": "9.1.1",
-    "tslib": "2.1.0",
-    "typescript-styled-plugin": "0.15.0",
+    "@types/eslint": "7.2.6",
+    "@types/express": "^4.17.11",
+    "@types/gapi.client.tagmanager": "2.0.2",
+    "@types/history": "4.7.8",
+    "@types/jest": "26.0.20",
+    "@types/mkdirp": "1.0.1",
+    "@types/pino": "6.3.6",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-router": "5.1.11",
+    "@types/react-router-dom": "5.1.7",
+    "@types/styled-components": "5.1.7",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "4.15.1",
+    "@typescript-eslint/parser": "4.15.1",
+    "babel-loader": "8.2.2",
+    "babel-plugin-styled-components": "1.12.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
-    "ts-loader": "8.0.17",
-    "date-fns": "2.17.0"
+    "contentful": "8.1.8",
+    "contentful-cli": "1.5.35",
+    "danger": "10.6.3",
+    "date-fns": "2.19.0",
+    "eslint": "7.20.0",
+    "eslint-config-prettier": "8.0.0",
+    "eslint-plugin-i18n": "^2.0.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "express": "4.17.1",
+    "fork-ts-checker-webpack-plugin": "6.1.0",
+    "intersection-observer": "0.12.0",
+    "jest": "26.6.3",
+    "jest-cli": "26.6.3",
+    "jest-styled-components": "7.0.3",
+    "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
+    "pino-pretty": "4.7.1",
+    "prettier": "2.2.1",
+    "raf": "3.4.1",
+    "schema-dts": "0.8.2",
+    "stylelint": "13.11.0",
+    "stylelint-processor-styled-components": "1.10.0",
+    "ts-jest": "26.5.1",
+    "tslib": "2.1.0",
+    "typescript": "4.2.3",
+    "typescript-styled-plugin": "0.15.0",
+    "vercel": "21.3.2",
+    "web-vitals": "1.1.0"
   },
   "folders": [
+    "public",
     ".next",
     "server",
     "pages",
@@ -146,6 +151,26 @@
     "typescript",
     "styled-components"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "./**/*.{js,ts,tsx}": [
+      "npm run lint"
+    ],
+    "./**/*.{js,ts,tsx,scss}": [
+      "npm run prettier:write",
+      "git add"
+    ]
+  },
   "prettier": {
     "printWidth": 80,
     "semi": false,
@@ -155,5 +180,353 @@
     "parser": "typescript",
     "trailingComma": "es5",
     "arrowParens": "avoid"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "import",
+      "prettier",
+      "@typescript-eslint",
+      "i18n",
+      "jsx-a11y",
+      "react"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.eslint.json",
+      "ecmaVersion": 2021,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true,
+        "impliedStrict": true
+      }
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "extends": [
+      "plugin:jsx-a11y/recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:import/typescript",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "import/no-unresolved": "off",
+      "eol-last": "error",
+      "semi": [
+        "error",
+        "never"
+      ],
+      "no-multi-spaces": "off",
+      "semi-spacing": "error",
+      "key-spacing": [
+        2
+      ],
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "never"
+        }
+      ],
+      "padded-blocks": [
+        "error",
+        "never"
+      ],
+      "keyword-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 80,
+          "ignoreComments": true,
+          "ignoreUrls": true,
+          "ignoreTemplateLiterals": true,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true
+        }
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "array-bracket-spacing": [
+        "error",
+        "never"
+      ],
+      "quotes": [
+        1,
+        "single",
+        {
+          "allowTemplateLiterals": true,
+          "avoidEscape": true
+        }
+      ],
+      "indent": "off",
+      "no-trailing-spaces": [
+        "error",
+        {
+          "skipBlankLines": true
+        }
+      ],
+      "space-infix-ops": "off",
+      "space-before-blocks": [
+        "error",
+        {
+          "functions": "always",
+          "keywords": "always",
+          "classes": "always"
+        }
+      ],
+      "no-invalid-regexp": "warn",
+      "no-fallthrough": "warn",
+      "no-unreachable": "warn",
+      "no-shadow-restricted-names": "error",
+      "no-new-require": "error",
+      "no-mixed-spaces-and-tabs": "error",
+      "no-empty": "error",
+      "no-undef": "off",
+      "no-dupe-keys": "error",
+      "no-empty-character-class": "error",
+      "no-self-compare": "error",
+      "no-plusplus": [
+        "error",
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ],
+      "valid-typeof": "error",
+      "handle-callback-err": "error",
+      "max-depth": [
+        "warn",
+        4
+      ],
+      "max-statements": [
+        "error",
+        50
+      ],
+      "function-paren-newline": "off",
+      "brace-style": [
+        "error",
+        "1tbs",
+        {
+          "allowSingleLine": false
+        }
+      ],
+      "curly": [
+        "error",
+        "all"
+      ],
+      "import/no-extraneous-dependencies": "off",
+      "arrow-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "space-in-parens": [
+        "error",
+        "never"
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "func-style": [
+        "error",
+        "declaration",
+        {
+          "allowArrowFunctions": true
+        }
+      ],
+      "arrow-body-style": "off",
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "no-return-assign": [
+        "error",
+        "always"
+      ],
+      "func-names": "off",
+      "template-tag-spacing": [
+        "error",
+        "never"
+      ],
+      "func-call-spacing": "error",
+      "no-param-reassign": "warn",
+      "prefer-rest-params": "warn",
+      "import/extensions": "off",
+      "import/no-named-as-default": "off",
+      "import/export": "error",
+      "no-continue": "off",
+      "no-loop-func": "error",
+      "camelcase": "error",
+      "new-cap": "off",
+      "id-length": [
+        "warn",
+        {
+          "min": 2,
+          "properties": "always",
+          "exceptions": [
+            "x",
+            "i",
+            "R",
+            "_"
+          ]
+        }
+      ],
+      "id-blacklist": [
+        "error",
+        "err",
+        "e",
+        "_cb",
+        "callback"
+      ],
+      "object-shorthand": [
+        "warn",
+        "always",
+        {
+          "avoidQuotes": true
+        }
+      ],
+      "valid-jsdoc": [
+        "off"
+      ],
+      "no-case-declarations": "off",
+      "strict": "off",
+      "no-underscore-dangle": "off",
+      "no-mixed-requires": "off",
+      "no-process-exit": "off",
+      "no-warning-comments": "off",
+      "no-confusing-arrow": "off",
+      "require-jsdoc": "off",
+      "class-methods-use-this": "off",
+      "no-process-env": "off",
+      "prefer-reflect": "off",
+      "nonblock-statement-body-position": "off",
+      "prefer-destructuring": "off",
+      "prefer-template": "off",
+      "global-require": "off",
+      "no-invalid-this": "off",
+      "prefer-const": "error",
+      "no-undefined": "off",
+      "prefer-spread": "off",
+      "no-implicit-coercion": "off",
+      "no-bitwise": "off",
+      "no-use-before-define": "off",
+      "import/no-duplicates": "off",
+      "no-duplicate-imports": "off",
+      "import/no-namespace": "off",
+      "react/prop-types": "off",
+      "react/display-name": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/no-empty-function": "warn",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "interface",
+          "format": [
+            "PascalCase"
+          ]
+        },
+        {
+          "selector": "typeAlias",
+          "format": [
+            "PascalCase"
+          ]
+        },
+        {
+          "selector": [
+            "enumMember"
+          ],
+          "format": [
+            "PascalCase"
+          ]
+        },
+        {
+          "selector": [
+            "enum"
+          ],
+          "format": [
+            "PascalCase"
+          ],
+          "custom": {
+            "regex": "[A-Z]Kind$",
+            "match": false
+          }
+        },
+        {
+          "selector": "variable",
+          "types": [
+            "boolean"
+          ],
+          "format": [
+            "PascalCase",
+            "UPPER_CASE"
+          ],
+          "leadingUnderscore": "allowSingleOrDouble",
+          "trailingUnderscore": "allowSingleOrDouble",
+          "prefix": [
+            "is",
+            "should",
+            "has",
+            "can",
+            "did",
+            "will",
+            "IS",
+            "SHOULD",
+            "HAS",
+            "CAN",
+            "DID",
+            "WILL"
+          ]
+        }
+      ],
+      "@typescript-eslint/ban-types": "warn",
+      "@typescript-eslint/ban-ts-comment": "warn",
+      "@typescript-eslint/prefer-as-const": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/no-parameter-properties": "off",
+      "@typescript-eslint/prefer-interface": "off",
+      "@typescript-eslint/explicit-member-accessibility": [
+        "error",
+        {
+          "accessibility": "explicit",
+          "overrides": {
+            "accessors": "explicit",
+            "constructors": "no-public",
+            "methods": "explicit",
+            "properties": "off",
+            "parameterProperties": "explicit"
+          }
+        }
+      ],
+      "@typescript-eslint/no-shadow": [
+        "error"
+      ],
+      "@typescript-eslint/no-non-null-assertion": "off"
+    },
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    }
   }
 }

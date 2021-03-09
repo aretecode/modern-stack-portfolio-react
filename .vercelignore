@@ -1,4 +1,6 @@
-.next
+#@todo
+#.next
+
 dist
 node_modules
 README.md
@@ -14,3 +16,4 @@ stylelint.config.js
 .storybook
 __tests__
 stories
+.todo

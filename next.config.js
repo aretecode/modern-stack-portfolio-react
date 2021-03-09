@@ -2,6 +2,7 @@
 /**
  * @todo might be able to put more of these in build-time only
  * @see https://github.com/zeit/next.js/issues/876
+ * @see https://github.com/vercel/next.js/discussions/13810
  */
 const withOffline = require('next-offline')
 const { env, envWithoutNodeEnv } = require('./env')
@@ -23,6 +24,9 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  * @see https://nextjs.org/docs#build-time-configuration
  */
 const nextConfig = {
+  images: {
+    domains: ['noccumpr-cdn.sirv.com'],
+  },
   amp: 'hybrid',
   env: envWithoutNodeEnv,
   target:
@@ -58,50 +62,32 @@ const nextConfig = {
 
     const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
     const plugin = new ForkTsCheckerWebpackPlugin({
-      tsconfig: require.resolve('./tsconfig.json'),
-      useTypescriptIncrementalApi: true,
-      checkSyntacticErrors: true,
-      watch: [resolveApp('src'), resolveApp('pages')],
-      reportFiles: [
-        // only src, not __tests__
-        'src/**/*.{ts,tsx}',
-        '!**/__tests__/*',
-      ],
+      typescript: {
+        configFile: require.resolve('./tsconfig.eslint.json'),
+        diagnosticOptions: {
+          syntactic: true,
+          semantic: true,
+          declaration: false,
+          global: false,
+        },
+      },
     })
     config.plugins.push(plugin)
 
     return config
   },
+  /** next-offline typings @todo */
   workboxOpts: {
     swDest: 'static/service-worker.js',
-    runtimeCaching: [
-      {
-        urlPattern: /^https?.*/,
-        handler: 'networkFirst',
-        options: {
-          cacheName: 'https-calls',
-          networkTimeoutSeconds: 15,
-          expiration: {
-            maxEntries: 150,
-            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-    ],
   },
 }
 
 const workboxConfig = withOffline(nextConfig)
 
 function withBuildTimeDeps() {
-  const withSize = require('next-size')
-  const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
-  const sizeConfig = withSize(workboxConfig)
+  const withBundleAnalyzer = require('@next/bundle-analyzer')
   return withBundleAnalyzer({
-    ...sizeConfig,
+    ...workboxConfig,
     analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
     bundleAnalyzerConfig: {
@@ -118,4 +104,7 @@ function withBuildTimeDeps() {
 }
 
 module.exports =
-  process.env.IS_DOCKER === undefined ? withBuildTimeDeps() : workboxConfig
+  process.env.IS_DOCKER === undefined &&
+  process.env.SHOULD_ANALYZE_BUNDLE !== undefined
+    ? withBuildTimeDeps()
+    : workboxConfig

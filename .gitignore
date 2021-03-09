@@ -1,8 +1,36 @@
-node_modules
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Exclude .npm for calculation of package size on Coverlay
+.npm
+# Output of 'npm pack'
+*.tgz
+
+# System Files
+.DS_Store
 .DS_STORE
-build
-.next
-dist
+Thumbs.db
+
+# Local only files
 .scratch
+@@
+.tmp
 .todo
+
+# Secret local only files
+.secret
+.env
+certs
+
+# Dependency directories & compiled output
+node_modules
+dist
+build
+out
 .vercel
+.next
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log
