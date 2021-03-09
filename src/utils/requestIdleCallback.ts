@@ -1,8 +1,7 @@
 /**
+ * @idea import from next - @see https://github.com/vercel/next.js/blob/canary/packages/next/client/request-idle-callback.ts
  * @api @see https://developers.google.com/web/updates/2015/08/using-requestidlecallback
  * @see https://github.com/Microsoft/TypeScript/issues/21309
- *
- * @todo we could also set it on global as side effect
  */
 import { EMPTY_OBJ } from './EMPTY'
 
@@ -18,14 +17,12 @@ export type RequestIdleCallbackFunctionArgType = (
   deadline: RequestIdleCallbackDeadline
 ) => void
 export type RequestIdleCallbackFunctionType = (
-  callback: RequestIdleCallbackFunctionArgType,
+  callbackNative: RequestIdleCallbackFunctionArgType,
   opts?: RequestIdleCallbackOptions
 ) => RequestIdleCallbackHandle
 export type CancelIdleCallbackFunctionType = (
   handle: RequestIdleCallbackHandle
 ) => void
-
-const IS_BROWSER = typeof window === 'object'
 
 /**
  * @todo add env for #compat builds
@@ -33,7 +30,7 @@ const IS_BROWSER = typeof window === 'object'
  *       the modern build does not include a polyfill
  */
 export const requestIdleCallback: RequestIdleCallbackFunctionType =
-  IS_BROWSER && 'requestIdleCallback' in window
+  typeof window === 'object' && 'requestIdleCallback' in window
     ? (window as any).requestIdleCallback
     : process.env.NODE_ENV === 'test'
     ? (cb: RequestIdleCallbackFunctionArgType) => {
@@ -50,6 +47,5 @@ export const requestIdleCallback: RequestIdleCallbackFunctionType =
         return setTimeout(handleTimeout, 1)
       }
 
-export const cancelIdleCallback: CancelIdleCallbackFunctionType = IS_BROWSER
-  ? (window as any).cancelIdleCallback
-  : clearTimeout
+export const cancelIdleCallback: CancelIdleCallbackFunctionType =
+  typeof window === 'object' ? (window as any).cancelIdleCallback : clearTimeout

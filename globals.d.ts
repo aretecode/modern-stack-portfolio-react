@@ -1,24 +1,35 @@
-// if we import this, it fails
-// import { NormalizedCacheObject } from 'apollo-boost'
-
 interface NormalizedCacheObject {
   [key: string]: unknown
 }
 
+type RequestIdleCallbackFunctionType = (
+  callbackNative: (deadline: {
+    readonly didTimeout: boolean
+    timeRemaining: () => number
+  }) => void,
+  opts?: { timeout: number }
+) => any
+
+/** @lint typescript var usage, not `var` as a variable */
+/* eslint-disable no-var */
+declare var dataLayer: any[]
+
 declare global {
   interface Window {
+    readonly requestIdleCallback?: RequestIdleCallbackFunctionType
+    readonly cancelIdleCallback?: (handle: any) => void
     readonly __LAST_PUBLISH_TIMESTAMP__: number
     readonly __APOLLO_STATE__: NormalizedCacheObject
-    readonly __APP_STATE__: { [key: string]: unknown }
-    readonly __ROUTER_STATE__: { [key: string]: unknown }
+    readonly dataLayer: any[]
   }
 }
 
 interface Window {
+  readonly requestIdleCallback?: RequestIdleCallbackFunctionType
+  readonly cancelIdleCallback?: (handle: any) => void
   readonly __LAST_PUBLISH_TIMESTAMP__: number
   readonly __APOLLO_STATE__: { [key: string]: unknown }
-  readonly __APP_STATE__: { [key: string]: unknown }
-  readonly __ROUTER_STATE__: { [key: string]: unknown }
+  readonly dataLayer: any[]
 }
 
 declare namespace NodeJS {
@@ -30,13 +41,13 @@ declare namespace NodeJS {
     READONLY: 'true' | 'false' | undefined
     IS_NOW: 'true' | 'false' | undefined
 
+    CONTENTFUL_SPACE_ID: string
+    CONTENTFUL_TOKEN: string
     GOOGLE_TAG_MANAGER_WEB_ID: string
     GOOGLE_TAG_MANAGER_AMP_ID: string
     GRAPHQL_API_URL: string
 
-    /**
-     * probably will remove this
-     */
+    /** @idea probably will remove this */
     WEBSITE_ORIGIN?: string
   }
   interface Process {
@@ -47,6 +58,7 @@ declare namespace NodeJS {
 
 declare namespace JSX {
   interface IntrinsicElements {
+    'i-amphtml-sizer-intrinsic': any
     'amp-img': any
     'amp-google-document-embed': any
     'amp-analytics': any
