@@ -129,11 +129,7 @@ export const StyledSummary = styled.p`
 
 export const StyledLabel = styled.h2`
   transition: color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  color: ${props =>
-    props.theme.isDark
-      ? 'var(--color-dark-purple)'
-      : 'var(--color-dark-background-main)'};
-
+  color: var(--theme-label-color);
   margin: 0;
   margin-top: -0.5rem;
   font-size: 1.2rem;
