@@ -19,7 +19,7 @@
  * @see https://www.searchenginejournal.com/maximize-reach-using-googles-knowledge-graph/144579/
  */
 import * as React from 'react'
-import * as Schema from 'schema-dts'
+import type * as Schema from 'schema-dts'
 import type { WorkType, BasicsType, ResumeType } from '../typings'
 import Script from './Script'
 

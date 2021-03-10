@@ -204,8 +204,8 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
     max-width: 28rem;
   }
   @media (min-width: 1400px) {
-    height: 56vh;
     max-width: 32rem;
+    object-position: top;
   }
   @media (min-width: 2000px) {
     max-height: 75vh;
@@ -229,7 +229,7 @@ export const StyledFigure = styled.figure`
   }
 
   @media (min-width: 1400px) {
-    max-height: 30vh;
+    max-height: 60vh;
   }
   @media (min-width: 2000px) {
     max-height: 40vh;
