@@ -9,7 +9,7 @@ describe('Script', () => {
   })
   it('should use "application/ld+json" when children is an object', () => {
     const children = { isTest: true }
-    const { container } = render(<Script children={children} />)
+    const { container } = render(<Script>{children}</Script>)
 
     expect(container.querySelector('script').getAttribute('type')).toEqual(
       'application/ld+json'
@@ -21,7 +21,7 @@ describe('Script', () => {
   })
   it('should work when children is a string', () => {
     const children = { isTest: true }
-    const { container } = render(<Script children={'alert(1);'} />)
+    const { container } = render(<Script>{'alert(1);'}</Script>)
 
     expect(container.innerHTML).toEqual('<script>alert(1);</script>')
   })

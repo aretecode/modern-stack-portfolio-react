@@ -12,10 +12,10 @@ import {
 /**
  * @see https://usehooks.com/useLocalStorage/
  */
-export function useIndexDb(
-  key: string,
+export function useIndexDb<Key extends string, Value extends Serialized>(
+  key: Key,
   initialValue?: Serialized
-): DarkModeHookArrayType {
+): [any, (v: Serialized) => Promise<void>] {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState(() => {
@@ -27,7 +27,7 @@ export function useIndexDb(
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValue = async(value: SerializedOrCallbackToSerialized) => {
+  const setValue = async (value: SerializedOrCallbackToSerialized) => {
     // Allow value to be a function so we have same API as useState
     const valueToStore =
       typeof value === 'function' ? value(storedValue as Serialized) : value
@@ -37,5 +37,5 @@ export function useIndexDb(
     await portfolioKeyValStore.set(key as any, valueToStore)
   }
 
-  return [storedValue, setValue] as DarkModeHookArrayType
+  return [storedValue, setValue]
 }

@@ -7,7 +7,7 @@ describe('Link', () => {
     const { container } = render(<StyledLink to="https://google.ca" />)
     expect(container.innerHTML).toContain('<a')
   })
-  it.skip('should render a react-router-dom link (or next link) when using relative links', () => {
+  it('should render a link  when using relative links', () => {
     const { container } = render(<StyledLink to="/eh" />)
     expect(container.innerHTML).toContain('<a')
   })

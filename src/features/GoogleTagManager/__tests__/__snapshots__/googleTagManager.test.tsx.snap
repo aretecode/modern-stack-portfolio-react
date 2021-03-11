@@ -2,17 +2,30 @@
 
 exports[`GoogleTagManager should export the same stuff 1`] = `
 Object {
-  "AnalyticsContainer": [Function],
   "GoogleTagManagerBodyScript": [Function],
   "GoogleTagManagerHeaderScript": [Function],
-  "analyticsContainer": AnalyticsContainer {},
-  "toGlobalThis": [Function],
   "toGoogleTagManager": [Function],
+  "trackColorChange": [Function],
   "trackEvent": [Function],
+  "trackPageView": [Function],
 }
 `;
 
 exports[`GoogleTagManager should render *in* AMP mode 1`] = `
+<div>
+  <script>
+    window.dataLayer = []; const lgtm = typeof requestIdleCallback === 'function' ? requestIdleCallback : (fn) =&gt; fn(); lgtm(() =&gt; { window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'}); var f=document.getElementsByTagName('script')[0],j=document.createElement('script'); j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=WEB_ID';f.parentNode.insertBefore(j,f); })
+  </script>
+</div>
+`;
+
+exports[`GoogleTagManager should render *in* AMP mode 2`] = `
+<div>
+  <noscript />
+</div>
+`;
+
+exports[`GoogleTagManager should render in *non* AMP mode 1`] = `
 <div>
   <script
     async=""
@@ -22,25 +35,11 @@ exports[`GoogleTagManager should render *in* AMP mode 1`] = `
 </div>
 `;
 
-exports[`GoogleTagManager should render *in* AMP mode 2`] = `
+exports[`GoogleTagManager should render in *non* AMP mode 2`] = `
 <div>
   <amp-analytics
     config="https://www.googletagmanager.com/amp.json?id=AMP_ID&gtm.url=SOURCE_URL"
     data-credentials="include"
   />
-</div>
-`;
-
-exports[`GoogleTagManager should render in *non* AMP mode 1`] = `
-<div>
-  <script>
-    window.dataLayer = []; const lgtm = typeof requestIdleCallback === 'function' ? requestIdleCallback : (fn) =&gt; fn(); lgtm(() =&gt; { window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'}); var f=document.getElementsByTagName('script')[0],j=document.createElement('script'); j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=WEB_ID';f.parentNode.insertBefore(j,f); })
-  </script>
-</div>
-`;
-
-exports[`GoogleTagManager should render in *non* AMP mode 2`] = `
-<div>
-  <noscript />
 </div>
 `;

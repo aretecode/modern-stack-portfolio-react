@@ -339,10 +339,7 @@
         "error",
         "never"
       ],
-      "space-before-function-paren": [
-        "error",
-        "never"
-      ],
+      "space-before-function-paren": "off",
       "func-style": [
         "error",
         "declaration",

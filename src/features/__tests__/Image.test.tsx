@@ -9,7 +9,9 @@ describe('Image', () => {
     expect(container.innerHTML).toContain('<img')
   })
   it('should render an "amp-img" when providing an AmpContext', () => {
-    jest.spyOn(useAmpModule, 'useAmp').mockImplementation(() => true)
+    const spy = jest
+      .spyOn(useAmpModule, 'useAmp')
+      .mockImplementation(() => true)
 
     const { container } = render(
       <>
@@ -17,9 +19,13 @@ describe('Image', () => {
       </>
     )
     expect(container.innerHTML).toContain('<amp-img')
+
+    spy.mockRestore()
   })
   it('should render an "amp-img" with only amp attributes', () => {
-    jest.spyOn(useAmpModule, 'useAmp').mockImplementation(() => true)
+    const spy = jest
+      .spyOn(useAmpModule, 'useAmp')
+      .mockImplementation(() => true)
 
     const src =
       'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
@@ -31,5 +37,6 @@ describe('Image', () => {
     const img = container.querySelector('[src]')!
     expect(img.getAttribute('src')).toEqual(src)
     expect(img.getAttribute('ignored')).toEqual(null)
+    spy.mockRestore()
   })
 })

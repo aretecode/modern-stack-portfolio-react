@@ -1,8 +1,8 @@
 import { portfolioKeyValStore } from '../storage'
-import { defaultApolloStatePortfolio } from '../constants'
+import { defaultApolloStatePortfolio } from '../../__tests__/constants'
 
 describe('storage', () => {
-  it('should work in node using a map', async () => {
+  it('should work in node using a map', async() => {
     const initialValue = await portfolioKeyValStore.get('portfolio')
     expect(initialValue).toEqual(undefined)
 

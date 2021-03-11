@@ -34,7 +34,7 @@ export const portfolioKeyValStore = {
   },
   async set<Key extends keyof SpecificPortfolioSchemaType>(key: Key, val: any) {
     if (IS_REALM_WITHOUT_INDEX_DB) {
-      return inMemoryStore.get(key)
+      return inMemoryStore.set(key, val)
     } else {
       return await set(key, val)
     }

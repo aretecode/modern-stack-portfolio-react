@@ -63,7 +63,7 @@ const nextConfig = {
     const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
     const plugin = new ForkTsCheckerWebpackPlugin({
       typescript: {
-        configFile: require.resolve('./tsconfig.eslint.json'),
+        configFile: require.resolve('./tsconfig.dev.json'),
         diagnosticOptions: {
           syntactic: true,
           semantic: true,

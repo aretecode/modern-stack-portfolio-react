@@ -6,6 +6,7 @@ const { pathsToModuleNameMapper } = require('ts-jest/utils')
  */
 const setupJestConfig = (dirName = '<rootDir>') => {
   const jestConfig = {
+    timers: 'modern',
     verbose: true,
     transformIgnorePatterns: [
       '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$',

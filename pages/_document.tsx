@@ -158,13 +158,13 @@ export default class MyDocument extends Document<DocumentProps> {
           />
 
           {shouldSkipAnalytics === false && (
-            <GoogleTagManagerHeaderScript isAmp={isAmp} key="gtag-head" />
+            <GoogleTagManagerHeaderScript key="gtag-head" />
           )}
           {isAmp === true && <AmpServiceWorkerHeadScript key="worker-head" />}
         </Head>
         <body>
           {shouldSkipAnalytics === false && (
-            <GoogleTagManagerBodyScript isAmp={isAmp} key="gtag-body" />
+            <GoogleTagManagerBodyScript key="gtag-body" />
           )}
           <Main />
           {isAmp === true && <AmpServiceWorkerBodyScript key="worker-body" />}

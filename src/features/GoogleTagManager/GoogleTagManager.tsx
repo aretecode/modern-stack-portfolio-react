@@ -9,7 +9,7 @@ import Script from '../Script'
 const GOOGLE_TAG_MANAGER_AMP_ID = process.env.GOOGLE_TAG_MANAGER_AMP_ID
 const GOOGLE_TAG_MANAGER_WEB_ID = process.env.GOOGLE_TAG_MANAGER_WEB_ID
 
-export function GoogleTagManagerHeaderScript(props: { isAmp?: boolean }) {
+export function GoogleTagManagerHeaderScript(props?: unknown) {
   const isAmp = useAmp()
 
   if (isAmp) {
