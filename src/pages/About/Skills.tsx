@@ -41,8 +41,8 @@ export const StyledSkillItem = styled.li`
 
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: var(--theme-skills-item-color);
-  color: var(--theme-skills-item-background);
+  background-color: var(--theme-skills-item-background);
+  color: var(--theme-skills-item-color);
 
   border-radius: 6px;
 `

@@ -32,9 +32,9 @@ export const aboutMePageLightStyles = css`
   --theme-about-me-divider-top: #4a6572;
   --theme-about-me-divider-bottom: #000;
   --theme-skills-background: #fff;
-  --theme-skills-color: '#1b1b1b';
-  --theme-skills-item-background: #fff;
-  --theme-skills-item-color: '#1b1b1b';
+  --theme-skills-color: #1b1b1b;
+  --theme-skills-item-background: #eee;
+  --theme-skills-item-color: #1b1b1b;
   --theme-label-color: #232f34;
   --theme-about-me-article-background: #fff;
   --theme-about-me-article-color: #000;
