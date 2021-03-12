@@ -123,4 +123,4 @@ export function PortfolioPage({
   )
 }
 
-export default PortfolioPage
+export default React.memo(PortfolioPage)
