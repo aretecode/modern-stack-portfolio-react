@@ -93,7 +93,7 @@ export function PortfolioPage({
   const fx = React.useMemo(
     () =>
       isAmp
-        ? ({ 'amp-fx': 'parallax', 'data-parallax-factor': '1.3' } as const)
+        ? ({ 'amp-fx': 'parallax', 'data-parallax-factor': '1.8' } as const)
         : {},
     []
   )
