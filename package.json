@@ -46,7 +46,7 @@
     "next": "10.0.8",
     "next-offline": "5.0.3",
     "node-fetch": "2.6.1",
-    "pino": "6.11.1",
+    "pino": "6.11.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.1",
     "react-router": "5.2.0",
