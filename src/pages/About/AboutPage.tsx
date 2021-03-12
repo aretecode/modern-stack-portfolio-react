@@ -60,6 +60,7 @@ export default React.memo(function AboutPage({
       <PortfolioHead
         titleText={titleText}
         description={summary}
+        isProfilePage={true}
         {...person}
         {...rest}
       />
