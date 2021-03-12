@@ -31,7 +31,7 @@ import { Skills } from './Skills'
 import AboutMePicture from './AboutMePicture'
 import AmpAboutPage from './amp/AmpAboutPage'
 
-export default function AboutPage({
+export default React.memo(function AboutPage({
   person,
   work,
   openSource,
@@ -79,7 +79,18 @@ export default function AboutPage({
                   {label.split('⇔').pop()}
                 </StyledLabel>
                 <StyledTextLineSeparator />
-                <StyledSummary>{summary}</StyledSummary>
+                {React.useMemo(
+                  () =>
+                    summary
+                      .split('\n')
+                      .filter(Boolean)
+                      .map(paragraph => (
+                        <StyledSummary key={paragraph.slice(0, 3)}>
+                          {paragraph}
+                        </StyledSummary>
+                      )),
+                  [summary]
+                )}
                 <StyledContactNav>
                   <section>
                     <header>Phone</header>
@@ -102,4 +113,4 @@ export default function AboutPage({
       <StyledFooter name={name} openSource={openSource} />
     </>
   )
-}
+})
