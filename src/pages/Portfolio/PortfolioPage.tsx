@@ -6,7 +6,7 @@ import { StyledCard } from '../../features/Card'
 import { StyledMain } from '../../features/Main'
 import Picture from '../..//features/Picture/Picture'
 import Footer from '../../features/Footer'
-import type { WorkType, ResumeType } from '../../typings'
+import type { WorkType, ResumeEverythingType } from '../../typings'
 import {
   StyledLink,
   StyledGrid,
@@ -88,7 +88,7 @@ export function PortfolioPage({
   work,
   openSource,
   ...rest
-}: ResumeType) {
+}: ResumeEverythingType) {
   const isAmp = useAmp()
   const fx = React.useMemo(
     () =>

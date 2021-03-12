@@ -1,11 +1,11 @@
 /** @file download data on the server so that it does not need to be fetched on the browser. runs at compile time and run time. */
 import type { GetStaticProps } from 'next'
-import type { ResumeResponse, ResumeType } from '../typings'
+import type { ResumeResponse, ResumeEverythingType } from '../typings'
 import ResumeQuery from './Resume'
 import { initApolloClient } from './apolloClient'
 import { logger } from '../log'
 
-export const getStaticProps: GetStaticProps<ResumeType> = async context => {
+export const getStaticProps: GetStaticProps<ResumeEverythingType> = async context => {
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<ResumeResponse>({
     query: ResumeQuery,
@@ -25,20 +25,23 @@ export const getStaticProps: GetStaticProps<ResumeType> = async context => {
     // logger.debug(gqlResponse.data)
   }
 
+  const { website } = gqlResponse.data
+
   return {
     props: {
-      iconBaseUrl: gqlResponse.data.website.iconBaseUrl,
-      iconSvgUrl: gqlResponse.data.website.iconSvgUrl,
-      openSource: gqlResponse.data.website.projectsCollection.items[0],
+      iconBaseUrl: website.iconBaseUrl,
+      iconSvgUrl: website.iconSvgUrl,
+      openSource: website.projectsCollection.items[0],
+      highlightsPicture: website.highlightsPicture,
       person: {
-        ...gqlResponse.data.website.person,
-        profiles: gqlResponse.data.website.person.profilesCollection.items,
+        ...website.person,
+        profiles: website.person.profilesCollection.items,
       },
-      work: gqlResponse.data.website.workCollection.items.map(item => ({
+      work: website.workCollection.items.map(item => ({
         ...item,
         summary: (item as any).summary.json.content[0].content[0].value,
         highlights: (item as any).highlights.json.content[0].content[0].value,
       })),
-    } as ResumeType,
+    } as ResumeEverythingType,
   }
 }

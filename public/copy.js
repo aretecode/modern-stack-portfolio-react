@@ -75,6 +75,7 @@ async function copyFilesToDist() {
   await copyFromTo('public/robots.txt', 'robots.txt')
   await copyFromTo('public/manifest.json', 'manifest.json')
   await copyFromTo('public/sitemap.xml', 'sitemap.xml')
+  await copyFromTo('public/structured.json', 'structured.json')
   console.debug('[scripts] done copying')
 }
 

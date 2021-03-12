@@ -3,7 +3,7 @@
  * @see https://github.com/jakearchibald/idb#keyval-store
  */
 import { get, set, del, clear, keys } from 'idb-keyval'
-import type { ResumeType } from './typings'
+import type { ResumeEverythingType } from './typings'
 
 /** @lint configure https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md to allow */
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -14,7 +14,7 @@ const IS_REALM_WITHOUT_INDEX_DB =
 export interface SpecificPortfolioSchemaType {
   portfolio: {
     key: string
-    value: ResumeType
+    value: ResumeEverythingType
   }
 }
 

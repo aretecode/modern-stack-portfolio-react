@@ -157,6 +157,12 @@ export interface WorkType {
   highlights: string[] | string
   image: ImageObjectType
 }
+
+export interface ResumeExtraType {
+  iconBaseUrl?: string
+  iconSvgUrl?: string
+  highlightsPicture: ImageObjectType
+}
 export interface ResumeType {
   /** currently optional */
   id?: string
@@ -164,8 +170,9 @@ export interface ResumeType {
   work: WorkType[]
   openSource: OpenSourceType
 }
+export type ResumeEverythingType = ResumeType & ResumeExtraType
 
-export interface WebsiteType {
+export interface WebsiteType extends ResumeExtraType {
   id?: string
   person: BasicsType & {
     profilesCollection: {
@@ -179,8 +186,6 @@ export interface WebsiteType {
   projectsCollection: {
     items: OpenSourceType
   }
-  iconBaseUrl?: string
-  iconSvgUrl?: string
 }
 export interface ResumeResponse {
   website: WebsiteType

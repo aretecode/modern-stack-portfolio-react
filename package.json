@@ -6,9 +6,10 @@
   "main": ".next/server/index.js",
   "scripts": {
     "dev": "next",
-    "build": "rm -fr .next && next build && npm run copy && npm run export",
+    "build": "rm -fr .next && npm run generate && next build && npm run copy && npm run export",
     "export": "next export",
     "copy": "node public/copy",
+    "generate": "node public/meta",
     "start": "next start",
     "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
     "test": "jest",

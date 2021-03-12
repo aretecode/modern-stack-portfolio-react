@@ -15,6 +15,7 @@ Thumbs.db
 @@
 .tmp
 .todo
+.env*.local
 
 # Secret local only files
 .secret

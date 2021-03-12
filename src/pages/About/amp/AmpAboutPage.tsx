@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type { ResumeType } from '../../../typings'
+import type { ResumeEverythingType } from '../../../typings'
 import { PortfolioHead } from '../../../features/PortfolioHead'
 import { PortfolioSchema } from '../../../features/PortfolioSchema'
 import { SocialProfiles } from '../../../features/SocialProfiles'
@@ -27,7 +27,7 @@ export default function AboutPage({
   work,
   openSource,
   ...rest
-}: ResumeType) {
+}: ResumeEverythingType) {
   const {
     name,
     label = '',

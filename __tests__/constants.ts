@@ -1,4 +1,4 @@
-import { ResumeType } from '../src/typings'
+import { ResumeEverythingType } from '../src/typings'
 
 export const nonApollo = {
   repoUrl: 'https://github.com/aretecode/modern-stack-web-portfolio',
@@ -6,7 +6,7 @@ export const nonApollo = {
     'https://noccumpr-cdn.sirv.com/images/james-wiens-work-experience-combined-filtered.png',
 } as const
 
-export const defaultApolloStatePortfolio: ResumeType = {
+export const defaultApolloStatePortfolio: ResumeEverythingType = {
   person: {
     orcid: '',
     name: '',
@@ -75,4 +75,14 @@ export const defaultApolloStatePortfolio: ResumeType = {
       srcSizes: [['', '', 0, 0]],
     },
   },
+  highlightsPicture: {
+    title: 'eh',
+    url: '',
+    width: 0,
+    height: 0,
+    srcSizes: [['', '', 0, 0]],
+  },
+  iconBaseUrl: '',
+  iconSvgUrl: '',
+  id: '',
 }

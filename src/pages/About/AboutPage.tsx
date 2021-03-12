@@ -6,7 +6,7 @@
  */
 import * as React from 'react'
 import { useAmp } from 'next/amp'
-import type { ResumeType } from '../../typings'
+import type { ResumeEverythingType } from '../../typings'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { AnimateHeightContextProvider } from '../../features/AnimateHeight/AnimateHeightContext'
@@ -31,18 +31,13 @@ import { Skills } from './Skills'
 import AboutMePicture from './AboutMePicture'
 import AmpAboutPage from './amp/AmpAboutPage'
 
-export default React.memo(function AboutPage({
-  person,
-  work,
-  openSource,
-  ...rest
-}: ResumeType) {
+export default React.memo(function AboutPage(props: ResumeEverythingType) {
   const isAmp = useAmp()
-
   if (isAmp) {
-    return <AmpAboutPage person={person} work={work} openSource={openSource} />
+    return <AmpAboutPage {...props} />
   }
 
+  const { person, work, openSource, ...rest } = props
   const {
     name,
     label = '',
@@ -55,6 +50,7 @@ export default React.memo(function AboutPage({
     image,
   } = person
   const titleText = `About ${name}`
+
   return (
     <>
       <PortfolioHead
@@ -64,7 +60,7 @@ export default React.memo(function AboutPage({
         {...person}
         {...rest}
       />
-      <PortfolioSchema person={person} work={work} openSource={openSource} />
+      <PortfolioSchema {...props} />
       <StyledHeader name={name} />
       <AnimateHeightContextProvider>
         <StyledAboutMeMain>
@@ -86,7 +82,7 @@ export default React.memo(function AboutPage({
                       .split('\n')
                       .filter(Boolean)
                       .map(paragraph => (
-                        <StyledSummary key={paragraph.slice(0, 3)}>
+                        <StyledSummary key={paragraph.slice(0, 10)}>
                           {paragraph}
                         </StyledSummary>
                       )),

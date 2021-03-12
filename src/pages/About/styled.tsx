@@ -44,19 +44,19 @@ export const StyledCardDivider = styled.hr.attrs({
 })`
   color: var(--color-text-body);
   display: inline-flex;
-  padding: 0 0.5rem;
-
   width: 90%;
   border: none;
   border-top: 1px solid var(--theme-about-me-separator-top);
   border-bottom: 1px solid var(--theme-about-me-separator-bottom);
-  opacity: 0.1;
+  opacity: 0.2;
   margin: 0 auto;
   margin-top: 1rem;
   padding: 0;
   height: 2px;
   order: 1;
-  transition: margin-top 0.96s ease-in-out, margin-left 0.24s ease-in-out;
+  transition: margin-top 0.96s ease-in-out, margin-left 0.24s ease-in-out,
+    opacity 0.24s ease-in-out, border-top 0.24s ease-in-out,
+    border-bottom 0.24s ease-in-out, height 0.24s ease-in-out;
 
   @media (max-width: 1023px) {
     margin-bottom: 1rem;
@@ -70,10 +70,12 @@ export const StyledCardDivider = styled.hr.attrs({
             margin-top: 3.5rem;
             width: 45%;
             margin-left: 50%;
+            height: 2px;
           `
         : css`
             visibility: hidden;
             margin: 0;
+            height: 0;
           `};
   }
 `
