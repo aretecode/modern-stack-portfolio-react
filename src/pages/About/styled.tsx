@@ -207,6 +207,8 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
   @media (min-width: 2000px) {
     max-height: 75vh;
     max-width: unset;
+    height: 150%;
+    object-position: 0 80%;
   }
 `
 
@@ -295,5 +297,8 @@ export const StyledAboutMeArticle = styled.article`
   }
   @media (max-width: 480px) {
     margin: 8rem 1rem 2rem;
+  }
+  @media (min-width: 2000px) {
+    max-width: 1600px;
   }
 `
