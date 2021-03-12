@@ -43,6 +43,7 @@ export function renderWork(work: WorkType, index: number) {
             <StyledCardImage
               loading={index === 0 ? 'eager' : 'lazy'}
               {...imgProps}
+              srcSizes={work.image.srcSizes}
               {...fx.card}
             />
           )}

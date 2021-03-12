@@ -42,6 +42,7 @@ export default function ResponsiveImage({
         width={image.width}
         height={image.height}
         alt={image.description}
+        srcSizes={image.srcSizes}
       />
     </PictureWithAmpSupport>
   )
