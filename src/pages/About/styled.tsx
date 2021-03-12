@@ -48,8 +48,8 @@ export const StyledCardDivider = styled.hr.attrs({
 
   width: 90%;
   border: none;
-  border-top: 1px solid var(--color-dark-background-lighter);
-  border-bottom: 1px solid var(--color-dark-background-dark);
+  border-top: 1px solid var(--theme-about-me-separator-top);
+  border-bottom: 1px solid var(--theme-about-me-separator-bottom);
   opacity: 0.1;
   margin: 0 auto;
   margin-top: 1rem;
@@ -86,13 +86,10 @@ export function CardDivider(props: {}) {
 export const StyledTextLineSeparator = styled.hr.attrs({
   role: 'separator',
 })`
-  color: var(--color-text-body);
   display: inline-flex;
-  padding: 0 0.5rem;
-
-  color: var(--color-text-secondary);
+  color: var(--theme-about-me-divider-top);
   border: none;
-  border-top: 5px solid var(--color-text-secondary);
+  border-top: 5px solid var(--theme-about-me-divider-top);
   margin: 0;
   padding: 0;
   height: 0.75rem;
