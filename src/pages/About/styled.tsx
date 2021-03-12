@@ -209,6 +209,12 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
     max-width: unset;
     height: 150%;
     object-position: 0 80%;
+    ${(props: { isExpanded?: boolean }) =>
+      props.isExpanded === true &&
+      css`
+        height: 120%;
+        object-position: 0 60%;
+      `};
   }
 `
 
