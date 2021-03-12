@@ -1,5 +1,5 @@
 import type { GetStaticProps } from 'next'
-import type { ResumeType } from '../../../src/typings'
+import type { ResumeEverythingType } from '../../../src/typings'
 import { getStaticProps as getStaticPropsCommon } from '../../../src/graphql/apolloGetStaticProps'
 
 export { getStaticPaths } from '../../../src/graphql/apolloGetStaticExperiencePages'
@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const response = await getStaticPropsCommon(context)
 
   const responseWithProps = response as {
-    props: ResumeType
+    props: ResumeEverythingType
     revalidate?: number | boolean
   }
   if (responseWithProps.props) {

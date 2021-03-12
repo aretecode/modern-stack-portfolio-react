@@ -44,19 +44,19 @@ export const StyledCardDivider = styled.hr.attrs({
 })`
   color: var(--color-text-body);
   display: inline-flex;
-  padding: 0 0.5rem;
-
   width: 90%;
   border: none;
-  border-top: 1px solid var(--color-dark-background-lighter);
-  border-bottom: 1px solid var(--color-dark-background-dark);
-  opacity: 0.1;
+  border-top: 1px solid var(--theme-about-me-separator-top);
+  border-bottom: 1px solid var(--theme-about-me-separator-bottom);
+  opacity: 0.2;
   margin: 0 auto;
   margin-top: 1rem;
   padding: 0;
   height: 2px;
   order: 1;
-  transition: margin-top 0.96s ease-in-out, margin-left 0.24s ease-in-out;
+  transition: margin-top 0.96s ease-in-out, margin-left 0.24s ease-in-out,
+    opacity 0.24s ease-in-out, border-top 0.24s ease-in-out,
+    border-bottom 0.24s ease-in-out, height 0.24s ease-in-out;
 
   @media (max-width: 1023px) {
     margin-bottom: 1rem;
@@ -70,10 +70,12 @@ export const StyledCardDivider = styled.hr.attrs({
             margin-top: 3.5rem;
             width: 45%;
             margin-left: 50%;
+            height: 2px;
           `
         : css`
             visibility: hidden;
             margin: 0;
+            height: 0;
           `};
   }
 `
@@ -86,13 +88,10 @@ export function CardDivider(props: {}) {
 export const StyledTextLineSeparator = styled.hr.attrs({
   role: 'separator',
 })`
-  color: var(--color-text-body);
   display: inline-flex;
-  padding: 0 0.5rem;
-
-  color: var(--color-text-secondary);
+  color: var(--theme-about-me-divider-top);
   border: none;
-  border-top: 5px solid var(--color-text-secondary);
+  border-top: 5px solid var(--theme-about-me-divider-top);
   margin: 0;
   padding: 0;
   height: 0.75rem;
@@ -210,6 +209,14 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
   @media (min-width: 2000px) {
     max-height: 75vh;
     max-width: unset;
+    height: 150%;
+    object-position: 0 80%;
+    ${(props: { isExpanded?: boolean }) =>
+      props.isExpanded === true &&
+      css`
+        height: 120%;
+        object-position: 0 60%;
+      `};
   }
 `
 
@@ -298,5 +305,8 @@ export const StyledAboutMeArticle = styled.article`
   }
   @media (max-width: 480px) {
     margin: 8rem 1rem 2rem;
+  }
+  @media (min-width: 2000px) {
+    max-width: 1600px;
   }
 `

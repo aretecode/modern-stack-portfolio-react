@@ -16,7 +16,7 @@ import { createGlobalStyle, css } from 'styled-components'
  */
 
 export const aboutMePageDarkStyles = css`
-  --theme-about-me-divider-top: #4a6572;
+  --theme-about-me-divider-top: var(--color-text-secondary);
   --theme-about-me-divider-bottom: #000;
   --theme-skills-background: var(--color-dark-background-dark-surface);
   --theme-skills-color: #fff;
@@ -27,10 +27,14 @@ export const aboutMePageDarkStyles = css`
   --theme-header-background: rgba(0, 0, 0, 0.35);
   --theme-about-me-image-shadow: '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)';
   --theme-about-me-article-color: rgba(255, 255, 255, 1);
+  --theme-about-me-separator-top: #fefefe;
+  --theme-about-me-separator-bottom: #eee;
 `
 export const aboutMePageLightStyles = css`
-  --theme-about-me-divider-top: #4a6572;
+  --theme-about-me-divider-top: var(--color-text-secondary);
   --theme-about-me-divider-bottom: #000;
+  --theme-about-me-separator-top: #bbb;
+  --theme-about-me-separator-bottom: #aaa;
   --theme-skills-background: #fff;
   --theme-skills-color: #1b1b1b;
   --theme-skills-item-background: #eee;

@@ -8,7 +8,7 @@ function fromContextNameToSimpleText(name: string) {
   return name.replace(' ', '').toLowerCase()
 }
 
-export default function Header({
+export default React.memo(function Header({
   name,
   ...rest
 }: {
@@ -26,4 +26,4 @@ export default function Header({
       </>
     </StyledHeader>
   )
-}
+})

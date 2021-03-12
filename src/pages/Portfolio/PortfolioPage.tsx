@@ -6,7 +6,7 @@ import { StyledCard } from '../../features/Card'
 import { StyledMain } from '../../features/Main'
 import Picture from '../..//features/Picture/Picture'
 import Footer from '../../features/Footer'
-import type { WorkType, ResumeType } from '../../typings'
+import type { WorkType, ResumeEverythingType } from '../../typings'
 import {
   StyledLink,
   StyledGrid,
@@ -43,6 +43,7 @@ export function renderWork(work: WorkType, index: number) {
             <StyledCardImage
               loading={index === 0 ? 'eager' : 'lazy'}
               {...imgProps}
+              srcSizes={work.image.srcSizes}
               {...fx.card}
             />
           )}
@@ -87,12 +88,12 @@ export function PortfolioPage({
   work,
   openSource,
   ...rest
-}: ResumeType) {
+}: ResumeEverythingType) {
   const isAmp = useAmp()
   const fx = React.useMemo(
     () =>
       isAmp
-        ? ({ 'amp-fx': 'parallax', 'data-parallax-factor': '1.3' } as const)
+        ? ({ 'amp-fx': 'parallax', 'data-parallax-factor': '1.8' } as const)
         : {},
     []
   )
@@ -122,4 +123,4 @@ export function PortfolioPage({
   )
 }
 
-export default PortfolioPage
+export default React.memo(PortfolioPage)

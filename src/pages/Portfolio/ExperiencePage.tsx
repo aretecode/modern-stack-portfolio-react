@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { PortfolioSchema } from '../../features/PortfolioSchema'
 import { PortfolioHead } from '../../features/PortfolioHead'
 import { StyledMain } from '../../features/Main'
-import type { ResumeType } from '../../typings'
+import type { ResumeEverythingType } from '../../typings'
 import { StyledGrid, StyledLeaderBoard } from './styled'
 import { renderWork } from './PortfolioPage'
 
@@ -15,7 +15,7 @@ export default function PortfolioWorkExperienceItemPage({
   work,
   openSource,
   ...rest
-}: ResumeType) {
+}: ResumeEverythingType) {
   const {
     query: { pid = -42 },
   } = useRouter()

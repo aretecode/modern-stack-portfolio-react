@@ -41,6 +41,9 @@ export default gql`
           }
         }
       }
+      highlightsPicture {
+        ...imageFragment
+      }
       iconBaseUrl
       iconSvgUrl
     }

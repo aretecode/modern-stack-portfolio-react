@@ -17,3 +17,4 @@ stylelint.config.js
 __tests__
 stories
 .todo
+.env*.local

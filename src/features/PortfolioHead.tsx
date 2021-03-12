@@ -5,6 +5,7 @@
  */
 import * as React from 'react'
 import Head from 'next/head'
+import { updatedTime } from '../../public/structured.json'
 import type { WebsiteType, BasicsType, ProfileType } from '../typings'
 import { EMPTY_OBJ } from '../utils/EMPTY'
 import { AppContext } from './AppContext'
@@ -26,6 +27,7 @@ function useFindTwitterProfile(profiles: ProfileType[]) {
 
 /**
  * <link rel="profile" href="https://gmpg.org/xfn/11" />
+ * @see https://web.dev/color-scheme/
  */
 export function PortfolioHead(
   props: {
@@ -35,10 +37,12 @@ export function PortfolioHead(
     siteName?: string
     isProfilePage?: boolean
   } & BasicsType &
-    Pick<WebsiteType, 'iconBaseUrl' | 'iconSvgUrl'>
+    Pick<WebsiteType, 'iconBaseUrl' | 'iconSvgUrl' | 'highlightsPicture'>
 ) {
   const { url } = React.useContext(AppContext)
   const {
+    highlightsPicture,
+    website,
     summary,
     image,
     name,
@@ -69,7 +73,6 @@ export function PortfolioHead(
   return (
     <>
       <Head>
-        {/* @see https://web.dev/color-scheme/ */}
         <meta
           name="color-scheme"
           content="dark light"
@@ -122,7 +125,7 @@ export function PortfolioHead(
 
         {props.isProfilePage ? (
           <>
-            <meta property="og:type" content="profile" />
+            <meta property="og:type" content="profile" key="og:type:profile" />
             <meta
               key={'profile:first_name'}
               name={`profile:first_name`}
@@ -141,23 +144,59 @@ export function PortfolioHead(
           </>
         ) : (
           <>
-            <meta property="og:type" content="website" />
+            <meta property="og:type" content="website" key="head:og:type" />
           </>
         )}
+        <meta name="author" content={website} key="head:author" />
+        <meta
+          property="og:updated_time"
+          content={updatedTime}
+          key="head:updated_time"
+        />
+
         <meta
           property="og:site_name"
           content={siteName}
           key="head:og:site_name"
         />
         <meta property="og:locale" content="en_CA" key="head:og:locale" />
+
+        {React.useMemo(() => {
+          /** @see https://ogp.me/#array */
+          return highlightsPicture.srcSizes.map(
+            ([, imgSrc, imgWidth, imgHeight]) => {
+              return [
+                <meta
+                  property="og:image:secure_url"
+                  content={imgSrc}
+                  key={`head:image:secure:${imgWidth}x${imgHeight}`}
+                />,
+                <meta
+                  property="og:image"
+                  content={imgSrc}
+                  key={`head:image:src:${imgWidth}x${imgHeight}`}
+                />,
+                <meta
+                  property="og:image:width"
+                  content={`${imgWidth}`}
+                  key={`head:image:width:${imgWidth}x${imgHeight}`}
+                />,
+                <meta
+                  property="og:image:height"
+                  content={`${imgHeight}`}
+                  key={`head:image:height:${imgWidth}x${imgHeight}`}
+                />,
+                ,
+              ].flat(1)
+            }
+          )
+        }, [image])}
         <meta
-          property="og:image:secure_url"
-          content={image.url}
-          key="head:og:image:secure_url"
+          property="og:image:alt"
+          content={image.description}
+          key="head:og:image:alt"
         />
-        <meta property="og:image" content={image.url} key="head:og:image" />
-        <meta property="og:image:width" content={`${image.width}`} />
-        <meta property="og:image:height" content={`${image.height}`} />
+
         <meta property="og:title" content={titleText} key="head:og:title" />
         <title key="head:title">{titleText}</title>
         <meta name="description" content={description} key="head:description" />
@@ -166,7 +205,11 @@ export function PortfolioHead(
           content={description}
           key="head:og:description"
         />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+          key="twitter:card"
+        />
         <meta
           name="twitter:domain"
           content={url.origin}
