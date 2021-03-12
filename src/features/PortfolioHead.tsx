@@ -66,6 +66,12 @@ export function PortfolioHead(
     [url.origin]
   )
 
+  const biggestImage = React.useMemo(() => {
+    const biggestImageSrc = image.srcSizes[image.srcSizes.length - 1]
+    const [, imgSrc, imgWidth, imgHeight] = biggestImageSrc
+    return { width: imgWidth, height: imgHeight, url: imgSrc }
+  }, [image])
+
   return (
     <>
       <Head>
@@ -152,12 +158,16 @@ export function PortfolioHead(
         <meta property="og:locale" content="en_CA" key="head:og:locale" />
         <meta
           property="og:image:secure_url"
-          content={image.url}
+          content={biggestImage.url}
           key="head:og:image:secure_url"
         />
-        <meta property="og:image" content={image.url} key="head:og:image" />
-        <meta property="og:image:width" content={`${image.width}`} />
-        <meta property="og:image:height" content={`${image.height}`} />
+        <meta
+          property="og:image"
+          content={biggestImage.url}
+          key="head:og:image"
+        />
+        <meta property="og:image:width" content={`${biggestImage.width}`} />
+        <meta property="og:image:height" content={`${biggestImage.height}`} />
         <meta property="og:title" content={titleText} key="head:og:title" />
         <title key="head:title">{titleText}</title>
         <meta name="description" content={description} key="head:description" />
@@ -190,7 +200,7 @@ export function PortfolioHead(
         />
         <meta
           name="twitter:image"
-          content={image.url}
+          content={biggestImage.url}
           key="head:twitter:image"
         />
         <meta name="twitter:url" content={url.href} key="head:twitter:url" />
