@@ -43,7 +43,7 @@ export const StyledSkillItem = styled.li`
     color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--theme-skills-item-background);
   color: var(--theme-skills-item-color);
-
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 6px;
 `
 
