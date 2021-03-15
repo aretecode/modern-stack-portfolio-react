@@ -21,11 +21,12 @@ export function GoogleTagManagerHeaderScript(props?: unknown) {
       />
     )
   } else {
-    const scriptBody = `window.dataLayer = []; const lgtm = typeof requestIdleCallback === 'function' ? requestIdleCallback : (fn) => fn(); lgtm(() => {
+    const scriptBody = `if (!window.dataLayer) { window.dataLayer = []; const lgtm = typeof requestIdleCallback === 'function' ? requestIdleCallback : (fn) => fn(); lgtm(() => {
 window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
 var f=document.getElementsByTagName('script')[0],j=document.createElement('script');
+j.defer-true;
 j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_MANAGER_WEB_ID}';f.parentNode.insertBefore(j,f);
-})`.replace(/(\n|\s)+/gm, ' ')
+}); }`.replace(/(\n|\s)+/gm, ' ')
     return <Script>{scriptBody}</Script>
   }
 }

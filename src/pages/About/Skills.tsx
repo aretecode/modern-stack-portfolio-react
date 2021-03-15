@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { AnimateHeight } from '../../features/AnimateHeight/AnimateHeight'
-import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
 
 /**
  * @todo split out
@@ -23,14 +22,12 @@ export const StyledSkillsWrap = styled.aside`
   flex-wrap: wrap;
   order: 4;
 
-  ${(props: { isExpanded?: boolean }) =>
-    props.isExpanded === true &&
-    css`
-      margin-top: 1.5rem;
-      transition: margin-top 0s cubic-bezier(0.4, 0, 0.2, 1),
-        background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-        color 0.24s cubic-bezier(0.4, 0, 0.2, 1), height 0.48s ease-out;
-    `};
+  .is-expanded & {
+    margin-top: 1.5rem;
+    transition: margin-top 0s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.24s cubic-bezier(0.4, 0, 0.2, 1), height 0.48s ease-out;
+  }
 `
 
 export const StyledSkillItem = styled.li`
@@ -43,7 +40,7 @@ export const StyledSkillItem = styled.li`
     color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--theme-skills-item-background);
   color: var(--theme-skills-item-color);
-
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 6px;
 `
 
@@ -53,7 +50,6 @@ export const StyledSkillList = styled.ul`
 `
 
 export function Skills({ skills }: { skills: string[] }) {
-  const animateHeight = React.useContext(AnimateHeightContext)
   const animateRef = React.createRef<any>()
   const [isHidden, setIsHidden] = React.useState(true)
 
@@ -72,12 +68,8 @@ export function Skills({ skills }: { skills: string[] }) {
   )
 
   return (
-    <AnimateHeight isDefaultExpanded={false} ref={animateRef} {...hidingProps}>
-      <StyledSkillsWrap
-        ref={animateRef}
-        isExpanded={animateHeight.isExpanded}
-        {...hidingProps}
-      >
+    <AnimateHeight ref={animateRef} {...hidingProps}>
+      <StyledSkillsWrap ref={animateRef} {...hidingProps}>
         <StyledSkillList>
           {skills.map(x => (
             <StyledSkillItem key={x}>{x}</StyledSkillItem>

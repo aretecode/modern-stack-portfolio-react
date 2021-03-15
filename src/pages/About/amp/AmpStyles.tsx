@@ -1,6 +1,8 @@
 import { css, createGlobalStyle } from 'styled-components'
 import {
+  darkColorStyles,
   aboutMePageDarkStyles,
+  aboutMePageLightStyles,
   aboutMePageDynamicColorStyles,
 } from '../../../AppStyles'
 import { StyledButtonWrap } from '../../../features/AnimateHeight/styled'
@@ -11,6 +13,7 @@ const pureAccordionStyles = css`
   amp-img {
     width: 100%;
     height: auto;
+    min-width: 300px;
   }
   amp-accordion {
     width: 100%;
@@ -45,10 +48,28 @@ const pureAccordionStyles = css`
 
 export default createGlobalStyle`
   :root {
-    ${aboutMePageDynamicColorStyles};
+    ${aboutMePageLightStyles};
   }
   @media (prefers-color-scheme: dark) {
-    ${aboutMePageDarkStyles};
+    :root {
+      ${darkColorStyles};
+      ${aboutMePageDarkStyles};
+    }
+    amp-accordion > section > header.amp-accordion-header {
+      background-color: var(--color-dark-background-dark-surface);
+      border-width: 4px;
+    }
+  }
+  @media (min-width: 1024px) {
+    footer[role='contentinfo'] {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 1000000;
+    }
+  }
+  header[role='banner'] {
+    position: unset;
   }
   @media (max-width: 1023px) {
     ${StyledAboutMeArticle} > aside {
@@ -57,13 +78,6 @@ export default createGlobalStyle`
   }
   ${pureAccordionStyles};
   amp-accordion ${StyledButtonWrap} { margin-top: unset; }
-  amp-accordion > ${StyledSkillsWrap} { max-width: 100%; }
-  amp-accordion > section > header.amp-accordion-header {
-    ${props =>
-      props.theme.isDark &&
-      css`
-        background-color: var(--color-dark-background-dark-surface);
-        border-width: 4px;
-      `};
-  }
+  amp-accordion, amp-accordion > section > aside { max-width: 100%; }
+
 `

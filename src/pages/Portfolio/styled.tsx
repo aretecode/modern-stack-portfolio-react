@@ -30,11 +30,9 @@ export const StyledTime = styled.time`
  * @see https://addyosmani.com/blog/lazy-loading/
  */
 export const StyledCardImage = styled(AmpCompatImage)`
-  ${props =>
-    props.theme.isDark &&
-    css`
-      filter: url(#green-tint);
-    `};
+  .dark-mode & {
+    filter: url(#green-tint);
+  }
   object-fit: cover;
   max-width: 100%;
   > img {

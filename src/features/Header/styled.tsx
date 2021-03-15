@@ -1,19 +1,12 @@
 import styled, { css } from 'styled-components'
 import { StyledLink } from '../Link'
 
+// @todo
+// transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
 export const StyledHeader = styled.header.attrs({
   role: 'banner',
 })`
-  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--theme-header-background);
-
-  ${props =>
-    !props.theme.isAmp
-      ? css`
-          position: absolute;
-        `
-      : ''};
-
   top: 0;
 
   display: flex;

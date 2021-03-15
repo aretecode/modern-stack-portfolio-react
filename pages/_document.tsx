@@ -36,6 +36,7 @@ export interface DocumentProps {
   ampStyleTag?: React.ReactNode
   ampStyles?: string
 }
+
 export default class MyDocument extends Document<DocumentProps> {
   // eslint-disable-next-line max-statements
   public static async getInitialProps(ctx: Required<NextDocumentContext>) {
@@ -122,10 +123,37 @@ export default class MyDocument extends Document<DocumentProps> {
           <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
           <link rel="preconnect" href="https://fonts.gstatic.com/" />
 
-          <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-          <link rel="preconnect" href="https://www.googletagmanager.com" />
-          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-          <link rel="preconnect" href="https://www.google-analytics.com" />
+          <link rel="dns-prefetch" href="https://noccumpr-cdn.sirv.com/" />
+          <link rel="preconnect" href="https://noccumpr-cdn.sirv.com/" />
+
+          {shouldSkipAnalytics === false && (
+            <link
+              rel="dns-prefetch"
+              href="https://www.googletagmanager.com"
+              key="dgtm"
+            />
+          )}
+          {shouldSkipAnalytics === false && (
+            <link
+              rel="preconnect"
+              href="https://www.googletagmanager.com"
+              key="pgtm"
+            />
+          )}
+          {shouldSkipAnalytics === false && (
+            <link
+              rel="dns-prefetch"
+              href="https://www.google-analytics.com"
+              key="dga"
+            />
+          )}
+          {shouldSkipAnalytics === false && (
+            <link
+              rel="preconnect"
+              href="https://www.google-analytics.com"
+              key="pga"
+            />
+          )}
 
           <link
             rel="preload"
@@ -144,17 +172,6 @@ export default class MyDocument extends Document<DocumentProps> {
             href="https://fonts.gstatic.com/s/sourcesanspro/v12/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdu3cOWxw.woff2"
             as="font"
             crossOrigin={'crossOrigin'}
-          />
-
-          <link
-            rel="preload"
-            href="https://www.google-analytics.com/analytics.js"
-            as="script"
-          />
-          <link
-            rel="preload"
-            href={`https://www.googletagmanager.com/gtm.js?id=${process.env.GOOGLE_TAG_MANAGER_WEB_ID}`}
-            as="script"
           />
 
           {shouldSkipAnalytics === false && (

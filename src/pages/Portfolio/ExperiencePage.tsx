@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
-import { PortfolioSchema } from '../../features/PortfolioSchema'
-import { PortfolioHead } from '../../features/PortfolioHead'
+import PortfolioSchema from '../../features/PortfolioSchema'
+import PortfolioHead from '../../features/PortfolioHead'
 import { StyledMain } from '../../features/Main'
 import type { ResumeEverythingType } from '../../typings'
 import { StyledGrid, StyledLeaderBoard } from './styled'
@@ -10,7 +10,7 @@ import { renderWork } from './PortfolioPage'
 /**
  * @file @name PortfolioWorkExperienceItemPage
  */
-export default function PortfolioWorkExperienceItemPage({
+export default React.memo(function PortfolioWorkExperienceItemPage({
   person,
   work,
   openSource,
@@ -51,4 +51,4 @@ export default function PortfolioWorkExperienceItemPage({
       </StyledMain>
     </>
   )
-}
+})

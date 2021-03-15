@@ -152,6 +152,7 @@
     "typescript",
     "styled-components"
   ],
+  "browserslist": ["chrome 77"],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",

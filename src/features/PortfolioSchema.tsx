@@ -122,7 +122,8 @@ function fromContextToSchema(
     }
   }
 
-  const { image: openSourceImage, ...openSourceProps } = openSource
+  const { image: openSourceImageProps, ...openSourceProps } = openSource
+  const { title: imageTitle, ...openSourceImage } = openSourceImageProps
 
   const openSourceSchema: Schema.SoftwareSourceCode = {
     '@type': 'SoftwareSourceCode',
@@ -130,6 +131,7 @@ function fromContextToSchema(
     creator: shortPersonSchema,
     image: {
       '@type': 'ImageObject',
+      caption: openSourceImage.description ?? imageTitle,
       ...openSourceImage,
     } as any,
   }
@@ -203,8 +205,10 @@ function fromContextToSchema(
   }
 }
 
-export function PortfolioSchema(props: SchemaOptionsType & ResumeType) {
+export default React.memo(function PortfolioSchema(
+  props: SchemaOptionsType & ResumeType
+) {
   const { workIndex, ...context } = props
   const schemaData = fromContextToSchema(context, { workIndex })
   return <Script type={'application/ld+json'}>{schemaData}</Script>
-}
+})

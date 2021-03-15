@@ -1,8 +1,8 @@
 import * as React from 'react'
 import type { ResumeEverythingType } from '../../../typings'
-import { PortfolioHead } from '../../../features/PortfolioHead'
-import { PortfolioSchema } from '../../../features/PortfolioSchema'
-import { SocialProfiles } from '../../../features/SocialProfiles'
+import PortfolioHead from '../../../features/PortfolioHead'
+import PortfolioSchema from '../../../features/PortfolioSchema'
+import SocialProfiles from '../../../features/SocialProfiles'
 import Footer from '../../../features/Footer'
 import Header from '../../../features/Header'
 import {
@@ -16,7 +16,7 @@ import {
   StyledFigCaption,
   StyledFigure,
   StyledTextLineSeparator,
-  CardDivider,
+  StyledCardDivider,
 } from '../styled'
 import AboutMePicture from '../AboutMePicture'
 import AmpStyles from './AmpStyles'
@@ -78,7 +78,7 @@ export default function AboutPage({
             </StyledContactNav>
           </StyledFigCaption>
         </StyledFigure>
-        <CardDivider />
+        <StyledCardDivider />
         <Skills skills={skills} />
       </StyledAboutMeArticle>
       <Footer name={name} openSource={openSource} />

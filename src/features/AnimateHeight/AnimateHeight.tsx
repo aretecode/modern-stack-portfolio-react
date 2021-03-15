@@ -17,24 +17,13 @@ export class AnimateHeightComponent extends React.PureComponent<
   AnimateHeightContextStateType
 > {
   public static contextType = AnimateHeightContext
-
-  constructor(props: AnimateHeightProps, state: any) {
-    super(props, state)
-
-    const isExpanded =
-      this.props.isDefaultExpanded === undefined
-        ? true
-        : this.props.isDefaultExpanded
-    this.context.set('isExpanded', isExpanded)
-  }
-
   protected updateRefTimeout: any = undefined
 
   /**
    * @todo move data out of ui
    */
   public async componentDidMount() {
-    if (this.isExpanded === false) {
+    if (this.context.isExpanded === false) {
       const { forwardedRef } = this.props
 
       /**
@@ -84,19 +73,10 @@ export class AnimateHeightComponent extends React.PureComponent<
     }
   }
 
-  /**
-   * added here for ease of change
-   * though it has a negligible perf hit
-   */
-  protected get isExpanded() {
-    return this.context.isExpanded
-  }
   // @lint this is a value
   protected setIsExpanded = (isExpanded: boolean) => {
-    this.context.set('isExpanded', isExpanded)
-    /**
-     * required to update the arrow icon
-     */
+    this.context.setIsExpanded(isExpanded)
+    /** required to update the arrow icon */
     this.forceUpdate()
   }
   protected handleShow = () => {
@@ -110,7 +90,7 @@ export class AnimateHeightComponent extends React.PureComponent<
     this.setIsExpanded(false)
   }
   protected handleToggle = () => {
-    if (this.isExpanded) {
+    if (this.context.isExpanded) {
       this.handleHide()
     } else {
       this.handleShow()
@@ -125,7 +105,7 @@ export class AnimateHeightComponent extends React.PureComponent<
         <AnimateHeightTrigger
           key="trigger"
           onClick={this.handleToggle}
-          isExpanded={this.isExpanded}
+          isExpanded={this.context.isExpanded}
           {...rest}
         />
         {children}

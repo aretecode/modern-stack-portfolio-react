@@ -4,13 +4,12 @@ import styled, { css } from 'styled-components'
  * @see https://material.io/design/components/cards.html#anatomy
  * @see https://material-components.github.io/material-components-web-catalog/#/component/elevation
  * @see https://material-components.github.io/material-components-web-catalog/#/component/card
+ * @todo transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1), color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
  */
 export const StyledCard = styled.article`
   &&& {
     min-width: calc(100vw - 2rem);
 
-    transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-      color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--theme-card-color);
     background-color: var(--theme-card-background);
 
@@ -52,13 +51,6 @@ export const StyledCard = styled.article`
       @media (max-width: 1023px) {
         padding: 1.25rem;
       }
-
-      ${props =>
-        props.theme.isAmp
-          ? css`
-              padding-top: 20%;
-            `
-          : ''};
       background-color: var(--theme-card-figcaption-background);
     }
     header {

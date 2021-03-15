@@ -16,10 +16,8 @@ import { AppContextProvider } from '../src/features/AppContext'
 import { URL } from '../src/utils/url'
 import { logger } from '../src/log'
 import { AppStyles, BelowTheFoldStyles } from '../src/AppStyles'
-import {
-  useDarkMode,
-  useDarkModeUrl,
-} from '../src/features/DarkMode/useDarkMode'
+import { useDarkMode } from '../src/features/DarkMode/useDarkMode'
+import { useDarkModeClassName } from '../src/features/DarkMode/useDarkModeClassName'
 
 export { reportWebVitals } from '../src/features/GoogleTagManager/webVitals'
 
@@ -44,8 +42,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   const darkMode = useDarkMode()
-  useDarkModeUrl(darkMode, url)
   const [doesPreferDarkMode] = darkMode
+  useDarkModeClassName(doesPreferDarkMode as boolean)
 
   const theme = {
     isDark: doesPreferDarkMode,
