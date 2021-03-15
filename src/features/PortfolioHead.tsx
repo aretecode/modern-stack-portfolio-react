@@ -29,7 +29,7 @@ function useFindTwitterProfile(profiles: ProfileType[]) {
  * <link rel="profile" href="https://gmpg.org/xfn/11" />
  * @see https://web.dev/color-scheme/
  */
-export function PortfolioHead(
+export default React.memo(function PortfolioHead(
   props: {
     children?: React.ReactChild
     description?: string
@@ -202,7 +202,7 @@ export function PortfolioHead(
         <meta name="description" content={description} key="head:description" />
         <meta
           property="og:description"
-          content={description}
+          content={description.split('\n').shift() as string}
           key="head:og:description"
         />
         <meta
@@ -228,7 +228,7 @@ export function PortfolioHead(
         />
         <meta
           name="twitter:description"
-          content={description}
+          content={description.split('\n').shift() as string}
           key="head:twitter:description"
         />
         <meta
@@ -256,4 +256,4 @@ export function PortfolioHead(
       </Head>
     </>
   )
-}
+})

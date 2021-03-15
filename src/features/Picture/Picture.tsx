@@ -19,6 +19,14 @@ export const PictureWithAmpSupport = (
   }
 }
 
+const toNextUrl = (srcUrl: string, srcWidth?: number | string) => {
+  const srcUpdated = `/_next/image?url=${encodeURIComponent(srcUrl)}`
+  if (srcWidth) {
+    return `${srcUpdated}&w=${srcWidth}&q=99`
+  }
+  return srcUpdated
+}
+
 export default function ResponsiveImage({
   image,
   className,
@@ -33,8 +41,12 @@ export default function ResponsiveImage({
   return (
     <PictureWithAmpSupport className={className}>
       {!isAmp &&
-        image.srcSizes.map(([size, srcSet]) => (
-          <source key={size} media={size} srcSet={srcSet} />
+        image.srcSizes.map(([size, srcSet, srcWidth]) => (
+          <source
+            key={size}
+            media={size}
+            srcSet={toNextUrl(srcSet, srcWidth)}
+          />
         ))}
       <RenderImage
         key="int"

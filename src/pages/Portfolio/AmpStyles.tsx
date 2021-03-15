@@ -1,9 +1,23 @@
 import { createGlobalStyle } from 'styled-components'
 import { StyledCard } from '../../features/Card'
+import { darkColorStyles } from '../../AppStyles'
 import { StyledLeaderBoard } from './styled'
 
 /** @see https://amp.dev/documentation/examples/components/amp-fx-collection/ */
 export default createGlobalStyle`
+  header[role='banner'] {
+    position: unset;
+  }
+  figure > figcaption {
+    padding-top: 20%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    ${darkColorStyles};
+    :root {
+      ${darkColorStyles};
+    }
+  }
   .parallax-image-window { overflow: hidden; }
   @media (min-width: 1024px) {
     amp-img { width: 110%; }

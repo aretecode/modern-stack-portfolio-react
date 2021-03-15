@@ -5,6 +5,22 @@ import ResumeQuery from './Resume'
 import { initApolloClient } from './apolloClient'
 import { logger } from '../log'
 
+function withoutTypeNameRecursive<Type extends {} | unknown[] | unknown>(
+  obj: Type extends {} ? Type & { __typename?: string } : Type
+): Type {
+  if (Array.isArray(obj)) {
+    return obj.map(withoutTypeNameRecursive) as any
+  } else if (typeof obj === 'object' && obj !== null) {
+    const { __typename, ...rest } = obj as any
+    Object.keys(rest).forEach(key => {
+      rest[key] = withoutTypeNameRecursive(rest[key])
+    })
+    return rest as any
+  } else {
+    return obj
+  }
+}
+
 export const getStaticProps: GetStaticProps<ResumeEverythingType> = async context => {
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<ResumeResponse>({
@@ -28,7 +44,7 @@ export const getStaticProps: GetStaticProps<ResumeEverythingType> = async contex
   const { website } = gqlResponse.data
 
   return {
-    props: {
+    props: withoutTypeNameRecursive({
       iconBaseUrl: website.iconBaseUrl,
       iconSvgUrl: website.iconSvgUrl,
       openSource: website.projectsCollection.items[0],
@@ -42,6 +58,6 @@ export const getStaticProps: GetStaticProps<ResumeEverythingType> = async contex
         summary: (item as any).summary.json.content[0].content[0].value,
         highlights: (item as any).highlights.json.content[0].content[0].value,
       })),
-    } as ResumeEverythingType,
+    } as ResumeEverythingType),
   }
 }

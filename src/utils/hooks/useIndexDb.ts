@@ -4,10 +4,7 @@
 import { useState } from 'react'
 import { portfolioKeyValStore } from '../../storage'
 import type { Serialized } from '../../typings'
-import {
-  SerializedOrCallbackToSerialized,
-  DarkModeHookArrayType,
-} from './typings'
+import type { SerializedOrCallbackToSerialized } from './typings'
 
 /**
  * @see https://usehooks.com/useLocalStorage/

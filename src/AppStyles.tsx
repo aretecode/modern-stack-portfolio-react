@@ -44,12 +44,18 @@ export const aboutMePageLightStyles = css`
   --theme-about-me-article-color: #000;
   --theme-about-me-image-shadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)';
 `
+
 export const aboutMePageDynamicColorStyles = css`
-  ${aboutMePageLightStyles};
-  ${props => props.theme.isDark && aboutMePageDarkStyles};
+  body:not(.dark-mode) {
+    ${aboutMePageLightStyles};
+  }
+  .dark-mode {
+    ${aboutMePageDarkStyles};
+  }
 `
 
-const darkColorStyles = css`
+export const darkColorStyles = css`
+  --page-background-color: var(--color-material-background-purple);
   --color-link: #fff;
   --color-link-hover: #aaa;
   --color-text-body: #fff;
@@ -86,12 +92,14 @@ const appStylesUglified = css`
     --color-text-unimportant: #3b3b3b;
     --theme-footer-background: var(--color-material-background-purple);
     --theme-page-background: #ddd;
+    --page-background-color: #ddd;
   }
-  @media (prefers-color-scheme: dark) {
+
+  .dark-mode {
     ${darkColorStyles};
   }
-  :root {
-    ${props => props.theme.isDark && darkColorStyles};
+  [role='banner'] {
+    position: absolute;
   }
 
   @font-face {
@@ -133,7 +141,7 @@ const appStylesUglified = css`
 
   html {
     box-sizing: border-box;
-    background-color: var(--color-material-background-purple);
+    background-color: var(--page-background-color);
   }
   *,
   *:before,
@@ -168,6 +176,11 @@ export const AppStyles = createGlobalStyle`
 `
 
 const reduceMotion = css`
+  ::selection {
+    background: var(--theme-selection-background);
+    color: #fff;
+    text-shadow: none;
+  }
   @media (prefers-reduced-motion: reduce) {
     *,
     ::before,
@@ -189,10 +202,5 @@ const reduceMotion = css`
  * @idea could also style outlines here
  */
 export const BelowTheFoldStyles = createGlobalStyle`
-  ::selection {
-    background: var(--theme-selection-background);
-    color: #fff;
-    text-shadow: none;
-  }
   ${reduceMotion};
 `

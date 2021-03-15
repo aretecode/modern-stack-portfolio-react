@@ -25,11 +25,11 @@ const asyncWriteFile = promisify(writeFile)
 async function updateSiteMap() {
   console.debug('[update] updating site map')
   const isoDate = formatISO9075(now)
-
+  const sitemapDate = isoDate.split(' ').join('T') + '.961-07:00'
   // errors in google, have submitted the issue to them
   // <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/Portfolio/?amp" />
   // <xhtml:link rel="amphtml" href="${env.WEBSITE_ORIGIN}/?amp" />
-
+  const staticDate = `2021-03-14T23:11:01.961-07:00`
   const siteMap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -38,13 +38,43 @@ async function updateSiteMap() {
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>${env.WEBSITE_ORIGIN}/Portfolio</loc>
-    <lastmod>${isoDate}</lastmod>
+    <lastmod>${sitemapDate}</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>${env.WEBSITE_ORIGIN}/</loc>
-    <lastmod>${isoDate}</lastmod>
+    <lastmod>${sitemapDate}</lastmod>
     <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/garner</loc>
+    <lastmod>${staticDate}</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/the-grid</loc>
+    <lastmod>${staticDate}</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/open-source</loc>
+    <lastmod>${staticDate}</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/amazon</loc>
+    <lastmod>${staticDate}</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/infosys</loc>
+    <lastmod>${staticDate}</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/teainahat</loc>
+    <lastmod>${staticDate}</lastmod>
+    <priority>0.01</priority>
   </url>
 </urlset>
 `

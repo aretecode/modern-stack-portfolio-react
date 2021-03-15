@@ -4,8 +4,9 @@ import { StyledLink } from '../Link'
 import HeartIcon from './icons/HeartIcon'
 import CanadaIcon from './icons/CanadaIcon'
 
+// @todo
+// transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
 export const StyledFooter = styled.footer`
-  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--theme-footer-background);
   padding: 2rem 1.25rem;
 

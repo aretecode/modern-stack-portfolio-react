@@ -1,10 +1,6 @@
 import * as React from 'react'
 import { useAmp } from 'next/amp'
-import { BrightnessButton } from './styled'
-
-export function DarkModeToggleReact() {
-  return <BrightnessButton />
-}
+import { StyledAnimatedBrightnessIcon } from '../MaterialIcon/AnimatedBrightnessIcon'
 
 /**
  * @todo https://web.dev/prefers-color-scheme/
@@ -25,6 +21,6 @@ export function DarkModeToggle() {
   if (isAmp) {
     return <DarkModeToggleAmp />
   } else {
-    return <DarkModeToggleReact />
+    return <StyledAnimatedBrightnessIcon />
   }
 }

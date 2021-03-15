@@ -1,43 +1,6 @@
-/**
- * @file @todo unit tests
- */
-import { isPromise } from '../../utils/is'
-import { useIndexDb } from '../../utils/hooks/useIndexDb'
+import { useLocalStorage } from '../../utils/hooks/useLocalStorage'
 import { useMedia } from '../../utils/hooks/useMedia'
 import type { DarkModeHookArrayType } from '../../utils/hooks/typings'
-
-/**
- * @see https://usehooks.com/useDarkMode/
- */
-export function useDarkMode(): DarkModeHookArrayType {
-  // persist state through a page refresh.
-  const [hasDarkModeEnabled, setDarkMode] = useIndexDb('dark-mode-enabled')
-
-  // See if user has set a browser or OS preference for dark mode.
-  // The usePrefersDarkMode hook composes a useMedia hook (see code below).
-  const hasPreferDarkMode = usePrefersDarkMode()
-
-  /**
-   * this will make sure it updates after the page loads
-   */
-  if (process.browser) {
-    if (isPromise(hasDarkModeEnabled)) {
-      ;(hasDarkModeEnabled as Promise<boolean>).then(result => {
-        setDarkMode(result)
-      })
-    }
-  }
-
-  // If hasDarkModeEnabled is defined use it, otherwise fallback to prefersDarkMode.
-  // This allows user to override OS level setting on our website.
-  const isEnabled =
-    hasDarkModeEnabled !== undefined
-      ? (hasDarkModeEnabled as boolean)
-      : hasPreferDarkMode
-
-  // Return enabled state and setter
-  return [isEnabled, setDarkMode as (value: boolean) => void]
-}
 
 /**
  * @see https://amp.devamp.dev/examples/style-layout/dark_mode_toggle
@@ -51,6 +14,30 @@ export function useDarkMode(): DarkModeHookArrayType {
  */
 export function usePrefersDarkMode() {
   return useMedia(['(prefers-color-scheme: dark)'], [true], false)
+}
+
+/**
+ * @see https://usehooks.com/useDarkMode/
+ */
+export function useDarkMode(): DarkModeHookArrayType {
+  // See if user has set a browser or OS preference for dark mode.
+  // The usePrefersDarkMode hook composes a useMedia hook (see code below).
+  const hasPreferDarkMode = usePrefersDarkMode()
+
+  // persist state through a page refresh.
+  const [hasDarkModeEnabled, setDarkMode] = useLocalStorage(
+    'dark-mode-enabled',
+    hasPreferDarkMode
+  )
+
+  // @todo without this the ssr rehydrate mismatches which means we always have bad initial repaint reflow
+  const isEnabled =
+    hasDarkModeEnabled !== undefined
+      ? (hasDarkModeEnabled as boolean)
+      : hasPreferDarkMode
+
+  // Return enabled state and setter
+  return [isEnabled, setDarkMode as (value: boolean) => void]
 }
 
 export function useDarkModeUrl(

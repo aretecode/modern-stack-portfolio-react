@@ -4,10 +4,11 @@
 import * as React from 'react'
 import { useState, useRef } from 'react'
 import { useAmp } from 'next/amp'
+import styled, { css } from 'styled-components'
 import { iconInvisibleSquarePathView } from './MaterialIcon'
 import { StyledVector } from './StyledVector'
 import type { AnimationRefType, AnimatedIconRenderPropArgs } from './typings'
-import styled, { css } from 'styled-components'
+import { AppContext } from '../AppContext'
 
 export const BRIGHTNESS_PATH_4 =
   'M12.5,18 C11.61,18 10.76,17.8 10,17.45 C12.06,16.5 13.5,14.42 13.5,12 C13.5,9.58 12.06,7.5 10,6.55 C10.76,6.2 11.61,6 12.5,6 C15.81,6 18.0020592,8.69 18.0020592,12 C18.0020592,15.31 15.81,18 12.5,18 Z'
@@ -59,8 +60,22 @@ const StyledAnimatedVector = styled(StyledVector)`
   }
 `
 
+const StyledBrightnessButton = styled.button`
+  color: unset;
+  background: none;
+  border: none;
+  padding: 1rem;
+`
+
+/** @name AnimatedBrightnessButton @todo rename @note combined for perf */
 export function AnimatedBrightnessIcon(props: { [key: string]: unknown }) {
   const isAmp = useAmp()
+
+  const {
+    darkMode: [isDarkMode, setDarkMode],
+  } = React.useContext(AppContext)
+  const initialDarkModeRef = React.useRef(isDarkMode).current
+  const hasChangedIconAtLoad = React.useRef(false)
 
   const animationRef = useRef() as AnimationRefType
   const [direction, setDirection] = useState<'up' | 'down'>('down')
@@ -68,52 +83,77 @@ export function AnimatedBrightnessIcon(props: { [key: string]: unknown }) {
   const [hasRenderedAndAnimated, setHasRenderedAndAnimated] = useState(false)
   const state = { hasRenderedAndAnimated, direction }
 
+  const [isMounted, setIsMounted] = React.useState(false)
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   const handleClick = () => {
     setDirection(direction === 'up' ? 'down' : 'up')
     setHasRenderedAndAnimated(true)
 
     // we do not have this in test env
     if (process.env.NODE_ENV !== 'test') {
-      animationRef.current.beginElement()
+      animationRef.current?.beginElement()
     }
   }
 
+  const hasChangedDarkMode = initialDarkModeRef !== isDarkMode && isMounted
+
+  // when we load the page in light mode, must change the icon to light
+  React.useEffect(() => {
+    requestAnimationFrame(() => {
+      if (!hasChangedDarkMode && !isDarkMode && !hasChangedIconAtLoad.current) {
+        hasChangedIconAtLoad.current = true
+        handleClick()
+      }
+    })
+  }, [isDarkMode, hasChangedDarkMode])
+
   return (
-    <StyledAnimatedVector onClick={handleClick} {...props} state={state}>
-      <title>Brightness Icon</title>
-      <desc>An animated image, transitioning between a sun and a moon</desc>
-      <g>
-        <polygon points="20 15.31 23.31 12 20 8.69 20 4 15.31 4 12 0.69 8.69 4 4 4 4 8.69 0.69 12 4 15.31 4 20 8.69 20 12 23.31 15.31 20 20 20" />
-        <path d={BRIGHTNESS_PATH_5} key="animated-path">
-          {isAmp === false && (
-            <animate
-              ref={animationRef}
-              begin="0s"
-              keySplines="0.9 0.1 0.1 0.9"
-              attributeName="d"
-              dur="240ms"
-              fill="freeze"
-              key="animation"
-              values={
-                hasRenderedAndAnimated === true && direction === 'up'
-                  ? [
-                      BRIGHTNESS_PATH_4,
-                      BRIGHTNESS_PATH_4_PART,
-                      BRIGHTNESS_PATH_5,
-                    ].join(';')
-                  : [
-                      BRIGHTNESS_PATH_5,
-                      BRIGHTNESS_PATH_4_PART,
-                      BRIGHTNESS_PATH_4,
-                    ].join(';')
-              }
-            />
-          )}
-        </path>
-      </g>
-      {dotPathView}
-      {iconInvisibleSquarePathView}
-    </StyledAnimatedVector>
+    <StyledBrightnessButton
+      key="darkmode"
+      onClick={() => {
+        setDarkMode(!isDarkMode)
+        handleClick()
+      }}
+    >
+      <StyledAnimatedVector {...props} state={state}>
+        <title>Brightness Icon</title>
+        <desc>An animated image, transitioning between a sun and a moon</desc>
+        <g>
+          <polygon points="20 15.31 23.31 12 20 8.69 20 4 15.31 4 12 0.69 8.69 4 4 4 4 8.69 0.69 12 4 15.31 4 20 8.69 20 12 23.31 15.31 20 20 20" />
+          <path d={BRIGHTNESS_PATH_4} key="animated-path">
+            {isAmp === false && isMounted && (
+              <animate
+                ref={animationRef}
+                begin={hasChangedDarkMode ? '0s' : '10s'}
+                keySplines="0.9 0.1 0.1 0.9"
+                attributeName="d"
+                dur={'240ms'}
+                fill="freeze"
+                key="animation"
+                values={
+                  hasRenderedAndAnimated === true && direction === 'up'
+                    ? [
+                        BRIGHTNESS_PATH_4,
+                        BRIGHTNESS_PATH_4_PART,
+                        BRIGHTNESS_PATH_5,
+                      ].join(';')
+                    : [
+                        BRIGHTNESS_PATH_5,
+                        BRIGHTNESS_PATH_4_PART,
+                        BRIGHTNESS_PATH_4,
+                      ].join(';')
+                }
+              />
+            )}
+          </path>
+        </g>
+        {dotPathView}
+        {iconInvisibleSquarePathView}
+      </StyledAnimatedVector>
+    </StyledBrightnessButton>
   )
 }
 

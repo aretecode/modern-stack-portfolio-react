@@ -7,11 +7,15 @@
 import * as React from 'react'
 import { useAmp } from 'next/amp'
 import type { ResumeEverythingType } from '../../typings'
-import { PortfolioHead } from '../../features/PortfolioHead'
-import { PortfolioSchema } from '../../features/PortfolioSchema'
-import { AnimateHeightContextProvider } from '../../features/AnimateHeight/AnimateHeightContext'
-import { SocialProfiles } from '../../features/SocialProfiles'
+import PortfolioHead from '../../features/PortfolioHead'
+import PortfolioSchema from '../../features/PortfolioSchema'
 import {
+  useAnimateContextState,
+  AnimateHeightContext,
+} from '../../features/AnimateHeight/AnimateHeightContext'
+import SocialProfiles from '../../features/SocialProfiles'
+import {
+  GlobalPageStyles,
   StyledHeader,
   StyledFooter,
   StyledName,
@@ -25,7 +29,7 @@ import {
   StyledFigure,
   StyledTextLineSeparator,
   StyledAboutMeMain,
-  CardDivider,
+  StyledCardDivider,
 } from './styled'
 import { Skills } from './Skills'
 import AboutMePicture from './AboutMePicture'
@@ -50,9 +54,10 @@ export default React.memo(function AboutPage(props: ResumeEverythingType) {
     image,
   } = person
   const titleText = `About ${name}`
-
+  const animateHeightState = useAnimateContextState()
   return (
     <>
+      <GlobalPageStyles />
       <PortfolioHead
         titleText={titleText}
         description={summary}
@@ -62,8 +67,12 @@ export default React.memo(function AboutPage(props: ResumeEverythingType) {
       />
       <PortfolioSchema {...props} />
       <StyledHeader name={name} />
-      <AnimateHeightContextProvider>
-        <StyledAboutMeMain>
+      <AnimateHeightContext.Provider value={animateHeightState}>
+        <StyledAboutMeMain
+          className={
+            animateHeightState.isExpanded ? 'is-expanded' : 'not-expanded'
+          }
+        >
           <StyledAboutMeArticle>
             <SocialProfiles profiles={profiles} resumeWebsite={resumeWebsite} />
             <StyledFigure>
@@ -102,11 +111,11 @@ export default React.memo(function AboutPage(props: ResumeEverythingType) {
                 </StyledContactNav>
               </StyledFigCaption>
             </StyledFigure>
-            <CardDivider />
+            <StyledCardDivider />
             <Skills skills={skills} />
           </StyledAboutMeArticle>
         </StyledAboutMeMain>
-      </AnimateHeightContextProvider>
+      </AnimateHeightContext.Provider>
       <StyledFooter name={name} openSource={openSource} />
     </>
   )

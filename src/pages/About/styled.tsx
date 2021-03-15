@@ -3,28 +3,24 @@
  *         if this was scaled for reuse
  *         we would style parts of the pieces in presets & larger pieces
  */
-import * as React from 'react'
-import Image from 'next/image'
-import styled, { css } from 'styled-components'
+import styled, { createGlobalStyle, css } from 'styled-components'
 import { aboutMePageDynamicColorStyles } from '../../AppStyles'
 import Header from '../../features/Header'
 import Footer from '../../features/Footer'
 import { StyledLink as Link } from '../../features/Link'
 import AmpCompatImage from '../../features/Picture/Image'
-import { AnimateHeightContext } from '../../features/AnimateHeight/AnimateHeightContext'
 import { StyledMain } from '../../features/Main'
 import { webpBackgroundStyles } from '../../features/BackgroundStyles'
 
+export const GlobalPageStyles = createGlobalStyle`
+  ${aboutMePageDynamicColorStyles};
+`
+
 export const StyledAboutMeMain = styled(StyledMain)`
   ${webpBackgroundStyles};
-  ${aboutMePageDynamicColorStyles};
 `
-export const StyledHeader = styled(Header)`
-  ${aboutMePageDynamicColorStyles};
-`
-export const StyledFooter = styled(Footer)`
-  ${aboutMePageDynamicColorStyles};
-`
+export const StyledHeader = styled(Header)``
+export const StyledFooter = styled(Footer)``
 export const StyledLink = styled(Link)`
   &&& {
     color: unset;
@@ -63,27 +59,19 @@ export const StyledCardDivider = styled.hr.attrs({
   }
 
   @media (min-width: 1024px) {
-    ${(props: { isExpanded?: boolean }) =>
-      props.isExpanded === true
-        ? css`
-            transition: margin-top 0.01s ease-in-out;
-            margin-top: 3.5rem;
-            width: 45%;
-            margin-left: 50%;
-            height: 2px;
-          `
-        : css`
-            visibility: hidden;
-            margin: 0;
-            height: 0;
-          `};
+    visibility: hidden;
+    margin: 0;
+    height: 0;
+
+    .is-expanded & {
+      transition: margin-top 0.01s ease-in-out;
+      margin-top: 3.5rem;
+      width: 45%;
+      margin-left: 50%;
+      height: 2px;
+    }
   }
 `
-
-export function CardDivider(props: {}) {
-  const value = React.useContext(AnimateHeightContext)
-  return <StyledCardDivider isExpanded={value.isExpanded} />
-}
 
 export const StyledTextLineSeparator = styled.hr.attrs({
   role: 'separator',
@@ -139,32 +127,18 @@ export const StyledLabel = styled.h2`
 `
 
 /**
- * @todo material-ui standard animation timings
- * @see https://www.styled-components.com/docs/basics#attaching-additional-props
- */
-export type FilteredAboutMeImageProps = {
-  isExpanded?: boolean
-} & React.ComponentProps<typeof Image>
-const FilteredAboutMeImage = ({
-  isExpanded,
-  ...remaining
-}: FilteredAboutMeImageProps) => <AmpCompatImage {...remaining} />
-
-/**
  * @see https://material.io/design/motion/speed.html#easing for material easing on y axis
  * @note "object-position" is tightly coupled to the image src
  */
 export const materialHeightTiming = 'cubic-bezier(0.4, 0.0, 0.2, 1)'
-export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
+export const StyledAboutMeImg = styled(AmpCompatImage)`
   display: flex;
   object-fit: cover;
   user-select: none;
 
-  ${props =>
-    props.theme.isDark &&
-    css`
-      filter: grayscale(98%);
-    `};
+  .dark-mode & {
+    filter: grayscale(98%);
+  }
 
   border-radius: 0.125rem;
   box-shadow: none;
@@ -193,11 +167,9 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
 
     object-position: 30% 50%;
 
-    ${(props: { isExpanded?: boolean }) =>
-      props.isExpanded === true &&
-      css`
-        box-shadow: none;
-      `};
+    .is-expanded & {
+      box-shadow: none;
+    }
   }
   @media (min-width: 1200px) {
     max-width: 28rem;
@@ -211,12 +183,11 @@ export const StyledAboutMeImg = styled(FilteredAboutMeImage)`
     max-width: unset;
     height: 150%;
     object-position: 0 80%;
-    ${(props: { isExpanded?: boolean }) =>
-      props.isExpanded === true &&
-      css`
-        height: 120%;
-        object-position: 0 60%;
-      `};
+
+    .is-expanded & {
+      height: 120%;
+      object-position: 0 60%;
+    }
   }
 `
 
@@ -274,11 +245,6 @@ export const StyledContactNav = styled.nav`
 `
 
 export const StyledAboutMeArticle = styled.article`
-  transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-
   background-color: var(--theme-about-me-article-background);
   color: var(--theme-about-me-article-color);
 

@@ -16,10 +16,9 @@ export interface AnimateHeightContextStateType {
   height: number
   maxHeight: undefined | number
   isExpanded: boolean
-  // @lint boolean is a value, and type signature is for readability
-  set(key: 'height', value: number): void
-  set(key: 'maxHeight', value: number): void
-  set(key: 'isExpanded', value: boolean): void
+  setIsExpanded(x: boolean): void
+  setMaxHeight(x: number): void
+  setHeight(x: number): void
 }
 
 export interface RenderTriggerProps {

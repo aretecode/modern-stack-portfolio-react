@@ -16,19 +16,14 @@ export const StyledSocialProfileIcon = styled(MaterialIcon)`
  * @see https://material.io/design/motion/speed.html#easing
  * @todo when transitioning mobile to desktop, needs to morph
  * @note `order` is here because nothing is currently reused, would style in the page or larger component
+ * @todo   transition: flex-direction 0.24s cubic-bezier(0, 0, 0.2, 1), width 0.24s cubic-bezier(0, 0, 0.2, 1);
  */
 export const StyledSocialProfilesWrap = styled.aside`
-  padding: 1rem;
-  width: 75px;
-  display: inline-flex;
-  justify-content: space-around;
-  flex-direction: column;
   align-items: center;
-
   object-fit: contain;
   object-position: bottom;
-  transition: flex-direction 0.24s cubic-bezier(0, 0, 0.2, 1),
-    width 0.24s cubic-bezier(0, 0, 0.2, 1);
+  display: flex;
+  max-width: 100%;
 
   @media (max-width: 1023px) {
     width: 75%;
@@ -37,6 +32,13 @@ export const StyledSocialProfilesWrap = styled.aside`
     height: unset;
     justify-content: unset;
     padding: 0 0 0.5rem 0;
+  }
+  @media (min-width: 1024px) {
+    padding: 1rem;
+    width: 75px;
+    justify-content: space-around;
+    flex-direction: column;
+    flex-flow: column;
   }
 `
 

@@ -40,6 +40,10 @@ export const IMAGE_PROP_LIST_TO_KEEP_IN_AMP = Object.freeze([
   'placeholder',
 ] as ReadonlyArray<keyof ImageProps>)
 
+const toNextUrl = (srcUrl: string, srcWidth?: number | string) => {
+  return srcUrl
+}
+
 /**
  * @todo use amp/image when their styles are fixed
  * @example
@@ -102,9 +106,18 @@ export const AmpCompatImage: React.FC<
     )
   }
 
+  const srcUrl = merged.src
+  const nextUrl = toNextUrl(srcUrl)
   // @lint this is passed in as a prop
-  // eslint-disable-next-line jsx-a11y/alt-text
-  return <img crossOrigin="anonymous" {...merged} />
+  /* eslint-disable jsx-a11y/alt-text */
+  return (
+    <img
+      {...merged}
+      crossOrigin="anonymous"
+      decoding="async"
+      src={`${nextUrl}`}
+    />
+  )
 }
 
 export default AmpCompatImage
