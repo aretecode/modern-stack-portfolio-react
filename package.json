@@ -93,7 +93,7 @@
     "@typescript-eslint/parser": "4.18.0",
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.12.0",
-    "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "case-sensitive-paths-webpack-plugin": "2.4.0",
     "contentful": "8.1.8",
     "contentful-cli": "1.5.35",
     "danger": "10.6.3",
