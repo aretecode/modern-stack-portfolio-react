@@ -62,7 +62,7 @@ async function updateSiteMap() {
     <priority>0.01</priority>
   </url>
   <url>
-    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/amazon</loc>
+    <loc>${env.WEBSITE_ORIGIN}/Portfolio/Experience/aws-amazon-web-services</loc>
     <lastmod>${staticDate}</lastmod>
     <priority>0.01</priority>
   </url>
