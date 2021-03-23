@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import AmpCompatImage from '../../features/Picture/Image'
 import { StyledLink as BaseStyledLink } from '../../features/Link'
 import Header from '../../features/Header'
@@ -14,7 +14,7 @@ export const StyledGrid = styled.div`
   grid-auto-rows: auto;
 
   @media (max-width: 420px) {
-    padding: 0;
+    padding: 0.5rem;
   }
 `
 
