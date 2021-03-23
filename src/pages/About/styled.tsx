@@ -14,18 +14,22 @@ import { webpBackgroundStyles } from '../../features/BackgroundStyles'
 
 export const GlobalPageStyles = createGlobalStyle`
   ${aboutMePageDynamicColorStyles};
+  #__next {
+    ${webpBackgroundStyles};
+  }
 `
 
-export const StyledAboutMeMain = styled(StyledMain)`
-  ${webpBackgroundStyles};
-`
+export const StyledAboutMeMain = styled(StyledMain)``
 export const StyledHeader = styled(Header)``
-export const StyledFooter = styled(Footer)``
+export const StyledFooter = styled(Footer)`
+  background-color: var(--theme-header-background);
+`
 export const StyledLink = styled(Link)`
   &&& {
     color: unset;
     text-decoration: initial;
     letter-spacing: initial;
+    word-break: normal;
   }
 `
 

@@ -15,16 +15,17 @@ import { createGlobalStyle, css } from 'styled-components'
  * --color-text-unimportant-bad-contrast: #6c757d;
  */
 
+/** @todo verify color contrast is sufficient for accessibility while using glassmorphism */
 export const aboutMePageDarkStyles = css`
   --theme-about-me-divider-top: var(--color-text-secondary);
   --theme-about-me-divider-bottom: #000;
-  --theme-skills-background: var(--color-dark-background-dark-surface);
+  --theme-skills-background: rgba(18, 18, 18, 0.4);
   --theme-skills-color: #fff;
   --theme-skills-item-background: rgba(18, 18, 18, 0.9);
   --theme-skills-item-color: #fff;
   --theme-label-color: #bb86fc;
   --theme-about-me-article-background: rgba(0, 0, 0, 0.8);
-  --theme-header-background: rgba(0, 0, 0, 0.35);
+  --theme-header-background: rgba(0, 0, 0, 0.7);
   --theme-about-me-image-shadow: '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)';
   --theme-about-me-article-color: rgba(255, 255, 255, 1);
   --theme-about-me-separator-top: #fefefe;
@@ -68,7 +69,7 @@ export const darkColorStyles = css`
   --theme-card-header: var(--color-text-secondary);
   --theme-card-background: #344955;
   --theme-selection-background: #bb86fc;
-  --theme-footer-background: var(--color-dark-background-dark-surface);
+  --theme-footer-background: rgba(18, 18, 18, 0.9);
   --theme-page-background: #232f34;
 `
 
@@ -77,7 +78,6 @@ const appStylesUglified = css`
     --color-material-background-purple: #6200ee;
     --color-text-secondary: #03dac6;
     --color-orange: #ff5722;
-    --color-dark-background-dark-surface: rgba(18, 18, 18, 0.9);
     --color-link: #fff;
     --color-link-hover: #aaa;
     --color-text-body: #fff;

@@ -56,7 +56,7 @@ export default createGlobalStyle`
       ${aboutMePageDarkStyles};
     }
     amp-accordion > section > header.amp-accordion-header {
-      background-color: var(--color-dark-background-dark-surface);
+      background-color: var(--theme-footer-background);
       border-width: 4px;
     }
   }
