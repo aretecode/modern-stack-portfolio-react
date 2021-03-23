@@ -24,6 +24,7 @@ export const StyledSocialProfilesWrap = styled.aside`
   object-position: bottom;
   display: flex;
   max-width: 100%;
+  background: transparent;
 
   @media (max-width: 1023px) {
     width: 75%;

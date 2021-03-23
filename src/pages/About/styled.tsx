@@ -247,13 +247,20 @@ export const StyledContactNav = styled.nav`
 export const StyledAboutMeArticle = styled.article`
   background-color: var(--theme-about-me-article-background);
   color: var(--theme-about-me-article-color);
-
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
   box-shadow: var(--theme-about-me-image-shadow);
-
   display: flex;
   flex-wrap: wrap;
+
+  backdrop-filter: blur(10px);
+  *,
+  nav,
+  > article,
+  > ${StyledFigure}, > ${StyledFigure} > ${StyledFigCaption} {
+    background-color: transparent;
+  }
+
   @media (min-width: 1201px) {
     width: 90%;
   }

@@ -20,10 +20,10 @@ export const aboutMePageDarkStyles = css`
   --theme-about-me-divider-bottom: #000;
   --theme-skills-background: var(--color-dark-background-dark-surface);
   --theme-skills-color: #fff;
-  --theme-skills-item-background: #000;
+  --theme-skills-item-background: rgba(18, 18, 18, 0.9);
   --theme-skills-item-color: #fff;
   --theme-label-color: #bb86fc;
-  --theme-about-me-article-background: #000;
+  --theme-about-me-article-background: rgba(0, 0, 0, 0.8);
   --theme-header-background: rgba(0, 0, 0, 0.35);
   --theme-about-me-image-shadow: '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)';
   --theme-about-me-article-color: rgba(255, 255, 255, 1);
@@ -35,12 +35,12 @@ export const aboutMePageLightStyles = css`
   --theme-about-me-divider-bottom: #000;
   --theme-about-me-separator-top: #bbb;
   --theme-about-me-separator-bottom: #aaa;
-  --theme-skills-background: #fff;
+  --theme-skills-background: rgba(255, 255, 255, 0.9);
   --theme-skills-color: #1b1b1b;
   --theme-skills-item-background: #eee;
   --theme-skills-item-color: #1b1b1b;
   --theme-label-color: #232f34;
-  --theme-about-me-article-background: #fff;
+  --theme-about-me-article-background: rgba(255, 255, 255, 0.9);
   --theme-about-me-article-color: #000;
   --theme-about-me-image-shadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)';
 `
@@ -77,7 +77,7 @@ const appStylesUglified = css`
     --color-material-background-purple: #6200ee;
     --color-text-secondary: #03dac6;
     --color-orange: #ff5722;
-    --color-dark-background-dark-surface: #121212;
+    --color-dark-background-dark-surface: rgba(18, 18, 18, 0.9);
     --color-link: #fff;
     --color-link-hover: #aaa;
     --color-text-body: #fff;
@@ -100,6 +100,7 @@ const appStylesUglified = css`
   }
   [role='banner'] {
     position: absolute;
+    z-index: 5;
   }
 
   @font-face {
@@ -164,6 +165,7 @@ const appStylesUglified = css`
     line-height: 1.5;
   }
   #__next {
+    position: relative;
     min-height: inherit;
     background-color: var(--theme-page-background);
     display: flex;
