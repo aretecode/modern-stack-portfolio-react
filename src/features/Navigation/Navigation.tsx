@@ -6,7 +6,7 @@ export default React.memo(function HeaderNavigation(props: {
   className?: string
 }) {
   return (
-    <StyledNav {...props}>
+    <StyledNav {...props} role="navigation" aria-label="Main pages">
       <StyledNavList>
         <li>
           <StyledLink to="/Portfolio" rel="me">

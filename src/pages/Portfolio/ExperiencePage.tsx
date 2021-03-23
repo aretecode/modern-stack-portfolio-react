@@ -208,6 +208,7 @@ export default React.memo(function PortfolioWorkExperienceItemPage({
             <span>{workItem.company}</span>
           </StyledH1>
           <Picture
+            tabIndex="0"
             RenderPicture={CustomPictureWithAmpSupport}
             image={{
               ...workItem.image,

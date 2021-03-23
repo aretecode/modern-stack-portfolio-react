@@ -72,12 +72,12 @@ export default createGlobalStyle`
     position: unset;
   }
   @media (max-width: 1023px) {
-    ${StyledAboutMeArticle} > aside {
+    ${StyledAboutMeArticle} > [data-role="aside"] {
       width: 100%;
     }
   }
   ${pureAccordionStyles};
   amp-accordion ${StyledButtonWrap} { margin-top: unset; }
-  amp-accordion, amp-accordion > section > aside { max-width: 100%; }
+  amp-accordion, amp-accordion > section > [data-role="aside"] { max-width: 100%; }
 
 `
