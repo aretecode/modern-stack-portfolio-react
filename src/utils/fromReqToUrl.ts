@@ -11,7 +11,7 @@ import { URL } from './url'
  */
 export function fromReqToUrl(
   req: ExpressRequest & { url?: string; headers: UnknownObj }
-): typeof URL {
+): URL {
   if (req === undefined) {
     if (process.browser) {
       if (process.env.NODE_ENV === 'development') {
