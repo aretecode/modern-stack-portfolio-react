@@ -19,18 +19,52 @@ import {
 import TimeRange from './TimeRange'
 import AmpStyles from './AmpStyles'
 
+export const FigCaption = React.memo(function FigCaption({
+  work,
+}: {
+  work: WorkType
+}) {
+  const isAmp = useAmp()
+  const fx = React.useMemo(
+    () =>
+      isAmp ? { 'amp-fx': 'parallax', 'data-parallax-factor': '1.19' } : {},
+    [isAmp]
+  )
+  return (
+    <figcaption {...fx}>
+      <header>{work.company}</header>
+      <section>
+        <strong>{work.position}</strong>
+        {typeof work.highlights === 'string' &&
+        work.highlights.includes('- ') ? (
+          <ul key="highlights">
+            {work.highlights
+              .split('- ')
+              .filter(Boolean)
+              .map(highlight => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+          </ul>
+        ) : (
+          <p key="highlights">{work.highlights}</p>
+        )}
+        <p>{work.summary}</p>
+        <StyledLink to={work.website}>{work.website}</StyledLink>
+      </section>
+      <StyledExperienceSection>
+        <StyledLink to={`/Portfolio/Experience/${work.id}`}>
+          <TimeRange startDate={work.startDate} endDate={work.endDate} />
+        </StyledLink>
+      </StyledExperienceSection>
+    </figcaption>
+  )
+})
+
 export function renderWork(work: WorkType, index: number) {
   const isAmp = useAmp()
   const fx = React.useMemo(
     () =>
-      ({
-        card: isAmp
-          ? { 'amp-fx': 'parallax', 'data-parallax-factor': '1.15' }
-          : {},
-        caption: isAmp
-          ? { 'amp-fx': 'parallax', 'data-parallax-factor': '1.19' }
-          : {},
-      } as const),
+      isAmp ? { 'amp-fx': 'parallax', 'data-parallax-factor': '1.15' } : {},
     [isAmp]
   )
 
@@ -44,36 +78,11 @@ export function renderWork(work: WorkType, index: number) {
               loading={index === 0 ? 'eager' : 'lazy'}
               {...imgProps}
               srcSizes={work.image.srcSizes}
-              {...fx.card}
+              {...fx}
             />
           )}
-        ></Picture>
-        <figcaption {...fx.caption}>
-          <header>{work.company}</header>
-          <section>
-            <strong>{work.position}</strong>
-            {typeof work.highlights === 'string' &&
-            work.highlights.includes('- ') ? (
-              <ul key="highlights">
-                {work.highlights
-                  .split('- ')
-                  .filter(Boolean)
-                  .map(highlight => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-              </ul>
-            ) : (
-              <p key="highlights">{work.highlights}</p>
-            )}
-            <p>{work.summary}</p>
-            <StyledLink to={work.website}>{work.website}</StyledLink>
-          </section>
-          <StyledExperienceSection>
-            <StyledLink to={`/Portfolio/Experience/${work.id}`}>
-              <TimeRange startDate={work.startDate} endDate={work.endDate} />
-            </StyledLink>
-          </StyledExperienceSection>
-        </figcaption>
+        />
+        <FigCaption work={work} />
       </StyledCardFigure>
     </StyledCard>
   )
