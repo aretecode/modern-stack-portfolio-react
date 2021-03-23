@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type { OpenSourceType } from '../../typings'
+import type { OpenSourceType, ProfileType } from '../../typings'
 import {
   StyledFooter,
   MadeWithText,
@@ -12,8 +12,12 @@ import {
 export default React.memo(function Footer({
   name,
   openSource,
+  profiles,
+  resumeWebsite,
   ...props
 }: {
+  profiles?: ProfileType[]
+  resumeWebsite?: string
   openSource: OpenSourceType
   className?: string
   name?: string
@@ -35,7 +39,13 @@ export default React.memo(function Footer({
           github.com/aretecode
         </OpenSourceLink>
       </p>
-      <StyledSocialProfiles />
+      {resumeWebsite && profiles && (
+        <StyledSocialProfiles
+          profiles={profiles}
+          resumeWebsite={resumeWebsite}
+          key="profiles"
+        />
+      )}
     </StyledFooter>
   )
 })

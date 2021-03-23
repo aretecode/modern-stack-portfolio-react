@@ -207,7 +207,12 @@ export default React.memo(function PortfolioWorkExperienceItemPage({
           </StyledCard>
         </>
       </StyledMain>
-      <StyledFooter name={person.name} openSource={openSource} />
+      <StyledFooter
+        name={person.name}
+        resumeWebsite={person.resumeWebsite}
+        profiles={person.profiles}
+        openSource={openSource}
+      />
     </>
   )
 })

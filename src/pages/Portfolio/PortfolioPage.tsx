@@ -127,7 +127,12 @@ export function PortfolioPage({
           {work.map(renderWork)}
         </StyledGrid>
       </StyledMain>
-      <Footer name={person.name} openSource={openSource} />
+      <Footer
+        openSource={openSource}
+        name={person.name}
+        resumeWebsite={person.resumeWebsite}
+        profiles={person.profiles}
+      />
     </>
   )
 }
