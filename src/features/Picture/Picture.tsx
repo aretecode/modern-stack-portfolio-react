@@ -29,17 +29,18 @@ const toNextUrl = (srcUrl: string, srcWidth?: number | string) => {
 
 export default function ResponsiveImage({
   image,
-  className,
   RenderImage = ImageComponent,
+  RenderPicture = PictureWithAmpSupport,
+  ...rest
 }: {
   image: ImageObjectType
-  className?: string
   RenderImage?: React.FC<React.ComponentProps<typeof ImageComponent>>
-}) {
+  RenderPicture?: React.FC<React.ComponentProps<typeof PictureWithAmpSupport>>
+} & Partial<React.ComponentProps<typeof StyledPicture>>) {
   const isAmp = useAmp()
 
   return (
-    <PictureWithAmpSupport className={className}>
+    <RenderPicture {...rest}>
       {!isAmp &&
         image.srcSizes.map(([size, srcSet, srcWidth]) => (
           <source
@@ -56,6 +57,6 @@ export default function ResponsiveImage({
         alt={image.description}
         srcSizes={image.srcSizes}
       />
-    </PictureWithAmpSupport>
+    </RenderPicture>
   )
 }

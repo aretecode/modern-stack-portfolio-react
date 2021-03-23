@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { useRouter } from 'next/router'
+import { useAmp } from 'next/amp'
 import PortfolioSchema from '../../features/PortfolioSchema'
 import PortfolioHead from '../../features/PortfolioHead'
 import { StyledMain } from '../../features/Main'
@@ -8,10 +9,35 @@ import Picture from '../..//features/Picture/Picture'
 import Header from '../../features/Header'
 import Footer from '../../features/Footer'
 import { URL } from '../../utils/url'
+import { StyledPicture } from '../../features/Picture/Picture'
 import { StyledCard as BaseStyledCard } from '../../features/Card'
 import type { ResumeEverythingType } from '../../typings'
 import { StyledLeaderBoard, StyledCardImage } from './styled'
 import { FigCaption } from './PortfolioPage'
+
+const StyledAmpPicture = styled.div`
+  height: 100vh;
+  width: 100vw;
+  max-height: 40vh;
+  overflow-y: scroll;
+  -webkit-box-reflect: above;
+  background: var(--theme-card-figcaption-background);
+  @media (max-width: 1024px) {
+    max-height: 20vh;
+    height: 50vh;
+  }
+`
+
+const CustomPictureWithAmpSupport = (
+  props: React.ComponentProps<typeof StyledPicture>
+) => {
+  const isAmp = useAmp()
+  if (isAmp) {
+    return <StyledAmpPicture>{props.children}</StyledAmpPicture>
+  } else {
+    return <StyledPicture {...props} />
+  }
+}
 
 const StyledFooter = styled(Footer)``
 
@@ -79,14 +105,23 @@ const StyledLeaderBoardColoured = styled(StyledLeaderBoard)`
     background: var(--theme-card-figcaption-background);
   }
   @media (max-width: 1024px) {
+    padding-top: 2rem;
     picture {
-      max-height: 20vh;
+      max-height: 35vh;
     }
     ${StyledH1} {
       font-size: 2rem;
+      padding-bottom: 0.5rem;
     }
   }
-
+  @media (max-width: 480px) {
+    &&& {
+      padding-top: 2rem;
+    }
+    ${StyledH1} {
+      font-size: 1.5rem;
+    }
+  }
   ${StyledCardImage} {
     height: unset;
     min-width: 100%;
@@ -140,6 +175,7 @@ export default React.memo(function PortfolioWorkExperienceItemPage({
   const {
     query: { pid = -42 },
   } = useRouter()
+  const isAmp = useAmp()
   const pidIndex = work?.findIndex(({ id }) => id == pid)
   const index: number = Number(pidIndex)
   const workItem = work?.[index]
@@ -172,6 +208,7 @@ export default React.memo(function PortfolioWorkExperienceItemPage({
             <span>{workItem.company}</span>
           </StyledH1>
           <Picture
+            RenderPicture={CustomPictureWithAmpSupport}
             image={{
               ...workItem.image,
               srcSizes: workItem.image.srcSizes.filter(([media]) => {

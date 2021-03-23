@@ -11,7 +11,6 @@ export default createGlobalStyle`
   figure > figcaption {
     padding-top: 20%;
   }
-
   @media (prefers-color-scheme: dark) {
     ${darkColorStyles};
     :root {
