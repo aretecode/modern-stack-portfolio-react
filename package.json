@@ -94,7 +94,7 @@
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.12.0",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
-    "contentful": "8.2.0",
+    "contentful": "8.2.1",
     "contentful-cli": "1.5.37",
     "danger": "10.6.4",
     "date-fns": "2.19.0",
