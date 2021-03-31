@@ -5,7 +5,7 @@ import { StyledSkillsWrap, StyledSkillItem, StyledSkillList } from '../Skills'
 export function Skills({ skills }: { skills: string[] }) {
   return (
     <AmpAnimateHeight>
-      <StyledSkillsWrap>
+      <StyledSkillsWrap as="aside">
         <StyledSkillList>
           {skills.map(x => (
             <StyledSkillItem key={x}>{x}</StyledSkillItem>
