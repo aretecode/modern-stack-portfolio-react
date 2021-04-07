@@ -68,7 +68,7 @@
     "@storybook/addon-controls": "6.1.21",
     "@storybook/addon-docs": "6.1.21",
     "@storybook/addon-essentials": "6.1.21",
-    "@storybook/addon-graphql": "6.1.21",
+    "@storybook/addon-graphql": "6.2.5",
     "@storybook/addon-knobs": "6.1.21",
     "@storybook/addon-storyshots": "6.1.21",
     "@storybook/addon-storysource": "6.2.1",
