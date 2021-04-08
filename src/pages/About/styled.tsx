@@ -14,18 +14,22 @@ import { webpBackgroundStyles } from '../../features/BackgroundStyles'
 
 export const GlobalPageStyles = createGlobalStyle`
   ${aboutMePageDynamicColorStyles};
+  #__next {
+    ${webpBackgroundStyles};
+  }
 `
 
-export const StyledAboutMeMain = styled(StyledMain)`
-  ${webpBackgroundStyles};
-`
+export const StyledAboutMeMain = styled(StyledMain)``
 export const StyledHeader = styled(Header)``
-export const StyledFooter = styled(Footer)``
+export const StyledFooter = styled(Footer)`
+  background-color: var(--theme-header-background);
+`
 export const StyledLink = styled(Link)`
   &&& {
     color: unset;
     text-decoration: initial;
     letter-spacing: initial;
+    word-break: normal;
   }
 `
 
@@ -247,13 +251,20 @@ export const StyledContactNav = styled.nav`
 export const StyledAboutMeArticle = styled.article`
   background-color: var(--theme-about-me-article-background);
   color: var(--theme-about-me-article-color);
-
   margin: 9rem 1rem 9rem 1rem;
   border-radius: 0.125rem;
   box-shadow: var(--theme-about-me-image-shadow);
-
   display: flex;
   flex-wrap: wrap;
+
+  backdrop-filter: blur(10px);
+  *,
+  nav,
+  > article,
+  > ${StyledFigure}, > ${StyledFigure} > ${StyledFigCaption} {
+    background-color: transparent;
+  }
+
   @media (min-width: 1201px) {
     width: 90%;
   }

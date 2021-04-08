@@ -15,16 +15,17 @@ import { createGlobalStyle, css } from 'styled-components'
  * --color-text-unimportant-bad-contrast: #6c757d;
  */
 
+/** @todo verify color contrast is sufficient for accessibility while using glassmorphism */
 export const aboutMePageDarkStyles = css`
   --theme-about-me-divider-top: var(--color-text-secondary);
   --theme-about-me-divider-bottom: #000;
-  --theme-skills-background: var(--color-dark-background-dark-surface);
+  --theme-skills-background: rgba(18, 18, 18, 0.4);
   --theme-skills-color: #fff;
-  --theme-skills-item-background: #000;
+  --theme-skills-item-background: rgba(18, 18, 18, 0.9);
   --theme-skills-item-color: #fff;
   --theme-label-color: #bb86fc;
-  --theme-about-me-article-background: #000;
-  --theme-header-background: rgba(0, 0, 0, 0.35);
+  --theme-about-me-article-background: rgba(0, 0, 0, 0.8);
+  --theme-header-background: rgba(0, 0, 0, 0.7);
   --theme-about-me-image-shadow: '0 1rem 0.75rem rgb(0 0 0 / 19%), 0 0.5rem 0.5rem rgb(0 0 0 / 23%)';
   --theme-about-me-article-color: rgba(255, 255, 255, 1);
   --theme-about-me-separator-top: #fefefe;
@@ -35,12 +36,12 @@ export const aboutMePageLightStyles = css`
   --theme-about-me-divider-bottom: #000;
   --theme-about-me-separator-top: #bbb;
   --theme-about-me-separator-bottom: #aaa;
-  --theme-skills-background: #fff;
+  --theme-skills-background: rgba(255, 255, 255, 0.9);
   --theme-skills-color: #1b1b1b;
   --theme-skills-item-background: #eee;
   --theme-skills-item-color: #1b1b1b;
   --theme-label-color: #232f34;
-  --theme-about-me-article-background: #fff;
+  --theme-about-me-article-background: rgba(255, 255, 255, 0.9);
   --theme-about-me-article-color: #000;
   --theme-about-me-image-shadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)';
 `
@@ -68,7 +69,7 @@ export const darkColorStyles = css`
   --theme-card-header: var(--color-text-secondary);
   --theme-card-background: #344955;
   --theme-selection-background: #bb86fc;
-  --theme-footer-background: var(--color-dark-background-dark-surface);
+  --theme-footer-background: rgba(18, 18, 18, 0.9);
   --theme-page-background: #232f34;
 `
 
@@ -77,7 +78,6 @@ const appStylesUglified = css`
     --color-material-background-purple: #6200ee;
     --color-text-secondary: #03dac6;
     --color-orange: #ff5722;
-    --color-dark-background-dark-surface: #121212;
     --color-link: #fff;
     --color-link-hover: #aaa;
     --color-text-body: #fff;
@@ -100,6 +100,7 @@ const appStylesUglified = css`
   }
   [role='banner'] {
     position: absolute;
+    z-index: 5;
   }
 
   @font-face {
@@ -164,6 +165,7 @@ const appStylesUglified = css`
     line-height: 1.5;
   }
   #__next {
+    position: relative;
     min-height: inherit;
     background-color: var(--theme-page-background);
     display: flex;

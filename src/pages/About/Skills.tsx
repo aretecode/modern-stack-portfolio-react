@@ -3,10 +3,14 @@ import styled, { css } from 'styled-components'
 import { AnimateHeight } from '../../features/AnimateHeight/AnimateHeight'
 
 /**
+ * @semantic aside @todo accessibility says this can only be top level as an aside
  * @todo split out
  * @see StyledSocialProfilesWrap for related `order` comments
  */
-export const StyledSkillsWrap = styled.aside`
+export const StyledSkillsWrap = styled.section.attrs({
+  'data-role': 'aside',
+  'aria-label': 'Skills',
+})`
   overflow: hidden;
   transition: background-color 0.24s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.24s cubic-bezier(0.4, 0, 0.2, 1),

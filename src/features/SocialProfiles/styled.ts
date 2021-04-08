@@ -13,17 +13,22 @@ export const StyledSocialProfileIcon = styled(MaterialIcon)`
 `
 
 /**
+ * @semantic aside @todo accessibility says this can only be top level as an aside
  * @see https://material.io/design/motion/speed.html#easing
  * @todo when transitioning mobile to desktop, needs to morph
  * @note `order` is here because nothing is currently reused, would style in the page or larger component
  * @todo   transition: flex-direction 0.24s cubic-bezier(0, 0, 0.2, 1), width 0.24s cubic-bezier(0, 0, 0.2, 1);
  */
-export const StyledSocialProfilesWrap = styled.aside`
+export const StyledSocialProfilesWrap = styled.nav.attrs({
+  'data-role': 'aside',
+  'aria-label': 'Social profiles',
+})`
   align-items: center;
   object-fit: contain;
   object-position: bottom;
   display: flex;
   max-width: 100%;
+  background: transparent;
 
   @media (max-width: 1023px) {
     width: 75%;

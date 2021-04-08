@@ -4,7 +4,10 @@
  * could use ponyfill instead
  */
 
-export const URL = !process.browser ? require('url').URL : globalThis.URL
-export const URLSearchParams = !process.browser
+export const URL: typeof globalThis.URL = !process.browser
+  ? require('url').URL
+  : globalThis.URL
+
+export const URLSearchParams: typeof globalThis.URLSearchParams = !process.browser
   ? require('url').URLSearchParams
   : globalThis.URLSearchParams
