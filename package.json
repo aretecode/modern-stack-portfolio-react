@@ -71,7 +71,7 @@
     "@storybook/addon-graphql": "6.2.9",
     "@storybook/addon-knobs": "6.1.21",
     "@storybook/addon-storyshots": "6.1.21",
-    "@storybook/addon-storysource": "6.2.1",
+    "@storybook/addon-storysource": "6.2.9",
     "@storybook/react": "6.1.21",
     "@testing-library/react": "11.2.6",
     "@testing-library/react-hooks": "5.1.1",
