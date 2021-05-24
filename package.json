@@ -113,7 +113,7 @@
     "jest-styled-components": "7.0.3",
     "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
     "pino-pretty": "4.7.1",
-    "prettier": "2.2.1",
+    "prettier": "2.3.0",
     "raf": "3.4.1",
     "schema-dts": "0.8.2",
     "stylelint": "13.12.0",
