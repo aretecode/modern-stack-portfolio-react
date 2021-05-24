@@ -73,7 +73,7 @@
     "@storybook/addon-storyshots": "6.1.21",
     "@storybook/addon-storysource": "6.2.9",
     "@storybook/react": "6.2.9",
-    "@testing-library/react": "11.2.6",
+    "@testing-library/react": "11.2.7",
     "@testing-library/react-hooks": "6.0.0",
     "@testing-library/user-event": "13.1.5",
     "@types/eslint": "7.2.11",
