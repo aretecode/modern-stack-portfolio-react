@@ -38,7 +38,7 @@
     "fix": "npm run prettier:write && npm run lint:fix"
   },
   "dependencies": {
-    "@apollo/client": "3.3.15",
+    "@apollo/client": "3.3.19",
     "@contentful/rich-text-html-renderer": "14.1.2",
     "history": "5.0.0",
     "idb": "6.1.2",
