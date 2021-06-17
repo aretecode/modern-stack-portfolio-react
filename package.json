@@ -154,7 +154,7 @@
     "styled-components"
   ],
   "browserslist": [
-    "chrome 90"
+    "chrome 80"
   ],
   "husky": {
     "hooks": {

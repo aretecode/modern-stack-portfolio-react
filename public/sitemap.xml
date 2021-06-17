@@ -6,12 +6,42 @@
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://jameswiens.dev/Portfolio</loc>
-    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <lastmod>2021-06-17T14:00:47.961-07:00</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://jameswiens.dev/</loc>
-    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <lastmod>2021-06-17T14:00:47.961-07:00</lastmod>
     <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://jameswiens.dev/Portfolio/Experience/garner</loc>
+    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>https://jameswiens.dev/Portfolio/Experience/the-grid</loc>
+    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>https://jameswiens.dev/Portfolio/Experience/open-source</loc>
+    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>https://jameswiens.dev/Portfolio/Experience/aws-amazon-web-services</loc>
+    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>https://jameswiens.dev/Portfolio/Experience/infosys</loc>
+    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <priority>0.01</priority>
+  </url>
+  <url>
+    <loc>https://jameswiens.dev/Portfolio/Experience/teainahat</loc>
+    <lastmod>2021-03-14T23:11:01.961-07:00</lastmod>
+    <priority>0.01</priority>
   </url>
 </urlset>

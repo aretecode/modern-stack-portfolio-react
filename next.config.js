@@ -47,7 +47,6 @@ const nextConfig = {
         removeAvailableModules: true,
         removeEmptyChunks: true,
         mergeDuplicateChunks: true,
-        occurrenceOrder: true,
         sideEffects: true,
         usedExports: true,
         providedExports: true,
