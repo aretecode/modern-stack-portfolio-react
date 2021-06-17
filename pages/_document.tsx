@@ -54,6 +54,7 @@ export default class MyDocument extends Document<DocumentProps> {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
+          /* prettier-ignore */
           enhanceApp: (App: React.ComponentType) => (props: {
             [key: string]: unknown
           }) => {
@@ -120,11 +121,11 @@ export default class MyDocument extends Document<DocumentProps> {
           <meta itemProp="accessibilityControl" content="fullMouseControl" />
           <meta itemProp="typicalAgeRange" content="20-60" />
 
-          <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
-          <link rel="preconnect" href="https://fonts.gstatic.com/" />
+          <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-          <link rel="dns-prefetch" href="https://noccumpr-cdn.sirv.com/" />
-          <link rel="preconnect" href="https://noccumpr-cdn.sirv.com/" />
+          <link rel="dns-prefetch" href="https://noccumpr-cdn.sirv.com" />
+          <link rel="preconnect" href="https://noccumpr-cdn.sirv.com" />
 
           {shouldSkipAnalytics === false && (
             <link

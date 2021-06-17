@@ -159,7 +159,10 @@ const StyledCard = styled(BaseStyledCard)`
   }
 `
 
-/** @todo move to another file, make re-usable */
+/**
+ * @todo move to another file, make re-usable
+ * @todo @see https://nextjs.org/blog/next-11#automatic-size-detection-local-images
+ */
 const changeQualitySearchParam = (src: string) => {
   const srcUrl = new URL(src)
   srcUrl.searchParams.set('q', '80')
