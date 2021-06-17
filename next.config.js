@@ -25,21 +25,9 @@ const resolveApp = relativePath => resolve(appDirectory, relativePath)
  */
 const nextConfig = {
   images: {
-    domains: ['noccumpr-cdn.sirv.com'],
+    domains: ['noccumpr-cdn.sirv.com', 'jameswiens.dev'],
     imageSizes: [
-      400,
-      600,
-      581,
-      800,
-      1000,
-      1200,
-      1400,
-      1600,
-      2000,
-      2477,
-      3000,
-      4024,
-      5000,
+      400, 600, 581, 800, 1000, 1200, 1400, 1600, 2000, 2477, 3000, 4024, 5000,
     ],
   },
   amp: 'hybrid',

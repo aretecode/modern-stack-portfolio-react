@@ -5,10 +5,12 @@
  */
 import * as React from 'react'
 import Head from 'next/head'
-import { updatedTime } from '../../public/structured.json'
+import * as structured from '../../public/structured.json'
 import type { WebsiteType, BasicsType, ProfileType } from '../typings'
 import { EMPTY_OBJ } from '../utils/EMPTY'
 import { AppContext } from './AppContext'
+
+const { updatedTime } = structured
 
 function useFindTwitterProfile(profiles: ProfileType[]) {
   const foundTwitter = React.useMemo(

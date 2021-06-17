@@ -1,3 +1,4 @@
+/** @todo @see https://nextjs.org/blog/next-10-1#nextimage-improvements */
 import * as React from 'react'
 import { useAmp } from 'next/amp'
 import type { ImageObjectType } from '../../typings'
