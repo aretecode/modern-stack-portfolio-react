@@ -95,7 +95,7 @@
     "babel-plugin-styled-components": "1.12.0",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
     "contentful": "8.4.2",
-    "contentful-cli": "1.8.0",
+    "contentful-cli": "1.8.2",
     "danger": "10.6.4",
     "date-fns": "2.22.1",
     "eslint": "7.28.0",
