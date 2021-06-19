@@ -18,6 +18,7 @@ function serializeScriptChildren(children: unknown): string {
     : (children as string)
 }
 
+/** @todo https://nextjs.org/blog/next-11#script-optimization */
 export default React.memo(function Script(props: ScriptProps) {
   const {
     type,

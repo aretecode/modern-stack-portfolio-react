@@ -44,12 +44,12 @@
     "idb": "6.1.2",
     "idb-keyval": "5.0.6",
     "mkdirp": "1.0.4",
-    "next": "10.2.3",
+    "next": "11.0.0",
     "next-offline": "5.0.3",
     "node-fetch": "2.6.1",
     "pino": "6.11.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "alpha",
+    "react-dom": "alpha",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "styled-components": "5.3.0"
@@ -99,6 +99,7 @@
     "danger": "10.6.4",
     "date-fns": "2.22.1",
     "eslint": "7.28.0",
+    "eslint-config-next": "^11.0.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-i18n": "^2.1.0",
     "eslint-plugin-import": "2.23.4",
@@ -152,7 +153,9 @@
     "typescript",
     "styled-components"
   ],
-  "browserslist": ["chrome 77"],
+  "browserslist": [
+    "chrome 80"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -212,7 +215,8 @@
       "plugin:react/recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:import/typescript",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "plugin:@next/next/recommended"
     ],
     "rules": {
       "import/no-unresolved": "off",
