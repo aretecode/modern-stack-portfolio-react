@@ -66,7 +66,7 @@
     "@next/bundle-analyzer": "11.0.0",
     "@storybook/addon-a11y": "6.2.9",
     "@storybook/addon-controls": "6.2.9",
-    "@storybook/addon-docs": "6.2.9",
+    "@storybook/addon-docs": "6.3.0",
     "@storybook/addon-essentials": "6.2.9",
     "@storybook/addon-graphql": "6.2.9",
     "@storybook/addon-knobs": "6.2.9",
