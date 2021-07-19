@@ -111,7 +111,7 @@
     "intersection-observer": "0.12.0",
     "jest": "27.0.6",
     "jest-cli": "27.0.4",
-    "jest-styled-components": "7.0.4",
+    "jest-styled-components": "7.0.5",
     "lighthouse": "https://github.com/GoogleChromeLabs/lighthousebot",
     "pino-pretty": "5.1.1",
     "prettier": "2.3.2",
