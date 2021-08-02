@@ -98,7 +98,7 @@
     "contentful-cli": "1.8.22",
     "danger": "10.6.6",
     "date-fns": "2.23.0",
-    "eslint": "7.31.0",
+    "eslint": "7.32.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-i18n": "^2.1.0",
