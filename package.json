@@ -44,7 +44,7 @@
     "idb": "6.1.2",
     "idb-keyval": "5.0.6",
     "mkdirp": "1.0.4",
-    "next": "11.1.0",
+    "next": "11.1.1",
     "next-offline": "5.0.3",
     "node-fetch": "2.6.1",
     "pino": "6.13.0",
