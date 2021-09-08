@@ -35,9 +35,8 @@ const DEFAULT_APP_CONTEXT: AppContextValueType = {
   darkMode: EMPTY_ARRAY as DarkModeHookArrayType,
 }
 
-export const AppContext = createContext<AppContextValueType>(
-  DEFAULT_APP_CONTEXT
-)
+export const AppContext =
+  createContext<AppContextValueType>(DEFAULT_APP_CONTEXT)
 
 export const AppContextProvider: React.FC<{
   url: URL

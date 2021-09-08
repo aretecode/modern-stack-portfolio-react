@@ -13,9 +13,7 @@ export function useMedia(
    * this code is only for the browser
    * @todo we could support a url based approach or cookies or session storage or tracking UA
    */
-  if (!process.browser) {
-    return false
-  }
+  if (!process.browser) return false
 
   // Array containing a media query list for each query
   const mediaQueryLists = queries.map(window.matchMedia)

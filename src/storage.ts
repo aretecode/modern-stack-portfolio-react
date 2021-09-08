@@ -26,38 +26,23 @@ const inMemoryStore = new Map<any, any>()
 
 export const portfolioKeyValStore = {
   async get<Key extends keyof SpecificPortfolioSchemaType>(key: Key) {
-    if (IS_REALM_WITHOUT_INDEX_DB) {
-      return inMemoryStore.get(key)
-    } else {
-      return await get(key)
-    }
+    if (IS_REALM_WITHOUT_INDEX_DB) return inMemoryStore.get(key)
+    else return await get(key)
   },
   async set<Key extends keyof SpecificPortfolioSchemaType>(key: Key, val: any) {
-    if (IS_REALM_WITHOUT_INDEX_DB) {
-      return inMemoryStore.set(key, val)
-    } else {
-      return await set(key, val)
-    }
+    if (IS_REALM_WITHOUT_INDEX_DB) return inMemoryStore.set(key, val)
+    else return await set(key, val)
   },
   async delete<Key extends PortfolioKeyType>(key: Key) {
-    if (IS_REALM_WITHOUT_INDEX_DB) {
-      return inMemoryStore.delete(key)
-    } else {
-      return await del(key)
-    }
+    if (IS_REALM_WITHOUT_INDEX_DB) return inMemoryStore.delete(key)
+    else return await del(key)
   },
   async clear() {
-    if (IS_REALM_WITHOUT_INDEX_DB) {
-      return inMemoryStore.clear()
-    } else {
-      return await clear()
-    }
+    if (IS_REALM_WITHOUT_INDEX_DB) return inMemoryStore.clear()
+    else return await clear()
   },
   async keys() {
-    if (IS_REALM_WITHOUT_INDEX_DB) {
-      return inMemoryStore.keys()
-    } else {
-      return await keys()
-    }
+    if (IS_REALM_WITHOUT_INDEX_DB) return inMemoryStore.keys()
+    else return await keys()
   },
 } as const

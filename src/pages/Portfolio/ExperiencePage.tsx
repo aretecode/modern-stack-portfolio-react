@@ -32,11 +32,8 @@ const CustomPictureWithAmpSupport = (
   props: React.ComponentProps<typeof StyledPicture>
 ) => {
   const isAmp = useAmp()
-  if (isAmp) {
-    return <StyledAmpPicture>{props.children}</StyledAmpPicture>
-  } else {
-    return <StyledPicture {...props} />
-  }
+  if (isAmp) return <StyledAmpPicture>{props.children}</StyledAmpPicture>
+  else return <StyledPicture {...props} />
 }
 
 const StyledFooter = styled(Footer)``
@@ -184,9 +181,7 @@ export default React.memo(function PortfolioWorkExperienceItemPage({
   const workItem = work?.[index]
 
   /** @todo show 404 */
-  if (workItem === undefined) {
-    return <h1>Not found</h1>
-  }
+  if (workItem === undefined) return <h1>Not found</h1>
 
   return (
     <>
@@ -216,14 +211,12 @@ export default React.memo(function PortfolioWorkExperienceItemPage({
             image={{
               ...workItem.image,
               srcSizes: workItem.image.srcSizes.filter(([media]) => {
-                if (
+                const isMedium =
                   media.includes(' 800') ||
                   media.includes(' 600') ||
                   media.includes(' 480')
-                ) {
-                  return false
-                }
-                return true
+                if (isMedium) return false
+                else return true
               }),
             }}
             RenderImage={imgProps => {
