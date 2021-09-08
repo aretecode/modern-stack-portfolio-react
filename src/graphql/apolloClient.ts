@@ -7,7 +7,6 @@
  * @see https://www.apollographql.com/docs/react/features/performance.html#cache-redirects
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/init-apollo.js
  */
-const merge = require('deepmerge')
 import * as React from 'react'
 import { AppProps } from 'next/app'
 import {
@@ -22,6 +21,7 @@ import { GraphQLError } from 'graphql'
 import { isArray, isEmpty, isObj } from '../utils/is'
 import { EMPTY_ARRAY } from '../utils/EMPTY'
 import { logger } from '../log'
+import merge from '../utils/deepmerge'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
@@ -74,13 +74,6 @@ function createDevLinks() {
   } else {
     return EMPTY_ARRAY
   }
-}
-
-/**
- * @see apolloClient https://www.apollographql.com/docs/react/api/link/apollo-link-http/#customizing-fetch
- */
-if (!process.browser) {
-  ;(global as any).fetch = require('node-fetch')
 }
 
 let apolloClientInstance: ApolloClient<any> = undefined as any
