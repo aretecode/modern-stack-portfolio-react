@@ -69,7 +69,7 @@
     "@storybook/addon-docs": "6.3.8",
     "@storybook/addon-essentials": "6.3.8",
     "@storybook/addon-graphql": "6.2.9",
-    "@storybook/addon-knobs": "6.3.0",
+    "@storybook/addon-knobs": "6.3.1",
     "@storybook/addon-storyshots": "6.3.8",
     "@storybook/addon-storysource": "6.3.4",
     "@storybook/react": "6.3.8",
