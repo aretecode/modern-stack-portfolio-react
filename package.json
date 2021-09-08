@@ -331,7 +331,8 @@
       ],
       "curly": [
         "error",
-        "all"
+        "multi",
+        "consistent"
       ],
       "import/no-extraneous-dependencies": "off",
       "arrow-spacing": [
