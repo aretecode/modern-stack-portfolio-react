@@ -42,7 +42,7 @@
     "@contentful/rich-text-html-renderer": "15.3.3",
     "history": "5.0.0",
     "idb": "6.1.2",
-    "idb-keyval": "5.0.6",
+    "idb-keyval": "6.0.1",
     "mkdirp": "1.0.4",
     "next": "11.1.1",
     "next-offline": "5.0.3",
