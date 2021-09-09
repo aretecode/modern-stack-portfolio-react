@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.4.10",
-    "@contentful/rich-text-html-renderer": "15.3.3",
+    "@contentful/rich-text-html-renderer": "15.3.4",
     "history": "5.0.0",
     "idb": "6.1.2",
     "idb-keyval": "6.0.1",
