@@ -22,22 +22,20 @@ import { useDarkModeClassName } from '../src/features/DarkMode/useDarkModeClassN
 export { reportWebVitals } from '../src/features/GoogleTagManager/webVitals'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  if (process.env.NODE_ENV === 'development') {
-    logger.debug('[_app] render ')
-  }
+  if (process.env.NODE_ENV === 'development') logger.debug('[_app] render ')
 
   const [url, setUrl] = React.useState(pageProps.url)
   React.useEffect(() => {
     Router.events.on('routeChangeComplete', pathUrl => {
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV === 'development')
         logger.debug('[_app] route complete ' + pathUrl)
-      }
+
       setUrl(new URL(window.location.href))
     })
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development')
       logger.debug('[_app] starting ssr (browser, rehydrate)')
-    }
+
     trackPageView()
   }, [])
 
