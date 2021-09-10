@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import styled, { css } from 'styled-components'
-import ObservablePicture from '../src/features/ObservablePicture'
+import ObservablePicture from '../src/pages/About/AboutMePicture'
 
 const StyledPad = styled.div`
   margin-top: 200vh;
@@ -30,7 +30,15 @@ storiesOf('image', module).add('default', () => (
   <>
     <StyledPad />
     <Wrap>
-      <ObservablePicture />
+      <ObservablePicture
+        image={{
+          title: 'about',
+          srcSizes: [],
+          url: 'https://jameswiens.dev/_next/image?url=https%3A%2F%2Fnoccumpr-cdn.sirv.com%2Fimages%2Fm-james-wiens-profile-picture-wedding.jpg',
+          width: 4024,
+          height: 3024,
+        }}
+      />
     </Wrap>
   </>
 ))
