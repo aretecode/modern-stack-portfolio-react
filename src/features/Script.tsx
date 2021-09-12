@@ -20,12 +20,8 @@ function serializeScriptChildren(children: unknown): string {
 
 /** @todo https://nextjs.org/blog/next-11#script-optimization */
 export default React.memo(function Script(props: ScriptProps) {
-  const {
-    type,
-    src,
-    children,
-    ...remainingProps
-  } = props as CombinedScriptProps
+  const { type, src, children, ...remainingProps } =
+    props as CombinedScriptProps
 
   const json = serializeScriptChildren(children)
   const scriptType =

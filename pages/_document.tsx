@@ -45,9 +45,7 @@ export default class MyDocument extends Document<DocumentProps> {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
-    if (!url.href) {
-      logger.error('missing url!!!')
-    }
+    if (!url.href) logger.error('missing url!!!')
 
     const isAmp = url.href.includes('?amp') || url.href.includes('/amp')
 

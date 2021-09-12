@@ -1,30 +1,20 @@
-import type { StorybookConfig } from '@storybook/react/types';
+import type { StorybookConfig } from '@storybook/react/types'
 
 module.exports = {
-  stories: ['./src/**/*.stories.*'],
+  stories: ['../src/**/*.stories.*', '../stories/**/*.story.tsx'],
   logLevel: 'debug',
   addons: [
     '@storybook/addon-essentials',
-    '@storybook/addon-controls',
     '@storybook/addon-storysource',
     '@storybook/addon-a11y',
     '@storybook/addon-graphql',
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        sourceLoaderOptions: {
-          parser: 'typescript',
-          injectStoryParameters: false,
-        },
-      },
-    },
     '@storybook/addon-storyshots',
   ],
   typescript: {
-    check: true,
+    check: false,
     checkOptions: {},
     reactDocgenTypescriptOptions: {
-      propFilter: (prop) => ['label', 'disabled'].includes(prop.name),
+      propFilter: prop => ['label', 'disabled'].includes(prop.name),
     },
   },
-} as StorybookConfig;
+} as StorybookConfig

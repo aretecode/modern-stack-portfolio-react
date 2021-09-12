@@ -21,7 +21,8 @@ function withoutTypeNameRecursive<Type extends {} | unknown[] | unknown>(
   }
 }
 
-export const getStaticProps: GetStaticProps<ResumeEverythingType> = async context => {
+type StaticProps = GetStaticProps<ResumeEverythingType>
+export const getStaticProps: StaticProps = async context => {
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<ResumeResponse>({
     query: ResumeQuery,

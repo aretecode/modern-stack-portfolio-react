@@ -15,7 +15,7 @@ const GET_EXPERIENCE_IDS = gql`
   }
 `
 
-export const getStaticPaths: GetStaticPaths<any> = async() => {
+export const getStaticPaths: GetStaticPaths<any> = async () => {
   const apolloClient = initApolloClient()
   const gqlResponse = await apolloClient.query<{
     website: {

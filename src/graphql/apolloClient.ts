@@ -7,7 +7,6 @@
  * @see https://www.apollographql.com/docs/react/features/performance.html#cache-redirects
  * @see https://github.com/zeit/next.js/blob/master/examples/with-apollo/lib/init-apollo.js
  */
-const merge = require('deepmerge')
 import * as React from 'react'
 import { AppProps } from 'next/app'
 import {
@@ -22,6 +21,7 @@ import { GraphQLError } from 'graphql'
 import { isArray, isEmpty, isObj } from '../utils/is'
 import { EMPTY_ARRAY } from '../utils/EMPTY'
 import { logger } from '../log'
+import merge from '../utils/deepmerge'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
@@ -47,13 +47,10 @@ function createDevLinks() {
         const list = graphQLErrors as GraphQLError[]
         list.forEach(logError)
       }
-      if (!isEmpty(networkError)) {
+      if (!isEmpty(networkError))
         logger.error(`[Network error]: ${networkError}`)
-      }
 
-      if (hasError && isObj(response)) {
-        response.errors = undefined
-      }
+      if (hasError && isObj(response)) response.errors = undefined
     })
 
     /**
@@ -79,13 +76,6 @@ function createDevLinks() {
   }
 }
 
-/**
- * @see apolloClient
- */
-if (!process.browser) {
-  ;(global as any).fetch = require('node-fetch')
-}
-
 let apolloClientInstance: ApolloClient<any> = undefined as any
 
 function createApolloClient(url?: URL) {
@@ -98,7 +88,6 @@ function createApolloClient(url?: URL) {
      */
     const httpLinkActual = new HttpLink({
       uri: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}?access_token=${process.env.CONTENTFUL_TOKEN}`,
-
       /**
        * @@security should be same-origin in real production
        */
@@ -124,11 +113,11 @@ const isEqual = <T1 extends unknown, T2 extends unknown>(
   x: T1,
   y: T2
 ): boolean => {
-  if (isObj(x) && isObj(y)) {
+  if (isObj(x) && isObj(y))
     return Object.keys(x).every(key => isEqual(x[key], y[key]))
-  } else if (isArray(x) && isArray(y)) {
+  else if (isArray(x) && isArray(y))
     return x.every((item, index) => isEqual(x[index], y[index]))
-  }
+
   return x === y
 }
 
@@ -159,13 +148,10 @@ export function initApolloClient(
     _apolloClient.cache.restore(data)
   }
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') {
-    return _apolloClient
-  }
+  if (typeof window === 'undefined') return _apolloClient
+
   // Create the Apollo Client once in the client
-  if (!apolloClientInstance) {
-    apolloClientInstance = _apolloClient
-  }
+  if (!apolloClientInstance) apolloClientInstance = _apolloClient
 
   return _apolloClient
 }

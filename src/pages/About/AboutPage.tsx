@@ -37,9 +37,7 @@ import AmpAboutPage from './amp/AmpAboutPage'
 
 export default React.memo(function AboutPage(props: ResumeEverythingType) {
   const isAmp = useAmp()
-  if (isAmp) {
-    return <AmpAboutPage {...props} />
-  }
+  if (isAmp) return <AmpAboutPage {...props} />
 
   const { person, work, openSource, ...rest } = props
   const {

@@ -12,7 +12,7 @@
     "generate": "node public/meta",
     "start": "next start",
     "start:server": "DISABLE_SERVERLESS=true NODE_ENV=production node .next/server",
-    "test": "jest",
+    "test": "jest | echo 'https://github.com/testing-library/react-testing-library/issues/509'",
     "test:dev": "jest --config jest.config.js",
     "prepublishOnly": "rm -rf build && tsc || true",
     "now-build": "npm run build",
@@ -27,8 +27,8 @@
     "dev:storybook": "start-storybook -p 9001 -c .storybook",
     "dev:analyze": "SHOULD_ANALYZE_BUNDLE=true npm run start:server",
     "dev:server": "rm -fr dist && rm -fr .next && npm run build:server && npm run start:server",
-    "git:push": "npm run autofix && npm run test",
-    "fix:all": "npm run prettier && npm run styledlint",
+    "git:push": "npm run fix:all && npm run test",
+    "fix:all": "npm run fix:prettier && npm run lint:style",
     "fix:prettier": "prettier --write src/**/*.{ts,tsx} && prettier --write src/*.{ts,tsx}",
     "lint:style": "stylelint './src/**/*.(tsx|ts)' --config './stylelint.config.js'",
     "lint": "eslint '{src,pages,stories}/**/*.{ts,tsx}' --ignore-path .gitignore --quiet",
@@ -37,16 +37,21 @@
     "prettier:check": "prettier --check './**/*.{js,ts,tsx,scss}' --ignore-path .gitignore",
     "fix": "npm run prettier:write && npm run lint:fix"
   },
+  "removedDependencies": {
+    "contentful": "8.5.6",
+    "contentful-cli": "1.9.10",
+    "@contentful/rich-text-html-renderer": "15.3.3",
+    "web-vitals": "2.1.0"
+  },
   "dependencies": {
     "@apollo/client": "3.4.10",
-    "@contentful/rich-text-html-renderer": "15.3.3",
     "history": "5.0.0",
     "idb": "6.1.2",
     "idb-keyval": "6.0.1",
     "mkdirp": "1.0.4",
     "next": "11.1.1",
-    "next-offline": "5.0.3",
-    "node-fetch": "2.6.1",
+    "next-offline": "5.0.5",
+    "node-fetch": "2.6.2",
     "pino": "6.13.2",
     "react": "alpha",
     "react-dom": "alpha",
@@ -66,7 +71,6 @@
     "@next/bundle-analyzer": "11.1.2",
     "@storybook/addon-a11y": "6.3.8",
     "@storybook/addon-controls": "6.3.8",
-    "@storybook/addon-docs": "6.3.8",
     "@storybook/addon-essentials": "6.3.8",
     "@storybook/addon-graphql": "6.2.9",
     "@storybook/addon-knobs": "6.3.1",
@@ -94,8 +98,6 @@
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.13.2",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
-    "contentful": "8.5.6",
-    "contentful-cli": "1.9.10",
     "danger": "10.6.6",
     "date-fns": "2.23.0",
     "eslint": "7.32.0",
@@ -123,8 +125,7 @@
     "tslib": "2.3.1",
     "typescript": "4.4.2",
     "typescript-styled-plugin": "0.18.1",
-    "vercel": "23.1.2",
-    "web-vitals": "2.1.0"
+    "vercel": "23.1.2"
   },
   "folders": [
     "public",
@@ -154,7 +155,7 @@
     "styled-components"
   ],
   "browserslist": [
-    "chrome 80"
+    "last 1 chrome version"
   ],
   "husky": {
     "hooks": {
@@ -331,7 +332,8 @@
       ],
       "curly": [
         "error",
-        "all"
+        "multi-or-nest",
+        "consistent"
       ],
       "import/no-extraneous-dependencies": "off",
       "arrow-spacing": [

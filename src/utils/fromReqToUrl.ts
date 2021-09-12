@@ -19,11 +19,11 @@ export function fromReqToUrl(
           '[fromReqToUrl] missing url, falling back to url from window'
         )
       }
+
       return new URL(window.location.href)
     } else {
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV === 'development')
         logger.error('[fromReqToUrl] missing url in request!')
-      }
     }
   }
 
