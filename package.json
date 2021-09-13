@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.4.11",
-    "history": "5.0.0",
+    "history": "5.0.1",
     "idb": "6.1.2",
     "idb-keyval": "6.0.1",
     "mkdirp": "1.0.4",
