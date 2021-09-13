@@ -44,7 +44,7 @@
     "web-vitals": "2.1.0"
   },
   "dependencies": {
-    "@apollo/client": "3.4.10",
+    "@apollo/client": "3.4.11",
     "history": "5.0.0",
     "idb": "6.1.2",
     "idb-keyval": "6.0.1",
