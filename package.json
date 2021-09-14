@@ -94,7 +94,7 @@
     "@types/styled-components": "5.1.14",
     "@types/webpack-env": "^1.16.2",
     "@typescript-eslint/eslint-plugin": "4.31.0",
-    "@typescript-eslint/parser": "4.31.0",
+    "@typescript-eslint/parser": "4.31.1",
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.13.2",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
