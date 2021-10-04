@@ -74,7 +74,7 @@
     "@commitlint/config-conventional": "^13.1.0",
     "@next/bundle-analyzer": "11.1.2",
     "@storybook/addon-a11y": "6.3.8",
-    "@storybook/addon-controls": "6.3.8",
+    "@storybook/addon-controls": "6.3.9",
     "@storybook/addon-essentials": "6.3.8",
     "@storybook/addon-graphql": "6.2.9",
     "@storybook/addon-knobs": "6.3.1",
