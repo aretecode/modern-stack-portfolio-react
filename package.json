@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.4.16",
-    "idb-keyval": "6.0.1",
+    "idb-keyval": "6.0.3",
     "next": "11.1.2",
     "next-offline": "5.0.5",
     "node-fetch": "2.6.2",
