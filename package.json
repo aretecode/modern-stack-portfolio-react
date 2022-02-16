@@ -54,7 +54,7 @@
     "@types/react-router-dom": "5.1.8"
   },
   "dependencies": {
-    "@apollo/client": "3.4.16",
+    "@apollo/client": "3.5.9",
     "idb-keyval": "6.0.1",
     "next": "11.1.2",
     "next-offline": "5.0.5",
