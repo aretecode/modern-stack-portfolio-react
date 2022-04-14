@@ -41,6 +41,7 @@ export const AppContext =
 export const AppContextProvider: React.FC<{
   url: URL
   darkMode?: DarkModeHookArrayType
+  children: React.ReactNode
 }> = props => {
   const { url = DEFAULT_URL, children, darkMode } = props
   const contextValue = { ...DEFAULT_APP_CONTEXT, url, darkMode }

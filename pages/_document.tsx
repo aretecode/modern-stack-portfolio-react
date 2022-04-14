@@ -15,6 +15,7 @@ import Document, {
   Main,
   NextScript,
   DocumentContext as NextDocumentContext,
+  DocumentInitialProps,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 import { fromReqToUrl } from '../src/utils/fromReqToUrl'
@@ -39,7 +40,9 @@ export interface DocumentProps {
 
 export default class MyDocument extends Document<DocumentProps> {
   // eslint-disable-next-line max-statements
-  public static async getInitialProps(ctx: Required<NextDocumentContext>) {
+  public static async getInitialProps(
+    ctx: Required<NextDocumentContext>
+  ): Promise<DocumentInitialProps> {
     const url = ctx.req ? fromReqToUrl(ctx.req as any) : { href: '' }
 
     const sheet = new ServerStyleSheet()
@@ -74,7 +77,7 @@ export default class MyDocument extends Document<DocumentProps> {
             {styleElements}
           </>
         ),
-      }
+      } as any /** @todo fix type */
       /* eslint-enable */
     } finally {
       sheet.seal()
