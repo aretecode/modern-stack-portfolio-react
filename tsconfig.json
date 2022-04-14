@@ -56,7 +56,8 @@
           "float": "error"
         }
       }
-    ]
+    ],
+    "incremental": true
   },
   "exclude": [
     "**/static",

@@ -21,7 +21,10 @@ import { useDarkModeClassName } from '../src/features/DarkMode/useDarkModeClassN
 
 export { reportWebVitals } from '../src/features/GoogleTagManager/webVitals'
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({
+  Component,
+  pageProps,
+}: AppProps & { children: React.ReactNode }) {
   if (process.env.NODE_ENV === 'development') logger.debug('[_app] render ')
 
   const [url, setUrl] = React.useState(pageProps.url)

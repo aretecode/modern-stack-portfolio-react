@@ -8,6 +8,8 @@ import { collapseSection, expandSection } from './utils'
 import AnimateHeightTrigger from './AnimateHeightTrigger'
 import { AnimateHeightContext } from './AnimateHeightContext'
 
+type CtxType = React.ContextType<typeof AnimateHeightContext>
+
 /**
  * if needed, can use ref in `componentDidUpdate`
  */
@@ -23,7 +25,7 @@ export class AnimateHeightComponent extends React.PureComponent<
    * @todo move data out of ui
    */
   public async componentDidMount() {
-    if (this.context.isExpanded === false) {
+    if ((this.context as CtxType).isExpanded === false) {
       const { forwardedRef } = this.props
 
       /**
@@ -38,9 +40,9 @@ export class AnimateHeightComponent extends React.PureComponent<
         /**
          * clear if we already have one
          */
-        if (this.updateRefTimeout !== undefined) {
+        if (this.updateRefTimeout !== undefined)
           clearTimeout(this.updateRefTimeout)
-        }
+
         /**
          * handle calling this again if we don't have a ref yet
          */
@@ -75,7 +77,7 @@ export class AnimateHeightComponent extends React.PureComponent<
 
   // @lint this is a value
   protected setIsExpanded = (isExpanded: boolean) => {
-    this.context.setIsExpanded(isExpanded)
+    ; (this.context as CtxType).setIsExpanded(isExpanded)
     /** required to update the arrow icon */
     this.forceUpdate()
   }
@@ -90,11 +92,8 @@ export class AnimateHeightComponent extends React.PureComponent<
     this.setIsExpanded(false)
   }
   protected handleToggle = () => {
-    if (this.context.isExpanded) {
-      this.handleHide()
-    } else {
-      this.handleShow()
-    }
+    if ((this.context as CtxType).isExpanded) this.handleHide()
+    else this.handleShow()
   }
 
   public render() {
@@ -105,7 +104,7 @@ export class AnimateHeightComponent extends React.PureComponent<
         <AnimateHeightTrigger
           key="trigger"
           onClick={this.handleToggle}
-          isExpanded={this.context.isExpanded}
+          isExpanded={(this.context as CtxType).isExpanded}
           {...rest}
         />
         {children}
