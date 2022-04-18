@@ -78,7 +78,7 @@
     "@storybook/addon-essentials": "6.4.21",
     "@storybook/addon-graphql": "6.2.9",
     "@storybook/addon-knobs": "6.4.0",
-    "@storybook/addon-storyshots": "6.4.21",
+    "@storybook/addon-storyshots": "6.4.22",
     "@storybook/addon-storysource": "6.4.21",
     "@storybook/react": "6.4.21",
     "@testing-library/react": "13.0.1",
