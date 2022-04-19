@@ -92,7 +92,7 @@
     "@types/react": "^18.0.4",
     "@types/react-dom": "^18.0.0",
     "@types/styled-components": "5.1.25",
-    "@types/webpack-env": "^1.16.2",
+    "@types/webpack-env": "^1.16.4",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
     "babel-loader": "8.2.2",
