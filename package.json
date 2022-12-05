@@ -73,7 +73,7 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@next/bundle-analyzer": "12.1.5",
-    "@storybook/addon-a11y": "6.4.21",
+    "@storybook/addon-a11y": "6.5.14",
     "@storybook/addon-controls": "6.4.21",
     "@storybook/addon-essentials": "6.4.21",
     "@storybook/addon-graphql": "6.2.9",
