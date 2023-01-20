@@ -98,7 +98,7 @@
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.13.2",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
-    "danger": "10.6.6",
+    "danger": "11.2.2",
     "date-fns": "2.28.0",
     "eslint": "7.32.0",
     "eslint-config-next": "^11.1.2",
